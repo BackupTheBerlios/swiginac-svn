@@ -36,7 +36,6 @@ How to contribute:
 
 - Improve the Python module built on top of swiginac (Symbolic): swiginac should be able to do exactly the same things as ginac (ie matrices implemented using python lists belongs to swiginac), everything else should come to Symbolic.
 
-
 Feature requests:
 
 - Given an expression f, compute the gradient, and the eigenvalues of the
