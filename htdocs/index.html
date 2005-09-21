@@ -1,0 +1,67 @@
+<html>
+<header><title>Swiginac Homepage</title></header>
+<body>
+<h1>Swiginac</h1>
+<h2>Latest news</h2>
+<dl>
+  <dt>September 21, 2005
+  <dd>Project registered at BerliOS, home page created.
+</dl>
+ 
+<h2>About</h2>
+<p>Swiginac is a Python interface to <a href="http://www.ginac.de">GiNaC</a>,
+built with <a href="http://www.swig.org">SWIG</a>. The aim of swiginac is to
+make all the functionality of GiNaC accessible from Python as an extension
+module.</p>
+
+<p>Current status is alpha: a lot (but not all yet) of the GiNaC classes are
+exposed, virtually all of the GiNaC tests pass.</p>
+
+<p>For more information, documentation and software downloads, visit our <a
+href="http://developer.berlios.de/projects/swiginac/">group pages</a> on
+BerliOS.</p>
+
+<h2>Other python bindings to GiNaC</h2>
+
+According to our knowledge:
+<ul>
+<li>The first python binding was <a
+href="http://cens.ioc.ee/projects/pyginac/">pyginac</a> by Pearu Peterson in
+2001, done in boost python, but the project is dead.
+<li>It's succesor, also called <a
+href="http://pyginac.sourceforge.net">pyginac</a>, was developed by Jonathan
+Brandmeyer and later co-authored by Matti Peltomäki. This version is in alpha stage, still active, also done in boost python.
+</ul>
+
+<p>
+Why another bindings? Because we found out that it was easier to implement
+new features using SWIG than using boost python, at least for the authors (one
+of the authors tried both SWIG and boost python). It was easier for us to write
+all the bindings from scratch in SWIG, than to implement new features in
+pyginac, but you can choose which bindings you prefer more.
+</p>
+
+<p>
+The problem with SWIG was, that it didn't used to handle C++ much, but this
+changed rapidly recently (late 2004 and 2005), so now it is a working alternative to boost python and sip. And honestly, we think SWIG is the best. :)
+</p>
+
+<h2>Download</h2>
+
+<p>There is no release yet, but the working code is in the svn repository. You can check it out using this command:</p>
+<pre>
+svn checkout svn://svn.berlios.de/swiginac/trunk 
+</pre>
+You can also browse the SVN <a href="http://svn.berlios.de/wsvn/swiginac/trunk/?rev=0&sc=0">online</a>.
+
+<h2>Authors</h2>
+<a href="http://developer.berlios.de/users/skavhaug/">Ola Skavhaug</a> and 
+<a href="http://developer.berlios.de/users/certik/">Ondrej Certik</a>.
+
+<hr>
+<P>
+<a href="http://developer.berlios.de" title="BerliOS Developer"> <img src="http://developer.berlios.de/bslogo.php?group_id=4761" width="124px" height="32px" border="0" alt="BerliOS Developer Logo"></a>
+</P>
+<hr>
+</body>
+</html>
