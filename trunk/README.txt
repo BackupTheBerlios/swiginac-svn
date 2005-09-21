@@ -38,5 +38,6 @@ How to contribute:
 
 Feature requests:
 
+
 - Given an expression f, compute the gradient, and the eigenvalues of the
   corresponding matrix (Is this possible in GiNac?).
