@@ -24,9 +24,9 @@ Proposed road map:
 How to contribute:
 
 - Please make sure that the testsuites run without error prior to commiting
-  changes, by running "make all checkall" ("make check" runs only the quick
-  tests, "make checkall" runs all of them. The code in svn repository
-  should pass all tests). 
+  changes, by running "make all checkall" (during the development, you can
+  also use "make check", which only runs a few quick tests, but prior to
+  commiting, always run "make checkall"). 
 
 - Improve the usability of swiginac by writing tutorials and document the
   source code (interface files).
