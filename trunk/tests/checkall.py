@@ -45,6 +45,8 @@ modules = quick_tests
 if len(sys.argv)==2:
     modules+= time_consuming_tests
 
+sys.path.append(".")
+
 tests=[]
 for mod in modules:
         m=__import__(mod)
