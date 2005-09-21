@@ -13,7 +13,7 @@ Proposed road map:
   exam_misc: xtest_exam_subs_algebraic - overloaded typemaps problems
   exam_normalization: xtest_exam_normal2 - factoring out doesn't work
 
-  the "x" in the front prevent "make check" to run them. Delte the "x" and
+  the "x" in the front prevent "make check" to run them. Delete the "x" and
   fix it.
 
 - Solve the Makefile problem, so that it compiles with every python version
