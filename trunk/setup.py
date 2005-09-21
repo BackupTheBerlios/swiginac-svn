@@ -9,7 +9,14 @@ only work on Debian systems (no platform independence yet).
 Make sure that you have at least SWIG version 1.3.24 and GiNaC
 version 1.2.3.
 
-Ola Skavhaug
+To install swiginac, type:
+python setup.py build_ext --swig-cpp
+python setup.py install
+
+To check your installation, change directory to ./tests, and run 
+python checkall.py
+
+Ola Skavhaug,
 Simula Research Laboratory
 """
 

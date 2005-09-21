@@ -36,9 +36,12 @@ How to contribute:
 
 - Use swiginac in your research activity, and tell other people about it.
 
-- Set up a nice project home page at berlios.
+- Improve the project home page at berlios.
 
-- Improve the Python module built on top of swiginac (Symbolic): swiginac should be able to do exactly the same things as ginac (ie matrices implemented using python lists belongs to swiginac), everything else should come to Symbolic.
+- Improve the Python module built on top of swiginac (Symbolic): swiginac
+  should be able to do exactly the same things as ginac (ie matrices
+  implemented using python lists belongs to swiginac), everything else should
+  come to Symbolic.
 
 Feature requests:
 
