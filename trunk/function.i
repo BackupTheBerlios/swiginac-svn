@@ -26,22 +26,27 @@
 
 
 
+/*
 #define REGISTER_FUNCTION(NAME,OPT) \
 unsigned NAME##_SERIAL::serial = \
 	GiNaC::function::register_new(GiNaC::function_options(#NAME, NAME##_NPARAMS).OPT);
 
+*/
 
 class function;
 class symmetry;
 
+/*
 typedef ex (* eval_funcp)();
 typedef ex (* evalf_funcp)();
 typedef ex (* conjugate_funcp)();
 typedef ex (* derivative_funcp)();
 typedef ex (* series_funcp)();
 typedef void (* print_funcp)();
+*/
 
 // the following lines have been generated for max. 14 parameters
+/*
 typedef ex (* eval_funcp_1)(const ex &);
 typedef ex (* eval_funcp_2)(const ex &, const ex &);
 typedef ex (* eval_funcp_3)(const ex &, const ex &, const ex &);
@@ -105,6 +110,7 @@ typedef ex (* conjugate_funcp_exvector)(const exvector &);
 typedef ex (* derivative_funcp_exvector)(const exvector &, unsigned);
 typedef ex (* series_funcp_exvector)(const exvector &, const relational &, int, unsigned);
 typedef void (* print_funcp_exvector)(const exvector &, const print_context &);
+*/
 
 
 class function_options
@@ -206,44 +212,6 @@ public:
 	std::string get_name() const { return name; }
 	unsigned get_nparams() const { return nparams; }
 
-protected:
-	bool has_derivative() const { return derivative_f != NULL; }
-	void test_and_set_nparams(unsigned n);
-	void set_print_func(unsigned id, print_funcp f);
-
-	std::string name;
-	std::string TeX_name;
-
-	unsigned nparams;
-
-	eval_funcp eval_f;
-	evalf_funcp evalf_f;
-	conjugate_funcp conjugate_f;
-	derivative_funcp derivative_f;
-	series_funcp series_f;
-	std::vector<print_funcp> print_dispatch_table;
-
-	bool evalf_params_first;
-
-	bool use_return_type;
-	unsigned return_type;
-	unsigned return_type_tinfo;
-
-	bool use_remember;
-	unsigned remember_size;
-	unsigned remember_assoc_size;
-	unsigned remember_strategy;
-
-	bool eval_use_exvector_args;
-	bool evalf_use_exvector_args;
-	bool conjugate_use_exvector_args;
-	bool derivative_use_exvector_args;
-	bool series_use_exvector_args;
-	bool print_use_exvector_args;
-
-	unsigned functions_with_same_name;
-
-	ex symtree;
 };
 
 
@@ -286,7 +254,6 @@ public:
 //	function(unsigned ser, std::auto_ptr<exvector> vp);
 
 	// functions overriding virtual functions from base classes
-public:
 	unsigned precedence() const {return 70;}
 	ex expand(unsigned options=0) const;
 	ex eval(int level=0) const;
@@ -296,33 +263,11 @@ public:
 	ex thiscontainer(const exvector & v) const;
 //	ex thiscontainer(std::auto_ptr<exvector> vp) const;
 	ex conjugate() const;
-protected:
-	ex derivative(const symbol & s) const;
-	bool is_equal_same_type(const basic & other) const;
-	bool match_same_type(const basic & other) const;
-	unsigned return_type() const;
-	unsigned return_type_tinfo() const;
-	
-	// new virtual functions which can be overridden by derived classes
-	// none
-	
-	// non-virtual functions in this class
-protected:
-	ex pderivative(unsigned diff_param) const; // partial differentiation
-	static std::vector<function_options> & registered_functions();
-	bool lookup_remember_table(ex & result) const;
-	void store_remember_table(ex const & result) const;
-public:
 	static unsigned register_new(function_options const & opt);
 	static unsigned current_serial;
 	static unsigned find_function(const std::string &name, unsigned nparams);
 	unsigned get_serial() const {return serial;}
 	std::string get_name() const;
-
-// member variables
-
-protected:
-	unsigned serial;
 };
 
 // utility functions/macros
@@ -341,7 +286,7 @@ inline bool is_the_function(const ex & x)
 }
 
 // Check whether OBJ is the specified symbolic function.
-#define is_ex_the_function(OBJ, FUNCNAME) (GiNaC::is_the_function<FUNCNAME##_SERIAL>(OBJ))
+//#define is_ex_the_function(OBJ, FUNCNAME) (GiNaC::is_the_function<FUNCNAME##_SERIAL>(OBJ))
 
 //size_t nops(const ex & thisex);
 //ex expand(const ex & thisex, unsigned options = 0);

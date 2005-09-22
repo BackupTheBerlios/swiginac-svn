@@ -21,8 +21,11 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+/* we don't need this....
+
 template<> inline unsigned exprseq::get_tinfo();
 template<> bool exprseq::info(unsigned inf) const;
 template<> inline bool is_exactly_a<exprseq>(const basic & obj);
+*/
 
 // vim:ft=cpp:

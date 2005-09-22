@@ -24,12 +24,16 @@
 #ifndef __GINAC_LST_H__
 #define __GINAC_LST_H__
 
+//is there any need for this?
+/*
 template<> inline unsigned lst::get_tinfo();
 template<> inline unsigned lst::get_default_flags();
 template<> inline char lst::get_open_delim();
 template<> inline char lst::get_close_delim();
 template<> bool lst::info(unsigned inf) const;
 template<> inline bool is_exactly_a<lst>(const basic & obj);
+*/
 
 #endif // ndef __GINAC_LST_H__
+
 // vim:ft=cpp:

@@ -263,17 +263,17 @@ lst* list2lst(PyObject * input)
 %include "numeric.i"
 %include "relational.i"
 
-
-//%include "ex.i"
-
 %include "normal.i"
 %include "constant.i"
 %include "container.i"
 
-//%template(lst) container<std::list>;
-%include "lst.i"
-//%template(exprseq) container<std::vector>;
+//do we need these 4 lines?
+/*
+%template(lst) container<std::list>;
+%template(exprseq) container<std::vector>;
 %include "exprseq.i"
+%include "lst.i"
+*/
 
 %include "integral.i"
 %include "matrix.i"
