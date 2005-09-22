@@ -43,7 +43,7 @@ PYTHONPATH=$PYTHONPATH:$PREFIX
 with PREFIX identically to the definition in Makefile.
 
 Run:
-make all 
+make 
 
 This will construct the swiginac extension module. The module consists of the 
 files swiginac.py and _swiginac.so. 
@@ -65,7 +65,7 @@ Then, re-visit the directory containing this file, and enter tests directory:
 cd tests
 python checkall.py
 
-Hopefully, you will get a message telling you that 62 tests have been run, and
+Hopefully, you will get a message telling you that 79 tests have been run, and
 that they all went well.
 
 Final note
@@ -73,5 +73,5 @@ Final note
 swiginac is currently without documentation. Therefore, browsing the scripts in
 the tests directory is the best way of learning how to use swiginac. Also, read
 the documentation the the GiNaC homepages (http://www.ginac.de/tutorial/ and
-http://www.ginac.de/reference/). 
+http://www.ginac.de/reference/).
 
