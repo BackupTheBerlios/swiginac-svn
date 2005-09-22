@@ -165,7 +165,7 @@ class test_misc(unittest.TestCase):
 
         self.assertEqual(result,0)
 
-    def xtest_exam_subs_algebraic(self):
+    def test_exam_subs_algebraic(self):
         """
         >>> exam_subs_algebraic()
         0

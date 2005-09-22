@@ -5,7 +5,7 @@ class ex;
     if (!$1) return NULL;
 }
 
-%typemap(typecheck) lst & {
+%typemap(typecheck, precedence=1200) lst & {
     $1 = (PyList_Check($input)) ? 1 : 0;
 }
 
@@ -23,7 +23,7 @@ class ex;
     if (!$1) return NULL;
 }
 
-%typemap(typecheck) ex & {
+%typemap(typecheck, precedence=1210) ex & {
     $1 = (checktype2ex($input)) ? 1 : 0;
 }
 

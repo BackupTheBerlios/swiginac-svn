@@ -238,10 +238,8 @@ def __repr__(self):
 	ex subs(const lst & ls, const lst & lr) {
         return self->eval().subs(ls,lr);
     }
-    //ex subs(const ex & e, unsigned options = 0) {
-    ex subs(const ex & e) {
-        //return self->eval().subs(e,options);
-        return self->eval().subs(e);
+    ex subs(const ex & e, unsigned options = 0) const {
+        return self->eval().subs(e,options);
     }
 
     ex normal(int level = 0) const {
