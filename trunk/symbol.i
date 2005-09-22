@@ -26,14 +26,17 @@ class symbol : public basic
 public:
    explicit symbol(const std::string & initname);
    explicit symbol(const std::string & initname, const std::string & texname);
-   ex eval(int level = 0) const;
-   ex evalf(int level = 0) const { return *this; }
+   //these are defined in the basic class - we don't need them
+   //ex eval(int level = 0) const;
+   //ex evalf(int level = 0) const { return *this; }
 };
 
 %extend  symbol {
-ex __call__() {
+
+//we don't need this anymore
+/*ex __call__() {
    return self->eval();
-}
+}*/
 
 %pythoncode %{
 def __repr__(self):

@@ -42,16 +42,16 @@ public:
 //	expairseq(const epvector & v, const ex & oc);
 //	expairseq(std::auto_ptr<epvector>, const ex & oc);
 	unsigned precedence() const {return 10;}
-	bool info(unsigned inf) const;
-	size_t nops() const;
-	ex op(size_t i) const;
-	ex map(map_function & f) const;
-	ex eval(int level=0) const;
-	ex to_rational(exmap & repl) const;
-	ex to_polynomial(exmap & repl) const;
-	bool match(const ex & pattern, lst & repl_lst) const;
+	//bool info(unsigned inf) const;
+	//size_t nops() const;
+	//ex op(size_t i) const;
+	//ex map(map_function & f) const;
+	//ex eval(int level=0) const;
+	//ex to_rational(exmap & repl) const;
+	//ex to_polynomial(exmap & repl) const;
+	//bool match(const ex & pattern, lst & repl_lst) const;
 	//ex subs(const exmap & m, unsigned options = 0) const;
-	ex conjugate() const;
+	//ex conjugate() const;
 };
 
 // utility functions

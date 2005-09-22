@@ -34,8 +34,8 @@ public:
                 greater_or_equal
         };
         relational(const ex & lhs, const ex & rhs, operators oper=equal);
-        ex op(size_t i) const;
-        ex eval(int level=0) const;
+        //ex op(size_t i) const;
+        //ex eval(int level=0) const;
         virtual ex lhs(void) const;
         virtual ex rhs(void) const;
 };

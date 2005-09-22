@@ -44,7 +44,7 @@ public:
 	int degree(const ex & s) const;
 	int ldegree(const ex & s) const;
 	ex coeff(const ex & s, int n=1) const;
-	ex eval(int level=0) const;
+	//ex eval(int level=0) const;
 	ex evalm() const;
 	ex series(const relational & r, int order, unsigned options = 0) const;
 	//ex normal(exmap & repl, exmap & rev_lookup, int level=0) const;
