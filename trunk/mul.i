@@ -38,7 +38,7 @@ public:
 //	mul(const epvector & v, const ex & oc);
 //	mul(std::auto_ptr<epvector> vp, const ex & oc);
 	mul(const ex & lh, const ex & mh, const ex & rh);
-	unsigned precedence() const {return 50;}
+	//unsigned precedence() const {return 50;}
 	//bool info(unsigned inf) const;
 	//int degree(const ex & s) const;
 	//int ldegree(const ex & s) const;
@@ -56,10 +56,12 @@ public:
 };
 
 /** Specialization of is_exactly_a<mul>(obj) for mul objects. */
+/*
 template<> inline bool is_exactly_a<mul>(const basic & obj)
 {
 	return obj.tinfo()==TINFO_mul;
 }
+*/
 
 
 #endif // ndef __GINAC_MUL_H__

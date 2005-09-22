@@ -44,7 +44,7 @@ public:
 	      const ex & f4, const ex & f5, const ex & f6);
 //	ncmul(const exvector & v, bool discardable=false);
 //	ncmul(std::auto_ptr<exvector> vp);
-	unsigned precedence() const {return 50;}
+	//unsigned precedence() const {return 50;}
 	//bool info(unsigned inf) const;
 	//int degree(const ex & s) const;
 	//int ldegree(const ex & s) const;

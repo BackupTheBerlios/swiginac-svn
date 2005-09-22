@@ -33,6 +33,7 @@ class power : public basic
 public:
 	power(const ex & lh, const ex & rh) : inherited(TINFO_power), basis(lh), exponent(rh) {}
 	template<typename T> power(const ex & lh, const T & rh) : inherited(TINFO_power), basis(lh), exponent(rh) {}
+    /*
 	unsigned precedence() const {return 60;}
 	bool info(unsigned inf) const;
 	size_t nops() const;
@@ -51,6 +52,7 @@ public:
 	ex to_polynomial(exmap & repl) const;
 	exvector get_free_indices() const;
 	ex conjugate() const;
+    */
 };
 
 #endif // ndef __GINAC_POWER_H__

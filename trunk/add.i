@@ -31,14 +31,17 @@
 /** Sum of expressions. */
 class add : public expairseq
 {
+    /*
 	friend class mul;
 	friend class power;
+    */
 public:
 	add(const ex & lh, const ex & rh);
 	add(const exvector & v);
 	add(const epvector & v);
 //	add(const epvector & v, const ex & oc);
 //	add(std::auto_ptr<epvector> vp, const ex & oc);
+    /*
 	unsigned precedence() const {return 40;}
 	bool info(unsigned inf) const;
 	int degree(const ex & s) const;
@@ -54,15 +57,18 @@ public:
 	ex conjugate() const;
 	exvector get_free_indices() const;
 	ex eval_ncmul(const exvector & v) const;
+    */
 };
 
 // utility functions
 
 /** Specialization of is_exactly_a<add>(obj) for add objects. */
+/*
 template<> inline bool is_exactly_a<add>(const basic & obj)
 {
 	return obj.tinfo()==TINFO_add;
 }
+*/
 
 
 #endif // ndef __GINAC_ADD_H__

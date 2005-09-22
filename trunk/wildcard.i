@@ -28,7 +28,7 @@ class wildcard : public basic
 {
 public:
 	wildcard(unsigned label);
-	bool match(const ex & pattern, lst & repl_lst) const;
+	//bool match(const ex & pattern, lst & repl_lst) const;
 	unsigned get_label() const {return label;}
 };
 

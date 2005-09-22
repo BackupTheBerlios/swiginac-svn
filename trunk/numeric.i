@@ -31,8 +31,8 @@ public:
     numeric(long numer, long denom);
     numeric(double d);
     numeric(const char *);
-    unsigned precedence() const {return 30;}
     /*
+    unsigned precedence() const {return 30;}
     bool info(unsigned inf) const;
     int degree(const ex & s) const;
     int ldegree(const ex & s) const;
