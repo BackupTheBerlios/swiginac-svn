@@ -42,7 +42,7 @@ check_lsolve
 """.split()
 
 modules = quick_tests
-if len(sys.argv)==2:
+if len(sys.argv)==1:
     modules+= time_consuming_tests
 
 sys.path.append(".")

@@ -36,5 +36,5 @@ install::
 check::
 	python tests/checkall.py
 
-checkall::
-	python tests/checkall.py all
+checkquick::
+	python tests/checkall.py quick
