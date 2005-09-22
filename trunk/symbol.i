@@ -35,11 +35,10 @@ ex __call__() {
    return self->eval();
 }
 
-    std::string __repr__() {
-        std::ostringstream out;
-        out << *self;
-        return out.str();
-    }
+%pythoncode %{
+def __repr__(self):
+    return self.__str__()
+%}
 
 };
 // vim:ft=cpp:

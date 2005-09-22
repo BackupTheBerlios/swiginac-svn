@@ -72,6 +72,22 @@ class test_lst(unittest.TestCase):
         self.assertNotEqual(repr([x,y]),"[x, y+1]")
         self.assertNotEqual(repr([x,y+1-1]),"[x, y+1-1]")
 
+        a=g.symbol("a")
+        b=g.symbol("b")
+        e1=a*x+b*y==3
+        e2=x-y==b
+        eqns=[e1,e2]
+        vars=[x,y]
+        mat = g.lsolve(eqns,vars)
+        self.failUnless(isinstance(mat,list))
+        g.basic.__repr__=g.basic.__str__
+        self.assertEqual(str(mat[0]),"x==(b+a)**(-1)*(3+b**2)")
+        self.assertEqual(repr(mat[0]),"x==(b+a)**(-1)*(3+b**2)")
+        self.assertEqual(str(mat[1]),"y==(b+a)**(-1)*(3-b*a)")
+        self.assertEqual(repr(mat[1]),"y==(b+a)**(-1)*(3-b*a)")
+        self.assertEqual(repr(mat),"[x==(b+a)**(-1)*(3+b**2), y==(b+a)**(-1)*(3-b*a)]")
+
+
 
 if __name__ == "__main__":
     unittest.main()
