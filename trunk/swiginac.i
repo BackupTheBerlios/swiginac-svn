@@ -359,8 +359,8 @@ DECLARE_FUNCTION_2P(binomial)
 DECLARE_FUNCTION_1P(Order)
 
 
-
-%include "inifcns.i"
+//do we need these two?
+//%include "inifcns.i"
 //%include "operators.i"
 
 /*%extend ex {

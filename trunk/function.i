@@ -227,6 +227,7 @@ class do_taylor {};
 class function : public basic
 {
 
+    /*
 	// CINT has a linking problem
 #ifndef __MAKECINT__
 //	friend void ginsh_get_ginac_functions();
@@ -239,6 +240,7 @@ class function : public basic
 // member functions
 
 	// other constructors
+    */
 public:
 	function(unsigned ser);
 	// the following lines have been generated for max. 14 parameters
@@ -255,14 +257,14 @@ public:
 
 	// functions overriding virtual functions from base classes
 	unsigned precedence() const {return 70;}
-	ex expand(unsigned options=0) const;
-	ex eval(int level=0) const;
-	ex evalf(int level=0) const;
+	//ex expand(unsigned options=0) const;
+	//ex eval(int level=0) const;
+	//ex evalf(int level=0) const;
 	unsigned calchash() const;
-	ex series(const relational & r, int order, unsigned options = 0) const;
+	//ex series(const relational & r, int order, unsigned options = 0) const;
 	ex thiscontainer(const exvector & v) const;
 //	ex thiscontainer(std::auto_ptr<exvector> vp) const;
-	ex conjugate() const;
+	//ex conjugate() const;
 	static unsigned register_new(function_options const & opt);
 	static unsigned current_serial;
 	static unsigned find_function(const std::string &name, unsigned nparams);
@@ -273,6 +275,7 @@ public:
 // utility functions/macros
 
 /** Specialization of is_exactly_a<function>(obj) for objects of type function. */
+/*
 template<> inline bool is_exactly_a<function>(const basic & obj)
 {
 	return obj.tinfo()==TINFO_function;
@@ -286,7 +289,8 @@ inline bool is_the_function(const ex & x)
 }
 
 // Check whether OBJ is the specified symbolic function.
-//#define is_ex_the_function(OBJ, FUNCNAME) (GiNaC::is_the_function<FUNCNAME##_SERIAL>(OBJ))
+#define is_ex_the_function(OBJ, FUNCNAME) (GiNaC::is_the_function<FUNCNAME##_SERIAL>(OBJ))
+*/
 
 //size_t nops(const ex & thisex);
 //ex expand(const ex & thisex, unsigned options = 0);
