@@ -39,19 +39,19 @@ public:
 //	mul(std::auto_ptr<epvector> vp, const ex & oc);
 	mul(const ex & lh, const ex & mh, const ex & rh);
 	unsigned precedence() const {return 50;}
-	bool info(unsigned inf) const;
-	int degree(const ex & s) const;
-	int ldegree(const ex & s) const;
-	ex coeff(const ex & s, int n = 1) const;
-	ex eval(int level=0) const;
-	ex evalf(int level=0) const;
-	ex evalm() const;
-	ex series(const relational & s, int order, unsigned options = 0) const;
+	//bool info(unsigned inf) const;
+	//int degree(const ex & s) const;
+	//int ldegree(const ex & s) const;
+	//ex coeff(const ex & s, int n = 1) const;
+	//ex eval(int level=0) const;
+	//ex evalf(int level=0) const;
+	//ex evalm() const;
+	//ex series(const relational & s, int order, unsigned options = 0) const;
 //	ex normal(exmap & repl, exmap & rev_lookup, int level = 0) const;
-	numeric integer_content() const;
-	ex smod(const numeric &xi) const;
-	numeric max_coefficient() const;
-	exvector get_free_indices() const;
+	//numeric integer_content() const;
+	//ex smod(const numeric &xi) const;
+	//numeric max_coefficient() const;
+	//exvector get_free_indices() const;
 	ex algebraic_subs_mul(const exmap & m, unsigned options) const;
 };
 
