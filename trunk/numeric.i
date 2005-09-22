@@ -32,6 +32,7 @@ public:
     numeric(double d);
     numeric(const char *);
     unsigned precedence() const {return 30;}
+    /*
     bool info(unsigned inf) const;
     int degree(const ex & s) const;
     int ldegree(const ex & s) const;
@@ -39,14 +40,17 @@ public:
     bool has(const ex &other) const;
     ex eval(int level = 0) const;
     ex evalf(int level = 0) const;
+    */
    // ex subs(const exmap & m, unsigned options = 0) const;
     //ex normal(exmap & repl, exmap & rev_lookup, int level = 0) const;
+    /*
     ex to_rational(exmap & repl) const;
     ex to_polynomial(exmap & repl) const;
     numeric integer_content() const;
     ex smod(const numeric &xi) const;
     numeric max_coefficient() const;
     ex conjugate() const;
+    */
     const numeric add(const numeric &other) const;
     const numeric sub(const numeric &other) const;
     const numeric mul(const numeric &other) const;

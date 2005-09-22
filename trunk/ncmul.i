@@ -27,9 +27,11 @@
 //class ncmul : public exprseq
 class ncmul : public basic
 {
+    /*
 	friend class power;
 	friend ex reeval_ncmul(const exvector & v);
 	friend ex hold_ncmul(const exvector & v);
+    */
 
 public:
 	ncmul(const ex & lh, const ex & rh);
@@ -43,17 +45,17 @@ public:
 //	ncmul(const exvector & v, bool discardable=false);
 //	ncmul(std::auto_ptr<exvector> vp);
 	unsigned precedence() const {return 50;}
-	bool info(unsigned inf) const;
-	int degree(const ex & s) const;
-	int ldegree(const ex & s) const;
-	ex expand(unsigned options=0) const;
-	ex coeff(const ex & s, int n=1) const;
-	ex eval(int level=0) const;
-	ex evalm() const;
-	exvector get_free_indices() const;
-	ex thiscontainer(const exvector & v) const;
+	//bool info(unsigned inf) const;
+	//int degree(const ex & s) const;
+	//int ldegree(const ex & s) const;
+	//ex expand(unsigned options=0) const;
+	//ex coeff(const ex & s, int n=1) const;
+	//ex eval(int level=0) const;
+	//ex evalm() const;
+	//exvector get_free_indices() const;
+	//ex thiscontainer(const exvector & v) const;
 //	ex thiscontainer(std::auto_ptr<exvector> vp) const;
-	ex conjugate() const;
+	//ex conjugate() const;
 	//const exvector & get_factors() const;
 };
 
