@@ -29,8 +29,9 @@ clean::
 	rm -f *_wrap* *.so *.o $(OBJ_FILES)  *~ swiginac.py swiginac.pyc tests/*.pyc
 
 install::
-	cp _$(INTERFACE).so  $(PREFIX)/swiginac
-	cp $(INTERFACE).py  $(PREFIX)/swiginac/__init__.py
+	mkdir -p $(PREFIX)/swiginac
+	cp _$(INTERFACE).so $(PREFIX)/swiginac
+	cp $(INTERFACE).py $(PREFIX)/swiginac/__init__.py
 
 check::
 	python tests/checkall.py
