@@ -32,6 +32,44 @@ public:
 	bool same_metric(const ex & other) const;
 };
 
+%extend clifford {
+
+    std::string printpython() {
+        std::ostringstream out;
+        (*self).print(print_python(out));
+        return out.str();
+    }
+
+    std::string printlatex() {
+        std::ostringstream out;
+        (*self).print(print_latex(out));
+        return out.str();
+    }
+
+    std::string printc() {
+        std::ostringstream out;
+        (*self).print(print_csrc_double(out));
+        return out.str();
+    }
+
+%pythoncode %{
+def set_print_context(self, context_type):
+    if context_type == "python":
+        self.str = self.printpython
+    elif context_type == "tex":
+        self.str = self.printlatex
+    elif context_type == "c":
+        self.str = self.printc
+
+def __str__(self):
+    if not self.__dict__.has_key("str"):
+        self.str = self.printpython
+    return self.str()
+
+%}
+
+};
+
 
 class diracone : public tensor {};
 

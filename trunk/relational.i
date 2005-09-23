@@ -43,8 +43,6 @@ def __str__(self):
         self.str = self.printpython
     return self.str()
 
-def __repr__(self):
-    return self.__str__()
 
 %}
 

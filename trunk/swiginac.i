@@ -57,6 +57,28 @@ namespace GiNaC {
 %include "wildcard.i"
 %include "flags.i"
 
+%define ADD_REPR(name)
+
+%extend name {
+%pythoncode %{
+
+    def __repr__(self):
+        return self.__str__()
+
+%}
+};
+%enddef
+
+ADD_REPR(add);
+ADD_REPR(mul);
+ADD_REPR(power);
+ADD_REPR(matrix);
+ADD_REPR(clifford);
+ADD_REPR(relational);
+ADD_REPR(numeric);
+ADD_REPR(function);
+ADD_REPR(constant);
+
 };
 
 %inline %{

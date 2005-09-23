@@ -51,11 +51,6 @@ public:
 	unsigned rank() const;
 
 %extend {
-    std::string __repr__() {
-        std::ostringstream out;
-        out << *self;
-        return out.str();
-    }
 	/*matrix(const lst & l) {
     }
     */
