@@ -8,7 +8,7 @@ Proposed road map:
 - tests/check_matrices.py, the same
   self.assertEqual((A*B-(C*2)).evalm(),[[-13,-6],[1,2]])
 
-- testsuites - these doesn't run:
+- this testsuite doesn't run:
 
   exam_normalization: xtest_exam_normal2 - factoring out doesn't work
 
