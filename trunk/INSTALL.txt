@@ -65,7 +65,7 @@ Then, re-visit the directory containing this file, and enter tests directory:
 cd tests
 python checkall.py
 
-Hopefully, you will get a message telling you that 79 tests have been run, and
+Hopefully, you will get a message telling you that 80 tests have been run, and
 that they all went well.
 
 Final note

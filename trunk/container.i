@@ -21,10 +21,6 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#ifndef __GINAC_CONTAINER_H__
-#define __GINAC_CONTAINER_H__
-
-
 template <template <class> class C>
 //class container : public basic, public container_storage<C> {
 class container : public basic {
@@ -48,16 +44,9 @@ public:
 	container(const ex & p1, const ex & p2, const ex & p3, const ex & p4, const ex & p5, const ex & p6, const ex & p7, const ex & p8, const ex & p9, const ex & p10, const ex & p11, const ex & p12, const ex & p13, const ex & p14) : inherited(get_tinfo());
 	container(const ex & p1, const ex & p2, const ex & p3, const ex & p4, const ex & p5, const ex & p6, const ex & p7, const ex & p8, const ex & p9, const ex & p10, const ex & p11, const ex & p12, const ex & p13, const ex & p14, const ex & p15) : inherited(get_tinfo());
 	container(const ex & p1, const ex & p2, const ex & p3, const ex & p4, const ex & p5, const ex & p6, const ex & p7, const ex & p8, const ex & p9, const ex & p10, const ex & p11, const ex & p12, const ex & p13, const ex & p14, const ex & p15, const ex & p16) : inherited(get_tinfo());
-	bool info(unsigned inf) const { return inherited::info(inf); }
-	unsigned precedence() const { return 10; }
-	size_t nops() const { return this->seq.size(); }
-	ex op(size_t i) const;
-	ex & let_op(size_t i);
-	ex eval(int level = 0) const;
-//	ex subs(const exmap & m, unsigned options = 0) const;
-//	container & prepend(const ex & b);
+	container & prepend(const ex & b);
 	container & append(const ex & b);
-//	container & remove_first();
+	container & remove_first();
 	container & remove_last();
 	container & remove_all();
 	container & sort();
@@ -94,5 +83,4 @@ template <template <class> class C> std::auto_ptr<typename container<C>::STLT> c
     }
 };
 
-#endif // ndef __GINAC_CONTAINER_H__
 // vim:ft=cpp:
