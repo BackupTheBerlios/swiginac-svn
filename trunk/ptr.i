@@ -1,5 +1,3 @@
-%module ptr
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -20,11 +18,6 @@
      along with swiginac; if not, write to the Free Software
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-#ifndef __GINAC_PTR_H__
-#define __GINAC_PTR_H__
-
-
 
 /** Base class for reference-counted objects. */
 class refcounted {
@@ -135,23 +128,4 @@ private:
 	T *p;
 };
 
-
-
-namespace std {
-
-/** Specialization of std::less for ptr<T> to enable ordering of ptr<T>
- *  objects (e.g. for the use as std::map keys). */
- /*
-template <class T> struct less< ptr<T> >
- : public binary_function<ptr<T>, ptr<T>, bool> {
-	bool operator()(const ptr<T> &lhs, const ptr<T> &rhs) const
-	{
-		return less<T*>()(lhs.p, rhs.p);
-	}
-};
-*/
-
-} // namespace std
-
-#endif // ndef __GINAC_PTR_H__
 // vim:ft=cpp:

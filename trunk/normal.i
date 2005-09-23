@@ -19,14 +19,14 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-//ex quo(const ex &a, const ex &b, const ex &x, bool check_args = true);
+ex quo(const ex &a, const ex &b, const ex &x, bool check_args = true);
 ex quo(const ex &a, const ex &b, const ex &x) throw(std::invalid_argument);
 ex rem(const ex &a, const ex &b, const ex &x, bool check_args = true);
 ex decomp_rational(const ex &a, const ex &x);
 ex prem(const ex &a, const ex &b, const ex &x, bool check_args = true);
 ex sprem(const ex &a, const ex &b, const ex &x, bool check_args = true);
 bool divide(const ex &a, const ex &b, ex &q, bool check_args = true);
-//ex gcd(const ex &a, const ex &b, ex *ca = NULL, ex *cb = NULL, bool check_args = true);
+ex gcd(const ex &a, const ex &b, ex *ca = NULL, ex *cb = NULL, bool check_args = true);
 ex gcd(const ex &a, const ex &b) throw(std::invalid_argument);
 ex lcm(const ex &a, const ex &b, bool check_args = true);
 ex sqrfree(const ex &a, const lst &l = lst());

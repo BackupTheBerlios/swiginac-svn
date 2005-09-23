@@ -1,5 +1,3 @@
-%module relational
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -21,7 +19,6 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
 class relational : public basic
 {
 public:
@@ -34,8 +31,6 @@ public:
                 greater_or_equal
         };
         relational(const ex & lhs, const ex & rhs, operators oper=equal);
-        //ex op(size_t i) const;
-        //ex eval(int level=0) const;
         virtual ex lhs(void) const;
         virtual ex rhs(void) const;
 };

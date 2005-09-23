@@ -1,5 +1,3 @@
-%module registrar
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -20,10 +18,6 @@
      along with swiginac; if not, write to the Free Software
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-
-#ifndef __GINAC_REGISTRAR_H__
-#define __GINAC_REGISTRAR_H__
 
 class ex;
 class archive_node;
@@ -114,7 +108,4 @@ extern void set_print_func(void (T::*f)(const C &, unsigned))
 	Alg::get_class_info_static().options.set_print_func(Ctx::get_class_info_static().options.get_id(), f);
 }
 
-
-
-#endif // ndef __GINAC_REGISTRAR_H__
 // vim:ft=cpp:

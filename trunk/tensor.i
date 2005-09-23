@@ -1,5 +1,3 @@
-%module tensor
-
 class tensor : public basic
 {
 public:

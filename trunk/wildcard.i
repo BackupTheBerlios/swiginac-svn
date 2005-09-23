@@ -1,5 +1,3 @@
-%module wildcard
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -21,20 +19,14 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#ifndef __GINAC_WILDCARD_H__
-#define __GINAC_WILDCARD_H__
-
 class wildcard : public basic
 {
 public:
 	wildcard(unsigned label);
-	//bool match(const ex & pattern, lst & repl_lst) const;
 	unsigned get_label() const {return label;}
 };
 
 ex wild(unsigned label = 0);
 bool haswild(const ex & x);
-
-#endif // ndef __GINAC_WILDCARD_H__
 
 // vim:ft=cpp:

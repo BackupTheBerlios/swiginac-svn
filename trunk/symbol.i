@@ -1,5 +1,3 @@
-%module symbol
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -26,17 +24,9 @@ class symbol : public basic
 public:
    explicit symbol(const std::string & initname);
    explicit symbol(const std::string & initname, const std::string & texname);
-   //these are defined in the basic class - we don't need them
-   //ex eval(int level = 0) const;
-   //ex evalf(int level = 0) const { return *this; }
 };
 
 %extend  symbol {
-
-//we don't need this anymore
-/*ex __call__() {
-   return self->eval();
-}*/
 
 %pythoncode %{
 def __repr__(self):
@@ -44,4 +34,5 @@ def __repr__(self):
 %}
 
 };
+
 // vim:ft=cpp:
