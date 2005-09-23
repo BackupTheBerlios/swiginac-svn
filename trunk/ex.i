@@ -23,10 +23,10 @@
 lst* list2lst(PyObject *input);
 PyObject* lst2list(lst *input); 
 
-//GETDESC and GETDESC2 are equivalent - GETDESC is the official way how to do
+//GETDESC1 and GETDESC2 are equivalent - GETDESC1 is the official way how to do
 //it, but it's slower than the undocumented way GETDESC2.
 
-#define GETDESC(NAME) \
+#define GETDESC1(NAME) \
 static swig_type_info *NAME##descr=0;\
 if (!NAME##descr){\
     NAME##descr=SWIG_TypeQuery("GiNaC::"#NAME" *");\
@@ -38,6 +38,8 @@ if (!NAME##descr){\
 
 #define GETDESC2(NAME) \
 static swig_type_info *NAME##descr=SWIGTYPE_p_GiNaC__##NAME
+
+#define GETDESC(NAME) GETDESC2(NAME)
 
 //converts any type from python to ex
 ex * type2ex(PyObject * input) {

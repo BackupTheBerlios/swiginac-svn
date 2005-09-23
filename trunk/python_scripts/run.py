@@ -9,15 +9,9 @@ b=g.symbol("b")
 x=g.symbol("x")
 y=g.symbol("y")
 
-e1=a*x+b*y==3
-e2=x-y==b
+i=g.idx(g.symbol("i"),3)
+j=g.idx(g.symbol("j"),3)
 
-eqns=[e1,e2]
-vars=[x,y]
+A=g.symbol("A")
 
-mat = g.lsolve(eqns,vars)
-print repr(mat)
-print type(mat[0])
-print type(e1)
-print mat[1]
-print eqns
+print g.indexed(A,i,j)

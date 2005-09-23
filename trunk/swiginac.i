@@ -52,6 +52,7 @@ namespace GiNaC {
 %include "function.i"
 %include "tensor.i"
 %include "indexed.i"
+%include "idx.i"
 %include "clifford.i"
 %include "wildcard.i"
 %include "flags.i"
