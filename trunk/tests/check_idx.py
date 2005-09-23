@@ -22,11 +22,32 @@ import swiginac as g
 
 class test_idx(unittest.TestCase):
 
-    def testbasic(self):
+    def testidx(self):
         i=g.idx(g.symbol("i"),3)
         j=g.idx(g.symbol("j"),3)
         A=g.symbol("A")
         self.assertEqual(str(g.indexed(A,i,j)),"A.i.j")
+
+    def testvaridx1(self):
+        i=g.varidx(g.symbol("i"),3)
+        j=g.varidx(g.symbol("j"),3)
+        A=g.symbol("A")
+        self.assertEqual(str(g.indexed(A,i,j)),"A~i~j")
+
+    def testvaridx2(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4,True)
+        A=g.symbol("A")
+        self.assertEqual(str(g.indexed(A,mu,nu)),"A~mu.nu")
+        self.assertEqual(str(g.indexed(A,mu,nu.toggle_variance())),"A~mu~nu")
+
+    def testvaridx3(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4)
+        A=g.symbol("A")
+        self.assertEqual(str(g.indexed(A,mu,nu)),"A~mu~nu")
+        self.assertEqual(str(g.indexed(A,mu,nu.toggle_variance())),"A~mu.nu")
+        self.assertEqual(str(g.indexed(A,mu.toggle_variance(),nu)),"A.mu~nu")
 
 if __name__ == "__main__":
     unittest.main()

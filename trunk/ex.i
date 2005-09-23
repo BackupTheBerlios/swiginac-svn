@@ -150,9 +150,9 @@ PyObject * ex2type(ex * input) {
         EX2(indexed)
         //EX2(color)
         EX2(clifford)
-        //EX2(idx)
-        //EX2(varidx)
-        //EX2(spinidx)
+        EX2(idx)
+        EX2(varidx)
+        EX2(spinidx)
         EX2(tensor)
         EX2(tensdelta)
         EX2(tensmetric)
@@ -173,7 +173,7 @@ PyObject * ex2type(ex * input) {
         EX2(integral)
         EX2(cliffordunit)
         default:
-            throw (std::logic_error("Cannot unwrap ex."));
+            throw (std::logic_error("Cannot unwrap ex. Fix in ex.i"));
     }
 }
 
