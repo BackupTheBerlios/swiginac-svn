@@ -73,9 +73,12 @@ class test_idx(unittest.TestCase):
         C=g.symbol("C")
 
         e=g.indexed(A,i,j)*g.indexed(B,j,k)+g.indexed(C,k,l,i,l)
-        self.assertEqual(str(e),"C.k.l.i.l+B.j.k*A.i.j")
-        self.assertEqual(e.get_free_indices(),[i, k])
-        self.assertEqual(str(e.get_free_indices()),"[.i, .k]")
+        #can vary from run to run
+        #self.assertEqual(str(e),"C.k.l.i.l+B.j.k*A.i.j")
+        f=e.get_free_indices()
+        self.failUnless(type(f)==list)
+        self.failUnless(f==[i,k] or f==[k,i])
+        self.failUnless(str(f)=="[.i, .k]" or str(f)=="[.k, .i]")
 
         mu=g.varidx(g.symbol("mu"),4)
         nu=g.varidx(g.symbol("nu"),4)
@@ -112,6 +115,21 @@ class test_idx(unittest.TestCase):
             expand_indexed),sp),5+g.indexed(C,i)*g.indexed(B,i))
         self.assertNotEqual(g.simplify_indexed(e.expand(g.expand_options.
             expand_indexed),sp),4+g.indexed(C,i)*g.indexed(B,j))
+
+    def testdelta(self):
+        i=g.idx(g.symbol("i"),3)
+        j=g.idx(g.symbol("j"),3)
+        k=g.idx(g.symbol("k"),3)
+        l=g.idx(g.symbol("l"),3)
+        A=g.symbol("A")
+        B=g.symbol("B")
+
+        e=g.indexed(A,i,j)*g.indexed(B,k,l)*g.delta_tensor(i,k)*\
+            g.delta_tensor(j,l)
+        self.assertEqual(e.simplify_indexed(),g.indexed(B,k,l)*g.indexed(A,k,l))
+        self.assertEqual(e.simplify_indexed(),g.indexed(A,k,l)*g.indexed(B,k,l))
+        self.assertEqual(g.delta_tensor(i,i),3)
+        self.assertNotEqual(g.delta_tensor(i,i),4)
 
 
 if __name__ == "__main__":
