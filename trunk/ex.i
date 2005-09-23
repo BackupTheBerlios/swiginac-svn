@@ -43,71 +43,20 @@ static swig_type_info *NAME##descr=SWIGTYPE_p_GiNaC__##NAME
 
 //converts any type from python to ex
 ex * type2ex(PyObject * input) {
-    ex tmp;
-    ex *tmp_ptr;
     basic *btmp;
-    symbol *stmp;
-    numeric *ntmp;
-    int itmp;
-    double dtmp;
-
-    bool errconv = true;
-    GETDESC(ex);
-    if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, exdescr, 0)) == -1)) {
-        errconv = false;
-        tmp = *tmp_ptr;
-    }
     GETDESC(basic);
-    if (errconv) { 
-        if (not((SWIG_ConvertPtr(input, (void **) &btmp, basicdescr,0)) == -1)) {
-            errconv = false;
-            tmp =(*btmp).eval(); 
-        }
+    if (not((SWIG_ConvertPtr(input, (void **) &btmp, basicdescr,0)) == -1))
+        return new ex((*btmp));
+    if (PyInt_Check(input)) 
+        return new ex(numeric(PyInt_AsLong(input)));
+    if (PyFloat_Check(input)) 
+        return new ex(numeric(PyFloat_AsDouble(input)));
+    if (PyList_Check(input)) {
+        lst *l=list2lst(input);
+        if (l==NULL) return NULL;
+        return new ex(l->eval());
     }
-    GETDESC(symbol);
-    if (errconv) { 
-        if (not((SWIG_ConvertPtr(input, (void **) &stmp, symboldescr,0)) == -1)) {
-            errconv = false;
-            tmp =(*stmp).eval(); 
-        }
-    }
-    GETDESC(numeric);
-    if (errconv) { 
-        if (not((SWIG_ConvertPtr(input, (void **) &ntmp, numericdescr, 0)) == -1)) {
-            errconv = false;
-            tmp =(*ntmp).eval(); 
-        }
-    }
-    if (errconv) { 
-        if (PyInt_Check(input)) {
-            errconv = false;
-            itmp = PyInt_AsLong(input);
-            tmp =numeric(itmp).eval();
-        }
-    }
-    if (errconv) { 
-        if (PyFloat_Check(input)) {
-            errconv = false;
-            dtmp = PyFloat_AsDouble(input);
-            tmp =numeric(dtmp).eval(); 
-        }
-    }
-    if (errconv) { 
-        if (PyList_Check(input)) {
-            errconv = false;
-            lst *l=list2lst(input);
-            if (l==NULL) {
-                return NULL;
-            }
-            tmp=l->eval();
-        }
-    }
-    if (errconv) 
-        return NULL;
-    else {
-        tmp_ptr = new ex(tmp);
-        return tmp_ptr;
-    }
+    return NULL;
 } 
 
 bool checktype2ex(PyObject * input) {
