@@ -19,42 +19,43 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-class sy_is_less;
-class sy_swap;
-
 class symmetry : public basic
 {
 public:
 	typedef enum {
-		none,          /**< no symmetry properties */
-		symmetric,     /**< totally symmetric */
-		antisymmetric, /**< totally antisymmetric */
-		cyclic         /**< cyclic symmetry */
+		none,          
+		symmetric,     
+		antisymmetric, 
+		cyclic         
 	} symmetry_type;
 	symmetry(unsigned i);
 	symmetry(symmetry_type t, const symmetry &c1, const symmetry &c2);
 	symmetry_type get_type() const {return type;}
 	void set_type(symmetry_type t) {type = t;}
 	symmetry &add(const symmetry &c);
+	symmetry &add(const unsigned &c);
 	void validate(unsigned n);
 	bool has_symmetry() const {return type != none || !children.empty(); }
 };
+
+%typemap(in) symmetry & {
+    $1=type2symmetry($input);
+    if (!$1) return NULL;
+}
+
+%typemap(typecheck) symmetry & {
+    $1 = (checktype2symmetry($input)) ? 1 : 0;
+}
 
 symmetry sy_none();
 symmetry sy_none(const symmetry &c1, const symmetry &c2);
 symmetry sy_none(const symmetry &c1, const symmetry &c2, const symmetry &c3);
 symmetry sy_none(const symmetry &c1, const symmetry &c2, const symmetry &c3, const symmetry &c4);
-symmetry sy_none(const unsigned &c1, const unsigned &c2);
-symmetry sy_none(const unsigned &c1, const unsigned &c2, const unsigned &c2);
-symmetry sy_none(const unsigned &c1, const unsigned &c2, const unsigned &c2, const unsigned &c2);
 
 symmetry sy_symm();
 symmetry sy_symm(const symmetry &c1, const symmetry &c2);
 symmetry sy_symm(const symmetry &c1, const symmetry &c2, const symmetry &c3);
 symmetry sy_symm(const symmetry &c1, const symmetry &c2, const symmetry &c3, const symmetry &c4);
-symmetry sy_symm(const unsigned &c1, const unsigned &c2);
-symmetry sy_symm(const unsigned &c1, const unsigned &c2, const unsigned &c2);
-symmetry sy_symm(const unsigned &c1, const unsigned &c2, const unsigned &c2, const unsigned &c2);
 
 symmetry sy_anti();
 symmetry sy_anti(const symmetry &c1, const symmetry &c2);
@@ -65,6 +66,9 @@ symmetry sy_cycl();
 symmetry sy_cycl(const symmetry &c1, const symmetry &c2);
 symmetry sy_cycl(const symmetry &c1, const symmetry &c2, const symmetry &c3);
 symmetry sy_cycl(const symmetry &c1, const symmetry &c2, const symmetry &c3, const symmetry &c4);
+
+%typemap(in) symmetry &; 
+%typemap(typecheck) symmetry &;
 
 const symmetry & not_symmetric();
 const symmetry & symmetric2();
@@ -83,5 +87,42 @@ ex antisymmetrize(const ex & e, const exvector & v);
 
 ex symmetrize_cyclic(const ex & e, exvector::const_iterator first, exvector::const_iterator last);
 ex symmetrize_cyclic(const ex & e, const exvector & v);
+
+%{ 
+
+symmetry * type2symmetry(PyObject * input) {
+    symmetry *tmp_ptr;
+
+    bool errconv = true;
+    GETDESC(symmetry);
+    if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, symmetrydescr, 0)) == -1)) {
+        errconv = false;
+    }
+    if (errconv) { 
+        if (PyInt_Check(input)) {
+            errconv = false;
+            int itmp;
+            itmp = PyInt_AsLong(input);
+            tmp_ptr = new symmetry(itmp);
+        }
+    }
+    if (errconv) 
+        return NULL;
+    else {
+        return tmp_ptr;
+    }
+} 
+
+bool checktype2symmetry(PyObject * input) {
+    if (PyInt_Check(input)) return true;
+    symmetry *tmp_ptr;
+    GETDESC(symmetry);
+    if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, symmetrydescr, 0)) == -1)) {
+        return true;
+    }
+    return false;
+}
+
+%}
 
 // vim:ft=cpp:

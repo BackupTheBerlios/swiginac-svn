@@ -221,7 +221,28 @@ class test_idx(unittest.TestCase):
         e=g.indexed(A,g.sy_symm(2,0,1), i,j,k)
 
         e=g.indexed(A,g.sy_symm(0,1), i,j,k)
-        #e=g.indexed(A,g.sy_none(g.sy_symm(0,1),2), i,j,k)
+        e=g.indexed(A,g.sy_none(g.sy_symm(0,1),2), i,j,k)
+
+        e=g.indexed(A,g.sy_anti(0,2), i,j,k)
+        e=g.indexed(A,g.sy_none(g.sy_anti(0,2),1), i,j,k)
+
+        e=g.indexed(A,g.sy_symm(g.sy_anti(0,1),g.sy_anti(2,3)), i,j,k,l)
+
+        e=g.indexed(A,g.sy_cycl(), i,j,k)
+        e=g.indexed(A,g.sy_cycl(0,1,2), i,j,k)
+
+        #this is a deadlock... bug in ginac?
+        #but nobody really needs that, so I don't care
+        #g.sy_symm(0,1,2,3).add(4).add(5)
+
+        e=g.indexed(A,g.sy_symm(),i,j)+g.indexed(A,g.sy_symm(),j,i)
+        self.assertEqual(e,2*g.indexed(A,i,j))
+
+        e=g.indexed(A,g.sy_anti(),i,j)+g.indexed(A,g.sy_anti(),j,i)
+        self.assertEqual(e,0)
+
+        e=g.indexed(A,g.sy_anti(),i,j,k)+g.indexed(A,g.sy_anti(),j,i,k)
+        self.assertEqual(e,0)
 
 
 if __name__ == "__main__":
