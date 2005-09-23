@@ -23,6 +23,9 @@
 lst* list2lst(PyObject *input);
 PyObject* lst2list(lst *input); 
 
+//GETDESC and GETDESC2 are equivalent - GETDESC is the official way how to do
+//it, but it's slower than the undocumented way GETDESC2.
+
 #define GETDESC(NAME) \
 static swig_type_info *NAME##descr=0;\
 if (!NAME##descr){\
@@ -32,6 +35,9 @@ if (!NAME##descr){\
         return NULL;\
     }\
 }
+
+#define GETDESC2(NAME) \
+static swig_type_info *NAME##descr=SWIGTYPE_p_GiNaC__##NAME
 
 //converts any type from python to ex
 ex * type2ex(PyObject * input) {
