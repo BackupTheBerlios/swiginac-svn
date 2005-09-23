@@ -1,5 +1,3 @@
-%module matrix
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -21,33 +19,18 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
-#ifndef __GINAC_MATRIX_H__
-#define __GINAC_MATRIX_H__
-
-
 /** Symbolic matrices. */
 class matrix : public basic
 {
-//	GINAC_DECLARE_REGISTERED_CLASS(matrix, basic)
-	
-	// other constructors
 public:
 	matrix(unsigned r, unsigned c);
 	//matrix(unsigned r, unsigned c, const exvector & m2);
 	matrix(unsigned r, unsigned c, const lst & l);
 	//matrix(const lst & l);
-	//size_t nops() const;
-	//ex op(size_t i) const;
-	//ex & let_op(size_t i);
-	//ex eval(int level=0) const;
-	//ex evalm() const {return *this;}
-//	ex subs(const exmap & m, unsigned options = 0) const;
 	ex eval_indexed(const basic & i) const;
 	ex add_indexed(const ex & self, const ex & other) const;
 	ex scalar_mul_indexed(const ex & self, const numeric & other) const;
 	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
-	//ex conjugate() const;
 	unsigned rows() const;
 	unsigned cols() const;
 	matrix add(const matrix & other) const;
@@ -117,8 +100,5 @@ extern ex unit_matrix(unsigned r, unsigned c);
 inline ex unit_matrix(unsigned x);
 extern ex symbolic_matrix(unsigned r, unsigned c, const std::string & base_name, const std::string & tex_base_name);
 inline ex symbolic_matrix(unsigned r, unsigned c, const std::string & base_name);
-
-
-#endif // ndef __GINAC_MATRIX_H__
 
 // vim:ft=cpp:

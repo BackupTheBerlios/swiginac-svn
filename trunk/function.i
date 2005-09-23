@@ -1,5 +1,3 @@
-%module function
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -21,97 +19,8 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#ifndef __GINAC_FUNCTION_H__
-#define __GINAC_FUNCTION_H__
-
-
-
-/*
-#define REGISTER_FUNCTION(NAME,OPT) \
-unsigned NAME##_SERIAL::serial = \
-	GiNaC::function::register_new(GiNaC::function_options(#NAME, NAME##_NPARAMS).OPT);
-
-*/
-
 class function;
 class symmetry;
-
-/*
-typedef ex (* eval_funcp)();
-typedef ex (* evalf_funcp)();
-typedef ex (* conjugate_funcp)();
-typedef ex (* derivative_funcp)();
-typedef ex (* series_funcp)();
-typedef void (* print_funcp)();
-*/
-
-// the following lines have been generated for max. 14 parameters
-/*
-typedef ex (* eval_funcp_1)(const ex &);
-typedef ex (* eval_funcp_2)(const ex &, const ex &);
-typedef ex (* eval_funcp_3)(const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_4)(const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_5)(const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_6)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_7)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_8)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_9)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_10)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_11)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_12)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_13)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* eval_funcp_14)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-
-typedef ex (* evalf_funcp_1)(const ex &);
-typedef ex (* evalf_funcp_2)(const ex &, const ex &);
-typedef ex (* evalf_funcp_3)(const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_4)(const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_5)(const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_6)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_7)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_8)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_9)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_10)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_11)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_12)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_13)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-typedef ex (* evalf_funcp_14)(const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &, const ex &);
-
-typedef ex (* conjugate_funcp_1)(const ex &);
-typedef ex (* conjugate_funcp_2)(const ex &, const ex &);
-typedef ex (* conjugate_funcp_3)(const ex &, const ex &, const ex &);
-typedef ex (* conjugate_funcp_4)(const ex &, const ex &, const ex &, const ex &);
-typedef ex (* conjugate_funcp_5)(const ex &, const ex &, const ex &, const ex &, const ex &);
-
-typedef ex (* derivative_funcp_1)(const ex &, unsigned);
-typedef ex (* derivative_funcp_2)(const ex &, const ex &, unsigned);
-typedef ex (* derivative_funcp_3)(const ex &, const ex &, const ex &, unsigned);
-typedef ex (* derivative_funcp_4)(const ex &, const ex &, const ex &, const ex &, unsigned);
-typedef ex (* derivative_funcp_5)(const ex &, const ex &, const ex &, const ex &, const ex &, unsigned);
-
-typedef ex (* series_funcp_1)(const ex &, const relational &, int, unsigned);
-typedef ex (* series_funcp_2)(const ex &, const ex &, const relational &, int, unsigned);
-typedef ex (* series_funcp_3)(const ex &, const ex &, const ex &, const relational &, int, unsigned);
-typedef ex (* series_funcp_4)(const ex &, const ex &, const ex &, const ex &, const relational &, int, unsigned);
-typedef ex (* series_funcp_5)(const ex &, const ex &, const ex &, const ex &, const ex &, const relational &, int, unsigned);
-
-typedef void (* print_funcp_1)(const ex &, const print_context &);
-typedef void (* print_funcp_2)(const ex &, const ex &, const print_context &);
-typedef void (* print_funcp_3)(const ex &, const ex &, const ex &, const print_context &);
-typedef void (* print_funcp_4)(const ex &, const ex &, const ex &, const ex &, const print_context &);
-typedef void (* print_funcp_5)(const ex &, const ex &, const ex &, const ex &, const ex &, const print_context &);
-
-
-// Alternatively, an exvector may be passed into the static function, instead
-// of individual ex objects.  Then, the number of arguments is not limited.
-typedef ex (* eval_funcp_exvector)(const exvector &);
-typedef ex (* evalf_funcp_exvector)(const exvector &);
-typedef ex (* conjugate_funcp_exvector)(const exvector &);
-typedef ex (* derivative_funcp_exvector)(const exvector &, unsigned);
-typedef ex (* series_funcp_exvector)(const exvector &, const relational &, int, unsigned);
-typedef void (* print_funcp_exvector)(const exvector &, const print_context &);
-*/
-
 
 class function_options
 {
@@ -226,21 +135,6 @@ class do_taylor {};
 //class function 
 class function : public basic
 {
-
-    /*
-	// CINT has a linking problem
-#ifndef __MAKECINT__
-//	friend void ginsh_get_ginac_functions();
-#endif // def __MAKECINT__
-
-	friend class remember_table_entry;
-	// friend class remember_table_list;
-	// friend class remember_table;
-
-// member functions
-
-	// other constructors
-    */
 public:
 	function(unsigned ser);
 	// the following lines have been generated for max. 14 parameters
@@ -257,11 +151,7 @@ public:
 
 	// functions overriding virtual functions from base classes
 	unsigned precedence() const {return 70;}
-	//ex expand(unsigned options=0) const;
-	//ex eval(int level=0) const;
-	//ex evalf(int level=0) const;
 	unsigned calchash() const;
-	//ex series(const relational & r, int order, unsigned options = 0) const;
 	ex thiscontainer(const exvector & v) const;
 //	ex thiscontainer(std::auto_ptr<exvector> vp) const;
 	//ex conjugate() const;
@@ -271,26 +161,6 @@ public:
 	unsigned get_serial() const {return serial;}
 	std::string get_name() const;
 };
-
-// utility functions/macros
-
-/** Specialization of is_exactly_a<function>(obj) for objects of type function. */
-/*
-template<> inline bool is_exactly_a<function>(const basic & obj)
-{
-	return obj.tinfo()==TINFO_function;
-}
-
-template <typename T>
-inline bool is_the_function(const ex & x)
-{
-	return is_exactly_a<function>(x)
-	    && ex_to<function>(x).get_serial() == T::serial;
-}
-
-// Check whether OBJ is the specified symbolic function.
-#define is_ex_the_function(OBJ, FUNCNAME) (GiNaC::is_the_function<FUNCNAME##_SERIAL>(OBJ))
-*/
 
 //size_t nops(const ex & thisex);
 //ex expand(const ex & thisex, unsigned options = 0);
@@ -339,7 +209,5 @@ ex subs(const ex & thisex, const ex & e);
 ex sqrt(const ex & a);
 //ex expand(const ex & thisex, unsigned options = 0);
 ex expand(const ex & thisex);
-
-#endif // ndef __GINAC_FUNCTION_H__
 
 // vim:ft=cpp:

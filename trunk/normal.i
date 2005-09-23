@@ -1,5 +1,3 @@
-%module normal
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -21,16 +19,6 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
-
-#ifndef __GINAC_NORMAL_H__
-#define __GINAC_NORMAL_H__
-
-
-
-//class ex;
-//class symbol;
-
 //ex quo(const ex &a, const ex &b, const ex &x, bool check_args = true);
 ex quo(const ex &a, const ex &b, const ex &x) throw(std::invalid_argument);
 ex rem(const ex &a, const ex &b, const ex &x, bool check_args = true);
@@ -45,7 +33,5 @@ ex sqrfree(const ex &a, const lst &l = lst());
 ex sqrfree_parfrac(const ex & a, const symbol & x);
 ex collect_common_factors(const ex & e);
 ex resultant(const ex & e1, const ex & e2, const ex & s);
-
-#endif // ndef __GINAC_NORMAL_H__
 
 // vim:ft=cpp:

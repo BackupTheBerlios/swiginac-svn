@@ -1,5 +1,3 @@
-%module basic
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -20,7 +18,6 @@
      along with swiginac; if not, write to the Free Software
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
 
 class ex;
 class ex_is_less;
@@ -261,6 +258,5 @@ def __repr__(self):
     }
 
 };
-
 
 // vim:ft=cpp:

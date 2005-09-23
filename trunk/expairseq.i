@@ -1,5 +1,3 @@
-%module expairseq
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -20,10 +18,6 @@
      along with swiginac; if not, write to the Free Software
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
-#ifndef __GINAC_EXPAIRSEQ_H__
-#define __GINAC_EXPAIRSEQ_H__
-
 
 #define EXPAIRSEQ_USE_HASHTAB 0
 
@@ -62,6 +56,4 @@ template<> inline bool is_exactly_a<expairseq>(const basic & obj)
 	return obj.tinfo()==TINFO_expairseq;
 }
 
-
-#endif // ndef __GINAC_EXPAIRSEQ_H__
 // vim:ft=cpp:

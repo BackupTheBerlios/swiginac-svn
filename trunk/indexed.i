@@ -1,5 +1,3 @@
-%module indexed
-
 class scalar_products;
 class symmetry;
 
@@ -22,9 +20,6 @@ public:
 //	indexed(const ex & b, const symmetry & symm, const exvector & iv);
 //	indexed(const symmetry & symm, const exprseq & es);
 //	indexed(const symmetry & symm, const exvector & v, bool discardable = false);
-	unsigned precedence() const {return 55;}
-	bool info(unsigned inf) const;
-	ex eval(int level = 0) const;
 	exvector get_free_indices() const;
 	bool all_index_values_are(unsigned inf) const;
 	exvector get_indices() const;

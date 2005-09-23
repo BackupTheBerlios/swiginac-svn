@@ -1,5 +1,3 @@
-%module clifford 
-
 class clifford : public indexed
 {
 public:
@@ -70,4 +68,3 @@ ex clifford_moebius_map(const ex & M, const ex & v, const ex & G, unsigned char 
 ex clifford_moebius_map(const ex & M, const ex & v, const ex & G);
 
 // vim:ft=cpp:
-

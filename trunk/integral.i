@@ -1,5 +1,3 @@
-%module integral
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -23,28 +21,13 @@
 
 */
 
-
-
-
-
 class integral : public basic
 {
 public:
 	integral(const ex & x_, const ex & a_, const ex & b_, const ex & f_);
-	unsigned precedence() const {return 45;}
-	ex eval(int level=0) const;
-	ex evalf(int level=0) const;
-	int degree(const ex & s) const;
-	int ldegree(const ex & s) const;
-	ex eval_ncmul(const exvector & v) const;
-	size_t nops() const;
-	ex op(size_t i) const;
-	ex & let_op(size_t i);
-	ex expand(unsigned options = 0) const;
 	exvector get_free_indices() const;
 	unsigned return_type() const;
 	unsigned return_type_tinfo() const;
-	ex conjugate() const;
 	ex eval_integ() const;
 	static int max_integration_level;
 	static ex relative_integration_error;
