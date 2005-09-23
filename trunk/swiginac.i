@@ -1,6 +1,3 @@
-%module swiginac
-%include "std_string.i"
-
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
@@ -22,13 +19,15 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+%module swiginac
+
 %{
 #include "ginac.h"
 using namespace GiNaC;
 #include <sstream>
 %}
 
-
+%include "std_string.i"
 %include std_list.i
 %include std_vector.i
 %include stl.i
