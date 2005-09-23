@@ -173,6 +173,15 @@ class test_idx(unittest.TestCase):
         self.assertEqual((e-(4+g.indexed(A,rho.toggle_variance(),rho))).
             simplify_indexed(),0)
 
+    def testlorentz(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        e=g.delta_tensor(g.varidx(0,4),mu.toggle_variance())*\
+            g.lorentz_g(mu,g.varidx(0,4))
+        self.assertEqual(e.simplify_indexed(),1)
+
+        e=g.delta_tensor(g.varidx(0,4),mu.toggle_variance())*\
+            g.lorentz_g(mu,g.varidx(0,4),True)
+        self.assertEqual(e.simplify_indexed(),-1)
 
 if __name__ == "__main__":
     unittest.main()
