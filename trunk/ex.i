@@ -183,10 +183,10 @@ PyObject *lst2list(lst *input) {
     lst::const_iterator i_end = input->end();
     PyObject *pylist = PyList_New(0);
     while (i!=i_end) {
-        PyObject *item;
         ex e=*i;
-        item = ex2type(&e);
+        PyObject *item = ex2type(&e);
         PyList_Append(pylist, item);
+        //is this necessary?
         Py_INCREF(item);
         i++;
     }
