@@ -57,6 +57,37 @@ class test_matrix(unittest.TestCase):
         m[0,1]=b*a
         self.assertEqual(m,M([[a,a*b],[0,b]]))
 
+    def testcreation2(self):
+        a=g.symbol("a")
+        b=g.symbol("b")
+        x=g.symbol("x")
+        y=g.symbol("y")
+        m=g.matrix([[a,0],[0,b]])
+        self.assertEqual(repr(m),"[[a,0],[0,b]]")
+        self.assertNotEqual(repr(m),"[[a,1],[0,b]]")
+        m=g.matrix([[0,0],[0,0]])
+        self.assertEqual(repr(m),"[[0,0],[0,0]]")
+        m[0,0]=a
+        self.assertEqual(repr(m),"[[a,0],[0,0]]")
+        m[1,1]=b
+        self.assertEqual(repr(m),"[[a,0],[0,b]]")
+        self.assertNotEqual(repr(m),"[[a,0],[b,0]]")
+        self.assertEqual(m[0,0],a)
+        self.assertNotEqual(m[0,0],b)
+        self.assertEqual(m[0,1],0)
+        self.assertNotEqual(m[0,1],b)
+        self.assertEqual(m[1,1],b)
+        self.assertNotEqual(m[1,1],0)
+
+        M=g.matrix
+        m[0,1]=a
+        self.assertEqual(m,M([[a,a],[0,b]]))
+        m[0,1]=b
+        self.assertEqual(m,M([[a,b],[0,b]]))
+        m[0,1]=b*a
+        self.assertEqual(m,M([[a,a*b],[0,b]]))
+
+
     def testops(self):
         m=g.lst_to_matrix
         A=m([[1,2],[3,4]])

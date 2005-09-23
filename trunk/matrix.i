@@ -51,12 +51,11 @@ public:
 	unsigned rank() const;
 
 %extend {
-	/*matrix(const lst & l) {
+	matrix(const lst & l) {
+        matrix *m = new matrix(ex_to<matrix>(lst_to_matrix(l)));
+        return m;
     }
-    */
-    /*void __setitem__(int idx0, int idx1, basic &e) {
-        (*self)(idx0, idx1) = e;
-    }*/
+    
     void __setitem__(int idx0, int idx1, ex &e) {
         (*self)(idx0, idx1) = e;
     }
