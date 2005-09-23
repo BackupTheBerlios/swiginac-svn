@@ -126,10 +126,52 @@ class test_idx(unittest.TestCase):
 
         e=g.indexed(A,i,j)*g.indexed(B,k,l)*g.delta_tensor(i,k)*\
             g.delta_tensor(j,l)
-        self.assertEqual(e.simplify_indexed(),g.indexed(B,k,l)*g.indexed(A,k,l))
-        self.assertEqual(e.simplify_indexed(),g.indexed(A,k,l)*g.indexed(B,k,l))
+        self.assertEqual((e-g.indexed(A,k,l)*g.indexed(B,k,l)).
+            simplify_indexed(),0)
+        self.assertEqual((e-g.indexed(B,k,l)*g.indexed(A,k,l)).
+            simplify_indexed(),0)
+        self.assertEqual((e-g.indexed(A,i,l)*g.indexed(B,i,l)).
+            simplify_indexed(),0)
+        self.assertEqual((e-g.indexed(A,i,j)*g.indexed(B,i,j)).
+            simplify_indexed(),0)
+        self.assertNotEqual((e-g.indexed(A,i,i)*g.indexed(B,k,k)).
+            simplify_indexed(),0)
         self.assertEqual(g.delta_tensor(i,i),3)
         self.assertNotEqual(g.delta_tensor(i,i),4)
+
+    def testsimplify(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4)
+        A=g.symbol("A")
+
+        e1=g.indexed(A,mu,mu.toggle_variance())
+        e2=g.indexed(A,nu,nu.toggle_variance())
+        self.assertNotEqual(e1,e2)
+        self.assertEqual((e1-e2).simplify_indexed(),0)
+
+    def testmetric(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4)
+        rho=g.varidx(g.symbol("rho"),4)
+        A=g.symbol("A")
+
+        e=g.metric_tensor(mu,nu)*g.indexed(A,nu.toggle_variance(),rho)
+        self.assertEqual(e.simplify_indexed(),g.indexed(A,mu,rho))
+        self.assertNotEqual(e.simplify_indexed(),g.indexed(A,nu,rho))
+
+        e=g.delta_tensor(mu,nu.toggle_variance())*g.metric_tensor(nu,rho)
+        self.assertEqual(e.simplify_indexed(),g.metric_tensor(mu,rho))
+
+        e=g.metric_tensor(mu.toggle_variance(),nu.toggle_variance())*\
+            g.metric_tensor(nu,rho)
+        self.assertEqual(e.simplify_indexed(),
+            g.delta_tensor(mu.toggle_variance(),rho))
+
+        e=g.metric_tensor(nu.toggle_variance(),rho.toggle_variance())*\
+            g.metric_tensor(mu,nu)*(g.delta_tensor(mu.toggle_variance(),rho)+\
+            g.indexed(A,mu.toggle_variance(),rho))
+        self.assertEqual((e-(4+g.indexed(A,rho.toggle_variance(),rho))).
+            simplify_indexed(),0)
 
 
 if __name__ == "__main__":

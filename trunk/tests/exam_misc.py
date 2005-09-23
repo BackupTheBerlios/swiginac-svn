@@ -200,7 +200,7 @@ class test_misc(unittest.TestCase):
         y = symbol('y')
 
         if not repr(x+x) == '2*x': result += 1
-        if not repr(y+x) == 'y+x': result += 1
+        if not (repr(y+x) == 'y+x' or repr(y+x) == 'x+y'): result += 1
         if not repr(x**2) == 'x**2': result += 1
         if not repr(sin(x)) == 'sin(x)': result += 1
         if not repr(Pi) == 'Pi': result += 1
