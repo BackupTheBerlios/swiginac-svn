@@ -179,14 +179,16 @@ PyObject * ex2type(ex * input) {
 
 //converts ginac lst to python list (unwrapping all exs)
 PyObject *lst2list(lst *input) {
-    lst *l = input;
-    int n = l->nops(); 
-    PyObject *pylist = PyList_New(n);
-    PyObject *item;
-    for (int i=0;i<n;i++) {
-        item = ex2type(&(l->let_op(i)));
-        PyList_SetItem(pylist, i, item);
+    lst::const_iterator i = input->begin();
+    lst::const_iterator i_end = input->end();
+    PyObject *pylist = PyList_New(0);
+    while (i!=i_end) {
+        PyObject *item;
+        ex e=*i;
+        item = ex2type(&e);
+        PyList_Append(pylist, item);
         Py_INCREF(item);
+        i++;
     }
     return (pylist);
 }
