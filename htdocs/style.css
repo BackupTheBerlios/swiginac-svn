@@ -15,7 +15,7 @@ h3, h4 {
   margin-left: 1em;
 }
 
-p,lu,li,table,dl {
+p,lu,li,table,dl,br {
   margin-left: 2em;
   margin-right: 2em;
 }
@@ -45,6 +45,7 @@ div.targetlang {
 
 
 div.shell {
+  white-space:pre;
   border-style: solid; 
   border-width: 1px; 
   padding: 2pt; 
