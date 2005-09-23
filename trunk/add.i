@@ -23,6 +23,7 @@
 
 class add : public expairseq
 {
+public:
 	add(const ex & lh, const ex & rh);
 	add(const exvector & v);
 	add(const epvector & v);

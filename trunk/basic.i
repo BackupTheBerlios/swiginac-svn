@@ -37,7 +37,6 @@ struct map_function;
 
 class basic : public refcounted
 {
-	friend class ex;
 public:
 	virtual ~basic();
 	basic(const basic & other);

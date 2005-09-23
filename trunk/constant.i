@@ -26,7 +26,6 @@ class constant : public basic
 public:
         constant(const std::string & initname, evalffunctype efun = 0, const std::string & texname = std::string());
         constant(const std::string & initname, const numeric & initnumber, const std::string & texname = std::string());
-        ex evalf(int level = 0) const;
 };
 
 extern const constant Pi;
@@ -38,4 +37,5 @@ extern const numeric I;
     Pi=cvar.Pi
     I=cvar.I
 %} 
+
 // vim:ft=cpp:
