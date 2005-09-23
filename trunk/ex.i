@@ -146,7 +146,7 @@ PyObject * ex2type(const ex * input) {
         EX2(relational)
         //EX2(fail)
         EX2(numeric)
-        //EX2(pseries)
+        EX2(pseries)
         EX2(indexed)
         //EX2(color)
         EX2(clifford)

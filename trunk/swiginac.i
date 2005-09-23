@@ -56,6 +56,7 @@ namespace GiNaC {
 %include "clifford.i"
 %include "wildcard.i"
 %include "flags.i"
+%include "pseries.i"
 
 %define ADD_REPR(name)
 %extend name {

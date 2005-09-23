@@ -209,6 +209,10 @@ class test_misc(unittest.TestCase):
 
         self.assertEqual(result,0)
 
+    def testsinseries(self):
+        x = symbol('x')
+        sin(x).series(x==0,8)
+
 
 if __name__ == "__main__":  
     unittest.main()
