@@ -267,14 +267,6 @@ lst* list2lst(PyObject * input)
 %include "constant.i"
 %include "container.i"
 
-//do we need these 4 lines?
-/*
-%template(lst) container<std::list>;
-%template(exprseq) container<std::vector>;
-%include "exprseq.i"
-%include "lst.i"
-*/
-
 %include "integral.i"
 %include "matrix.i"
 %include "expairseq.i"
@@ -357,21 +349,6 @@ DECLARE_FUNCTION_2P(beta)
 DECLARE_FUNCTION_1P(factorial)
 DECLARE_FUNCTION_2P(binomial)
 DECLARE_FUNCTION_1P(Order)
-
-
-//do we need these two?
-//%include "inifcns.i"
-//%include "operators.i"
-
-/*%extend ex {
-   double to_double() {
-      if (is_a<numeric>(*self)) {
-         numeric n = ex_to<numeric>(*self);
-         return n.to_double();
-      }
-      return 0.0;
-   }
-};*/
 
 ex lsolve(lst&, lst&);
 //extern ex collect_common_factors(const ex & e);
