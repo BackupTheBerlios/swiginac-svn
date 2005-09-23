@@ -28,7 +28,7 @@ static swig_type_info *NAME##descr=0;\
 if (!NAME##descr){\
     NAME##descr=SWIG_TypeQuery("GiNaC::"#NAME" *");\
     if (!NAME##descr) {\
-        PyErr_SetString(PyExc_ValueError,"Cannot get an "#NAME" descriptor. Fix in ex.i");\
+        PyErr_SetString(PyExc_ValueError,"Cannot get a "#NAME" descriptor. Fix in ex.i");\
         return NULL;\
     }\
 }
@@ -109,12 +109,11 @@ bool checktype2ex(PyObject * input) {
     return true;
 }
 
-//this is a hack - we should be using SWIGTYPE_p_GiNaC__##NAME directly,
-//but it works...
 #define EX2(NAME) \
 case TINFO_##NAME: {\
     NAME *p = new NAME(ex_to<NAME>(*input));\
-    return SWIG_NewPointerObj((void *)p, SWIGTYPE_p_GiNaC__##NAME, 1);\
+    GETDESC(NAME);\
+    return SWIG_NewPointerObj((void *)p, NAME##descr, 1);\
 }
 
 //unwraps ex and return python object
