@@ -126,6 +126,8 @@ bool checktype2ex(PyObject * input) {
     return true;
 }
 
+//this is a hack - we should be using SWIGTYPE_p_GiNaC__##NAME directly,
+//but it works...
 #define EX2(NAME) \
 case TINFO_##NAME: {\
     NAME *p = new NAME(ex_to<NAME>(*input));\

@@ -279,6 +279,6 @@ DECLARE_FUNCTION_1P(factorial)
 DECLARE_FUNCTION_2P(binomial)
 DECLARE_FUNCTION_1P(Order)
 
-ex lsolve(lst&, lst&);
+ex lsolve(const ex &eqns, const ex &symbols, unsigned options = solve_algo::automatic);
 
 // vim:ft=cpp:
