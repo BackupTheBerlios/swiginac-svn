@@ -10,7 +10,6 @@ Proposed road map:
 
 - testsuites - these doesn't run:
 
-  exam_misc: xtest_exam_subs_algebraic - overloaded typemaps problems
   exam_normalization: xtest_exam_normal2 - factoring out doesn't work
 
   the "x" in the front prevent "make check" to run them. Delete the "x" and
