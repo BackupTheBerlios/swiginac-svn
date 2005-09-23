@@ -94,25 +94,11 @@ ex symmetrize_cyclic(const ex & e, const exvector & v);
 
 symmetry * type2symmetry(PyObject * input) {
     symmetry *tmp_ptr;
-
-    bool errconv = true;
     GETDESC(symmetry);
-    if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, symmetrydescr, 0)) == -1)) {
-        errconv = false;
-    }
-    if (errconv) { 
-        if (PyInt_Check(input)) {
-            errconv = false;
-            int itmp;
-            itmp = PyInt_AsLong(input);
-            tmp_ptr = new symmetry(itmp);
-        }
-    }
-    if (errconv) 
-        return NULL;
-    else {
-        return tmp_ptr;
-    }
+    if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, symmetrydescr, 0)) 
+                    == -1)) return tmp_ptr;
+    if (PyInt_Check(input)) return new symmetry(PyInt_AsLong(input));
+    return NULL;
 } 
 
 bool checktype2symmetry(PyObject * input) {
