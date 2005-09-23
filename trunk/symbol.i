@@ -26,13 +26,5 @@ public:
    explicit symbol(const std::string & initname, const std::string & texname);
 };
 
-%extend  symbol {
-
-%pythoncode %{
-def __repr__(self):
-    return self.__str__()
-%}
-
-};
 
 // vim:ft=cpp:

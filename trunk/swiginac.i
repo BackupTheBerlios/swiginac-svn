@@ -78,6 +78,7 @@ ADD_REPR(relational);
 ADD_REPR(numeric);
 ADD_REPR(function);
 ADD_REPR(constant);
+ADD_REPR(symbol);
 
 };
 
