@@ -35,17 +35,4 @@ public:
         virtual ex rhs(void) const;
 };
 
-%extend relational {
-
-%pythoncode %{
-def __str__(self):
-    if not self.__dict__.has_key("str"):
-        self.str = self.printpython
-    return self.str()
-
-
-%}
-
-};
-
 // vim:ft=cpp:

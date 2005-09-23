@@ -95,12 +95,6 @@ template <class T> inline bool is_a(const basic &obj);
 template <class T> inline bool is_exactly_a(const basic &obj);
 
 %extend basic {
-//    std::string __str__() {
-//        std::ostringstream out;
-//        out << *self;
-//        return out.str();
-//    }
-
     std::string printpython() {
         std::ostringstream out;
         (*self).print(print_python(out));
