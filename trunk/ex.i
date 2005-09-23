@@ -23,6 +23,16 @@
 lst* list2lst(PyObject *input);
 PyObject* lst2list(lst *input); 
 
+#define GETDESC(NAME) \
+static swig_type_info *NAME##descr=0;\
+if (!NAME##descr){\
+    NAME##descr=SWIG_TypeQuery("GiNaC::"#NAME" *");\
+    if (!NAME##descr) {\
+        PyErr_SetString(PyExc_ValueError,"Cannot get an "#NAME" descriptor. Fix in ex.i");\
+        return NULL;\
+    }\
+}
+
 //converts any type from python to ex
 ex * type2ex(PyObject * input) {
     ex tmp;
@@ -34,54 +44,26 @@ ex * type2ex(PyObject * input) {
     double dtmp;
 
     bool errconv = true;
-    static swig_type_info *exdescr=0;
-    if (!exdescr){
-        exdescr=SWIG_TypeQuery("GiNaC::ex *");
-        if (!exdescr) {
-            PyErr_SetString(PyExc_ValueError,"Cannot get an ex descriptor. swiginac.i");
-            return NULL;
-        }
-    }
+    GETDESC(ex);
     if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, exdescr, 0)) == -1)) {
         errconv = false;
         tmp = *tmp_ptr;
     }
-    static swig_type_info *basicdescr=0;
-    if (!basicdescr){
-        basicdescr=SWIG_TypeQuery("GiNaC::basic *");
-        if (!basicdescr) {
-            PyErr_SetString(PyExc_ValueError,"Cannot get a symbol descriptor. swiginac.i");
-            return NULL;
-        }
-    }
+    GETDESC(basic);
     if (errconv) { 
         if (not((SWIG_ConvertPtr(input, (void **) &btmp, basicdescr,0)) == -1)) {
             errconv = false;
             tmp =(*btmp).eval(); 
         }
     }
-    static swig_type_info *symboldescr=0;
-    if (!symboldescr){
-        symboldescr=SWIG_TypeQuery("GiNaC::symbol *");
-        if (!symboldescr) {
-            PyErr_SetString(PyExc_ValueError,"Cannot get a symbol descriptor. swiginac.i");
-            return NULL;
-        }
-    }
+    GETDESC(symbol);
     if (errconv) { 
         if (not((SWIG_ConvertPtr(input, (void **) &stmp, symboldescr,0)) == -1)) {
             errconv = false;
             tmp =(*stmp).eval(); 
         }
     }
-    static swig_type_info *numericdescr=0;
-    if (!numericdescr){
-        numericdescr=SWIG_TypeQuery("GiNaC::numeric *");
-        if (!numericdescr) {
-            PyErr_SetString(PyExc_ValueError,"Cannot get a numeric descriptor. swiginac.i");
-            return NULL;
-        }
-    }
+    GETDESC(numeric);
     if (errconv) { 
         if (not((SWIG_ConvertPtr(input, (void **) &ntmp, numericdescr, 0)) == -1)) {
             errconv = false;
@@ -112,13 +94,11 @@ ex * type2ex(PyObject * input) {
             tmp=l->eval();
         }
     }
-    if (errconv) {
+    if (errconv) 
         return NULL;
-    }
     else {
         tmp_ptr = new ex(tmp);
         return tmp_ptr;
-
     }
 } 
 
