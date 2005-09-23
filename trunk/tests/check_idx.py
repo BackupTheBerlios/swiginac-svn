@@ -73,8 +73,8 @@ class test_idx(unittest.TestCase):
         C=g.symbol("C")
 
         e=g.indexed(A,i,j)*g.indexed(B,j,k)+g.indexed(C,k,l,i,l)
-        #print e
-        #print e.get_free_indices()
+        print e
+        print e.get_free_indices()
 
 if __name__ == "__main__":
     unittest.main()

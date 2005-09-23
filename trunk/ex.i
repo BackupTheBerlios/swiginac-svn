@@ -238,25 +238,16 @@ lst* list2lst(PyObject * input)
 PyObject *exvector2list(exvector *input) {
     exvector::const_iterator i = input->begin();
     exvector::const_iterator i_end = input->end();
+    PyObject *pylist = PyList_New(0);
     while (i!=i_end) {
+        ex e=*i;
+        PyObject *item = ex2type(&e);
+        PyList_Append(pylist, item);
+        //is this necessary?
+        Py_INCREF(item);
         i++;
     }
-    /*exvector *l = input;
-    int n = l->nops(); 
-    PyObject *pylist = PyList_New(n);
-    PyObject *item;
-    ex * tmp;
-    static swig_type_info *descr = 0;
-    descr = SWIG_TypeQuery("GiNaC::ex *");
-    for (int i=0;i<n;i++) {
-        // Set item
-        tmp = &(l->let_op(i));
-        item = ex2type(tmp);
-        // add to list
-        PyList_SetItem(pylist, i, item);
-        Py_INCREF(item);
-    }
-    return (pylist);*/
+    return (pylist);
 }
 
 %}
