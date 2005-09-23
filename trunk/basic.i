@@ -126,12 +126,6 @@ template <class T> inline bool is_exactly_a(const basic &obj);
             throw (std::logic_error("Cannot convert to bool."));
     }
 
-    std::string __repr__() {
-        std::ostringstream out;
-        out << *self;
-        return out.str();
-    }
-
     ex __add__(const basic &b) const { return (*self)+b; }
     //ex __add__(const ex &b) const { return (*self)+b; }
     ex __add__(const int &b) const { return (*self)+b; }
@@ -224,8 +218,6 @@ def __str__(self):
         self.str = self.printpython
     return self.str()
 
-#def __repr__(self):
-#    return self.__str__()
 
 %}
 

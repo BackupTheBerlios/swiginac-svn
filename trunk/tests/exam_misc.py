@@ -205,6 +205,7 @@ class test_misc(unittest.TestCase):
         if not repr(sin(x)) == 'sin(x)': result += 1
         if not repr(Pi) == 'Pi': result += 1
         if not repr(sin(0)) == '0': result += 1
+        if not repr(integral(x,0,1,x**4)) == '[integral object]': result += 1
 
         self.assertEqual(result,0)
 

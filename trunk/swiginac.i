@@ -58,13 +58,10 @@ namespace GiNaC {
 %include "flags.i"
 
 %define ADD_REPR(name)
-
 %extend name {
 %pythoncode %{
-
     def __repr__(self):
         return self.__str__()
-
 %}
 };
 %enddef
@@ -79,6 +76,7 @@ ADD_REPR(numeric);
 ADD_REPR(function);
 ADD_REPR(constant);
 ADD_REPR(symbol);
+ADD_REPR(integral);
 
 };
 
