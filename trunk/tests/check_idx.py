@@ -77,5 +77,19 @@ class test_idx(unittest.TestCase):
         self.assertEqual(e.get_free_indices(),[i, k])
         self.assertEqual(str(e.get_free_indices()),"[.i, .k]")
 
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4)
+        rho=g.varidx(g.symbol("rho"),4)
+        sigma=g.varidx(g.symbol("sigma"),4)
+
+        e=g.indexed(A,mu,nu)*g.indexed(B,nu.toggle_variance(),rho)+\
+            g.indexed(C,mu,sigma,rho,sigma.toggle_variance())
+        self.assertEqual(e.get_free_indices(),[mu, rho])
+
+        e=g.indexed(A,mu,mu)
+        self.assertEqual(e.get_free_indices(),[mu])
+        self.assertNotEqual(e.get_free_indices(),[mu.toggle_variance()])
+
+
 if __name__ == "__main__":
     unittest.main()
