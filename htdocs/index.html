@@ -37,6 +37,15 @@ Just a few illustrations:
 >>> sin(x).series(x==0, 8)
 1*x+(-1/6)*x**3+1/120*x**5+(-1/5040)*x**7+Order(x**8)
 </pre>
+<p>
+or
+</p>
+<pre>
+>>> x = symbol('x')
+>>> y = symbol('y')
+>>> lsolve([3*x + 5*y == 2, 5*x+y == -3], [x,y])
+[x==-17/22, y==19/22]
+</pre>
 
 <h2>Other Python bindings to GiNaC</h2>
 
