@@ -57,6 +57,7 @@ namespace GiNaC {
 %include "wildcard.i"
 %include "flags.i"
 %include "pseries.i"
+%include "symmetry.i"
 
 %define ADD_REPR(name)
 %extend name {

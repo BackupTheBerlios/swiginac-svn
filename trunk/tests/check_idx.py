@@ -205,5 +205,24 @@ class test_idx(unittest.TestCase):
         e=g.epsilon_tensor(i,j,k)*g.indexed(A,j)*g.indexed(A,k)
         self.assertEqual(g.simplify_indexed(e),0)
 
+    def testsymm(self):
+        i=g.idx(g.symbol("i"),3)
+        j=g.idx(g.symbol("j"),3)
+        k=g.idx(g.symbol("k"),3)
+        l=g.idx(g.symbol("l"),3)
+        A=g.symbol("A")
+        e=g.indexed(A,i,j)
+        e=g.indexed(A,g.sy_none(), i,j)
+        e=g.indexed(A,g.sy_none(0, 1), i,j)
+        e=g.indexed(A,g.sy_none(g.symmetry(0), g.symmetry(1)), i,j)
+
+        e=g.indexed(A,g.sy_symm(), i,j,k)
+        e=g.indexed(A,g.sy_symm(0,1,2), i,j,k)
+        e=g.indexed(A,g.sy_symm(2,0,1), i,j,k)
+
+        e=g.indexed(A,g.sy_symm(0,1), i,j,k)
+        #e=g.indexed(A,g.sy_none(g.sy_symm(0,1),2), i,j,k)
+
+
 if __name__ == "__main__":
     unittest.main()
