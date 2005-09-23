@@ -32,8 +32,8 @@ using namespace GiNaC;
 namespace GiNaC {
 
 %include "ex.i"
-%include "ptr.i"
 %include "typemaps.i"
+%include "ptr.i"
 %include "registrar.i"
 %include "basic.i"
 %include "symbol.i"

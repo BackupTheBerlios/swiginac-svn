@@ -123,6 +123,9 @@ ex * type2ex(PyObject * input) {
 } 
 
 bool checktype2ex(PyObject * input) {
+    //we assume, that everything can be converted to ex. 
+    //if you find some counterexample, write test for it first (which fail)
+    //and then implement it here.
     return true;
 }
 
