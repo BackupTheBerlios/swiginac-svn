@@ -38,6 +38,7 @@ public:
 	bool has_symmetry() const {return type != none || !children.empty(); }
 };
 
+//set the typemaps only for the functions below and clear it afterwards
 %typemap(in) symmetry & {
     $1=type2symmetry($input);
     if (!$1) return NULL;
@@ -67,6 +68,7 @@ symmetry sy_cycl(const symmetry &c1, const symmetry &c2);
 symmetry sy_cycl(const symmetry &c1, const symmetry &c2, const symmetry &c3);
 symmetry sy_cycl(const symmetry &c1, const symmetry &c2, const symmetry &c3, const symmetry &c4);
 
+//clear the typemap
 %typemap(in) symmetry &; 
 %typemap(typecheck) symmetry &;
 
@@ -117,10 +119,7 @@ bool checktype2symmetry(PyObject * input) {
     if (PyInt_Check(input)) return true;
     symmetry *tmp_ptr;
     GETDESC(symmetry);
-    if (not((SWIG_ConvertPtr(input, (void **) &tmp_ptr, symmetrydescr, 0)) == -1)) {
-        return true;
-    }
-    return false;
+    return (SWIG_ConvertPtr(input, (void **) &tmp_ptr, symmetrydescr, 0)) != -1;
 }
 
 %}

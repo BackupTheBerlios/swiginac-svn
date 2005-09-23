@@ -53,11 +53,11 @@ namespace GiNaC {
 %include "tensor.i"
 %include "indexed.i"
 %include "idx.i"
+%include "symmetry.i"
 %include "clifford.i"
 %include "wildcard.i"
 %include "flags.i"
 %include "pseries.i"
-%include "symmetry.i"
 
 %define ADD_REPR(name)
 %extend name {
