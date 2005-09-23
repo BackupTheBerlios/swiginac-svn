@@ -1,7 +1,5 @@
 Proposed road map:
 
-- matrix([[a,b],[c,d]]) should do the same as lst_to_matrix([[a,b],[c,d]])
-
 - tests/check_lst.py, make this work (the same issue as with lsolve)
   self.assertEqual(g.diag_matrix([x,y]),[[x,0],[0,y]])
 
