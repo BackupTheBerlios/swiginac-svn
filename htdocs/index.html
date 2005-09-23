@@ -27,9 +27,22 @@ exposed, virtually all of the GiNaC tests pass.</p>
 href="http://developer.berlios.de/projects/swiginac/">group pages</a> on
 BerliOS.</p>
 
+<h2>Examples</h2>
+
+<p>
+Just a few illustrations:
+</p>
+<pre>
+>>> x=symbol("x")
+>>> sin(x).series(x==0, 8)
+1*x+(-1/6)*x**3+1/120*x**5+(-1/5040)*x**7+Order(x**8)
+</pre>
+
 <h2>Other Python bindings to GiNaC</h2>
 
+<p>
 According to our knowledge:
+</p>
 <ul>
 <li>The first Python binding was <a
 href="http://cens.ioc.ee/projects/pyginac/">pyginac</a> by Pearu Peterson in
