@@ -4,14 +4,11 @@ import sys
 sys.path.append("..")
 import swiginac as g
 
-a=g.symbol("a")
-b=g.symbol("b")
-x=g.symbol("x")
-y=g.symbol("y")
-
-i=g.idx(g.symbol("i"),3)
-j=g.idx(g.symbol("j"),3)
-
+mu=g.varidx(g.symbol("mu"),4)
+nu=g.varidx(g.symbol("nu"),4)
 A=g.symbol("A")
 
-print g.indexed(A,i,j)
+e= g.indexed(A,mu,nu)*g.metric_tensor(mu,nu)
+
+#e.set_print_context("tex")
+print e
