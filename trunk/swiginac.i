@@ -28,11 +28,6 @@ using namespace GiNaC;
 %}
 
 %include "std_string.i"
-%include std_list.i
-%include std_vector.i
-%include stl.i
-%include "ptr.i"
-
 
 namespace GiNaC {
 
@@ -40,6 +35,7 @@ namespace GiNaC {
 lst* list2lst(PyObject *input);
 PyObject* lst2list(lst *input); 
 
+//converts any type from python to ex
 ex * type2ex(PyObject * input) {
     ex tmp;
     ex *tmp_ptr;
@@ -148,6 +144,7 @@ case TINFO_##NAME: {\
     return SWIG_NewPointerObj((void *)p, SWIGTYPE_p_GiNaC__##NAME, 1);\
 }
 
+//unwraps ex and return python object
 PyObject * ex2type(ex * input) {
     switch (ex_to<basic>(*input).tinfo()) {
         EX2(basic)
@@ -197,15 +194,10 @@ PyObject * ex2type(ex * input) {
         EX2(cliffordunit)
         default:
             throw (std::logic_error("Cannot unwrap ex."));
-        /*
-            std::cout << "*";
-            ex *tmp = new ex(*input);
-            //return SWIG_NewPointerObj((void *)tmp, $descriptor(GiNaC::ex *), 1);
-            return SWIG_NewPointerObj((void *)tmp, SWIGTYPE_p_GiNaC__ex, 1);
-            */
     }
 }
 
+//converts ginac lst to python list (unwrapping all exs)
 PyObject *lst2list(lst *input) {
     lst *l = input;
     int n = l->nops(); 
@@ -226,6 +218,7 @@ PyObject *lst2list(lst *input) {
 }
 
 
+//convert any python list to ginac lst
 lst* list2lst(PyObject * input)
 {
     lst *out=new lst();
@@ -253,6 +246,7 @@ lst* list2lst(PyObject * input)
 }
 %}
 
+%include "ptr.i"
 %include "typemaps.i"
 
 %include "registrar.i"
