@@ -90,6 +90,29 @@ class test_idx(unittest.TestCase):
         self.assertEqual(e.get_free_indices(),[mu])
         self.assertNotEqual(e.get_free_indices(),[mu.toggle_variance()])
 
+    def testsimplify(self):
+        i=g.idx(g.symbol("i"),3)
+        j=g.idx(g.symbol("i"),3)
+        A=g.symbol("A")
+        B=g.symbol("B")
+        C=g.symbol("C")
+        sp=g.scalar_products()
+        sp.add(A,B,0)
+        sp.add(A,C,0)
+        sp.add(A,A,4)
+
+        e=g.indexed(A+B,i)*g.indexed(A+C,i)
+        self.assertEqual(e.expand(g.expand_options.expand_indexed).
+            simplify_indexed(sp),4+g.indexed(C,i)*g.indexed(B,i))
+        self.assertEqual(g.simplify_indexed(e.expand(g.expand_options.
+            expand_indexed),sp),4+g.indexed(C,i)*g.indexed(B,i))
+        self.assertNotEqual(g.simplify_indexed(e.expand(g.expand_options.
+            expand_indexed)),4+g.indexed(C,i)*g.indexed(B,i))
+        self.assertNotEqual(g.simplify_indexed(e.expand(g.expand_options.
+            expand_indexed),sp),5+g.indexed(C,i)*g.indexed(B,i))
+        self.assertNotEqual(g.simplify_indexed(e.expand(g.expand_options.
+            expand_indexed),sp),4+g.indexed(C,i)*g.indexed(B,j))
+
 
 if __name__ == "__main__":
     unittest.main()

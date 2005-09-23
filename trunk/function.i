@@ -24,8 +24,6 @@ class symmetry;
 
 class function_options
 {
-	friend class function;
-	friend class fderivative;
 public:
 	function_options();
 	function_options(std::string const & n, std::string const & tn=std::string());
@@ -186,8 +184,8 @@ ex eval_integ(const ex & thisex);
 ex diff(const ex & thisex, const symbol & s, unsigned nth = 1);
 ex series(const ex & thisex, const ex & r, int order, unsigned options = 0);
 bool match(const ex & thisex, const ex & pattern, lst & repl_lst);
-//ex simplify_indexed(const ex & thisex, unsigned options = 0);
-//ex simplify_indexed(const ex & thisex, const scalar_products & sp, unsigned options = 0);
+ex simplify_indexed(const ex & thisex, unsigned options = 0);
+ex simplify_indexed(const ex & thisex, const scalar_products & sp, unsigned options = 0);
 ex symmetrize(const ex & thisex);
 ex symmetrize(const ex & thisex, const lst & l);
 ex antisymmetrize(const ex & thisex);

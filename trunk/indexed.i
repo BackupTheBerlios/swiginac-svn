@@ -25,10 +25,6 @@ class symmetry;
 //class indexed : public exprseq
 class indexed : public basic
 {
-	friend ex simplify_indexed(const ex & e, exvector & free_indices, exvector & dummy_indices, const scalar_products & sp);
-	friend ex simplify_indexed_product(const ex & e, exvector & free_indices, exvector & dummy_indices, const scalar_products & sp);
-	friend bool reposition_dummy_indices(ex & e, exvector & variant_dummy_indices, exvector & moved_indices);
-
 public:
 	indexed(const ex & b);
 	indexed(const ex & b, const ex & i1);

@@ -22,6 +22,7 @@
 class ex;
 class ex_is_less;
 class symbol;
+class scalar_products;
 class numeric;
 class relational;
 class archive_node;
@@ -241,6 +242,12 @@ def __str__(self):
     }
     ex unit(const ex &x) const {
         return self->eval().unit(x);
+    }
+	ex simplify_indexed(unsigned options = 0) const {
+        return self->eval().simplify_indexed(options);
+    }
+	ex simplify_indexed(const scalar_products & sp, unsigned options = 0) const{
+        return self->eval().simplify_indexed(sp,options);
     }
 
 };
