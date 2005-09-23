@@ -73,8 +73,9 @@ class test_idx(unittest.TestCase):
         C=g.symbol("C")
 
         e=g.indexed(A,i,j)*g.indexed(B,j,k)+g.indexed(C,k,l,i,l)
-        #print e
-        #print e.get_free_indices()
+        self.assertEqual(str(e),"C.k.l.i.l+B.j.k*A.i.j")
+        self.assertEqual(e.get_free_indices(),[i, k])
+        self.assertEqual(str(e.get_free_indices()),"[.i, .k]")
 
 if __name__ == "__main__":
     unittest.main()

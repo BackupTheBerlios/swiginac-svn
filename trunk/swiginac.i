@@ -77,6 +77,7 @@ ADD_REPR(function);
 ADD_REPR(constant);
 ADD_REPR(symbol);
 ADD_REPR(integral);
+ADD_REPR(idx);
 
 };
 
