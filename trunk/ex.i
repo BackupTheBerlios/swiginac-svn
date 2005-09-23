@@ -125,7 +125,7 @@ case TINFO_##NAME: {\
 }
 
 //unwraps ex and return python object
-PyObject * ex2type(ex * input) {
+PyObject * ex2type(const ex * input) {
     switch (ex_to<basic>(*input).tinfo()) {
         EX2(basic)
         EX2(expairseq)
@@ -183,8 +183,7 @@ PyObject *lst2list(lst *input) {
     lst::const_iterator i_end = input->end();
     PyObject *pylist = PyList_New(0);
     while (i!=i_end) {
-        ex e=*i;
-        PyObject *item = ex2type(&e);
+        PyObject *item = ex2type(&(*i));
         PyList_Append(pylist, item);
         //is this necessary?
         Py_INCREF(item);
@@ -240,8 +239,7 @@ PyObject *exvector2list(exvector *input) {
     exvector::const_iterator i_end = input->end();
     PyObject *pylist = PyList_New(0);
     while (i!=i_end) {
-        ex e=*i;
-        PyObject *item = ex2type(&e);
+        PyObject *item = ex2type(&(*i));
         PyList_Append(pylist, item);
         //is this necessary?
         Py_INCREF(item);
