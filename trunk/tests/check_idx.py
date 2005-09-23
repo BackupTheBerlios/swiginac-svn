@@ -18,40 +18,15 @@
 #     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import unittest
-import sys
+import swiginac as g
 
-quick_tests = """
-check_aritmetic
-check_relat
-check_lst
-check_print
-check_idx
-exam_matrices
-exam_paranoia
-exam_misc
-exam_normalization
-exam_diff
-exam_lsolve
-exam_polygcd
-""".split()
+class test_idx(unittest.TestCase):
 
-time_consuming_tests = """
-check_matrices
-check_numeric
-check_inifcns
-check_lsolve
-""".split()
+    def testbasic(self):
+        i=g.idx(g.symbol("i"),3)
+        j=g.idx(g.symbol("j"),3)
+        A=g.symbol("A")
+        self.assertEqual(str(g.indexed(A,i,j)),"A.i.j")
 
-modules = quick_tests
-if len(sys.argv)==1:
-    modules+= time_consuming_tests
-
-sys.path.append(".")
-
-tests=[]
-for mod in modules:
-        m=__import__(mod)
-        tests.append(unittest.defaultTestLoader.loadTestsFromModule(m))
-alltests=unittest.TestSuite(tests)
-#print "Test suite loaded."
-unittest.TextTestRunner(verbosity=1).run(alltests)
+if __name__ == "__main__":
+    unittest.main()
