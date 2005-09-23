@@ -27,7 +27,7 @@ class relational;
 class archive_node;
 class print_context;
 
-typedef std::vector<ex> exvector;
+//typedef std::vector<ex> exvector;
 typedef std::map<ex, ex, ex_is_less> exmap;
 
 struct map_function;

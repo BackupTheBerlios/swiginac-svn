@@ -183,20 +183,27 @@ PyObject *lst2list(lst *input) {
     int n = l->nops(); 
     PyObject *pylist = PyList_New(n);
     PyObject *item;
-    ex * tmp;
-    static swig_type_info *descr = 0;
-    descr = SWIG_TypeQuery("GiNaC::ex *");
     for (int i=0;i<n;i++) {
-        // Set item
-        tmp = &(l->let_op(i));
-        item = ex2type(tmp);
-        // add to list
+        item = ex2type(&(l->let_op(i)));
         PyList_SetItem(pylist, i, item);
         Py_INCREF(item);
     }
     return (pylist);
 }
 
+/*
+PyObject *lst2list(lst *input) {
+    lst *l = input;
+    int n = l->nops(); 
+    PyObject *pylist = PyList_New(n);
+    PyObject *item;
+    for (int i=0;i<n;i++) {
+        item = ex2type(&(l->let_op(i)));
+        PyList_SetItem(pylist, i, item);
+        Py_INCREF(item);
+    }
+    return (pylist);
+}*/
 
 //convert any python list to ginac lst
 lst* list2lst(PyObject * input)
@@ -224,6 +231,32 @@ lst* list2lst(PyObject * input)
         return NULL;
     }
 }
+
+//converts ginac exvector to python list (unwrapping all exs)
+PyObject *exvector2list(exvector *input) {
+    exvector::const_iterator i = input->begin();
+    exvector::const_iterator i_end = input->end();
+    while (i!=i_end) {
+        i++;
+    }
+    /*exvector *l = input;
+    int n = l->nops(); 
+    PyObject *pylist = PyList_New(n);
+    PyObject *item;
+    ex * tmp;
+    static swig_type_info *descr = 0;
+    descr = SWIG_TypeQuery("GiNaC::ex *");
+    for (int i=0;i<n;i++) {
+        // Set item
+        tmp = &(l->let_op(i));
+        item = ex2type(tmp);
+        // add to list
+        PyList_SetItem(pylist, i, item);
+        Py_INCREF(item);
+    }
+    return (pylist);*/
+}
+
 %}
 
 // vim:ft=cpp:

@@ -46,6 +46,10 @@
     $result = ex2type(&($1));
 }
 
+%typemap(out) exvector {
+    $result = exvector2list(&($1));
+}
+
 //it seems we don't need these
 /*%typemap(out) lst & {
     $result = lst2list($1);

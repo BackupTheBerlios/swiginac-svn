@@ -40,6 +40,9 @@ class test_idx(unittest.TestCase):
         A=g.symbol("A")
         self.assertEqual(str(g.indexed(A,mu,nu)),"A~mu.nu")
         self.assertEqual(str(g.indexed(A,mu,nu.toggle_variance())),"A~mu~nu")
+        self.failUnless(mu.is_contravariant())
+        self.failIf(mu.is_covariant())
+        self.failUnless(nu.is_covariant())
 
     def testvaridx3(self):
         mu=g.varidx(g.symbol("mu"),4)
@@ -48,6 +51,30 @@ class test_idx(unittest.TestCase):
         self.assertEqual(str(g.indexed(A,mu,nu)),"A~mu~nu")
         self.assertEqual(str(g.indexed(A,mu,nu.toggle_variance())),"A~mu.nu")
         self.assertEqual(str(g.indexed(A,mu.toggle_variance(),nu)),"A.mu~nu")
+        self.failUnless(mu.is_contravariant())
+        self.failUnless(nu.is_contravariant())
+
+    def testsubs(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4,True)
+        A=g.symbol("A")
+        e=g.indexed(A,mu)
+        self.assertEqual(str(e),"A~mu")
+        self.assertEqual(str(e.subs(mu==nu)),"A.nu")
+        self.assertEqual(str(e.subs(mu==0)),"A~0")
+
+    def testdummy(self):
+        i=g.idx(g.symbol("i"),3)
+        j=g.idx(g.symbol("j"),3)
+        k=g.idx(g.symbol("k"),3)
+        l=g.idx(g.symbol("l"),3)
+        A=g.symbol("A")
+        B=g.symbol("B")
+        C=g.symbol("C")
+
+        e=g.indexed(A,i,j)*g.indexed(B,j,k)+g.indexed(C,k,l,i,l)
+        #print e
+        #print e.get_free_indices()
 
 if __name__ == "__main__":
     unittest.main()
