@@ -183,5 +183,27 @@ class test_idx(unittest.TestCase):
             g.lorentz_g(mu,g.varidx(0,4),True)
         self.assertEqual(e.simplify_indexed(),-1)
 
+    def testeps(self):
+        mu=g.varidx(g.symbol("mu"),4)
+        nu=g.varidx(g.symbol("nu"),4)
+        rho=g.varidx(g.symbol("rho"),4)
+        sig=g.varidx(g.symbol("sig"),4)
+        lam=g.varidx(g.symbol("lam"),4)
+        bet=g.varidx(g.symbol("bet"),4)
+
+        e=g.lorentz_eps(mu,nu,rho,sig)*g.lorentz_eps(mu.toggle_variance(),
+            nu.toggle_variance(),lam,bet)
+        g.simplify_indexed(e)
+
+        i=g.idx(g.symbol("i"),3)
+        j=g.idx(g.symbol("j"),3)
+        k=g.idx(g.symbol("k"),3)
+        A=g.symbol("A")
+        B=g.symbol("B")
+        e=g.epsilon_tensor(i,j,k)*g.indexed(A,j)*g.indexed(B,k)
+        self.assertNotEqual(g.simplify_indexed(e),0)
+        e=g.epsilon_tensor(i,j,k)*g.indexed(A,j)*g.indexed(A,k)
+        self.assertEqual(g.simplify_indexed(e),0)
+
 if __name__ == "__main__":
     unittest.main()
