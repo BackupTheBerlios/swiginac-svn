@@ -4,8 +4,9 @@ Proposed road map:
 
   exam_normalization: xtest_exam_normal2 - factoring out doesn't work
 
-  the "x" in the front prevent "make check" to run them. Delete the "x" and
-  fix it. Is it a bug in GiNaC, or in swiginac? Needs investigating.
+  the "x" in the front prevents "make check" to run it. Delete the "x" and
+  fix it. Is it a bug in GiNaC, or in swiginac, or is it a feature?
+  Needs investigating.
 
 - Solve the Makefile problem, so that it compiles with every python version
   (>=2.2?) automatically.
