@@ -26,7 +26,7 @@ tested on Debian unstable). This is done by editing the arguments
 "include_dirs" and "library_dirs" in the Extension constructor.
 
 Then, run:
-python setup.py build_ext --swig-cpp
+python setup.py build
 python setup.py install
 
 At this point, swiginac should be installed in the site-packages directory of

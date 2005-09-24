@@ -7,18 +7,25 @@ At the moment, this setup.py file is very crude. I expect it will
 only work on Debian systems (no platform independence yet).
 
 Make sure that you have at least SWIG version 1.3.24 and GiNaC
-version 1.2.3.
+version 1.3.1.
 
-To install swiginac, type:
-python setup.py build_ext --swig-cpp
+To build and install swiginac, type:
+python setup.py build
 python setup.py install
 
 To check your installation, change directory to ./tests, and run 
 python checkall.py
 
-Ola Skavhaug,
-Simula Research Laboratory
+Ola Skavhaug
+Ondrej Certik
 """
+
+from  sys import argv
+print argv
+if argv[1] == 'build':
+    argv[1] = 'build_ext'
+    argv.insert(2,'--swig-cpp')
+
 
 e = Extension(name='_swiginac', 
               sources=['swiginac.i'],
