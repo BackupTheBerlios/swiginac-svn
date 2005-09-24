@@ -35,25 +35,35 @@ your default python interpreter (on Debian with Python2.3:
 
 Installing using make
 ---------------------
-Again, make sure that the dependencies (see above) are met. Edit the Makefile
-to reflect your system settings. I.e., edit PYTHONVERSION (e.g. 2.3), INCLUDES
-(must contain the directories of the python and ginac header files), and PREFIX
-(installation directory). Also, put PREFIX in PYTHONPATH. In bash, run: export
-PYTHONPATH=$PYTHONPATH:$PREFIX 
-with PREFIX identically to the definition in Makefile.
+For impatient:
+ 
+make
+make install
+
+More info:
+Make sure that the dependencies (see above) are met.  The Makefile works on
+Debian unstable, if you use other system, you may need to edit it. I.e., edit
+PYTHONVERSION (e.g. 2.3), INCLUDES (must contain the directories of the python
+and ginac header files), eventually PREFIX (installation directory). The
+default PREFIX is in site-packages in the python installation, so it should
+work out of the box, but if you prefer other directory, you may need to put
+PREFIX in PYTHONPATH. In bash, run: export PYTHONPATH=$PYTHONPATH:$PREFIX with
+PREFIX identical to the definition in Makefile.
 
 Run:
 make 
 
-This will construct the swiginac extension module. The module consists of the 
-files swiginac.py and _swiginac.so. 
+This will construct the swiginac extension module. The module consists of the
+files swiginac.py and _swiginac.so. If you prefer not to install anything, you
+can use swiginac just now - import swiginac.py and you are fine.
 
 If you want to install the module in PREFIX, run:
 make install
 
+
 Verify the installation
 -----------------------
-Go to your home directory and start python. The issue the commands:
+Go to your home directory and start python. Then issue the commands:
 >>> from swiginac import *
 >>> x = symbol('x')
 >>> y = symbol('y')
@@ -74,4 +84,3 @@ swiginac is currently without documentation. Therefore, browsing the scripts in
 the tests directory is the best way of learning how to use swiginac. Also, read
 the documentation the the GiNaC homepages (http://www.ginac.de/tutorial/ and
 http://www.ginac.de/reference/).
-
