@@ -1,21 +1,21 @@
-# include definitions of Diffpack Makefile variables:
-
-# SWIG-specific make variables:
-
 #PYTHONVERSION = 2.4
 PYTHONVERSION = 2.3
-#GCC=g++-3.3
+
 GCC=g++
+#GCC=g++-3.3
 
 #SWIG       = swig -v -Wall
 SWIG       = swig 
+
+
 INTERFACE  = swiginac
 CXX        = $(GCC) 
 CXXSHARED  = $(GCC) -shared
 INCLUDES   = -I/usr/include/python$(PYTHONVERSION) -I/usr/include/ginac
 CFLAGS     = -g -c -fpic
 LDFLAGS = -lginac
-PREFIX = $(HOME)/home/devel/pygin/
+#PREFIX = $(HOME)/home/devel/pygin
+PREFIX = /usr/lib/python$(PYTHONVERSION)/site-packages
 
 all:: python lib
 
@@ -30,7 +30,7 @@ clean::
 
 install::
 	mkdir -p $(PREFIX)/swiginac
-	cp _$(INTERFACE).so $(PREFIX)/swiginac
+	cp _$(INTERFACE).so $(PREFIX)/swiginac/
 	cp $(INTERFACE).py $(PREFIX)/swiginac/__init__.py
 
 check::
