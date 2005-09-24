@@ -1,22 +1,25 @@
 Proposed road map:
 
+- this testsuite doesn't run:
+
+  exam_normalization: xtest_exam_normal2 - factoring out doesn't work
+
+  the "x" in the front prevent "make check" to run them. Delete the "x" and
+  fix it. Is it a bug in GiNaC, or in swiginac? Needs investigating.
+
+- Solve the Makefile problem, so that it compiles with every python version
+  (>=2.2?) automatically.
+
+- Play with the code (refactoring)
+
+Maybe implement these, but maybe not - just an idea:
+
 - tests/check_lst.py, make this work (the same issue as with lsolve)
   self.assertEqual(g.diag_matrix([x,y]),[[x,0],[0,y]])
 
 - tests/check_matrices.py, the same
   self.assertEqual((A*B-(C*2)).evalm(),[[-13,-6],[1,2]])
 
-- this testsuite doesn't run:
-
-  exam_normalization: xtest_exam_normal2 - factoring out doesn't work
-
-  the "x" in the front prevent "make check" to run them. Delete the "x" and
-  fix it.
-
-- Solve the Makefile problem, so that it compiles with every python version
-  (>=2.2?) automatically.
-
-- Play with the code (refactoring)
 
 How to contribute:
 
