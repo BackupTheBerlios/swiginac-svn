@@ -35,6 +35,13 @@ class test_print(unittest.TestCase):
         b.set_print_context('c')
         self.assertEqual(str(b), "Pi")
 
+    def xtest_autodoc(self):
+        res = 0
+        x = g.symbol('x')
+        if not (x.__doc__ == 'Proxy of C++ symbol class'): res += 1
+        self.assertEqual(res, 0)
+        
+
 if __name__ == "__main__":
     unittest.main()
 

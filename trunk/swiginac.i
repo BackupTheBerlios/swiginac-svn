@@ -29,6 +29,8 @@ using namespace GiNaC;
 
 %include std_string.i
 
+%feature("autodoc", "1");
+
 namespace GiNaC {
 
 %include "ex.i"
@@ -81,6 +83,7 @@ ADD_REPR(symbol);
 ADD_REPR(integral);
 ADD_REPR(idx);
 ADD_REPR(pseries);
+ADD_REPR(varidx);
 
 };
 
