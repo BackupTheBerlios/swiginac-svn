@@ -87,7 +87,8 @@ class test_idx(unittest.TestCase):
 
         e=g.indexed(A,mu,nu)*g.indexed(B,nu.toggle_variance(),rho)+\
             g.indexed(C,mu,sigma,rho,sigma.toggle_variance())
-        self.assertEqual(e.get_free_indices(),[mu, rho])
+        self.failUnless(e.get_free_indices()==[mu,rho] or 
+            e.get_free_indices()==[rho,mu])
 
         e=g.indexed(A,mu,mu)
         self.assertEqual(e.get_free_indices(),[mu])

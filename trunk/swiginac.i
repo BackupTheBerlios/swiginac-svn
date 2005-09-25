@@ -82,6 +82,7 @@ ADD_REPR(constant);
 ADD_REPR(symbol);
 ADD_REPR(integral);
 ADD_REPR(idx);
+ADD_REPR(varidx);
 ADD_REPR(pseries);
 ADD_REPR(varidx);
 
