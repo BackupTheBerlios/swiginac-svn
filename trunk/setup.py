@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from distutils.core import setup, Extension
+import distutils
 
 """
 At the moment, this setup.py file is very crude. I expect it will
@@ -21,11 +22,17 @@ Ondrej Certik
 """
 
 from  sys import argv
-print argv
+
+# The command line argument for running swig in c++ mode has changed from
+# Python 2.3 to 2.4. We support both.
+import string
+swig_opt = '--swig-cpp'
+version = string.split(distutils.__version__,'.')
+if (int(version[0]) == 2 and int(version[1]) >= 4): swig_opt = '--swig-opts=-c++'
+
 if argv[1] == 'build':
     argv[1] = 'build_ext'
-    argv.insert(2,'--swig-cpp')
-
+    argv.insert(2, swig_opt)
 
 e = Extension(name='_swiginac', 
               sources=['swiginac.i'],
