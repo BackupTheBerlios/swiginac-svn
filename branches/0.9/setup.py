@@ -21,7 +21,6 @@ Ondrej Certik
 """
 
 from  sys import argv
-print argv
 if argv[1] == 'build':
     argv[1] = 'build_ext'
     argv.insert(2,'--swig-cpp')
