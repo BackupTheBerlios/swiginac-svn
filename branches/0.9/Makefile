@@ -27,6 +27,7 @@ lib::
 	$(CXXSHARED) $(INTERFACE)_wrap.o $(LDFLAGS) -o _$(INTERFACE).so
 clean::
 	rm -f *_wrap* *.so *.o $(OBJ_FILES)  *~ swiginac.py swiginac.pyc tests/*.pyc
+	rm -rf build
 
 install::
 	mkdir -p $(PREFIX)/swiginac
