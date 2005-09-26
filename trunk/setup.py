@@ -29,6 +29,8 @@ import string
 swig_opt = '--swig-cpp'
 version = string.split(distutils.__version__,'.')
 if (int(version[0]) == 2 and int(version[1]) >= 4): swig_opt = '--swig-opts=-c++'
+##simpler version:
+#if distutils.__version__ >= '2.4': swig_opt = '--swig-opts=-c++'
 
 if argv[1] == 'build':
     argv[1] = 'build_ext'
