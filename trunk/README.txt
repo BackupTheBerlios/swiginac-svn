@@ -25,7 +25,7 @@ Maybe implement these, but maybe not - just an idea:
 How to contribute:
 
 - Please make sure that the testsuites run without error prior to commiting
-  changes, by running "make all check" (during the development, you can
+  changes, by running "make all check" in src/swiginac (during the development, you can
   also use "make checkquick", which only runs a few quick tests, but prior to
   commiting, always run "make check"). 
 
@@ -39,10 +39,11 @@ How to contribute:
 
 - Improve the project home page at berlios.
 
-- Improve the Python module built on top of swiginac (Symbolic): swiginac
-  should be able to do exactly the same things as ginac (ie matrices
+- Improve the Python module built on top of swiginac (Symbolic: src/Symbolic):
+  swiginac should be able to do exactly the same things as ginac (ie matrices
   implemented using python lists belongs to swiginac), everything else should
-  come to Symbolic.
+  come to Symbolic. Cuurently, lots of features in swiginac are not included in
+  Symbolic (e.g. series expansion and symbolic linear system solver).
 
 Feature requests:
 

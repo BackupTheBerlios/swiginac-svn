@@ -30,27 +30,29 @@ python setup.py build
 python setup.py install
 
 At this point, swiginac should be installed in the site-packages directory of
-your default python interpreter (on Debian with Python2.3:
+your default Python interpreter (on Debian with Python2.3:
 /usr/lib/python2.3/site-packages).
 
 Installing using make
 ---------------------
 For impatient:
- 
+
+cd src/swiginac
 make
 make install
 
 More info:
 Make sure that the dependencies (see above) are met.  The Makefile works on
 Debian unstable, if you use other system, you may need to edit it. I.e., edit
-PYTHONVERSION (e.g. 2.3), INCLUDES (must contain the directories of the python
+PYTHONVERSION (e.g. 2.3), INCLUDES (must contain the directories of the Python
 and ginac header files), eventually PREFIX (installation directory). The
-default PREFIX is in site-packages in the python installation, so it should
+default PREFIX is in site-packages in the Python installation, so it should
 work out of the box, but if you prefer other directory, you may need to put
 PREFIX in PYTHONPATH. In bash, run: export PYTHONPATH=$PYTHONPATH:$PREFIX with
 PREFIX identical to the definition in Makefile.
 
 Run:
+cd src/swiginac
 make 
 
 This will construct the swiginac extension module. The module consists of the
@@ -63,7 +65,7 @@ make install
 
 Verify the installation
 -----------------------
-Go to your home directory and start python. Then issue the commands:
+Go to your home directory and start Python. Then issue the commands:
 >>> from swiginac import *
 >>> x = symbol('x')
 >>> y = symbol('y')
