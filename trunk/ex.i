@@ -77,6 +77,7 @@ case TINFO_##NAME: {\
 PyObject * ex2type(const ex * input) {
     switch (ex_to<basic>(*input).tinfo()) {
         EX2(basic)
+        EX2(numeric)
         EX2(expairseq)
         EX2(add)
         EX2(mul)
@@ -94,7 +95,6 @@ PyObject * ex2type(const ex * input) {
         EX2(power)
         EX2(relational)
         //EX2(fail)
-        EX2(numeric)
         EX2(pseries)
         EX2(indexed)
         //EX2(color)
