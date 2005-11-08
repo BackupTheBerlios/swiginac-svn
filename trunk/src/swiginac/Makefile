@@ -26,7 +26,7 @@ lib::
 	$(CXX) $(CFLAGS) $(INTERFACE)_wrap.cxx -o $(INTERFACE)_wrap.o  $(INCLUDES)
 	$(CXXSHARED) $(INTERFACE)_wrap.o $(LDFLAGS) -o _$(INTERFACE).so
 clean::
-	rm -f *_wrap* *.so *.o $(OBJ_FILES)  *~ swiginac.py swiginac.pyc tests/*.pyc
+	rm -f *_wrap* *.so *.o $(OBJ_FILES)  *~ swiginac.py swiginac.pyc ../../tests/*.pyc
 	rm -rf build
 
 install::
@@ -35,7 +35,7 @@ install::
 	cp $(INTERFACE).py $(PREFIX)/swiginac/__init__.py
 
 check::
-	python tests/checkall.py
+	python ../../tests/checkall.py
 
 checkquick::
-	python tests/checkall.py quick
+	python ../../tests/checkall.py quick

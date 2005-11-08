@@ -5,7 +5,7 @@ At the moment, this setup.py file is very crude. I expect it will
 only work on Debian systems (no platform independence yet).
 
 Make sure that you have at least SWIG version 1.3.24 and GiNaC
-version 1.3.1.
+version 1.3.2.
 
 To build and install swiginac, type:
 python setup.py build
@@ -21,8 +21,9 @@ Ondrej Certik
 from distutils.core import setup, Extension
 import distutils
 from  sys import argv
+import os
 
-
+os.chdir(os.path.join("src", "swiginac"))
 
 # The command line argument for running swig in c++ mode has changed from
 # Python 2.3 to 2.4. We support both.
@@ -41,11 +42,26 @@ e = Extension(name='_swiginac',
               )
 
 setup(name='swiginac',
-    version='0.1',
+    version='0.9.1',
     description='swiginac extention module',
     author='Ola Skavhaug',
     author_email='skavhaug@simula.no',
     url='http://swiginac.berlios.de/',
     ext_modules=[e],
-    py_modules = ['swiginac'],
+    py_modules= ['swiginac'],
     )
+
+
+#os.chdir(os.path.join("src", "swiginac"))
+os.chdir(os.pardir)
+
+setup(name='Symbolic',
+    version='0.2',
+    description='Higher level mathematics module',
+    author='Ola Skavhaug',
+    author_email='skavhaug@simula.no',
+    url='http://swiginac.berlios.de/',
+    packages=["Symbolic"]
+    )
+
+
