@@ -34,12 +34,25 @@ if argv[1] == 'build':
     argv[1] = 'build_ext'
     argv.insert(2, swig_opt)
 
-e = Extension(name='_swiginac', 
+ginac_prefix=os.popen('ginac-config --prefix','r').readline().rstrip()
+cln_prefix=os.popen('cln-config --prefix','r').readline().rstrip()
+
+e = Extension(name='_swiginac',
               sources=['swiginac.i'],
-              include_dirs=['/usr/include/ginac'],
-              library_dirs=['/usr/lib'],
+              include_dirs=['%s/include/ginac' % (ginac_prefix),
+                            '%s/include' % (cln_prefix)],
+              library_dirs=['%s/lib' % (ginac_prefix),
+                            '%s/lib' % (cln_prefix)],
               libraries=['ginac'],
               )
+
+
+#e = Extension(name='_swiginac', 
+#              sources=['swiginac.i'],
+#              include_dirs=['/usr/include/ginac'],
+#              library_dirs=['/usr/lib'],
+#              libraries=['ginac'],
+#              )
 
 setup(name='swiginac',
     version='0.9.1',
