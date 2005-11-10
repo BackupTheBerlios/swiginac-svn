@@ -20,8 +20,9 @@ from distutils.core import setup, Extension
 import distutils
 from  sys import argv
 import os
+from os.path import join as pjoin, sep as psep
 
-os.chdir(os.path.join("src", "swiginac"))
+os.chdir(pjoin("src", "swiginac"))
 
 # The command line argument for running swig in c++ mode has changed from
 # Python 2.3 to 2.4. We support both.
@@ -35,12 +36,14 @@ if argv[1] == 'build':
 ginac_prefix=os.popen('ginac-config --prefix','r').readline().rstrip()
 cln_prefix=os.popen('cln-config --prefix','r').readline().rstrip()
 
+inclist = [psep, 'include', 'ginac']
+
 e = Extension(name='_swiginac',
               sources=['swiginac.i'],
-              include_dirs=['%s/include/ginac' % (ginac_prefix),
-                            '%s/include' % (cln_prefix)],
-              library_dirs=['%s/lib' % (ginac_prefix),
-                            '%s/lib' % (cln_prefix)],
+              include_dirs=['%s%s' % (ginac_prefix, pjoin(*inclist)),
+                            '%s%s' % (cln_prefix, pjoin(*inclist[:-1]))],
+              library_dirs=['%s%s' % (ginac_prefix, pjoin(psep, "lib")),
+                            '%s%s' % (cln_prefix, pjoin(psep, "lib"))],
               libraries=['ginac'],
               )
 
