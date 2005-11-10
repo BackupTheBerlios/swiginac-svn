@@ -1,0 +1,11 @@
+ ------ swiginac/trunk ChangeLog  ------ 
+
+ - Added ChangeLog
+ - Imroved the setup.py file; it should work on *nix now
+ - Released 0.9.1 [2005-11-09]
+ - trunk copied to branches/0.9 and tags/0.9.1
+ - src/swiginac/Makefile and setup.py changes to reflect new structure
+ - Added src/Symbolic and tests/Symbolic
+ - Restructured directory layout
+ - Released 0.9.0 [2005-09-25]
+ - Exported the svn-repository to berlios. No history prior to that.
