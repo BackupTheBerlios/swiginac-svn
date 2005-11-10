@@ -195,6 +195,7 @@ class Matrix(Symbolic):
     def __init2__(self, l, symbs=None, time=None):
         self.i = len(l)
         self.j = len(l[0])
+        l = [[_toex(x) for x in sl] for sl in l] #Convert to nested list of swiginac types
         self.data = _g.matrix(l)
         self.spatial_symbs = symbs
         self.time = time
