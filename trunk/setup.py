@@ -1,21 +1,19 @@
 #!/usr/bin/env python
 
 """
-At the moment, this setup.py file is very crude. I expect it will
-only work on Debian systems (no platform independence yet).
-
-Make sure that you have at least SWIG version 1.3.24 and GiNaC
-version 1.3.2.
+Standard setup.py file using Python's native distutils module for installation.
+Make sure that you have at least SWIG version 1.3.24 and GiNaC version 1.3.2.
 
 To build and install swiginac, type:
 python setup.py build
 python setup.py install
 
-To check your installation, change directory to ./tests, and run 
+To check your installation, change directory to ./tests/swiginac, and run 
 python checkall.py
 
 Ola Skavhaug
 Ondrej Certik
+Åsmund Ødegård
 """
 
 from distutils.core import setup, Extension
