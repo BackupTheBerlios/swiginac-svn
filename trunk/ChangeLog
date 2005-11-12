@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - bug fixes and some more features in Symbolic
  - setup.py more platform independent (may work with cygwin?)
  - Added ChangeLog
  - Improved the setup.py file; should work on most *nix platform

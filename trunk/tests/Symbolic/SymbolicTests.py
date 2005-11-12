@@ -129,6 +129,15 @@ class MatrixTestCase(unittest.TestCase):
         assert str(m1)  == "[[0,0],[0,0]]"
         self.assertRaises(TypeError, Matrix, [[0,0],[0,0]], 2, 2)
 
+    def testMatSubAdd(self):
+        x = self.symbol
+        y = self.symbol2
+        m1 = Matrix([[sin(x),1],[cos(x+y),2]])
+        m2 = Matrix([[sin(x),2],[cos(x+y),2]])
+        self.assertEqual(str(m2-m1),'[[0,1],[0,0]]')
+        self.assertEqual((m2-m1)+m1,m2)
+        
+
     def testMatMul(self):
         tmpmat = self.mat*2
         assert str(tmpmat[0,0]) == '2*x'
@@ -147,13 +156,28 @@ class MatrixTestCase(unittest.TestCase):
 class OperTestCase(unittest.TestCase):
     def setUp(self):
         self.x = Symbol('x')
-        self.y = Symbol('x')
+        self.y = Symbol('y')
 
     def testDivergence(self):
         x = self.x
         y = self.y
         f = Vector([x * y, 1 + y], symbs=[x, y])
-        self.assertEqual(str(div(f)), '1+x')
+        self.assertEqual(div(f), 1+y)
+
+    def testGradient(self):
+        x = self.x
+        y = self.y
+        f = sin(x)*cos(y)
+        f.setSpatialSymbols([x,y])
+        assert grad(f) == [cos(y)*cos(x), -sin(x)*sin(y)]
+
+    def testLaplace(self):
+        x = self.x
+        y = self.y
+        f = sin(x)*cos(y)
+        f.setSpatialSymbols([x,y])
+        assert laplace(f) == div(grad(f)) == -2*cos(y)*sin(x) 
+
 
 suite1 = unittest.makeSuite(SymbolTestCase)
 suite2 = unittest.makeSuite(ExprTestCase)

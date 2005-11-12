@@ -265,6 +265,9 @@ class Matrix(Symbolic):
                     m[i, j] = self[i, j]*b
             return m
 
+    def __eq__(self, other):
+        return self.data == _toex(other)
+
     def initEval(self, symbol_point):
         """In order to evaluate an ex in GiNaC, we need som additinal data
         structures. This method adds this.
@@ -308,9 +311,11 @@ class Matrix(Symbolic):
 
 class Vector(Symbolic):
     """Simple Vector consisting of Expr, and equipped with arithmetic and differential
-    operators.
-    """
+    operators. Make sure that the entries the the list data, always are
+    swiginac types!"""
 
+    def __eq__(self, other):
+        return self.data == _toex(other)
    
     def __call__(self):
         return self.data.eval()
@@ -539,15 +544,15 @@ def _toex(other):
     """
     if isinstance(other, (float, int)):
         return _g.numeric(other)
-    elif isinstance(other, (Symbol, Expr)):
+    elif isinstance(other, (Symbol, Expr, Matrix, Vector)):
         return other.data
     elif isinstance(other, (_g.basic)):
         return other
     elif isinstance(other, str):
         print "Can not convert a string to symbolic type"
         return _g.numeric(other)
-    elif isinstance(other, Vector):
-        return other()
+    elif isinstance(other, list):
+        return [_toex(x) for x in other]
 
 Pi = _g.Pi
           
