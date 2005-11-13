@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - Released 0.9.3 [2005-11-13]
  - bug fixes and some more features in Symbolic
  - setup.py more platform independent (may work with cygwin?)
  - Added ChangeLog
