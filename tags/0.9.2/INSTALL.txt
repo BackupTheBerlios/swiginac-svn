@@ -1,0 +1,95 @@
+---------------------------
+SWIGINAC INSTALLATION NOTES
+---------------------------
+
+Dependencies
+------------
+
+Before compiling and installing swiginac, make sure that you have installed
+GiNaC (ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/) and SWIG
+(http://sourceforge.net/project/showfiles.php?group_id=1645). Versions known to
+work are GiNaC version >= 1.3.2 and SWIG version >= 1.3.24.
+
+Most recent Linux distributions have packages for the above software. E.g., in
+Debian unstable (sid), the packages are:
+libginac1.3c2
+libginac-dev
+swig1.3
+
+Supported platforms
+-------------------
+We have successfully installed swiginac using the distutils file on the
+following platforms:
+
+ - Debian Linux unstable (sid): i386
+ - MacOSX "Tiger" 10.4
+
+Installing using distutils
+--------------------------
+
+Make sure that the dependencies (see above) are met. Additionally, the Python
+module distutils must be installed.
+
+To install swiginac and Symbolic, simply run:
+python setup.py build
+python setup.py install
+
+At this point, swiginac and Symbolic should be installed in the site-packages
+directory of your default Python interpreter (on Debian with Python2.3:
+/usr/lib/python2.3/site-packages).
+
+Installing using make
+---------------------
+For impatient:
+
+cd src/swiginac
+make
+make install
+
+More info:
+Make sure that the dependencies (see above) are met.  The Makefile works on
+Debian unstable, if you use other system, you may need to edit it. I.e., edit
+PYTHONVERSION (e.g. 2.3), INCLUDES (must contain the directories of the Python
+and ginac header files), eventually PREFIX (installation directory). The
+default PREFIX is in site-packages in the Python installation, so it should
+work out of the box, but if you prefer other directory, you may need to put
+PREFIX in PYTHONPATH. In bash, run: export PYTHONPATH=$PYTHONPATH:$PREFIX with
+PREFIX identical to the definition in Makefile.
+
+Run:
+cd src/swiginac
+make 
+
+This will construct the swiginac extension module. The module consists of the
+files swiginac.py and _swiginac.so. If you prefer not to install anything, you
+can use swiginac just now - import swiginac.py and you are fine.
+
+If you want to install the module in PREFIX, run:
+make install
+
+
+Verify the installation
+-----------------------
+Go to your home directory and start Python. Then issue the commands:
+>>> from swiginac import *
+>>> x = symbol('x')
+>>> y = symbol('y')
+>>> print sin(x*y).diff(x,1)
+cos(y*x)*y
+>>> 
+
+Then, re-visit the directory containing this file, and run the unit tests:
+cd tests/swiginac
+python checkall.py
+cd ../Symbolic
+python SymbolicTests.py
+
+Hopefully, you will get a message telling you that more than 90 tests have been
+run, and that they all went well.
+
+Final note
+----------
+swiginac is currently without documentation. Therefore, browsing the scripts in
+the tests directory is the best way of learning its usage. Also, read
+the documentation the the GiNaC homepages (http://www.ginac.de/tutorial/ and
+http://www.ginac.de/reference/).
