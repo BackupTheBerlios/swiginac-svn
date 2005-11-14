@@ -8,7 +8,8 @@ Dependencies
 Before compiling and installing swiginac, make sure that you have installed
 GiNaC (ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/) and SWIG
 (http://sourceforge.net/project/showfiles.php?group_id=1645). Versions known to
-work are GiNaC version >= 1.3.2 and SWIG version >= 1.3.24.
+work are GiNaC version >= 1.3.2 and SWIG version >= 1.3.24. 
+(Remark: GiNaC version 1.3.0, 1.3.1 are known to _not_ work!)
 
 Most recent Linux distributions have packages for the above software. E.g., in
 Debian unstable (sid), the packages are:
