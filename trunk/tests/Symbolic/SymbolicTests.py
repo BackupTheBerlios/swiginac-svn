@@ -67,6 +67,11 @@ class ExprTestCase(unittest.TestCase):
     def testExprMult(self): 
         assert str(self.expr * self.expr) == 'exp(x)**2'
         assert str(2 * self.expr) == '2*exp(x)'
+        # Expr*Vector multiplies each entry in Vector by Expr
+        x = self.symbol
+        y = Symbol('y')
+        v = Vector([x,y])
+        self.assertEqual(self.expr*v, Vector([exp(x)*x, exp(x)*y]))
 
     def testExprDiv(self): 
         assert str(self.expr / self.expr) == '1'
