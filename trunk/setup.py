@@ -56,7 +56,7 @@ e = Extension(name='_swiginac',
 #              )
 
 setup(name='swiginac',
-    version='0.9.1',
+    version='0.9.2',
     description='swiginac extention module',
     author='Ola Skavhaug',
     author_email='skavhaug@simula.no',
@@ -70,7 +70,7 @@ setup(name='swiginac',
 os.chdir(os.pardir)
 
 setup(name='Symbolic',
-    version='0.2',
+    version='0.3',
     description='Higher level mathematics module',
     author='Ola Skavhaug',
     author_email='skavhaug@simula.no',

@@ -46,6 +46,12 @@
     $result = ex2type(&($1));
 }
 
+%typemap(out) ex *{
+    $result = ex2type($1);
+    delete $1;
+}
+
+
 %typemap(out) exvector {
     $result = exvector2list(&($1));
 }

@@ -250,6 +250,11 @@ def __str__(self):
         return self->eval().simplify_indexed(sp,options);
     }
 
+    ex* copy() {
+        ex *p = new ex(*self);
+        return p;
+    }
+
 };
 
 // vim:ft=cpp:
