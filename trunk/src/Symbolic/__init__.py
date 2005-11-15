@@ -66,6 +66,8 @@ class Expr(Symbolic):
         return Expr(self.data - _toex(other), symbs=self.spatial_symbs, time=self.time)
 
     def __mul__(self, other):
+        if isinstance(other, Vector):
+            return Vector([self.data*x for x in other.data], symbs=self.spatial_symbs, time=self.time)
         return Expr(self.data * _toex(other), symbs=self.spatial_symbs, time=self.time)
 
     def __div__(self, other):
