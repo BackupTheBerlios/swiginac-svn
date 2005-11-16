@@ -116,6 +116,12 @@ class Expr(Symbolic):
     def __eq__(self, other):
         return self.data == _toex(other)
 
+    def __copy__(self):
+        return Expr(self.data.copy(), symbs=self.spatial_symbs, time=self.time)
+
+    def copy(self):
+        return self.__copy__()
+
     def diff(self, symb, count):
         return Expr(self.data.diff(symb.data, count), symbs=self.spatial_symbs, time=self.time)
 
@@ -179,6 +185,8 @@ class Matrix(Symbolic):
             self.__init1__(*args, **kwargs)
         elif isinstance(args[0], list) and len(args) == 1:
             self.__init2__(*args, **kwargs)
+        elif isinstance(args[0], _g.matrix) and len(args) == 1:
+            self.__init3__(*args, **kwargs)
         else:
             raise TypeError, ("Wrong arguements to Matrix.__init__():", str(args))
 
@@ -204,6 +212,17 @@ class Matrix(Symbolic):
         if not symbs:
             self.symbs = range(self.j)
         self._lhs = []
+
+    def __init3__(self, m, symbs=None, time=None):
+        self.i = m.rows()
+        self.j = m.cols()
+        self.data = m.copy()
+        self.spatial_symbs = symbs
+        self.time = time
+        if not symbs:
+            self.symbs = range(self.j)
+        self._lhs = []
+
 
 
     def __setitem__(self, index, value):
@@ -269,6 +288,13 @@ class Matrix(Symbolic):
 
     def __eq__(self, other):
         return self.data == _toex(other)
+
+    def __copy__(self):
+        return Matrix(self.data.copy(), symbs=self.spatial_symbs, time=self.time)
+
+    def copy(self):
+        return self.__copy__()
+
 
     def initEval(self, symbol_point):
         """In order to evaluate an ex in GiNaC, we need som additinal data
@@ -351,6 +377,13 @@ class Vector(Symbolic):
  
     def __getitem__(self, i):
         return Expr(self.data[i], symbs=self.spatial_symbs, time=self.time)
+
+    def __copy__(self):
+        return Vector(self.data[:], symbs=self.spatial_symbs, time=self.time)
+
+    def copy(self):
+        return self.__copy__()
+
  
     def div(self):
         data = self.data
@@ -540,6 +573,14 @@ class Symbol(Symbolic):
 
     def __abs__(self):
         return Expr(_g.abs(self.data))
+
+    def __copy__(self):
+        new_symbol = Symbol()
+        new_symbol.data = self.data.copy()
+        return new_symbol
+
+    def copy(self):
+        return self.__copy__()
 
 def _toex(other):
     """Converts other to GiNaC::ex.
