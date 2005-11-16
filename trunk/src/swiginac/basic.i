@@ -19,6 +19,8 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+%newobject *::copy;
+
 class ex;
 class ex_is_less;
 class symbol;
@@ -250,9 +252,8 @@ def __str__(self):
         return self->eval().simplify_indexed(sp,options);
     }
 
-    ex* copy() {
-        ex *p = new ex(*self);
-        return p;
+    ex copy() {
+        return ex(*self);
     }
 
 };
