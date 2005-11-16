@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - Extended basic with method for copying; basic::copy()
+ - Minor bug fixes in Symbolic, Expr and Vector can now be multiplied (componentwise)
  - Released 0.9.3 [2005-11-13]
  - bug fixes and some more features in Symbolic
  - setup.py more platform independent (may work with cygwin?)
@@ -11,4 +13,4 @@
  - Added src/Symbolic and tests/Symbolic
  - Restructured directory layout
  - Released 0.9.0 [2005-09-25]
- - Exported the svn-repository to berlios. No history prior to that.
+ - Exported the svn-repository to berlios. No history prior to that
