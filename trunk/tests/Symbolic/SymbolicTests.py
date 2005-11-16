@@ -184,12 +184,25 @@ class OperTestCase(unittest.TestCase):
         assert laplace(f) == div(grad(f)) == -2*cos(y)*sin(x) 
 
 
+class MiscTestCase(unittest.TestCase):
+    def testCopy(self):
+        x = Symbol('x')
+        self.assertEqual(x, x.copy())
+        f = sin(x)
+        self.assertEqual(f, f.copy())
+        v = Vector([f,f+1])
+        self.assertEqual(v, v.copy())
+        m = Matrix([v,[exp(x), 0]])
+        self.assertEqual(m, m.copy())
+        self.assertEqual(f.diff(x,1), f.diff(x.copy(),1))
+
 suite1 = unittest.makeSuite(SymbolTestCase)
 suite2 = unittest.makeSuite(ExprTestCase)
 suite3 = unittest.makeSuite(VectorTestCase)
 suite4 = unittest.makeSuite(MatrixTestCase)
 suite5 = unittest.makeSuite(OperTestCase)
-allsuites = unittest.TestSuite((suite1, suite2, suite3, suite4, suite5))
+suite6 = unittest.makeSuite(MiscTestCase)
+allsuites = unittest.TestSuite((suite1, suite2, suite3, suite4, suite5, suite6))
 
 if __name__ == "__main__":
     unittest.TextTestRunner(verbosity=2).run(allsuites)
