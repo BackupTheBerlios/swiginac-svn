@@ -122,8 +122,12 @@ class Expr(Symbolic):
     def copy(self):
         return self.__copy__()
 
-    def diff(self, symb, count):
+    def diff(self, symb, count=1):
         return Expr(self.data.diff(symb.data, count), symbs=self.spatial_symbs, time=self.time)
+
+    def expand(self):
+        return Expr(self.data.expand(), symbs=self.spatial_symbs, time=self.time)
+        
 
     def pyEval(self, *args):
         """Evaluating using Python. Arguments are Python floats in the same
@@ -248,7 +252,7 @@ class Matrix(Symbolic):
     def __repr__(self):
         return 'Matrix(' + str(self) + ')'
 
-    def diff(self, symb, count):
+    def diff(self, symb, count=1):
         e = Expr(self())
         return e.diff(symb, count)
 
@@ -295,6 +299,9 @@ class Matrix(Symbolic):
     def copy(self):
         return self.__copy__()
 
+
+    def determinant(self):
+        return Expr(self.data.determinant(), self.spatial_symbs, time=self.time)
 
     def initEval(self, symbol_point):
         """In order to evaluate an ex in GiNaC, we need som additinal data
