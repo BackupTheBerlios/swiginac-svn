@@ -1,5 +1,9 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - Symbolic: Added determinant() to Matrix, added corresponding tests
+ - Symbolic: Added expand to Expr, changed def diff(self, symbol, count) to 
+   def diff(self, symbol, count=1). Tests updated accordingly
+ - Symbolic Added copy and __copy__ to all classes
  - Extended basic with method for copying; basic::copy()
  - Minor bug fixes in Symbolic, Expr and Vector can now be multiplied (componentwise)
  - Released 0.9.3 [2005-11-13]
