@@ -92,6 +92,17 @@ class ExprTestCase(unittest.TestCase):
         assert f.pyEval(10, 5) == f.eval(10, 5)
 
 
+    def testExprExpand(self):
+        x = Symbol('x')
+        f = (x-1)*(x+1)
+        self.assertEqual(f.expand(), x**2 - 1)
+
+    def testExprDiff(self):
+        x = Symbol('x')
+        f = sin(x)
+        self.assertEqual(f.diff(x), cos(x))
+        self.assertEqual(f.diff(x,2), -sin(x))
+
 class VectorTestCase(unittest.TestCase):
     def setUp(self):
         self.symbol = Symbol('x')
