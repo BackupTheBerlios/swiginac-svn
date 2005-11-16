@@ -1,7 +1,7 @@
 """High--level symbolic manipulation, built on top of swiginac."""
 
 __author__      = "Ola Skavhaug (skavhaug@simula.no)"
-__date__        = "2003-12-01 -- 2005-11-04"
+__date__        = "2003-12-01 -- 2005-11-16"
 __copyright__   = "Copyright (c) 2003, 2004, 2005 Ola Skavhaug"
 __license__     = "GNU GPL Version 2"
 
@@ -235,8 +235,57 @@ class Matrix(Symbolic):
         self.data.set(i, j, b)
 
     def __getitem__(self, index):
-        i = index[0]; j = index[1]
-        return Expr(self.data[i, j], symbs=self.spatial_symbs, time=self.time)
+        """This method is under construction. It will be improved soon."""
+        #print type(index)
+        #print index
+        i = None
+        j = None
+        if isinstance(index, tuple):
+            if isinstance(index[0], int): # We know the row
+                i = index[0]; 
+                if i < 0:
+                    i = self.i + i
+            if isinstance(index[1], int): # We know the column
+                j = index[1]
+                if j < 0:
+                    j = self.j + j
+            if not i==None and not j == None:
+                if i < self.i and j < self.j:
+                    return Expr(self.data[i, j], symbs=self.spatial_symbs, time=self.time)
+                else:
+                    raise IndexError, "Index out of range"
+            if isinstance(index[1], slice):
+                #print "Second arg is slice"
+                (start, stop, step) = (index[1].start, index[1].stop, index[1].step)
+                if not i == None:
+                    if start == stop == step == None:
+                        return Vector([self.data[i, j] for j in range(self.j)], symbs=self.spatial_symbs, time=self.time)
+                    if start == None: start = 0
+                    elif start < 0: start = self.j + start
+                    if stop == None: stop = self.i
+                    elif stop< 0: stop = self.j + stop
+                    if step == None: step = 1
+                    return Vector([self.data[i, j] for j in range(start, stop, step)])
+        elif isinstance(index, int): # Only one slice
+            if index < 0:
+                #print "i is less than 0"
+                index = self.j + index 
+                if index < 0:
+                    raise IndexError, "Index out of range"
+            return Vector([self.data[index, j] for j in range(self.j)], symbs=self.spatial_symbs, time=self.time)
+        else:
+            (start, stop, step) = (index.start, index.stop, index.step)
+            if start == stop == step == None:
+                return self.__copy__()
+            if start == None: 
+                start = 0
+            if stop == None:
+                stop = self.i
+            if step == None:
+                step = 1
+
+
+            
 
     def addSymbols(self, list):
         self.symbs.extend(list)
