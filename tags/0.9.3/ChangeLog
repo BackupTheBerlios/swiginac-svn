@@ -1,0 +1,21 @@
+ ------ swiginac/trunk ChangeLog  ------ 
+
+ - Symbolic: Matrix.__getitem__ more robust and accepts certain slices (work remaining)
+ - Symbolic: Added determinant() to Matrix, added corresponding tests
+ - Symbolic: Added expand to Expr, changed def diff(self, symbol, count) to 
+   def diff(self, symbol, count=1). Tests updated accordingly
+ - Symbolic: Added copy and __copy__ to all classes
+ - Extended ginac.basic with method for copying; basic::copy()
+ - Minor bug fixes in Symbolic, Expr and Vector can now be multiplied (componentwise)
+ - Released 0.9.3 [2005-11-13]
+ - bug fixes and some more features in Symbolic
+ - setup.py more platform independent (may work with cygwin?)
+ - Added ChangeLog
+ - Improved the setup.py file; should work on most *nix platform
+ - Released 0.9.1 [2005-11-09]
+ - trunk copied to branches/0.9 and tags/0.9.1
+ - src/swiginac/Makefile and setup.py changes to reflect new structure
+ - Added src/Symbolic and tests/Symbolic
+ - Restructured directory layout
+ - Released 0.9.0 [2005-09-25]
+ - Exported the svn-repository to berlios. No history prior to that
