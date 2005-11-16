@@ -169,6 +169,15 @@ class MatrixTestCase(unittest.TestCase):
             self.mat.initEval([x, y])
             assert self.mat.eval(10, 1) == [[10.0, math.exp(1.0)], [20.0, 1.0+math.exp(1.0)]]
 
+    def testMatDeterminant(self):
+        x = Symbol('x')
+        y = Symbol('y')
+        v = Vector([sin(x), cos(y)])
+        w = Vector([sin(y), cos(x)])
+        m = Matrix([v,w])
+        self.assertEqual(m.determinant(), cos(x)*sin(x)-cos(y)*sin(y))
+
+
 class OperTestCase(unittest.TestCase):
     def setUp(self):
         self.x = Symbol('x')
