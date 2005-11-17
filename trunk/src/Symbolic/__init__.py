@@ -235,6 +235,21 @@ class Matrix(Symbolic):
         self.data.set(i, j, b)
 
     def __getitem__(self, index):
+        from Numeric import array
+        matlist = []
+        for i in range(self.i):
+            matlist.append([])
+            for j in range(self.j):
+                matlist[i].append(self.data[i,j])
+        res = array(matlist)[index]
+        if isinstance(res, _g.basic):
+            return Expr(res, symbs=self.spatial_symbs, time=self.time)
+        if len(res.shape) == 1:
+            return Vector(res.tolist(), symbs=self.spatial_symbs, time=self.time)
+        else:
+            return Matrix(res.tolist(), symbs=self.spatial_symbs, time=self.time)
+
+    def __getitem2__(self, index):
         """This method is under construction. It will be improved soon."""
         #print type(index)
         #print index
