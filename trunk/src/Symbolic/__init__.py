@@ -5,6 +5,7 @@ __date__        = "2003-12-01 -- 2005-11-16"
 __copyright__   = "Copyright (c) 2003, 2004, 2005 Ola Skavhaug"
 __license__     = "GNU GPL Version 2"
 
+import Numeric
 import swiginac as _g
 _rel = _g.relational
 
@@ -235,70 +236,72 @@ class Matrix(Symbolic):
         self.data.set(i, j, b)
 
     def __getitem__(self, index):
-        from Numeric import array
         matlist = []
         for i in range(self.i):
             matlist.append([])
             for j in range(self.j):
                 matlist[i].append(self.data[i,j])
-        res = array(matlist)[index]
+        res = Numeric.array(matlist)[index]
         if isinstance(res, _g.basic):
             return Expr(res, symbs=self.spatial_symbs, time=self.time)
         if len(res.shape) == 1:
-            return Vector(res.tolist(), symbs=self.spatial_symbs, time=self.time)
+            if len(res) > 0:
+                return Vector(res.tolist(), symbs=self.spatial_symbs, time=self.time)
+            else:
+                return Expr(0)
         else:
             return Matrix(res.tolist(), symbs=self.spatial_symbs, time=self.time)
 
-    def __getitem2__(self, index):
-        """This method is under construction. It will be improved soon."""
-        #print type(index)
-        #print index
-        i = None
-        j = None
-        if isinstance(index, tuple):
-            if isinstance(index[0], int): # We know the row
-                i = index[0]; 
-                if i < 0:
-                    i = self.i + i
-            if isinstance(index[1], int): # We know the column
-                j = index[1]
-                if j < 0:
-                    j = self.j + j
-            if not i==None and not j == None:
-                if i < self.i and j < self.j:
-                    return Expr(self.data[i, j], symbs=self.spatial_symbs, time=self.time)
-                else:
-                    raise IndexError, "Index out of range"
-            if isinstance(index[1], slice):
-                #print "Second arg is slice"
-                (start, stop, step) = (index[1].start, index[1].stop, index[1].step)
-                if not i == None:
-                    if start == stop == step == None:
-                        return Vector([self.data[i, j] for j in range(self.j)], symbs=self.spatial_symbs, time=self.time)
-                    if start == None: start = 0
-                    elif start < 0: start = self.j + start
-                    if stop == None: stop = self.i
-                    elif stop< 0: stop = self.j + stop
-                    if step == None: step = 1
-                    return Vector([self.data[i, j] for j in range(start, stop, step)])
-        elif isinstance(index, int): # Only one slice
-            if index < 0:
-                #print "i is less than 0"
-                index = self.j + index 
-                if index < 0:
-                    raise IndexError, "Index out of range"
-            return Vector([self.data[index, j] for j in range(self.j)], symbs=self.spatial_symbs, time=self.time)
-        else:
-            (start, stop, step) = (index.start, index.stop, index.step)
-            if start == stop == step == None:
-                return self.__copy__()
-            if start == None: 
-                start = 0
-            if stop == None:
-                stop = self.i
-            if step == None:
-                step = 1
-
+#    def __getitem2__(self, index):
+#        """This method is under construction. It will be improved soon."""
+#        #print type(index)
+#        #print index
+#        i = None
+#        j = None
+#        if isinstance(index, tuple):
+#            if isinstance(index[0], int): # We know the row
+#                i = index[0]; 
+#                if i < 0:
+#                    i = self.i + i
+#            if isinstance(index[1], int): # We know the column
+#                j = index[1]
+#                if j < 0:
+#                    j = self.j + j
+#            if not i==None and not j == None:
+#                if i < self.i and j < self.j:
+#                    return Expr(self.data[i, j], symbs=self.spatial_symbs, time=self.time)
+#                else:
+#                    raise IndexError, "Index out of range"
+#            if isinstance(index[1], slice):
+#                #print "Second arg is slice"
+#                (start, stop, step) = (index[1].start, index[1].stop, index[1].step)
+#                if not i == None:
+#                    if start == stop == step == None:
+#                        return Vector([self.data[i, j] for j in range(self.j)], symbs=self.spatial_symbs, time=self.time)
+#                    if start == None: start = 0
+#                    elif start < 0: start = self.j + start
+#                    if stop == None: stop = self.i
+#                    elif stop< 0: stop = self.j + stop
+#                    if step == None: step = 1
+#                    return Vector([self.data[i, j] for j in range(start, stop, step)])
+#        elif isinstance(index, int): # Only one slice
+#            if index < 0:
+#                #print "i is less than 0"
+#                index = self.j + index 
+#                if index < 0:
+#                    raise IndexError, "Index out of range"
+#            return Vector([self.data[index, j] for j in range(self.j)], symbs=self.spatial_symbs, time=self.time)
+#        else:
+#            (start, stop, step) = (index.start, index.stop, index.step)
+#            if start == stop == step == None:
+#                return self.__copy__()
+#            if start == None: 
+#                start = 0
+#            if stop == None:
+#                stop = self.i
+#            if step == None:
+#                step = 1
+#
 
             
 
@@ -446,8 +449,15 @@ class Vector(Symbolic):
     def __repr__(self):
         return "Vector("+str(self)+")"
  
-    def __getitem__(self, i):
-        return Expr(self.data[i], symbs=self.spatial_symbs, time=self.time)
+    def __getitem__(self, index):
+        res = Numeric.array(self.data)[index] 
+        if isinstance(res, _g.basic):
+            return Expr(res, symbs=self.spatial_symbs, time=self.time)
+        elif isinstance(res, Numeric.ArrayType):
+            if len(res) > 1:
+                return Vector(res.tolist(), symbs=self.spatial_symbs, time=self.time)
+            else: # There should be a result in res[0]. If not, an exception will be raised
+                return Expr(res[0], symbs=self.spatial_symbs, time=self.time)
 
     def __copy__(self):
         return Vector(self.data[:], symbs=self.spatial_symbs, time=self.time)

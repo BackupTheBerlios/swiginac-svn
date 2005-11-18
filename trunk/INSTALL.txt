@@ -39,6 +39,22 @@ At this point, swiginac and Symbolic should be installed in the site-packages
 directory of your default Python interpreter (on Debian with Python2.3:
 /usr/lib/python2.3/site-packages).
 
+Note: the setup.py file in swiginac depends on the shell script ginac-config,
+generated during the configuration and compilation of a specific ginac
+installation. The shell script is usually present in binary packages of ginac
+in most Linux distros as well. However, if you previously installed a version
+of ginac that is not up to date, e.g. in /usr/local, and /usr/local/bin is
+early in your PATH environment variable, this may cause the setup.py
+installation to fail, since ginac-config will report wrong compilation options.
+If you experience lots of compiler errors, despite the fact that you have
+installed a ginac version compliant with the requirements in swiginac, type:
+ginac-config --prefix 
+to see the prefix of the ginac installation used in setup.py. If the script
+reports an unexpected prefix (e.g. /usr/local instead of /usr), rename or
+delete the shell script (or, alternatively, remove /usr/local/bin from your
+PATH environment variable).
+
+
 Installing using make
 ---------------------
 For impatient:
@@ -46,6 +62,8 @@ For impatient:
 cd src/swiginac
 make
 make install
+cd ../Symbolic
+make
 
 More info:
 Make sure that the dependencies (see above) are met.  The Makefile works on
@@ -68,6 +86,11 @@ can use swiginac just now - import swiginac.py and you are fine.
 If you want to install the module in PREFIX, run:
 make install
 
+Installing Symbolic is easily done by entering src/Symbolic and typing
+make install
+If you do not have root privileges, edit the PREFIX variable in Makefile to a
+path where you have permissions to install files, and edit PYTHONPATH
+accordingly.
 
 Verify the installation
 -----------------------
