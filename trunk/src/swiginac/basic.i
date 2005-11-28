@@ -19,6 +19,10 @@
      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+/* 
+     Contributors: Matti Peltomäki
+*/
+
 %newobject *::copy;
 
 class ex;
@@ -126,47 +130,47 @@ template <class T> inline bool is_exactly_a(const basic &obj);
     ex __add__(const basic &b) const { return (*self)+b; }
     //ex __add__(const ex &b) const { return (*self)+b; }
     ex __add__(const int &b) const { return (*self)+b; }
-    ex __add__(const float &b) const { return (*self)+b; }
+    ex __add__(const double &b) const { return (*self)+b; }
     ex __radd__(const basic &b) const { return b+(*self); }
     //ex __radd__(const ex &b) const { return b+(*self); }
     ex __radd__(const int &b) const { return b+(*self); }
-    ex __radd__(const float &b) const { return b+(*self); }
+    ex __radd__(const double &b) const { return b+(*self); }
     
     ex __sub__(const basic &b) const { return (*self)-b; }
     //ex __sub__(const ex &b) const { return (*self)-b; }
     ex __sub__(const int &b) const { return (*self)-b; }
-    ex __sub__(const float &b) const { return (*self)-b; }
+    ex __sub__(const double &b) const { return (*self)-b; }
     ex __rsub__(const basic &b) const { return b-(*self); }
     //ex __rsub__(const ex &b) const { return b-(*self); }
     ex __rsub__(const int &b) const { return b-(*self); }
-    ex __rsub__(const float &b) const { return b-(*self); }
+    ex __rsub__(const double &b) const { return b-(*self); }
     
     ex __mul__(const basic &b) const { return (*self)*b; }
     //ex __mul__(const ex &b) const { return (*self)*b; }
     ex __mul__(const int &b) const { return (*self)*b; }
-    ex __mul__(const float &b) const { return (*self)*b; }
+    ex __mul__(const double &b) const { return (*self)*b; }
     ex __rmul__(const basic &b) const { return b*(*self); }
     //ex __rmul__(const ex &b) const { return b*(*self); }
     ex __rmul__(const int &b) const { return b*(*self); }
-    ex __rmul__(const float &b) const { return b*(*self); }
+    ex __rmul__(const double &b) const { return b*(*self); }
     
     ex __div__(const basic &b) const { return (*self)/b; }
     //ex __div__(const ex &b) const { return (*self)/b; }
     ex __div__(const int &b) const { return (*self)/b; }
-    ex __div__(const float &b) const { return (*self)/b; }
+    ex __div__(const double &b) const { return (*self)/b; }
     ex __rdiv__(const basic &b) const { return b/(*self); }
     //ex __rdiv__(const ex &b) const { return b/(*self); }
     ex __rdiv__(const int &b) const { return b/(*self); }
-    ex __rdiv__(const float &b) const { return b/(*self); }
+    ex __rdiv__(const double &b) const { return b/(*self); }
     
     ex __pow__(const basic &b)const{return pow(*self,b); }
     //ex __pow__(const ex &b)const{return pow(*self,b); }
     ex __pow__(const int &b) const { return pow(*self,b); }
-    ex __pow__(const float &b) const { return pow(*self,b); }
+    ex __pow__(const double &b) const { return pow(*self,b); }
     ex __rpow__(const basic &b)const{return pow(b,*self); }
     //ex __rpow__(const ex &b)const{return pow(b,*self);}
     ex __rpow__(const int &b) const { return pow(b,*self); }
-    ex __rpow__(const float &b) const { return pow(b,*self);}
+    ex __rpow__(const double &b) const { return pow(b,*self);}
 
     ex __pos__() const { return +(*self); }
     ex __neg__() const { return -(*self); }
@@ -174,32 +178,32 @@ template <class T> inline bool is_exactly_a(const basic &obj);
     ex __lt__(const basic &b) const {return *self < b;}
     //ex __lt__(const ex &b) const {return *self < b;}
     ex __lt__(const int &b) const {return *self < b;}
-    ex __lt__(const float &b) const {return *self < b;}
+    ex __lt__(const double &b) const {return *self < b;}
 
     ex __le__(const basic &b) const {return *self <= b;}
     //ex __le__(const ex &b) const {return *self <= b;}
     ex __le__(const int &b) const {return *self <= b;}
-    ex __le__(const float &b) const {return *self <= b;}
+    ex __le__(const double &b) const {return *self <= b;}
 
     ex __eq__(const basic &b) const {return *self == b;}
     //ex __eq__(const ex &b) const {return *self == b;}
     ex __eq__(const int &b) const {return *self == b;}
-    ex __eq__(const float &b) const {return *self == b;}
+    ex __eq__(const double &b) const {return *self == b;}
 
     ex __ne__(const basic &b) const {return *self != b;}
     //ex __ne__(const ex &b) const {return *self != b;}
     ex __ne__(const int &b) const {return *self != b;}
-    ex __ne__(const float &b) const {return *self != b;}
+    ex __ne__(const double &b) const {return *self != b;}
 
     ex __gt__(const basic &b) const {return *self > b;}
     //ex __gt__(const ex &b) const {return *self > b;}
     ex __gt__(const int &b) const {return *self > b;}
-    ex __gt__(const float &b) const {return *self > b;}
+    ex __gt__(const double &b) const {return *self > b;}
 
     ex __ge__(const basic &b) const {return *self >= b;}
     //ex __ge__(const ex &b) const {return *self >= b;}
     ex __ge__(const int &b) const {return *self >= b;}
-    ex __ge__(const float &b) const {return *self >= b;}
+    ex __ge__(const double &b) const {return *self >= b;}
 
 %pythoncode %{
 def set_print_context(self, context_type):

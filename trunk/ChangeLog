@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: replaced floats with doubles in the special methods defined in
+   basic.i. Thanks to Matti Peltomäki for the patch
  - Symbolic: Matrix.__getitem__ more robust and accepts certain slices (work remaining)
  - Symbolic: Added determinant() to Matrix, added corresponding tests
  - Symbolic: Added expand to Expr, changed def diff(self, symbol, count) to 

@@ -13,7 +13,7 @@ work are GiNaC version >= 1.3.2 and SWIG version >= 1.3.24.
 
 Most recent Linux distributions have packages for the above software. E.g., in
 Debian unstable (sid), the packages are:
-libginac1.3c2
+libginac1.3c2a
 libginac-dev
 swig1.3
 
@@ -39,7 +39,10 @@ At this point, swiginac and Symbolic should be installed in the site-packages
 directory of your default Python interpreter (on Debian with Python2.3:
 /usr/lib/python2.3/site-packages).
 
-Note: the setup.py file in swiginac depends on the shell script ginac-config,
+Troubleshooting
+---------------
+
+The setup.py file in swiginac depends on the shell script ginac-config,
 generated during the configuration and compilation of a specific ginac
 installation. The shell script is usually present in binary packages of ginac
 in most Linux distros as well. However, if you previously installed a version
@@ -54,6 +57,14 @@ reports an unexpected prefix (e.g. /usr/local instead of /usr), rename or
 delete the shell script (or, alternatively, remove /usr/local/bin from your
 PATH environment variable).
 
+Be aware that Debian gcc 4.0.2-2 and 4.0.2-4 are not able to compile the
+wrapper code correctly in optimized mode. Therefore, expect that Python 
+distutils will not work with gcc-4.0.x compilers with aggressive optimization
+(-O3). To be safe, either use a 3.x gcc compiler or build the module with less
+optimization:
+CFLAGS=-O0 python setup.py build
+
+(Thanks to Matti Peltomäki for pointing this out)
 
 Installing using make
 ---------------------
