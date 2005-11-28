@@ -1,5 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
+
 # (c) Copyright 2003, 2004, 2005
-#     Authors: Ola Skavhaug and Ondrej Certik
+#     Authors: Ola Skavhaug, Ondrej Certik, Matti Peltomäki
 #     
 #     This file is part of swiginac.
 #
@@ -17,42 +20,26 @@
 #     along with swiginac; if not, write to the Free Software
 #     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-import unittest
+from swiginac import *
+from random import randrange
 import sys
+import unittest
 
-quick_tests = """
-check_aritmetic
-check_relat
-check_lst
-check_print
-check_idx
-check_truncation
-exam_matrices
-exam_paranoia
-exam_misc
-exam_normalization
-exam_diff
-exam_lsolve
-exam_polygcd
-""".split()
+class Test_truncation(unittest.TestCase):
 
-time_consuming_tests = """
-check_matrices
-check_numeric
-check_inifcns
-check_lsolve
-""".split()
+    def testcheck_truncation(self):
+        """
+        >>> check_truncation()
+        Truncation consistency checks passed.
+        """
 
-modules = quick_tests
-if len(sys.argv)==1:
-    modules += time_consuming_tests
+        a = symbol('a')
+        b = symbol('b')
+        x = symbol('x')
+        e = power(power(x,a),b)
+        es = e.subs([a==-0.9, b==2.5])
+        f = power(x, numeric(-0.9)*numeric(2.5))
+        self.assert_(es.is_equal(f))
 
-sys.path.append(".")
-
-tests=[]
-for mod in modules:
-        m = __import__(mod)
-        tests.append(unittest.defaultTestLoader.loadTestsFromModule(m))
-alltests = unittest.TestSuite(tests)
-#print "Test suite loaded."
-unittest.TextTestRunner(verbosity=1).run(alltests)
+if __name__ == "__main__":
+    unittest.main()
