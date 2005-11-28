@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: latin-1 -*-
 
 """
 Standard setup.py file using Python's native distutils module for installation.
