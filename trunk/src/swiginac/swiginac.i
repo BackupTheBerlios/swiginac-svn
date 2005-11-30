@@ -92,6 +92,14 @@ namespace GiNaC {
     ex parse_string(const std::string &str, lst &ls) {
         return ex(str,ls);
     }
+
+    ex * toex(lst& l) {
+        return new ex(l);
+    }
+
+    ex * toex(basic & b) {
+        return new ex(b);
+    }
 }
 %};
 
