@@ -260,6 +260,9 @@ def __str__(self):
         return ex(*self);
     }
 
+    ex * toex() {
+        return new ex(*self);
+    }
 };
 
 // vim:ft=cpp:
