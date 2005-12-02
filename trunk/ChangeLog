@@ -1,5 +1,10 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: GiNaC::ex now exposed to Python through the converters:
+   ex *toex(basic & b);
+   ex *toex(lst & l);
+   ex * basic:: toex();
+ - Released 0.9.4 [2005-11-28]
  - swiginac: replaced floats with doubles in the special methods defined in
    basic.i. Thanks to Matti Peltomäki for the patch
  - Symbolic: Matrix.__getitem__ more robust and accepts certain slices (work remaining)

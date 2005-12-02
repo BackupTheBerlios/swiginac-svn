@@ -220,6 +220,8 @@ template<typename T1> const GiNaC::function NAME(const T1 & p1) {
 %template(NAME##_double) NAME<double>;
 %pythoncode %{
     def NAME(x):
+        if isinstance(x,ex):
+            return NAME##_basic(x.eval()).eval()
         if isinstance(x,basic):
             return NAME##_basic(x).eval()
         elif isinstance(x,int):

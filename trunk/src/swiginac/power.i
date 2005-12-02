@@ -25,8 +25,8 @@ class add;
 class power : public basic
 {
 public:
-	power(const ex & lh, const ex & rh) : inherited(TINFO_power), basis(lh), exponent(rh) {}
-	template<typename T> power(const ex & lh, const T & rh) : inherited(TINFO_power), basis(lh), exponent(rh) {}
+	power(const ex & lh, const ex & rh);
+	template<typename T> power(const ex & lh, const T & rh);
 };
 
 // vim:ft=cpp:
