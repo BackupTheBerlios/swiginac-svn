@@ -97,6 +97,10 @@ namespace GiNaC {
         return new ex(l);
     }
 
+    ex * toex(lst* l) {
+        return new ex(*l);
+    }
+
     ex * toex(basic & b) {
         return new ex(b);
     }
