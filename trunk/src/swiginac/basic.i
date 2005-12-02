@@ -26,6 +26,7 @@
 %newobject *::copy;
 
 class ex { public: ex eval(int level=0) const;};
+class lst {};
 class ex_is_less;
 class symbol;
 class scalar_products;
