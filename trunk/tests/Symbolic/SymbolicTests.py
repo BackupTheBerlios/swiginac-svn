@@ -103,6 +103,11 @@ class ExprTestCase(unittest.TestCase):
         self.assertEqual(f.diff(x), cos(x))
         self.assertEqual(f.diff(x,2), -sin(x))
 
+    def testExprSeries(self):
+        x = Symbol('x')
+        f = sin(x)
+        self.assertEqual(str(f.series(x==0, 4)), '1*x+(-1/6)*x**3+Order(x**4)')
+
 class VectorTestCase(unittest.TestCase):
     def setUp(self):
         self.symbol = Symbol('x')
