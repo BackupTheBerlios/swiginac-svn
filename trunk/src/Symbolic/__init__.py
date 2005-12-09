@@ -130,6 +130,9 @@ class Expr(Symbolic):
         return Expr(self.data.expand(), symbs=self.spatial_symbs, time=self.time)
         
 
+    def series(self, pt, order):
+        return Expr(self.data.series(pt, order), symbs=self.spatial_symbs, time=self.time)
+
     def pyEval(self, *args):
         """Evaluating using Python. Arguments are Python floats in the same
         order as used in initEval(symbol_point)."""
