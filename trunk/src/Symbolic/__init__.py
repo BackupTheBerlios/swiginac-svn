@@ -717,6 +717,9 @@ def acosh(e):
 def atanh(e):
     return Expr(_g.atanh(e()), e.spatial_symbs, time=e.time)
 
+def Order(e):
+    return Expr(_g.Order(e()), e.spatial_symbs, time=e.time)
+
 #def abs(e):
 #    return Expr(_g.abs(e()), e.spatial_symbs, time=e.time)
 
