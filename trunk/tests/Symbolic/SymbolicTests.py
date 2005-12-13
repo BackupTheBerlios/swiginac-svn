@@ -1,4 +1,5 @@
 from Symbolic import *
+import Symbolic
 import unittest
 import math
 
@@ -107,6 +108,7 @@ class ExprTestCase(unittest.TestCase):
         x = Symbol('x')
         f = sin(x)
         self.assertEqual(str(f.series(x==0, 4)), '1*x+(-1/6)*x**3+Order(x**4)')
+        self.assertEqual(f.series(x==0, 6), f.series(x))
 
 class VectorTestCase(unittest.TestCase):
     def setUp(self):
