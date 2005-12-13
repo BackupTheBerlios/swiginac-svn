@@ -130,7 +130,9 @@ class Expr(Symbolic):
         return Expr(self.data.expand(), symbs=self.spatial_symbs, time=self.time)
         
 
-    def series(self, pt, order):
+    def series(self, pt, order=6):
+        if isinstance(pt, Symbol):
+            pt = pt==0
         return Expr(self.data.series(pt, order), symbs=self.spatial_symbs, time=self.time)
 
     def pyEval(self, *args):
