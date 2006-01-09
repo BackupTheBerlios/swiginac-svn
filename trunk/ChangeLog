@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: function.i, applied patched  from Matti Peltomäki. This fixes
+   functions with multiple arguments.
  - swiginac: GiNaC::ex now exposed to Python through the converters:
    ex *toex(basic & b);
    ex *toex(lst & l);

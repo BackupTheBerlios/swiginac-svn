@@ -208,44 +208,170 @@ ex sqrt(const ex & a);
 //ex expand(const ex & thisex, unsigned options = 0);
 ex expand(const ex & thisex);
 
+%define DECLARE_FUNCTION_1P_TEMPLATES(NAME)
+%template(NAME##_basic) NAME<basic>;
+%template(NAME##_int) NAME<int>;
+%template(NAME##_double) NAME<double>;
+%enddef
+
+%define DECLARE_FUNCTION_1P_PYTHONCODE(FUNCNAME, TEMPLATENAME)
+%pythoncode %{
+    def FUNCNAME(x):
+        if isinstance(x,basic):
+            return TEMPLATENAME##_basic(x).eval()
+        elif isinstance(x,int):
+            return TEMPLATENAME##_int(x).eval()
+        elif isinstance(x,float):
+            return TEMPLATENAME##_double(x).eval()
+        else:
+            raise "Unimplented type. Fix in function.i."
+%}
+%enddef
+
+%define DECLARE_FUNCTION_2P_TEMPLATES(NAME)
+%template(NAME##_basic_basic) NAME<basic,basic>;
+%template(NAME##_basic_int) NAME<basic,int>;
+%template(NAME##_basic_double) NAME<basic,double>;
+%template(NAME##_int_basic) NAME<int,basic>;
+%template(NAME##_int_int) NAME<int,int>;
+%template(NAME##_int_double) NAME<int,double>;
+%template(NAME##_double_basic) NAME<double,basic>;
+%template(NAME##_double_int) NAME<double,int>;
+%template(NAME##_double_double) NAME<double,double>;
+%enddef
+
+%define DECLARE_FUNCTION_2P_PYTHONCODE(FUNCNAME,TEMPLATENAME)
+%pythoncode %{
+def FUNCNAME(x,y):
+    def which(p):
+        types = [basic,int,float]
+        for t in types:
+            if isinstance(p,t): 
+                return t
+        raise "Unimplemented type. Fix in function.i."
+
+    xt = which(x)
+    yt = which(y)
+    
+    func_hash = {(basic,basic) : TEMPLATENAME##_basic_basic,
+                 (basic,int) : TEMPLATENAME##_basic_int,
+                 (basic,float) : TEMPLATENAME##_basic_double,
+                 (int,basic) : TEMPLATENAME##_int_basic,
+                 (int,int) : TEMPLATENAME##_int_int,
+                 (int,float) : TEMPLATENAME##_int_double,
+                 (float,basic) : TEMPLATENAME##_double_basic,
+                 (float,int) : TEMPLATENAME##_double_int,
+                 (float,float) : TEMPLATENAME##_double_double}
+
+    return func_hash[(xt,yt)](x,y)
+%}
+%enddef
+
+%define DECLARE_FUNCTION_3P_TEMPLATES(NAME)
+%template(NAME##_basic_basic_basic) NAME<basic,basic,basic>;
+%template(NAME##_basic_basic_int) NAME<basic,basic,int>;
+%template(NAME##_basic_basic_double) NAME<basic,basic,double>;
+%template(NAME##_basic_int_basic) NAME<basic,int,basic>;
+%template(NAME##_basic_int_int) NAME<basic,int,int>;
+%template(NAME##_basic_int_double) NAME<basic,int,double>;
+%template(NAME##_basic_double_basic) NAME<basic,double,basic>;
+%template(NAME##_basic_double_int) NAME<basic,double,int>;
+%template(NAME##_basic_double_double) NAME<basic,double,double>;
+%template(NAME##_int_basic_basic) NAME<int,basic,basic>;
+%template(NAME##_int_basic_int) NAME<int,basic,int>;
+%template(NAME##_int_basic_double) NAME<int,basic,double>;
+%template(NAME##_int_int_basic) NAME<int,int,basic>;
+%template(NAME##_int_int_int) NAME<int,int,int>;
+%template(NAME##_int_int_double) NAME<int,int,double>;
+%template(NAME##_int_double_basic) NAME<int,double,basic>;
+%template(NAME##_int_double_int) NAME<int,double,int>;
+%template(NAME##_int_double_double) NAME<int,double,double>;
+%template(NAME##_double_basic_basic) NAME<double,basic,basic>;
+%template(NAME##_double_basic_int) NAME<double,basic,int>;
+%template(NAME##_double_basic_double) NAME<double,basic,double>;
+%template(NAME##_double_int_basic) NAME<double,int,basic>;
+%template(NAME##_double_int_int) NAME<double,int,int>;
+%template(NAME##_double_int_double) NAME<double,int,double>;
+%template(NAME##_double_double_basic) NAME<double,double,basic>;
+%template(NAME##_double_double_int) NAME<double,double,int>;
+%template(NAME##_double_double_double) NAME<double,double,double>;
+%enddef
+
+%define DECLARE_FUNCTION_3P_PYTHONCODE(FUNCNAME,TEMPLATENAME)
+%pythoncode %{
+def FUNCNAME(x,y,z):
+    def which(p):
+        types = [basic,int,float]
+        for t in types:
+            if isinstance(p,t): 
+                return t
+        raise "Unimplemented type. Fix in function.i."
+
+    xt = which(x)
+    yt = which(y)
+    zt = which(z)
+    
+    func_hash = {(basic,basic,basic) : TEMPLATENAME##_basic_basic_basic,
+                 (basic,basic,int) : TEMPLATENAME##_basic_basic_int,
+                 (basic,basic,float) : TEMPLATENAME##_basic_basic_double,
+                 (basic,int,basic) : TEMPLATENAME##_basic_int_basic,
+                 (basic,int,int) : TEMPLATENAME##_basic_int_int,
+                 (basic,int,float) : TEMPLATENAME##_basic_int_double,
+                 (basic,float,basic) : TEMPLATENAME##_basic_double_basic,
+                 (basic,float,int) : TEMPLATENAME##_basic_double_int,
+                 (basic,float,float) : TEMPLATENAME##_basic_double_double,
+                 (int,basic,basic) : TEMPLATENAME##_int_basic_basic,
+                 (int,basic,int) : TEMPLATENAME##_int_basic_int,
+                 (int,basic,float) : TEMPLATENAME##_int_basic_double,
+                 (int,int,basic) : TEMPLATENAME##_int_int_basic,
+                 (int,int,int) : TEMPLATENAME##_int_int_int,
+                 (int,int,float) : TEMPLATENAME##_int_int_double,
+                 (int,float,basic) : TEMPLATENAME##_int_double_basic,
+                 (int,float,int) : TEMPLATENAME##_int_double_int,
+                 (int,float,float) : TEMPLATENAME##_int_double_double,
+                 (float,basic,basic) : TEMPLATENAME##_double_basic_basic,
+                 (float,basic,int) : TEMPLATENAME##_double_basic_int,
+                 (float,basic,float) : TEMPLATENAME##_double_basic_double,
+                 (float,int,basic) : TEMPLATENAME##_double_int_basic,
+                 (float,int,int) : TEMPLATENAME##_double_int_int,
+                 (float,int,float) : TEMPLATENAME##_double_int_double,
+                 (float,float,basic) : TEMPLATENAME##_double_double_basic,
+                 (float,float,int) : TEMPLATENAME##_double_double_int,
+                 (float,float,float) : TEMPLATENAME##_double_double_double}
+
+    return func_hash[(xt,yt,zt)](x,y,z)
+%}
+%enddef
+
 %define DECLARE_FUNCTION_1P(NAME) 
 class NAME##_SERIAL { public: static unsigned serial; }; 
 const unsigned NAME##_NPARAMS = 1; 
 template<typename T1> const GiNaC::function NAME(const T1 & p1) { 
 	return GiNaC::function(NAME##_SERIAL::serial, GiNaC::ex(p1)); 
 }
-%template(NAME##_ex) NAME<ex>;
-%template(NAME##_basic) NAME<basic>;
-%template(NAME##_int) NAME<int>;
-%template(NAME##_double) NAME<double>;
-%pythoncode %{
-    def NAME(x):
-        if isinstance(x,ex):
-            return NAME##_basic(x.eval()).eval()
-        if isinstance(x,basic):
-            return NAME##_basic(x).eval()
-        elif isinstance(x,int):
-            return NAME##_int(x).eval()
-        elif isinstance(x,float):
-            return NAME##_double(x).eval()
-        else:
-            raise "Unimplented type. Fix in main.i."
-%}
+DECLARE_FUNCTION_1P_TEMPLATES(NAME)
+DECLARE_FUNCTION_1P_PYTHONCODE(NAME, NAME)
 %enddef
 
-#define DECLARE_FUNCTION_2P(NAME) \
-class NAME##_SERIAL { public: static unsigned serial; }; \
-const unsigned NAME##_NPARAMS = 2; \
-template<typename T1, typename T2> const GiNaC::function NAME(const T1 & p1, const T2 & p2) { \
-	return GiNaC::function(NAME##_SERIAL::serial, GiNaC::ex(p1), GiNaC::ex(p2)); \
+%define DECLARE_FUNCTION_2P(NAME) 
+class NAME##_SERIAL { public: static unsigned serial; }; 
+const unsigned NAME##_NPARAMS = 2; 
+template<typename T1, typename T2> const GiNaC::function NAME(const T1 & p1, const T2 & p2) { 
+	return GiNaC::function(NAME##_SERIAL::serial, GiNaC::ex(p1), GiNaC::ex(p2));
 }
+DECLARE_FUNCTION_2P_TEMPLATES(NAME)
+DECLARE_FUNCTION_2P_PYTHONCODE(NAME, NAME)
+%enddef
 
-#define DECLARE_FUNCTION_3P(NAME) \
-class NAME##_SERIAL { public: static unsigned serial; }; \
-const unsigned NAME##_NPARAMS = 3; \
-template<typename T1, typename T2, typename T3> const GiNaC::function NAME(const T1 & p1, const T2 & p2, const T3 & p3) { \
-	return GiNaC::function(NAME##_SERIAL::serial, GiNaC::ex(p1), GiNaC::ex(p2), GiNaC::ex(p3)); \
+%define DECLARE_FUNCTION_3P(NAME)
+class NAME##_SERIAL { public: static unsigned serial; };
+const unsigned NAME##_NPARAMS = 3;
+template<typename T1, typename T2, typename T3> const GiNaC::function NAME(const T1 & p1, const T2 & p2, const T3 & p3) { 
+	return GiNaC::function(NAME##_SERIAL::serial, GiNaC::ex(p1), GiNaC::ex(p2), GiNaC::ex(p3)); 
 }
+DECLARE_FUNCTION_3P_TEMPLATES(NAME)
+DECLARE_FUNCTION_3P_PYTHONCODE(NAME, NAME)
+%enddef
 
 DECLARE_FUNCTION_1P(conjugate_function)
 DECLARE_FUNCTION_1P(abs)
@@ -278,6 +404,92 @@ DECLARE_FUNCTION_2P(beta)
 DECLARE_FUNCTION_1P(factorial)
 DECLARE_FUNCTION_2P(binomial)
 DECLARE_FUNCTION_1P(Order)
+
+/** Multiple zeta value including Riemann's zeta-function. */
+class zeta1_SERIAL { public: static unsigned serial; };
+template<typename T1>
+inline function zeta(const T1& p1) {
+        return function(zeta1_SERIAL::serial, ex(p1));
+}
+/** Alternating Euler sum or colored MZV. */
+class zeta2_SERIAL { public: static unsigned serial; };
+template<typename T1, typename T2>
+inline function zeta(const T1& p1, const T2& p2) {
+        return function(zeta2_SERIAL::serial, ex(p1), ex(p2));
+}
+
+/* Since zeta() is overloaded, we first create separate Python
+   functions for both versions, and then one that takes an
+   arbitrary argument list and checks for the actual number of
+   them. The same takes place for G and psi below.*/
+
+DECLARE_FUNCTION_1P_TEMPLATES(zeta)
+DECLARE_FUNCTION_1P_PYTHONCODE(zeta1, zeta)
+DECLARE_FUNCTION_2P_TEMPLATES(zeta)
+DECLARE_FUNCTION_2P_PYTHONCODE(zeta2, zeta)
+%pythoncode %{
+def zeta(*args):
+  if len(args)==1:
+    return zeta1(*args)
+  elif len(args)==2:
+    return zeta2(*args)
+  else:
+    raise "zeta() takes 1 or 2 arguments"
+%}
+
+/** Generalized multiple polylogarithm. */
+class G2_SERIAL { public: static unsigned serial; };
+template<typename T1, typename T2>
+inline function G(const T1& x, const T2& y) {
+        return function(G2_SERIAL::serial, ex(x), ex(y));
+}
+/** Generalized multiple polylogarithm with explicit imaginary parts. */
+class G3_SERIAL { public: static unsigned serial; };
+template<typename T1, typename T2, typename T3>
+inline function G(const T1& x, const T2& s, const T3& y) {
+        return function(G3_SERIAL::serial, ex(x), ex(s), ex(y));
+}
+
+DECLARE_FUNCTION_2P_TEMPLATES(G)
+DECLARE_FUNCTION_2P_PYTHONCODE(G3, G)
+DECLARE_FUNCTION_3P_TEMPLATES(G)
+DECLARE_FUNCTION_3P_PYTHONCODE(G3, G)
+%pythoncode %{
+def G(*args):
+  if len(args)==2:
+    return G2(*args)
+  elif len(args)==3:
+    return G3(*args)
+  else:
+    raise "G() takes 2 or 3 arguments"
+%}
+
+/** Psi-function (aka digamma-function). */
+class psi1_SERIAL { public: static unsigned serial; };
+template<typename T1>
+inline function psi(const T1 & p1) {
+        return function(psi1_SERIAL::serial, ex(p1));
+}
+/** Derivatives of Psi-function (aka polygamma-functions). */
+class psi2_SERIAL { public: static unsigned serial; };
+template<typename T1, typename T2>
+inline function psi(const T1 & p1, const T2 & p2) {
+        return function(psi2_SERIAL::serial, ex(p1), ex(p2));
+}
+
+DECLARE_FUNCTION_1P_TEMPLATES(psi)
+DECLARE_FUNCTION_1P_PYTHONCODE(psi1, psi)
+DECLARE_FUNCTION_2P_TEMPLATES(psi)
+DECLARE_FUNCTION_2P_PYTHONCODE(psi2, psi)
+%pythoncode %{
+def psi(*args):
+  if len(args)==1:
+    return psi1(*args)
+  elif len(args)==2:
+    return psi2(*args)
+  else:
+    raise "psi() takes 1 or 2 arguments"
+%}
 
 ex lsolve(const ex &eqns, const ex &symbols, unsigned options = solve_algo::automatic);
 
