@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: exam_powerlaws.py, new regression tests fron GiNaC/PyGiNaC
  - swiginac: function.i, applied patched  from Matti Peltomäki. This fixes
    functions with multiple arguments.
  - swiginac: GiNaC::ex now exposed to Python through the converters:
