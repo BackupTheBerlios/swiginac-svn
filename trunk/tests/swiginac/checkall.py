@@ -35,6 +35,7 @@ exam_diff
 exam_lsolve
 exam_polygcd
 exam_powerlaws
+exam_pseries
 """.split()
 
 time_consuming_tests = """
