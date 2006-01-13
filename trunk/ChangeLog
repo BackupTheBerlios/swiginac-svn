@@ -1,5 +1,10 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: exam_clifford.py, new regression tests ported from GiNaC
+ - swiginac: constant.i, symbol.i, tensor.i, wildcard.i, wrap the default
+   constructor (no arguments) when it appears to make sense; in GiNaC these
+   are defined by the GINAC_DECLARE_REGISTERED_CLASS macro
+ - swiginac: clifford.i, wrap overloaded versions of dirac_trace
  - swiginac: exam_pseries.py, new regression tests from GiNaC/PyGiNaC
  - swiginac: exam_powerlaws.py, new regression tests from GiNaC/PyGiNaC
  - swiginac: function.i, applied patched  from Matti Peltomäki. This fixes

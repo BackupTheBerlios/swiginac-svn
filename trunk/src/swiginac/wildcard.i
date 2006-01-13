@@ -22,6 +22,7 @@
 class wildcard : public basic
 {
 public:
+        wildcard();
 	wildcard(unsigned label);
 	unsigned get_label() const {return label;}
 };

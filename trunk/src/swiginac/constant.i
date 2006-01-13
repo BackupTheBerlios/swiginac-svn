@@ -22,6 +22,7 @@
 class constant : public basic
 {
 public:
+        constant();
         constant(const std::string & initname, evalffunctype efun = 0, const std::string & texname = std::string());
         constant(const std::string & initname, const numeric & initnumber, const std::string & texname = std::string());
 };

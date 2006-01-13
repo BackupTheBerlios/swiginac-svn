@@ -22,6 +22,7 @@
 class symbol : public basic
 {
 public:
+   symbol();
    explicit symbol(const std::string & initname);
    explicit symbol(const std::string & initname, const std::string & texname);
 };

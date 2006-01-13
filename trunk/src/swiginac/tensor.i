@@ -22,6 +22,7 @@
 class tensor : public basic
 {
 public:
+        tensor();
 	bool replace_contr_index(exvector::iterator self, exvector::iterator other) const;
 };
 
@@ -29,6 +30,7 @@ public:
 class tensdelta : public tensor
 {
 public:
+        tensdelta();
 	ex eval_indexed(const basic & i) const;
 	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
 };
@@ -37,6 +39,7 @@ public:
 class tensmetric : public tensor
 {
 public:
+        tensmetric();
 	ex eval_indexed(const basic & i) const;
 	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
 };
@@ -45,6 +48,7 @@ public:
 class minkmetric : public tensmetric
 {
 public:
+        minkmetric();
 	minkmetric(bool pos_sig);
 	ex eval_indexed(const basic & i) const;
 };
@@ -52,6 +56,7 @@ public:
 class spinmetric : public tensmetric
 {
 public:
+        spinmetric();
 	ex eval_indexed(const basic & i) const;
 	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
 };
@@ -60,6 +65,7 @@ public:
 class tensepsilon : public tensor
 {
 public:
+        tensepsilon();
 	tensepsilon(bool minkowski, bool pos_sig);
 	ex eval_indexed(const basic & i) const;
 	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
