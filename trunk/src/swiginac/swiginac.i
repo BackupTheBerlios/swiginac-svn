@@ -57,6 +57,7 @@ namespace GiNaC {
 %include "idx.i"
 %include "symmetry.i"
 %include "clifford.i"
+%include "color.i"
 %include "wildcard.i"
 %include "flags.i"
 %include "pseries.i"

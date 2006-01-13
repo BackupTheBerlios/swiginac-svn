@@ -37,6 +37,7 @@ exam_polygcd
 exam_powerlaws
 exam_pseries
 exam_clifford
+exam_color
 """.split()
 
 time_consuming_tests = """
