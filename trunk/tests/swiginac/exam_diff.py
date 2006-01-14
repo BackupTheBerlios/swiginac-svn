@@ -29,7 +29,6 @@ class test_diff(unittest.TestCase):
         if not (ed - d) == 0:
             if nth == 0:
                 msg = "zeroth"
-                pass
             elif nth == 2:
                 msg = "second"
             elif nth == 3:
@@ -43,11 +42,7 @@ class test_diff(unittest.TestCase):
         return 0
 
     def test_diff1(self):
-        """
-        >>> print exam_diff1()
-        0
-        >>> 
-        """
+        """Simple (expanded) polynomials"""
         x = symbol('x')
         y = symbol('y')
         
@@ -82,10 +77,7 @@ class test_diff(unittest.TestCase):
         self.assertEqual(result,0)
         
     def test_diff2(self):
-        """
-        >>> print exam_diff2()
-        0
-        """
+        """Trigonometric functions"""
         result = 0
         x = symbol("x")
         y = symbol("y")
@@ -134,5 +126,130 @@ class test_diff(unittest.TestCase):
 
         self.assertEqual(result,0)
 
+    def test_diff3(self):
+        """exp function"""
+
+        result = 0
+
+        x = symbol("x")
+        y = symbol("y")
+        a = symbol("a")
+        b = symbol("b")
+
+        # construct expression e to be diff'ed:
+        e1 = y*pow(x, 2) + a*x + b
+        e2 = exp(e1)
+        e = b*pow(e2, 2) + y*e2 + a
+        
+        d = 2*b*pow(e2, 2)*(2*x*y + a) + y*e2*(2*x*y + a)
+        result += self.check_diff(e, x, d)
+        
+        d = 4*b*pow(e2,2)*pow(2*y*x + a,2) + 4*b*pow(e2,2)*y \
+            + 2*pow(y,2)*e2 + y*e2*pow(2*y*x + a,2)
+        result += self.check_diff(e, x, d, 2)
+        
+        d = 2*b*pow(e2,2)*pow(x,2) + e2 + y*e2*pow(x,2)
+        result += self.check_diff(e, y, d)
+        
+        d = 4*b*pow(e2,2)*pow(x,4) + 2*e2*pow(x,2) + y*e2*pow(x,4)
+        result += self.check_diff(e, y, d, 2)
+
+        self.assertEqual(result, 0)
+
+    def test_diff4(self):
+        """log functions"""
+
+        result = 0
+        
+        x = symbol("x")
+        y = symbol("y")
+        a = symbol("a")
+        b = symbol("b")
+
+        # construct expression e to be diff'ed:
+        e1 = y*pow(x, 2) + a*x + b
+        e2 = log(e1)
+        e = b*pow(e2, 2) + y*e2 + a
+        
+        d = 2*b*e2*(2*x*y + a)/e1 + y*(2*x*y + a)/e1
+        result += self.check_diff(e, x, d)
+        
+        d = 2*b*pow((2*x*y + a),2)*pow(e1,-2) + 4*b*y*e2/e1 \
+            - 2*b*e2*pow(2*x*y + a,2)*pow(e1,-2) + 2*pow(y,2)/e1 \
+            - y*pow(2*x*y + a,2)*pow(e1,-2)
+        result += self.check_diff(e, x, d, 2)
+        
+        d = 2*b*e2*pow(x,2)/e1 + e2 + y*pow(x,2)/e1
+        result += self.check_diff(e, y, d)
+        
+        d = 2*b*pow(x,4)*pow(e1,-2) - 2*b*e2*pow(e1,-2)*pow(x,4) \
+            + 2*pow(x,2)/e1 - y*pow(x,4)*pow(e1,-2)
+        result += self.check_diff(e, y, d, 2)
+
+        self.assertEqual(result, 0)
+
+    def test_diff5(self):
+        """functions with two variables"""
+
+        result = 0
+
+        x = symbol("x")
+        y = symbol("y")
+        a = symbol("a")
+        b = symbol("b")
+
+        e1 = y*pow(x, 2) + a*x + b
+        e2 = x*pow(y, 2) + b*y + a
+        e = atan2(e1,e2)
+        
+        d = pow(y,2)*pow(pow(b+y*pow(x,2)+x*a,2)+pow(y*b+pow(y,2)*x+a,2),-1)* \
+            (-b-y*pow(x,2)-x*a) \
+           +pow(pow(b+y*pow(x,2)+x*a,2)+pow(y*b+pow(y,2)*x+a,2),-1)* \
+            (y*b+pow(y,2)*x+a)*(2*y*x+a)
+        result += self.check_diff(e, x, d)
+        
+        self.assertEqual(result, 0)
+
+    def test_diff6(self):
+        """Series"""
+        result = 0
+        x = symbol('x')
+        
+        e = sin(x).series(x==0, 8)
+        d = cos(x).series(x==0, 7)
+        ed = e.diff(x)
+        ed = series_to_poly(ed)
+        d = series_to_poly(d)
+
+        if not (ed-d).is_zero():
+            print "derivative of ", e, " w.r.t. ", x, " returned "
+            print ed, " instead of ", d
+            result += 1
+
+        self.assertEqual(result, 0)
+
+    def test_diff7(self):
+        """Hashing can help a lot, if differentiation is done cleverly"""
+        result = 0
+        x = symbol('x')
+
+        P = x + pow(x,3)
+        e = (P.diff(x) / P).diff(x, 2)
+        d = 6/P - 18*x/pow(P,2) - 54*pow(x,3)/pow(P,2) + 2/pow(P,3) \
+            +18*pow(x,2)/pow(P,3) + 54*pow(x,4)/pow(P,3) + 54*pow(x,6)/pow(P,3)
+
+        if not (e-d).expand().is_zero():
+            print "expanded second derivative of ", (P.diff(x) / P), " w.r.t. ", x
+            print "returned", e.expand(), " instead of ", d
+            result += 1
+        
+        if e.nops() > 3:
+            print "second derivative of ", (P.diff(x) / P), " w.r.t. ", x
+            print "has ", e.nops(), " operands."
+            print "The result may still be correct but not optimal: 3 are enough!"
+            result += 1
+
+        self.assertEqual(result, 0)
+        
 if __name__ == "__main__":
     unittest.main()

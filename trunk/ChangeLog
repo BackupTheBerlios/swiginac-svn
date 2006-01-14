@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: exam_diff.py, pythonize missing regression tests
  - swiginac: exam_color.py, new regression tests ported from GiNaC
  - swiginac: wrap classes color, su3one, su3t, su3f, su3d and the related utility functions
  - swiginac: exam_clifford.py, new regression tests ported from GiNaC
