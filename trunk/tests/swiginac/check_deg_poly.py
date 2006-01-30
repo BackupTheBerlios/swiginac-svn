@@ -18,46 +18,23 @@
 #     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import unittest
-import sys
+from swiginac import symbol
 
-quick_tests = """
-check_aritmetic
-check_deg_poly
-check_relat
-check_lst
-check_print
-check_idx
-check_truncation
-exam_matrices
-exam_paranoia
-exam_misc
-exam_normalization
-exam_diff
-exam_lsolve
-exam_polygcd
-exam_powerlaws
-exam_pseries
-exam_clifford
-exam_color
-""".split()
+class test_degree_and_coefficients(unittest.TestCase):
 
-time_consuming_tests = """
-check_matrices
-check_numeric
-check_inifcns
-check_lsolve
-""".split()
+    def test_multivariate_polynomial_analyze(self):
+        x = symbol("x")
+        y = symbol("y")
+        p_correct = [ y**2+11*y, 5*y**2-2*y, -1, 4*y ]
+        PolyInp = 4*pow(x,3)*y + 5*x*pow(y,2) + 3*y - pow(x+y,2) + 2*pow(y+2,2) - 8
+        Poly = PolyInp.expand()
+        for i in xrange(Poly.ldegree(x),Poly.degree(x)+1):
+            self.assertEqual(Poly.coeff(x,i), p_correct[i])
+         
+        self.assertEqual(Poly.collect(y), -x**2+(5*x+1)*y**2+(-2*x+4*x**3+11)*y)
 
-modules = quick_tests
-if len(sys.argv)==1:
-    modules += time_consuming_tests
 
-sys.path.append(".")
 
-tests=[]
-for mod in modules:
-        m = __import__(mod)
-        tests.append(unittest.defaultTestLoader.loadTestsFromModule(m))
-alltests = unittest.TestSuite(tests)
-#print "Test suite loaded."
-unittest.TextTestRunner(verbosity=1).run(alltests)
+if __name__ == "__main__":
+    unittest.main()
+
