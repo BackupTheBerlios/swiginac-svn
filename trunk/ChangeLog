@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: check_deg_poly.py, check the methods ldegree, degree, coeff,
+   expand and collect of polynomials
  - swiginac: functions.i, fix G with two parameters
  - swiginac: exam_diff.py, pythonize missing regression tests
  - swiginac: exam_color.py, new regression tests ported from GiNaC
