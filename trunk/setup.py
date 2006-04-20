@@ -32,7 +32,9 @@ if distutils.__version__ >= '2.4': swig_opt = '--swig-opts=-c++'
 
 if argv[1] == 'build':
     argv[1] = 'build_ext'
+if argv[1] == 'build_ext':
     argv.insert(2, swig_opt)
+    
 
 ginac_prefix=os.popen('ginac-config --prefix','r').readline().rstrip()
 cln_prefix=os.popen('cln-config --prefix','r').readline().rstrip()
