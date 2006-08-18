@@ -35,6 +35,8 @@ class Symbolic(object):
     def __str__(self):
         return str(self.data)
  
+    def setOutput(self, type):
+        self.data.set_print_context(type)
 
 class Expr(Symbolic):
     """This class works a bit like GiNaC::ex. The actual data is stored in
@@ -84,7 +86,8 @@ class Expr(Symbolic):
         return self.__mul__(other)
 
     def __rdiv__(self, other):
-        return self.__div__(other)
+        return Expr(other)/self
+        #return 1/self.__div__(other)
 
 #    def __iadd__(self, other):
 #        self.data += _toex(other)
@@ -451,6 +454,10 @@ class Vector(Symbolic):
     def __str__(self):
         return str(self.data)
 
+    def setOutput(self, type):
+        for i in xrange(len(self.data)):
+            self.data[i].set_print_context(type)
+
     def __repr__(self):
         return "Vector("+str(self)+")"
  
@@ -595,7 +602,12 @@ class Symbol(Symbolic):
     operations."""
 
     def __init__(self, name = 'x'): 
-        self.data = _g.symbol(name)
+        if isinstance(name, str):
+            self.data = _g.symbol(name)
+        elif isinstance(name, _g.symbol):
+            self.data = name
+        else:
+            raise ValueError, "Can not construct a Symbol from a %s" % type(name)
         self.spatial_symbs = [self.data]
         self.time = None
 
