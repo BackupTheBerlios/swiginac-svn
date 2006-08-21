@@ -343,9 +343,9 @@ class Matrix(Symbolic):
 
     def __mul__(self, other):
         if isinstance(other, Matrix):
-            m = Matrix(self.i, self.j, self.spatial_symbs, self.time)
+            m = Matrix(self.i, other.j, self.spatial_symbs, self.time)
             for i in range(self.i):
-                for j in range(self.j):
+                for j in range(other.j):
                     m[i, j] = Expr()
                     for k in range(self.i):
                         m[i, j] += self[i, k]*other[k, j]
