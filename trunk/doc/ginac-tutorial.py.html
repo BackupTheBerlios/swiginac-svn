@@ -324,46 +324,65 @@ the Python programming language</p>
 <div class="contents topic">
 <p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
 <ul class="auto-toc simple">
-<li><a class="reference" href="#introduction" id="id9" name="id9">1&nbsp;&nbsp;&nbsp;Introduction</a></li>
-<li><a class="reference" href="#a-tour-of-ginac" id="id10" name="id10">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a><ul class="auto-toc">
-<li><a class="reference" href="#how-to-use-it-from-within-python" id="id11" name="id11">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></li>
-<li><a class="reference" href="#what-it-can-do-for-you" id="id12" name="id12">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a></li>
+<li><a class="reference" href="#introduction" id="id9" name="id9">1&nbsp;&nbsp;&nbsp;Introduction</a><ul class="auto-toc">
+<li><a class="reference" href="#source" id="id10" name="id10">1.1&nbsp;&nbsp;&nbsp;Source</a></li>
 </ul>
 </li>
-<li><a class="reference" href="#installation" id="id13" name="id13">3&nbsp;&nbsp;&nbsp;Installation</a><ul class="auto-toc">
-<li><a class="reference" href="#id1" id="id14" name="id14">3.1&nbsp;&nbsp;&nbsp;GiNaC</a></li>
-<li><a class="reference" href="#id5" id="id15" name="id15">3.2&nbsp;&nbsp;&nbsp;swiginac</a></li>
-<li><a class="reference" href="#pyginac" id="id16" name="id16">3.3&nbsp;&nbsp;&nbsp;PyGiNaC</a></li>
+<li><a class="reference" href="#a-tour-of-ginac" id="id11" name="id11">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a><ul class="auto-toc">
+<li><a class="reference" href="#how-to-use-it-from-within-python" id="id12" name="id12">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></li>
+<li><a class="reference" href="#what-it-can-do-for-you" id="id13" name="id13">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#installation" id="id14" name="id14">3&nbsp;&nbsp;&nbsp;Installation</a><ul class="auto-toc">
+<li><a class="reference" href="#id1" id="id15" name="id15">3.1&nbsp;&nbsp;&nbsp;GiNaC</a></li>
+<li><a class="reference" href="#id5" id="id16" name="id16">3.2&nbsp;&nbsp;&nbsp;swiginac</a></li>
+<li><a class="reference" href="#pyginac" id="id17" name="id17">3.3&nbsp;&nbsp;&nbsp;PyGiNaC</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section">
 <h1><a class="toc-backref" href="#id9" id="introduction" name="introduction">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
-<p>This is an adaption of the <a class="reference" href="http://www.ginac.de/tutorial/">GiNaC tutorial</a> for doing Computer algebra with
-<a class="reference" href="http://www.ginac.de">GiNaC</a> and the <a class="reference" href="http://www.python.org">Python</a> programming language using the <a class="reference" href="http://swiginac.berlios.de">swiginac</a> wrapper
-package.</p>
 <p>This tutorial is intended for the novice user who is new to <a class="reference" href="http://www.ginac.de">GiNaC</a> but
-already has some background in Python programming. However, since a hand-made
-documentation like this one is difficult to keep in sync with the
-development, the actual documentation is inside the sources in the form of
-comments. That documentation may be parsed by one of the many Javadoc-like
-documentation systems. If you fail at generating it you may access it from
-the GiNaC home page. It is an invaluable resource not only for the advanced
-user who wishes to extend the system (or chase bugs) but for everybody who
-wants to comprehend the inner workings of GiNaC. This little tutorial on the
-other hand only covers the basic things that are unlikely to change in the
-near future.</p>
-<p>This tutorial assumes a working <a class="reference" href="#installation">installation</a> of GiNaC and the swiginac
-package.</p>
+already has some background in Python programming. It is an adaption of
+the <a class="reference" href="http://www.ginac.de/tutorial/">GiNaC tutorial</a> for doing Computer algebra with <a class="reference" href="http://www.ginac.de">GiNaC</a> and the
+<a class="reference" href="http://www.python.org">Python</a> programming language using the <a class="reference" href="http://swiginac.berlios.de">swiginac</a> wrapper package.</p>
+<p>This tutorial only covers the basics, the original <a class="reference" href="http://www.ginac.de/tutorial/">GiNaC tutorial</a>
+says</p>
+<blockquote>
+... since a hand-made documentation like this one is difficult to
+keep in sync with the development, the actual documentation is
+inside the sources in the form of comments. That documentation may
+be parsed by one of the many Javadoc-like documentation systems. If
+you fail at generating it you may access it from the <a class="reference" href="http://www.ginac.de">GiNaC</a> home
+page. It is an invaluable resource not only for the advanced user
+who wishes to extend the system (or chase bugs) but for everybody
+who wants to comprehend the inner workings of GiNaC. This little
+tutorial on the other hand only covers the basic things that are
+unlikely to change in the near future.</blockquote>
+<p>The examples in this tutorial assume a working installation of GiNaC
+and the swiginac package (see the <a class="reference" href="#installation">Installation</a> chapter for how to get
+there).</p>
+<div class="section">
+<h2><a class="toc-backref" href="#id10" id="source" name="source">1.1&nbsp;&nbsp;&nbsp;Source</a></h2>
+<p>The <a class="reference" href="http://svn.berlios.de/svnroot/repos/swiginac/trunk/doc/ginac-tutorial.py.txt">source of this tutorial</a> is written in <a class="reference" href="http://docutils.sourceforge.net/rst.html">reStructured Text</a>. To
+translate it, you need the Python <a class="reference" href="http://docutils.sourceforge.net/rst.html">docutils</a>. With docutils installed,
+the command <tt class="docutils literal"><span class="pre">rst2html</span> <span class="pre">ginac-tutorial.py.txt</span></tt> will produce the html
+file, while <tt class="docutils literal"><span class="pre">rst2pdf.py</span> <span class="pre">ginac-tutorial.py.txt</span></tt> will produce a PDF
+version.</p>
+<p>The bidirectional text &lt;-&gt; code converter <a class="reference" href="http://pylit.berlios.de">PyLit</a> can be used to
+transform the tutorial source to a Python module providing the example
+functions and to run the examples in a doctest. (This is why it has the
+<tt class="docutils literal"><span class="pre">.py.txt</span></tt> double extension.)</p>
+</div>
 </div>
 <div class="section">
-<h1><a class="toc-backref" href="#id10" id="a-tour-of-ginac" name="a-tour-of-ginac">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a></h1>
+<h1><a class="toc-backref" href="#id11" id="a-tour-of-ginac" name="a-tour-of-ginac">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a></h1>
 <p>This quick tour of GiNaC wants to arise your interest in the subsequent
 chapters by showing off a bit.</p>
 <p>Please excuse us if it leaves many open questions.</p>
 <div class="section">
-<h2><a class="toc-backref" href="#id11" id="how-to-use-it-from-within-python" name="how-to-use-it-from-within-python">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></h2>
+<h2><a class="toc-backref" href="#id12" id="how-to-use-it-from-within-python" name="how-to-use-it-from-within-python">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></h2>
 <p>Neither GiNaC nor swiGiNaC define a language of their own as conventional
 CAS do. Instead, swiGiNaC converts GiNaC into an open framework for symbolic
 computation within the Python programming language</p>
@@ -420,7 +439,7 @@ that the <a class="reference" href="http://swiginac.berlios.de">swiginac</a> Pyt
 into GiNaC's capabilities with all of the power of <a class="reference" href="http://www.python.org">Python</a> added.</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id12" id="what-it-can-do-for-you" name="what-it-can-do-for-you">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a></h2>
+<h2><a class="toc-backref" href="#id13" id="what-it-can-do-for-you" name="what-it-can-do-for-you">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a></h2>
 <p>After starting a python interpreter, import swiginac with:</p>
 <blockquote>
 <pre class="doctest-block">
@@ -740,11 +759,11 @@ with units.</p>
 </div>
 </div>
 <div class="section">
-<h1><a class="toc-backref" href="#id13" id="installation" name="installation">3&nbsp;&nbsp;&nbsp;Installation</a></h1>
+<h1><a class="toc-backref" href="#id14" id="installation" name="installation">3&nbsp;&nbsp;&nbsp;Installation</a></h1>
 <p>Installation is covered in the original documentation of the relevant
 packages. Instead of repeating it, just pointers will be given.</p>
 <div class="section">
-<h2><a class="toc-backref" href="#id14" id="id1" name="id1">3.1&nbsp;&nbsp;&nbsp;GiNaC</a></h2>
+<h2><a class="toc-backref" href="#id15" id="id1" name="id1">3.1&nbsp;&nbsp;&nbsp;GiNaC</a></h2>
 <p>The GiNaC framework for symbolic computation within the C++ programming
 language (and its tutorial) is Copyright 1999-2006 Johannes Gutenberg
 University Mainz, Germany. It is released under the
@@ -761,7 +780,7 @@ FreeBSD.</blockquote>
 file of the tarball).</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id15" id="id5" name="id5">3.2&nbsp;&nbsp;&nbsp;swiginac</a></h2>
+<h2><a class="toc-backref" href="#id16" id="id5" name="id5">3.2&nbsp;&nbsp;&nbsp;swiginac</a></h2>
 <p><a class="reference" href="http://swiginac.berlios.de">swiginac</a> is a Python interface to GiNaC, built with <a class="reference" href="http://www.swig.org/">SWIG</a>. The aim of
 swiginac is to make the functionality of GiNaC accessible from Python as
 an extension module.</p>
@@ -773,7 +792,7 @@ exposed, virtually all of the GiNaC tests pass.</p>
 INSTALL.txt file.</p>
 </div>
 <div class="section">
-<h2><a class="toc-backref" href="#id16" id="pyginac" name="pyginac">3.3&nbsp;&nbsp;&nbsp;PyGiNaC</a></h2>
+<h2><a class="toc-backref" href="#id17" id="pyginac" name="pyginac">3.3&nbsp;&nbsp;&nbsp;PyGiNaC</a></h2>
 <p><a class="reference" href="http://pyginac.sourceforge.net/">PyGiNaC</a> is another Python package that provides an interface to the C++
 library GiNaC. PyGiNaC is implemented with the help of the <a class="reference" href="http://www.boost.org/libs/python/doc/index.html">Boost.Python</a>
 library. At the moment, the package is more or less in an &quot;alpha&quot; state,
@@ -788,7 +807,7 @@ downloaded directly from the CVS repository at SourceForge. (See the
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2007-02-08.
+Generated on: 2007-02-09.
 
 </div>
 </body>

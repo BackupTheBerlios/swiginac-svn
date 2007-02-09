@@ -26,30 +26,53 @@ Symbolic Computation with GiNaC and Python
 Introduction
 ============
 
-This is an adaption of the `GiNaC tutorial`_ for doing Computer algebra with
-GiNaC_ and the Python_ programming language using the swiginac_ wrapper
-package. 
+This tutorial is intended for the novice user who is new to GiNaC_ but
+already has some background in Python programming. It is an adaption of
+the `GiNaC tutorial`_ for doing Computer algebra with GiNaC_ and the
+Python_ programming language using the swiginac_ wrapper package. 
+
+This tutorial only covers the basics, the original `GiNaC tutorial`_
+says
+   
+   ... since a hand-made documentation like this one is difficult to
+   keep in sync with the development, the actual documentation is
+   inside the sources in the form of comments. That documentation may
+   be parsed by one of the many Javadoc-like documentation systems. If
+   you fail at generating it you may access it from the GiNaC_ home
+   page. It is an invaluable resource not only for the advanced user
+   who wishes to extend the system (or chase bugs) but for everybody
+   who wants to comprehend the inner workings of GiNaC. This little
+   tutorial on the other hand only covers the basic things that are
+   unlikely to change in the near future.
+
+The examples in this tutorial assume a working installation of GiNaC
+and the swiginac package (see the Installation_ chapter for how to get
+there).
 
 .. _`GiNaC tutorial`: http://www.ginac.de/tutorial/
 .. _GiNaC: http://www.ginac.de
 .. _Python: http://www.python.org
 .. _swiginac: http://swiginac.berlios.de
 
-This tutorial is intended for the novice user who is new to GiNaC_ but
-already has some background in Python programming. However, since a hand-made
-documentation like this one is difficult to keep in sync with the
-development, the actual documentation is inside the sources in the form of
-comments. That documentation may be parsed by one of the many Javadoc-like
-documentation systems. If you fail at generating it you may access it from
-the GiNaC home page. It is an invaluable resource not only for the advanced
-user who wishes to extend the system (or chase bugs) but for everybody who
-wants to comprehend the inner workings of GiNaC. This little tutorial on the
-other hand only covers the basic things that are unlikely to change in the
-near future.
+Source
+------
 
-This tutorial assumes a working installation_ of GiNaC and the swiginac
-package.
+The `source of this tutorial`_ is written in `reStructured Text`_. To
+translate it, you need the Python docutils_. With docutils installed,
+the command ``rst2html ginac-tutorial.py.txt`` will produce the html
+file, while ``rst2pdf.py ginac-tutorial.py.txt`` will produce a PDF
+version.
 
+The bidirectional text <-> code converter PyLit_ can be used to
+transform the tutorial source to a Python module providing the example
+functions and to run the examples in a doctest. (This is why it has the
+``.py.txt`` double extension.)
+
+.. _source of this tutorial:
+  http://svn.berlios.de/svnroot/repos/swiginac/trunk/doc/ginac-tutorial.py.txt
+.. _docutils: http://docutils.sourceforge.net/rst.html
+.. _reStructured Text: http://docutils.sourceforge.net/rst.html
+.. _pylit: http://pylit.berlios.de
 
 A Tour of GiNaC
 ===============
