@@ -59,6 +59,19 @@ ex * type2ex(PyObject * input) {
     return NULL;
 } 
 
+numeric * type2numeric(PyObject * input) {
+    numeric *btmp;
+    GETDESC(numeric);
+    if (not((SWIG_ConvertPtr(input, (void **) &btmp, numericdescr,0)) == -1))
+        return new numeric((*btmp));
+    if (PyInt_Check(input)) 
+        return new numeric(PyInt_AsLong(input));
+    if (PyFloat_Check(input)) 
+        return new numeric(PyFloat_AsDouble(input));
+    return NULL;
+} 
+
+
 bool checktype2ex(PyObject * input) {
     //we assume, that everything can be converted to ex. 
     //if you find some counterexample, write test for it first (which fail)

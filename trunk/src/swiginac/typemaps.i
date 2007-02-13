@@ -38,6 +38,11 @@
     if (!$1) return NULL;
 }
 
+%typemap(in) numeric & {
+    $1 = type2numeric($input);
+    if (!$1) return NULL;
+}
+
 %typemap(typecheck, precedence=1210) ex & {
     $1 = (checktype2ex($input)) ? 1 : 0;
 }

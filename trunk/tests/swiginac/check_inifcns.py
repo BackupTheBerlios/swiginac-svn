@@ -95,6 +95,18 @@ class Test_inifcns(unittest.TestCase):
                 print "cos(", arg, ") returns", cos(arg).evalf()
         self.failIf(error)
 
+    def testinifcns_check_fsolve(self):
+        """
+        >>> inifcns_check_fsolve()
+        Passed tangent checks.
+        """
+        error = False
+        epsilon = numeric(1.0e-8)
+        x = symbol('x')
+        if abs(float(fsolve(cos(x)==x, x, 0, 1)) - 0.73908513321516067) > epsilon:
+            error = True
+        self.failIf(error)
+
     def testinifcns_check_Li2(self):
         """
         >>> inifcns_check_Li2()
