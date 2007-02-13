@@ -23,6 +23,7 @@ We have successfully installed swiginac using the distutils file on the
 following platforms:
 
  - Debian Linux unstable (sid): i386
+ - Ubuntu edgy amd64 (needs GiNaC version >=1.3.5)
  - MacOSX "Tiger" 10.4
 
 Installing using distutils
@@ -64,7 +65,7 @@ distutils will not work with gcc-4.0.x compilers with aggressive optimization
 optimization:
 CFLAGS=-O0 python setup.py build
 
-(Thanks to Matti Peltomäki for pointing this out)
+(Thanks to Matti Peltom?ki for pointing this out)
 
 Installing using make
 ---------------------
@@ -124,7 +125,7 @@ run, and that they all went well.
 
 Final note
 ----------
-swiginac is currently without documentation. Therefore, browsing the scripts in
-the tests directory is the best way of learning its usage. Also, read
-the documentation the the GiNaC homepages (http://www.ginac.de/tutorial/ and
-http://www.ginac.de/reference/).
+swiginac only has a tutorial and a talk as written documentation. Therefore,
+browsing the scripts in the tests directory is a good way of learning more
+about its usage. Also, read the documentation the the GiNaC homepages
+(http://www.ginac.de/tutorial/ and http://www.ginac.de/reference/).
