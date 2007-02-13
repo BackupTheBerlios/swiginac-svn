@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: added automatic evaluation of matrices (patch from Matrin Sandve Aln√¶s)
+ - swiginac: added exception handing (patch from Martin Sandve Aln√¶s)
  - swiginac: check_deg_poly.py, check the methods ldegree, degree, coeff,
    expand and collect of polynomials
  - swiginac: functions.i, fix G with two parameters
@@ -13,7 +15,7 @@
  - swiginac: clifford.i, wrap overloaded versions of dirac_trace
  - swiginac: exam_pseries.py, new regression tests from GiNaC/PyGiNaC
  - swiginac: exam_powerlaws.py, new regression tests from GiNaC/PyGiNaC
- - swiginac: function.i, applied patched  from Matti Peltom‰ki. This fixes
+ - swiginac: function.i, applied patched  from Matti Peltom?ki. This fixes
    functions with multiple arguments.
  - swiginac: GiNaC::ex now exposed to Python through the converters:
    ex *toex(basic & b);
@@ -21,7 +23,7 @@
    ex * basic:: toex();
  - Released 0.9.4 [2005-11-28]
  - swiginac: replaced floats with doubles in the special methods defined in
-   basic.i. Thanks to Matti Peltom‰ki for the patch
+   basic.i. Thanks to Matti Peltom?ki for the patch
  - Symbolic: Matrix.__getitem__ more robust and accepts certain slices (work remaining)
  - Symbolic: Added determinant() to Matrix, added corresponding tests
  - Symbolic: Added expand to Expr, changed def diff(self, symbol, count) to 

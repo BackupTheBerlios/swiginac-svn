@@ -68,46 +68,33 @@ bool checktype2ex(PyObject * input) {
 
 #define EX2(NAME) \
 case TINFO_##NAME: {\
-    NAME *p = new NAME(ex_to<NAME>(*input));\
+    NAME *p = new NAME(ex_to<NAME>(*convert));\
     GETDESC(NAME);\
     return SWIG_NewPointerObj((void *)p, NAME##descr, 1);\
 }
 
 //unwraps ex and return python object
-PyObject * ex2type(const ex * input) {
-    switch (ex_to<basic>(*input).tinfo()) {
-        EX2(basic)
-        EX2(numeric)
-        EX2(expairseq)
-        EX2(add)
-        EX2(mul)
+PyObject * ex2type(const ex* input) {
+
+    ex tmp;
+    try {
+        tmp = input->evalm();
+    } catch(std::exception & e)
+    {
+        tmp = *input;
+    }
+
+    const ex* convert = &tmp;
+
+    switch (ex_to<basic>(*convert).tinfo()) {
         EX2(symbol)
         EX2(constant)
-        //EX2(exprseq)
-        EX2(function)
-        //EX2(fderivative)
-        EX2(ncmul)
+        EX2(numeric)
         case TINFO_lst: {
-            lst *l = new lst(ex_to<lst>(*input));
+            lst *l = new lst(ex_to<lst>(*convert));
             return lst2list(l);
         }
-        EX2(matrix)
-        EX2(power)
-        EX2(relational)
-        //EX2(fail)
         EX2(pseries)
-        EX2(indexed)
-        EX2(color)
-        EX2(clifford)
-        EX2(idx)
-        EX2(varidx)
-        EX2(spinidx)
-        EX2(tensor)
-        EX2(tensdelta)
-        EX2(tensmetric)
-        EX2(minkmetric)
-        EX2(spinmetric)
-        EX2(tensepsilon)
         EX2(su3one)
         EX2(su3t)
         EX2(su3f)
@@ -117,10 +104,29 @@ PyObject * ex2type(const ex * input) {
         EX2(diracgamma5)
         EX2(diracgammaL)
         EX2(diracgammaR)
+        EX2(tensor)
+        EX2(tensdelta)
+        EX2(tensmetric)
+        EX2(minkmetric)
+        EX2(spinmetric)
+        EX2(tensepsilon)
         EX2(wildcard)
+        EX2(indexed)
+        EX2(color)
+        EX2(clifford)
+        EX2(idx)
+        EX2(varidx)
+        EX2(spinidx)
         EX2(symmetry)
         EX2(integral)
         EX2(cliffordunit)
+        EX2(relational)
+        EX2(function)
+        EX2(add)
+        EX2(mul)
+        EX2(ncmul)
+        EX2(matrix)
+        EX2(power)
         default:
             throw (std::logic_error("Cannot unwrap ex. Fix in ex.i"));
     }

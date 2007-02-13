@@ -27,6 +27,8 @@ using namespace GiNaC;
 #include <sstream>
 %}
 
+%include "pyexceptions.i"
+
 %include std_string.i
 
 %feature("autodoc", "1");
