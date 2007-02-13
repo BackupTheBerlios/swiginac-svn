@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 
 """
 Standard setup.py file using Python's native distutils module for installation.
@@ -14,7 +14,7 @@ python checkall.py
 
 Ola Skavhaug
 Ondrej Certik
-Åsmund Ødegård
+Ã…smund Ã˜degÃ¥rd
 """
 
 from distutils.core import setup, Extension
@@ -59,7 +59,7 @@ e = Extension(name='_swiginac',
 #              )
 
 setup(name='swiginac',
-    version='0.9.2',
+    version='0.9.3',
     description='swiginac extention module',
     author='Ola Skavhaug',
     author_email='skavhaug@simula.no',
