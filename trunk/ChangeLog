@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: added fsolve, and typemaps for accepting Python floats and
+   integers in place of ginac::numeric. Unit tests also added for fsolve.
  - Released 0.9.5 [2007-02-13]
  - swiginac: added automatic evaluation of matrices (patch from Matrin Sandve Alnæs)
  - swiginac: added exception handing (patch from Martin Sandve Alnæs)
