@@ -120,8 +120,8 @@ python checkall.py
 cd ../Symbolic
 python SymbolicTests.py
 
-Hopefully, you will get a message telling you that more than 90 tests have been
-run, and that they all went well.
+Hopefully, you will get a message telling you that more than 130 tests have been
+run, and that all but one went well.
 
 Final note
 ----------
