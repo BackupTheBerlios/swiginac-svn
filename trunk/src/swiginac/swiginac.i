@@ -91,6 +91,23 @@ ADD_REPR(pseries);
 
 };
 
+%pythoncode %{
+dict = {}
+def get_symbols(name, number):
+    global dict
+    if not dict.has_key(name):
+         dict[name] = [symbol("%s%d" % (name,i)) for i in xrange(number)]
+    else:
+        x = dict[name]
+        n = len(x)
+        if n >= number:
+            return x[:]
+        else:
+            dict[name] += [symbol("%s%d" % (name,i)) for i in xrange(n, number)]
+        
+    return dict[name][:]
+%}
+
 %inline %{
 namespace GiNaC {
     ex parse_string(const std::string &str, lst &ls) {
