@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: added exmap
+ - Released 0.9.6 [2007-03-20]
  - swiginac: added get_symbols(name, number) for sharing symbols across modules
  - swiginac: added fsolve, and typemaps for accepting Python floats and
    integers in place of ginac::numeric. Unit tests also added for fsolve.

@@ -30,10 +30,13 @@ using namespace GiNaC;
 %include "pyexceptions.i"
 
 %include std_string.i
+%include std_map.i
 
 %feature("autodoc", "1");
 
+
 namespace GiNaC {
+
 
 %include "ex.i"
 %include "typemaps.i"
@@ -65,6 +68,8 @@ namespace GiNaC {
 %include "pseries.i"
 %include "inifcns.i"
 
+
+
 %define ADD_REPR(name)
 %extend name {
 %pythoncode %{
@@ -90,6 +95,10 @@ ADD_REPR(varidx);
 ADD_REPR(pseries);
 
 };
+
+
+%template(exmap) std::map<GiNaC::ex,GiNaC::ex, GiNaC::ex_is_less>;
+%typedef exmap GiNaC::exmap;
 
 %pythoncode %{
 dict = {}
@@ -125,7 +134,9 @@ namespace GiNaC {
     ex * toex(basic & b) {
         return new ex(b);
     }
+
 }
+
 %};
 
 // vim:ft=cpp:

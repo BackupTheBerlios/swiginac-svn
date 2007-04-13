@@ -34,4 +34,10 @@ ex sqrfree_parfrac(const ex & a, const symbol & x);
 ex collect_common_factors(const ex & e);
 ex resultant(const ex & e1, const ex & e2, const ex & s);
 
+/* From normal.cpp */
+
+//static void add_symbol(const ex &s, sym_desc_vec &v);
+//extern void collect_symbols(const ex &e, sym_desc_vec &v);
+//extern void get_symbol_stats(const ex &a, const ex &b, sym_desc_vec &v);
+
 // vim:ft=cpp:
