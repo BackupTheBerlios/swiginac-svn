@@ -38,6 +38,8 @@
     if (!$1) return NULL;
 }
 
+%typemap(in) ex = ex&;
+
 %typemap(in) numeric & {
     $1 = type2numeric($input);
     if (!$1) return NULL;
@@ -61,11 +63,12 @@
     $result = exvector2list(&($1));
 }
 
-//it seems we don't need these
-/*%typemap(out) lst & {
+%typemap(out) lst & {
     $result = lst2list($1);
 }
 
+//it seems we don't need these
+/*
 %typemap(out) ex &{
     $result = ex2type($1);
 }*/
