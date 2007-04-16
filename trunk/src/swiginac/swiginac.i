@@ -34,7 +34,6 @@ using namespace GiNaC;
 
 %feature("autodoc", "1");
 
-
 namespace GiNaC {
 
 
@@ -101,20 +100,20 @@ ADD_REPR(pseries);
 %typedef exmap GiNaC::exmap;
 
 %pythoncode %{
-dict = {}
+_dict = {}
 def get_symbols(name, number):
-    global dict
-    if not dict.has_key(name):
-         dict[name] = [symbol("%s%d" % (name,i)) for i in xrange(number)]
+    global _dict
+    if not _dict.has_key(name):
+         _dict[name] = [symbol("%s%d" % (name,i)) for i in xrange(number)]
     else:
-        x = dict[name]
+        x = _dict[name]
         n = len(x)
         if n >= number:
             return x[:]
         else:
-            dict[name] += [symbol("%s%d" % (name,i)) for i in xrange(n, number)]
+            _dict[name] += [symbol("%s%d" % (name,i)) for i in xrange(n, number)]
         
-    return dict[name][:]
+    return _dict[name][:]
 %}
 
 %inline %{
