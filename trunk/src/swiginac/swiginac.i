@@ -31,6 +31,7 @@ using namespace GiNaC;
 
 %include std_string.i
 %include std_map.i
+//%include std_vector.i
 
 %feature("autodoc", "1");
 
@@ -96,8 +97,14 @@ ADD_REPR(pseries);
 };
 
 
-%template(exmap) std::map<GiNaC::ex,GiNaC::ex, GiNaC::ex_is_less>;
-%typedef exmap GiNaC::exmap;
+// container types
+%template(exmap) std::map<GiNaC::ex, GiNaC::ex, GiNaC::ex_is_less>;
+%typedef GiNaC::exmap exmap;
+/*
+%template(exvector) std::vector<GiNaC::ex>;
+%typedef GiNaC::exvector exvector;
+*/
+
 
 %pythoncode %{
 _dict = {}

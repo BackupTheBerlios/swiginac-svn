@@ -38,7 +38,17 @@
     if (!$1) return NULL;
 }
 
-%typemap(in) ex = ex&;
+%typemap(in) const ex & = ex &;
+
+%typemap(in) ex  {
+  ex *tmp = type2ex($input);
+  if (tmp == NULL ) {
+      return NULL;
+  }
+  $1 = *(tmp); 
+}
+
+%typemap(in) const ex = ex;
 
 %typemap(in) numeric & {
     $1 = type2numeric($input);
@@ -47,6 +57,10 @@
 
 %typemap(typecheck, precedence=1210) ex & {
     $1 = (checktype2ex($input)) ? 1 : 0;
+}
+
+%typemap(typecheck, precedence=1209) ex {
+    $1 = (checktype2ex($input)) ? 1 : 0; // TODO: This could be wrong, while ex& is treated as a pointer by swig, ex is not, at least in the typemap(in) above.
 }
 
 %typemap(out) ex {
