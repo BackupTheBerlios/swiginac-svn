@@ -1,7 +1,7 @@
 /*
  (c) Copyright 2003, 2004, 2005
      Author: Ola Skavhaug and Ondrej Certik
-     
+
      This file is part of swiginac.
 
      swiginac is free software; you can redistribute it and/or modify
@@ -29,9 +29,11 @@ using namespace GiNaC;
 
 %include "pyexceptions.i"
 
+%include stl.i
 %include std_string.i
 %include std_map.i
-//%include std_vector.i
+%include std_vector.i
+
 
 %feature("autodoc", "1");
 
@@ -97,13 +99,16 @@ ADD_REPR(pseries);
 };
 
 
-// container types
-%template(exmap) std::map<GiNaC::ex, GiNaC::ex, GiNaC::ex_is_less>;
-%typedef GiNaC::exmap exmap;
-/*
-%template(exvector) std::vector<GiNaC::ex>;
-%typedef GiNaC::exvector exvector;
-*/
+// typedefs and template instantiations for stl containers with ginac objects
+
+%typedef             std::vector<GiNaC::ex> GiNaC::exvector;
+%template(exvector)  std::vector<GiNaC::ex>;
+
+%typedef             std::map<GiNaC::ex, GiNaC::ex, GiNaC::ex_is_less> GiNaC::exmap;
+%template(exmap)     std::map<GiNaC::ex, GiNaC::ex, GiNaC::ex_is_less>;
+
+
+
 
 
 %pythoncode %{
@@ -119,7 +124,7 @@ def get_symbols(name, number):
             return x[:]
         else:
             _dict[name] += [symbol("%s%d" % (name,i)) for i in xrange(n, number)]
-        
+
     return _dict[name][:]
 %}
 

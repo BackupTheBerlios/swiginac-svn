@@ -63,7 +63,7 @@ public:
 //	virtual ex & operator[](size_t i);
 	virtual bool has(const ex & other) const;
 	virtual bool match(const ex & pattern, lst & repl_lst) const;
-	//virtual ex subs(const exmap & m, unsigned options = 0) const;
+	virtual ex subs(const exmap & m, unsigned options = 0) const;
 	virtual ex map(map_function & f) const;
 	virtual void accept(GiNaC::visitor & v) const;
 	virtual int degree(const ex & s) const;
@@ -72,7 +72,7 @@ public:
 	virtual ex expand(unsigned options = 0) const;
 	virtual ex collect(const ex & s, bool distributed = false) const;
 	virtual ex series(const relational & r, int order, unsigned options = 0) const;
-	//virtual ex normal(exmap & repl, exmap & rev_lookup, int level = 0) const;
+	virtual ex normal(exmap & repl, exmap & rev_lookup, int level = 0) const;
 	virtual ex to_rational(exmap & repl) const;
 	virtual ex to_polynomial(exmap & repl) const;
 	virtual numeric integer_content() const;
