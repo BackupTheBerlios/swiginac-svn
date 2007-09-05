@@ -20,8 +20,19 @@
 */
 
 %typemap(in) (int idx0, int idx1) {
-    $1 = PyInt_AsLong(PyTuple_GetItem($input,0));
-    $2 = PyInt_AsLong(PyTuple_GetItem($input,1));
+    if(PyTuple_Check($input))
+    {
+        $1 = PyInt_AsLong(PyTuple_GetItem($input,0));
+        if(PyTuple_Size($input) > 1)
+            $2 = PyInt_AsLong(PyTuple_GetItem($input,1));
+        else
+            $2 = 0;
+    }
+    else
+    {
+        $1 = PyInt_AsLong($input);
+        $2 = 0;
+    }
 }
 
 %typemap(in) lst & {

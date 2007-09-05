@@ -51,11 +51,15 @@ public:
 	unsigned rank() const;
 
 %extend {
-	matrix(const lst & l) {
+    matrix(const lst & l) {
         matrix *m = new matrix(ex_to<matrix>(lst_to_matrix(l)));
         return m;
     }
-    
+
+    int __len__() {
+        return self->nops();
+    }
+
     void __setitem__(int idx0, int idx1, ex &e) {
         (*self)(idx0, idx1) = e;
     }
@@ -70,6 +74,7 @@ public:
 %pythoncode %{
     def matrix2(x):
         return lst_to_matrix(x)
+
 %}
 
 inline size_t nops(const matrix & m);
