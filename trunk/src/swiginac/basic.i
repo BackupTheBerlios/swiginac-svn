@@ -20,7 +20,7 @@
 */
 
 /* 
-     Contributors: Matti Peltom�ki
+     Contributors: Matti Peltomäki, Martin Sandve Alnæs
 */
 
 %newobject *::copy;
@@ -119,6 +119,10 @@ template <class T> inline bool is_exactly_a(const basic &obj);
         std::ostringstream out;
         (*self).print(print_csrc_double(out));
         return out.str();
+    }
+
+    unsigned __hash__() const {
+        return self->gethash();
     }
 
     bool __nonzero__() const throw(std::logic_error) {
@@ -220,12 +224,14 @@ def __str__(self):
         self.str = self.printpython
     return self.str()
 
+def __copy__(self):
+    return self.copy()
 
 %}
 
     //these are defined in the ex class - which we don't use in swiginac,
     //so we need to define them here
-	ex subs(const lst & ls, const lst & lr) {
+    ex subs(const lst & ls, const lst & lr) {
         return self->eval().subs(ls,lr);
     }
     ex subs(const ex & e, unsigned options = 0) const {
@@ -250,10 +256,10 @@ def __str__(self):
     ex unit(const ex &x) const {
         return self->eval().unit(x);
     }
-	ex simplify_indexed(unsigned options = 0) const {
+    ex simplify_indexed(unsigned options = 0) const {
         return self->eval().simplify_indexed(options);
     }
-	ex simplify_indexed(const scalar_products & sp, unsigned options = 0) const{
+    ex simplify_indexed(const scalar_products & sp, unsigned options = 0) const{
         return self->eval().simplify_indexed(sp,options);
     }
 
