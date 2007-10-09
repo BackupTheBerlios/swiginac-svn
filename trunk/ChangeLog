@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: added __hash__ method for basic (patch from Martin Sandve Alnæs)
  - swiginac: added __len__ method and more general indexing for matrices (patch from Martin Sandve Alnæs)
  - swiginac: added exmap
  - Released 0.9.6 [2007-03-20]
