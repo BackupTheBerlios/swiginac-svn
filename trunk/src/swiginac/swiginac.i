@@ -39,6 +39,9 @@ using namespace GiNaC;
 
 namespace GiNaC {
 
+%feature("ref")   refcounted "$this->add_reference();"
+%feature("unref") refcounted "$this->remove_reference();"
+
 
 %include "ex.i"
 %include "typemaps.i"
@@ -106,10 +109,6 @@ ADD_REPR(pseries);
 
 %typedef             std::map<GiNaC::ex, GiNaC::ex, GiNaC::ex_is_less> GiNaC::exmap;
 %template(exmap)     std::map<GiNaC::ex, GiNaC::ex, GiNaC::ex_is_less>;
-
-
-
-
 
 %pythoncode %{
 _dict = {}

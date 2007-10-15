@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # (c) Copyright 2003, 2004, 2005
 #     Authors: Ola Skavhaug and Ondrej Certik
 #     based on regression tests for PyGiNaC,
