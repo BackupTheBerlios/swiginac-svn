@@ -44,12 +44,56 @@
     $1 = (PyList_Check($input)) ? 1 : 0;
 }
 
-%typemap(in) ex & {
-    $1 = type2ex($input);
-    if (!$1) return NULL;
+%{
+// class to handle deleting a temporary resource in an input typemap
+template<class T>
+class TDeleter
+{
+public:
+
+  T * obj;
+  
+  TDeleter():
+    obj(0)
+  {
+    //std::cout << "TDeleter constructor." << std::endl;
+  }
+  
+  ~TDeleter()
+  {
+    //std::cout << "TDeleter destructor, obj = " << obj << std::endl;
+    if(obj)
+    {
+      //std::cout << "TDeleter deleting obj:" << std::endl;
+      delete obj;
+      //std::cout << "TDeleter done deleting obj." << std::endl;
+    }
+    //std::cout << "TDeleter is now destroyed." << std::endl;
+  }
+
+};
+
+typedef TDeleter<GiNaC::ex> ex_deleter;
+typedef TDeleter<const GiNaC::ex> const_ex_deleter;
+%}
+
+%typemap(in) ex & (ex_deleter deleter) {
+  $1 = type2ex($input);
+  if ($1 == NULL ) {
+      return NULL;
+  }
+  deleter.obj = $1;
 }
 
-%typemap(in) const ex & = ex &;
+%typemap(in) const ex & (const_ex_deleter deleter) {
+  $1 = type2ex($input);
+  if ($1 == NULL ) {
+      return NULL;
+  }
+  deleter.obj = $1;
+}
+
+//%typemap(in) const ex & = ex &;
 
 %typemap(in) ex  {
   ex *tmp = type2ex($input);
@@ -57,6 +101,7 @@
       return NULL;
   }
   $1 = *(tmp); 
+  delete tmp; 
 }
 
 %typemap(in) const ex = ex;
