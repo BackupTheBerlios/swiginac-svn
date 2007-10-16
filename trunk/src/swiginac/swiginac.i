@@ -39,8 +39,8 @@ using namespace GiNaC;
 
 namespace GiNaC {
 
-%feature("ref")   refcounted "$this->add_reference();"
-%feature("unref") refcounted "$this->remove_reference();"
+//%feature("ref")   refcounted "$this->add_reference();"
+//%feature("unref") refcounted "$this->remove_reference();"
 
 
 %include "ex.i"
