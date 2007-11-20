@@ -22,6 +22,17 @@ import distutils
 from  sys import argv
 import os
 from os.path import join as pjoin, sep as psep
+import commands
+
+def pkgconfig(*packages, **kw):
+    """
+    Use pkgconfig to find out where ginac is installed. Function found here:
+    http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/502261.
+    """
+    flag_map = {'-I': 'include_dirs', '-L': 'library_dirs', '-l': 'libraries'}
+    for token in commands.getoutput("pkg-config --libs --cflags %s" % ' '.join(packages)).split():
+        kw.setdefault(flag_map.get(token[:2]), []).append(token[2:])
+    return kw
 
 os.chdir(pjoin("src", "swiginac"))
 
@@ -34,30 +45,11 @@ if argv[1] == 'build':
     argv[1] = 'build_ext'
 if argv[1] == 'build_ext':
     argv.insert(2, swig_opt)
-#    argv.append(swig_opt)
     
-
-ginac_prefix=os.popen('ginac-config --prefix','r').readline().rstrip()
-cln_prefix=os.popen('cln-config --prefix','r').readline().rstrip()
-
-inclist = [psep, 'include', 'ginac']
-
 e = Extension(name='_swiginac',
               sources=['swiginac.i'],
-              include_dirs=['%s%s' % (ginac_prefix, pjoin(*inclist)),
-                            '%s%s' % (cln_prefix, pjoin(*inclist[:-1]))],
-              library_dirs=['%s%s' % (ginac_prefix, pjoin(psep, "lib")),
-                            '%s%s' % (cln_prefix, pjoin(psep, "lib"))],
-              libraries=['ginac'],
-              )
-
-
-#e = Extension(name='_swiginac', 
-#              sources=['swiginac.i'],
-#              include_dirs=['/usr/include/ginac'],
-#              library_dirs=['/usr/lib'],
-#              libraries=['ginac'],
-#              )
+              **pkgconfig("ginac")
+             )
 
 setup(name='swiginac',
     version='0.9.5',
@@ -69,8 +61,6 @@ setup(name='swiginac',
     py_modules= ['swiginac'],
     )
 
-
-#os.chdir(os.path.join("src", "swiginac"))
 os.chdir(os.pardir)
 
 setup(name='Symbolic',
@@ -81,5 +71,3 @@ setup(name='Symbolic',
     url='http://swiginac.berlios.de/',
     packages=["Symbolic"]
     )
-
-

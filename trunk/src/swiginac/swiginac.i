@@ -22,7 +22,7 @@
 %module swiginac
 
 %{
-#include "ginac.h"
+#include "ginac/ginac.h"
 using namespace GiNaC;
 #include <sstream>
 %}

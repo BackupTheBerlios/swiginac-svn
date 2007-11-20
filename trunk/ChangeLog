@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: use pkg-config to resolve ginac and cln installation instead of ginac-config
  - swiginac: memory leak fix (patch from Kent-Andre Mardal and Martin Sandve Alnæs)
  - swiginac: added ref and unref feature for refcounted (base class)
  - swiginac: added __hash__ method for basic (patch from Martin Sandve Alnæs)
