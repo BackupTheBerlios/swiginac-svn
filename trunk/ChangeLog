@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Updated interface files to ginac 1.4.1.
+ - swiginac: Updated tests to ginac 1.4.1
  - swiginac: Released 0.9.7 [2007-11-29]
  - swiginac: updated INSTALL.TXT to include pkg-config as dependency
  - swiginac: use pkg-config to resolve ginac and cln installation instead of ginac-config
