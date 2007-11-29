@@ -1,0 +1,58 @@
+ ------ swiginac/trunk ChangeLog  ------ 
+
+ - swiginac: Released 0.9.7 [2007-11-29]
+ - swiginac: updated INSTALL.TXT to include pkg-config as dependency
+ - swiginac: use pkg-config to resolve ginac and cln installation instead of ginac-config
+ - swiginac: memory leak fix (patch from Kent-Andre Mardal and Martin Sandve Alnæs)
+ - swiginac: added ref and unref feature for refcounted (base class)
+ - swiginac: added __hash__ method for basic (patch from Martin Sandve Alnæs)
+ - swiginac: added __len__ method and more general indexing for matrices (patch from Martin Sandve Alnæs)
+ - swiginac: added exmap
+ - Released 0.9.6 [2007-03-20]
+ - swiginac: added get_symbols(name, number) for sharing symbols across modules
+ - swiginac: added fsolve, and typemaps for accepting Python floats and
+   integers in place of ginac::numeric. Unit tests also added for fsolve.
+ - Released 0.9.5 [2007-02-13]
+ - swiginac: added automatic evaluation of matrices (patch from Martin Sandve Alnæs)
+ - swiginac: added exception handing (patch from Martin Sandve Alnæs)
+ - swiginac: check_deg_poly.py, check the methods ldegree, degree, coeff,
+   expand and collect of polynomials
+ - swiginac: functions.i, fix G with two parameters
+ - swiginac: exam_diff.py, pythonize missing regression tests
+ - swiginac: exam_color.py, new regression tests ported from GiNaC
+ - swiginac: wrap classes color, su3one, su3t, su3f, su3d and the related utility functions
+ - swiginac: exam_clifford.py, new regression tests ported from GiNaC
+ - swiginac: constant.i, symbol.i, tensor.i, wildcard.i, wrap the default
+   constructor (no arguments) when it appears to make sense; in GiNaC these
+   are defined by the GINAC_DECLARE_REGISTERED_CLASS macro
+ - swiginac: clifford.i, wrap overloaded versions of dirac_trace
+ - swiginac: exam_pseries.py, new regression tests from GiNaC/PyGiNaC
+ - swiginac: exam_powerlaws.py, new regression tests from GiNaC/PyGiNaC
+ - swiginac: function.i, applied patched  from Matti Peltom?ki. This fixes
+   functions with multiple arguments.
+ - swiginac: GiNaC::ex now exposed to Python through the converters:
+   ex *toex(basic & b);
+   ex *toex(lst & l);
+   ex * basic:: toex();
+ - Released 0.9.4 [2005-11-28]
+ - swiginac: replaced floats with doubles in the special methods defined in
+   basic.i. Thanks to Matti Peltom?ki for the patch
+ - Symbolic: Matrix.__getitem__ more robust and accepts certain slices (work remaining)
+ - Symbolic: Added determinant() to Matrix, added corresponding tests
+ - Symbolic: Added expand to Expr, changed def diff(self, symbol, count) to 
+   def diff(self, symbol, count=1). Tests updated accordingly
+ - Symbolic: Added copy and __copy__ to all classes
+ - Extended ginac.basic with method for copying; basic::copy()
+ - Minor bug fixes in Symbolic, Expr and Vector can now be multiplied (componentwise)
+ - Released 0.9.3 [2005-11-13]
+ - bug fixes and some more features in Symbolic
+ - setup.py more platform independent (may work with cygwin?)
+ - Added ChangeLog
+ - Improved the setup.py file; should work on most *nix platform
+ - Released 0.9.1 [2005-11-09]
+ - trunk copied to branches/0.9 and tags/0.9.1
+ - src/swiginac/Makefile and setup.py changes to reflect new structure
+ - Added src/Symbolic and tests/Symbolic
+ - Restructured directory layout
+ - Released 0.9.0 [2005-09-25]
+ - Exported the svn-repository to berlios. No history prior to that
