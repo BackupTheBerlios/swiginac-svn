@@ -28,4 +28,17 @@ public:
 };
 
 
+class realsymbol : public symbol
+{
+  // constructors
+public:
+  realsymbol();
+  explicit realsymbol(const std::string & initname, unsigned domain = domain::real);
+  realsymbol(const std::string & initname, const std::string & texname, unsigned domain = domain::real);
+  realsymbol(const std::string & initname, unsigned rt, tinfo_t rtt, unsigned domain = domain::real);
+  realsymbol(const std::string & initname, const std::string & texname, unsigned rt, tinfo_t rtt, unsigned domain = domain::real);
+};
+
+
+
 // vim:ft=cpp:

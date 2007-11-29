@@ -266,7 +266,8 @@ class test_poly(unittest.TestCase):
                 f = pow(p, j) * pow(q, k)
                 g = pow(p, k) * pow(q, j) 
                 r = gcd(f, g)
-                if not (r-d).expand().is_zero():
+                if not (r-d).expand().is_zero() and not (r+d).expand().is_zero():
+                    print
                     print "case 7, gcd(",f,",",g,") = ",r," (should be ",d,")"
                     result += 1
 

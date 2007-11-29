@@ -109,7 +109,7 @@ public:
 		return *this;
 	}
 
-	function_options & set_return_type(unsigned rt, unsigned rtt=0);
+	function_options & set_return_type(unsigned rt, tinfo_t rtt=NULL);
 	function_options & do_not_evalf_params();
 	function_options & remember(unsigned size, unsigned assoc_size=0,
 	                            unsigned strategy=remember_strategies::delete_never);

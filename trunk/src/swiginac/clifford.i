@@ -22,14 +22,18 @@
 class clifford : public indexed
 {
 public:
-	clifford(const ex & b, unsigned char rl = 0);
-	clifford(const ex & b, const ex & mu,  const ex & metr, unsigned char rl = 0);
-//	clifford(unsigned char rl, const ex & metr, const exvector & v, bool discardable = false);
-	unsigned precedence() const { return 65; }
-	unsigned char get_representation_label() const { return representation_label; }
-	ex get_metric() const { return metric; }
-	ex get_metric(const ex & i, const ex & j) const;
-	bool same_metric(const ex & other) const;
+    clifford(const ex & b, unsigned char rl = 0);
+    clifford(const ex & b, const ex & mu,  const ex & metr, unsigned char rl = 0, int comm_sign=-1);
+    unsigned precedence() const;
+    unsigned char get_representation_label() const;
+    ex get_metric() const;
+    ex get_metric(const ex & i, const ex & j, bool symmetrised=false) const;
+    bool same_metric(const ex & other) const;
+    int get_commutator_sign() const;
+    size_t nops() const;
+    ex op(size_t i) const;
+    ex & let_op(size_t i);
+    ex subs(const exmap & m, unsigned options = 0) const;
 };
 
 class diracone : public tensor {};
@@ -37,7 +41,7 @@ class diracone : public tensor {};
 class cliffordunit : public tensor
 {
 public:
-	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
+    bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
 };
 
 
@@ -45,21 +49,26 @@ public:
 class diracgamma : public cliffordunit
 {
 public:
-	bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
+    bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
 };
 
 
-class diracgamma5 : public tensor {};
+class diracgamma5 : public tensor {
+    ex conjugate() const;
+};
 
 
-class diracgammaL : public tensor {};
+class diracgammaL : public tensor {
+    ex conjugate() const;
+};
 
 
-class diracgammaR : public tensor {};
+class diracgammaR : public tensor {
+    ex conjugate() const;
+};
 
 
-
-template<> inline bool is_exactly_a<clifford>(const basic & obj);
+bool is_clifford_tinfo(tinfo_t ti);
 
 ex dirac_ONE(unsigned char rl = 0);
 ex clifford_unit(const ex & mu, const ex & metr, unsigned char rl = 0);
@@ -73,10 +82,10 @@ ex dirac_trace(const ex & e, const lst & rll, const ex & trONE = 4);
 ex dirac_trace(const ex & e, unsigned char rl = 0, const ex & trONE = 4);
 ex canonicalize_clifford(const ex & e);
 ex clifford_prime(const ex & e);
-inline ex clifford_bar(const ex & e);
-inline ex clifford_star(const ex & e);
-ex remove_dirac_ONE(const ex & e);
-ex remove_dirac_ONE(const ex & e, unsigned char rl);
+ex clifford_bar(const ex & e);
+ex clifford_star(const ex & e);
+ex remove_dirac_ONE(const ex & e, unsigned char rl = 0, unsigned options = 0);
+char clifford_max_label(const ex & e, bool ignore_ONE = false);
 ex clifford_norm(const ex & e);
 ex clifford_inverse(const ex & e);
 ex lst_to_clifford(const ex & v, const ex & mu,  const ex & metr, unsigned char rl = 0);

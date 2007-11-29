@@ -43,58 +43,61 @@ struct map_function;
 class basic : public refcounted
 {
 public:
-	virtual ~basic();
-	basic(const basic & other);
-	virtual basic * duplicate() const { return new basic(*this); }
-	virtual ex eval(int level = 0) const;
-	virtual ex evalf(int level = 0) const;
-	virtual ex evalm() const;
-	virtual ex eval_indexed(const basic & i) const;
-	virtual void dbgprint() const;
-	virtual void dbgprinttree() const;
-	virtual unsigned precedence() const;
-	virtual bool info(unsigned inf) const;
-	virtual size_t nops() const;
-	virtual ex op(size_t i) const;
-//	virtual ex operator[](const ex & index) const;
-//	virtual ex operator[](size_t i) const;
-	virtual ex & let_op(size_t i);
-//	virtual ex & operator[](const ex & index);
-//	virtual ex & operator[](size_t i);
-	virtual bool has(const ex & other) const;
-	virtual bool match(const ex & pattern, lst & repl_lst) const;
-	virtual ex subs(const exmap & m, unsigned options = 0) const;
-	virtual ex map(map_function & f) const;
-	virtual void accept(GiNaC::visitor & v) const;
-	virtual int degree(const ex & s) const;
-	virtual int ldegree(const ex & s) const;
-	virtual ex coeff(const ex & s, int n = 1) const;
-	virtual ex expand(unsigned options = 0) const;
-	virtual ex collect(const ex & s, bool distributed = false) const;
-	virtual ex series(const relational & r, int order, unsigned options = 0) const;
-	virtual ex normal(exmap & repl, exmap & rev_lookup, int level = 0) const;
-	virtual ex to_rational(exmap & repl) const;
-	virtual ex to_polynomial(exmap & repl) const;
-	virtual numeric integer_content() const;
-	virtual ex smod(const numeric &xi) const;
-	virtual numeric max_coefficient() const;
-	virtual exvector get_free_indices() const;
-	virtual ex add_indexed(const ex & self, const ex & other) const;
-	virtual ex scalar_mul_indexed(const ex & self, const numeric & other) const;
-	virtual bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
-	virtual unsigned return_type() const;
-	virtual unsigned return_type_tinfo() const;
-	virtual ex conjugate() const;
-	void print_dispatch(const registered_class_info & ri, const print_context & c, unsigned level) const;
-	ex subs_one_level(const exmap & m, unsigned options) const;
-	ex diff(const symbol & s, unsigned nth = 1) const;
-	int compare(const basic & other) const;
-	bool is_equal(const basic & other) const;
-	const basic & hold() const;
-	unsigned gethash() const { if (flags & status_flags::hash_calculated) return hashvalue; else return calchash(); }
-	unsigned tinfo() const {return tinfo_key;}
-	const basic & setflag(unsigned f) const {flags |= f; return *this;}
-	const basic & clearflag(unsigned f) const {flags &= ~f; return *this;}
+    virtual ~basic();
+    basic(const basic & other);
+    virtual basic * duplicate() const { return new basic(*this); }
+    virtual ex eval(int level = 0) const;
+    virtual ex evalf(int level = 0) const;
+    virtual ex evalm() const;
+    virtual ex eval_indexed(const basic & i) const;
+    virtual void dbgprint() const;
+    virtual void dbgprinttree() const;
+    virtual unsigned precedence() const;
+    virtual bool info(unsigned inf) const;
+    virtual size_t nops() const;
+    virtual ex op(size_t i) const;
+//    virtual ex operator[](const ex & index) const;
+//    virtual ex operator[](size_t i) const;
+    virtual ex & let_op(size_t i);
+//    virtual ex & operator[](const ex & index);
+//    virtual ex & operator[](size_t i);
+    virtual bool has(const ex & other, unsigned options=0) const;
+    virtual bool match(const ex & pattern, lst & repl_lst) const;
+    virtual ex subs(const exmap & m, unsigned options = 0) const;
+    virtual ex map(map_function & f) const;
+    virtual void accept(GiNaC::visitor & v) const;
+    virtual bool is_polynomial(const ex& var) const;
+    virtual int degree(const ex & s) const;
+    virtual int ldegree(const ex & s) const;
+    virtual ex coeff(const ex & s, int n = 1) const;
+    virtual ex expand(unsigned options = 0) const;
+    virtual ex collect(const ex & s, bool distributed = false) const;
+    virtual ex series(const relational & r, int order, unsigned options = 0) const;
+    virtual ex normal(exmap & repl, exmap & rev_lookup, int level = 0) const;
+    virtual ex to_rational(exmap & repl) const;
+    virtual ex to_polynomial(exmap & repl) const;
+    virtual numeric integer_content() const;
+    virtual ex smod(const numeric &xi) const;
+    virtual numeric max_coefficient() const;
+    virtual exvector get_free_indices() const;
+    virtual ex add_indexed(const ex & self, const ex & other) const;
+    virtual ex scalar_mul_indexed(const ex & self, const numeric & other) const;
+    virtual bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
+    virtual unsigned return_type() const;
+    virtual tinfo_t return_type_tinfo() const;
+    virtual ex conjugate() const;
+    virtual ex real_part() const;
+    virtual ex imag_part() const;
+    void print_dispatch(const registered_class_info & ri, const print_context & c, unsigned level) const;
+    ex subs_one_level(const exmap & m, unsigned options) const;
+    ex diff(const symbol & s, unsigned nth = 1) const;
+    int compare(const basic & other) const;
+    bool is_equal(const basic & other) const;
+    const basic & hold() const;
+    unsigned gethash() const { if (flags & status_flags::hash_calculated) return hashvalue; else return calchash(); }
+    tinfo_t tinfo() const {return tinfo_key;}
+    const basic & setflag(unsigned f) const {flags |= f; return *this;}
+    const basic & clearflag(unsigned f) const {flags &= ~f; return *this;}
 
 };
 

@@ -24,13 +24,13 @@
 class integral : public basic
 {
 public:
-	integral(const ex & x_, const ex & a_, const ex & b_, const ex & f_);
-	exvector get_free_indices() const;
-	unsigned return_type() const;
-	unsigned return_type_tinfo() const;
-	ex eval_integ() const;
-	static int max_integration_level;
-	static ex relative_integration_error;
+    integral(const ex & x_, const ex & a_, const ex & b_, const ex & f_);
+    exvector get_free_indices() const;
+    unsigned return_type() const;
+    tinfo_t return_type_tinfo() const;
+    ex eval_integ() const;
+    static int max_integration_level;
+    static ex relative_integration_error;
 };
 
 // utility functions
@@ -39,11 +39,11 @@ public:
 template<> inline bool is_exactly_a<integral>(const basic & obj);
 
 GiNaC::ex adaptivesimpson(
-	const GiNaC::ex &x,
-	const GiNaC::ex &a,
-	const GiNaC::ex &b,
-	const GiNaC::ex &f,
-	const GiNaC::ex &error = integral::relative_integration_error
+    const GiNaC::ex &x,
+    const GiNaC::ex &a,
+    const GiNaC::ex &b,
+    const GiNaC::ex &f,
+    const GiNaC::ex &error = integral::relative_integration_error
 );
 
 // vim:ft=cpp:

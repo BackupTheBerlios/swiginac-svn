@@ -80,11 +80,11 @@ bool checktype2ex(PyObject * input) {
 }
 
 #define EX2(NAME) \
-case TINFO_##NAME: {\
+if (tinfo_key == &NAME::tinfo_static) {\
     NAME *p = new NAME(ex_to<NAME>(*convert));\
     GETDESC(NAME);\
     return SWIG_NewPointerObj((void *)p, NAME##descr, 1);\
-}
+} else
 
 //unwraps ex and return python object
 PyObject * ex2type(const ex* input) {
@@ -99,14 +99,16 @@ PyObject * ex2type(const ex* input) {
 
     const ex* convert = &tmp;
 
-    switch (ex_to<basic>(*convert).tinfo()) {
+    //switch (ex_to<basic>(*convert).tinfo()) {
+    tinfo_t tinfo_key = ex_to<basic>(*convert).tinfo();
+
         EX2(symbol)
         EX2(constant)
         EX2(numeric)
-        case TINFO_lst: {
-            lst *l = new lst(ex_to<lst>(*convert));
-            return lst2list(l);
-        }
+    if (tinfo_key == &lst::tinfo_static) {
+        lst *l = new lst(ex_to<lst>(*convert));
+        return lst2list(l);
+    } else
         EX2(pseries)
         EX2(su3one)
         EX2(su3t)
@@ -140,7 +142,7 @@ PyObject * ex2type(const ex* input) {
         EX2(ncmul)
         EX2(matrix)
         EX2(power)
-        default:
+    {
             throw (std::logic_error("Cannot unwrap ex. Fix in ex.i"));
     }
 }

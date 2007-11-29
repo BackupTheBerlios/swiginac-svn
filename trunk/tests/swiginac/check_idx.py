@@ -237,7 +237,7 @@ class test_idx(unittest.TestCase):
         #g.sy_symm(0,1,2,3).add(4).add(5)
 
         e=g.indexed(A,g.sy_symm(),i,j)+g.indexed(A,g.sy_symm(),j,i)
-        self.assertEqual(e,2*g.indexed(A,i,j))
+        self.assertEqual(e,2*g.indexed(A,g.sy_symm(), i,j))
 
         e=g.indexed(A,g.sy_anti(),i,j)+g.indexed(A,g.sy_anti(),j,i)
         self.assertEqual(e,0)
