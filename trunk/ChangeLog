@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Released 0.9.7 [2007-11-29]
+ - swiginac: updated INSTALL.TXT to include pkg-config as dependency
  - swiginac: use pkg-config to resolve ginac and cln installation instead of ginac-config
  - swiginac: memory leak fix (patch from Kent-Andre Mardal and Martin Sandve Alnæs)
  - swiginac: added ref and unref feature for refcounted (base class)
