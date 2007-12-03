@@ -1,0 +1,137 @@
+---------------------------
+SWIGINAC INSTALLATION NOTES
+---------------------------
+
+Dependencies
+------------
+
+Before compiling and installing swiginac, make sure that you have installed
+GiNaC (ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/),
+SWIG (http://sourceforge.net/project/showfiles.php?group_id=1645), and
+pkg-config (http://pkg-config.freedesktop.org/wiki/). 
+
+Versions known to work are GiNaC version >= 1.3.2 and < 1.4.0,
+SWIG version >= 1.3.24, and pkg-config version 0.22-1. 
+(Remark: GiNaC version 1.3.0, 1.3.1 are known to _not_ work!)
+
+Most recent Linux distributions have packages for the above software. E.g., in
+Debian 4.0 (etch), the packages are:
+libginac1.3c2a
+libginac-dev
+swig1.3
+pkg-config
+
+Supported platforms
+-------------------
+We have successfully installed swiginac using the distutils file on the
+following platforms:
+
+ - Debian Linux 4.0 (etch): i386
+ - Ubuntu edgy amd64 (needs GiNaC version >=1.3.5)
+ - MacOSX "Tiger" 10.4
+
+Installing using distutils
+--------------------------
+
+Make sure that the dependencies (see above) are met. Additionally, the Python
+module distutils must be installed.
+
+To install swiginac and Symbolic, simply run:
+python setup.py build
+python setup.py install
+
+At this point, swiginac and Symbolic should be installed in the site-packages
+directory of your default Python interpreter (on Debian with Python2.3:
+/usr/lib/python2.3/site-packages).
+
+Troubleshooting
+---------------
+
+The setup.py file in swiginac depends on pkg-config
+(http://pkg-config.freedesktop.org/wiki/). The package is usually present in in
+most Linux distros. Pkg-config uses .pc files to resolve dependecy build and
+link flags, and these files are usually put in /usr/local/lib/pkgconfig or
+/usr/lib/pkgconfig. If you have installed (a recent) GiNaC previously,
+choosing /usr/local as install prefix, a pkgconfig file named ginac.pc will be
+installed under /usr/local/lib/pkgconfig, and this might conflict with the
+current version of GiNaC. Using the wrong ginac.pc may cause the setup.py
+installation to fail, since pkg-config will report wrong compilation options.
+If you experience lots of compiler errors, despite the fact that you have
+installed a ginac version compliant with the requirements in swiginac, type:
+pkg-config --variable=prefix ginac
+to see the prefix of the ginac installation used in setup.py. If the script
+reports an unexpected prefix (e.g. /usr/local instead of /usr), delete the
+ginac.pc file:
+rm `pkg-config --variable=prefix ginac`/lib/pkgconfig/ginac.pc
+
+Be aware that Debian gcc 4.0.2-2 and 4.0.2-4 are not able to compile the
+wrapper code correctly in optimized mode. Therefore, expect that Python 
+distutils will not work with gcc-4.0.x compilers with aggressive optimization
+(-O3). To be safe, either use a 3.x gcc compiler or build the module with less
+optimization:
+CFLAGS=-O0 python setup.py build
+
+(Thanks to Matti Peltom?ki for pointing this out)
+
+Installing using make
+---------------------
+For impatient:
+
+cd src/swiginac
+make
+make install
+cd ../Symbolic
+make
+
+More info:
+Make sure that the dependencies (see above) are met.  The Makefile works on
+Debian unstable, if you use other system, you may need to edit it. I.e., edit
+PYTHONVERSION (e.g. 2.3), INCLUDES (must contain the directories of the Python
+and ginac header files), eventually PREFIX (installation directory). The
+default PREFIX is in site-packages in the Python installation, so it should
+work out of the box, but if you prefer other directory, you may need to put
+PREFIX in PYTHONPATH. In bash, run: export PYTHONPATH=$PYTHONPATH:$PREFIX with
+PREFIX identical to the definition in Makefile.
+
+Run:
+cd src/swiginac
+make 
+
+This will construct the swiginac extension module. The module consists of the
+files swiginac.py and _swiginac.so. If you prefer not to install anything, you
+can use swiginac just now - import swiginac.py and you are fine.
+
+If you want to install the module in PREFIX, run:
+make install
+
+Installing Symbolic is easily done by entering src/Symbolic and typing
+make install
+If you do not have root privileges, edit the PREFIX variable in Makefile to a
+path where you have permissions to install files, and edit PYTHONPATH
+accordingly.
+
+Verify the installation
+-----------------------
+Go to your home directory and start Python. Then issue the commands:
+>>> from swiginac import *
+>>> x = symbol('x')
+>>> y = symbol('y')
+>>> print sin(x*y).diff(x,1)
+cos(y*x)*y
+>>> 
+
+Then, re-visit the directory containing this file, and run the unit tests:
+cd tests/swiginac
+python checkall.py
+cd ../Symbolic
+python SymbolicTests.py
+
+Hopefully, you will get a message telling you that more than 130 tests have been
+run, and that all but one went well.
+
+Final note
+----------
+swiginac only has a tutorial and a talk as written documentation. Therefore,
+browsing the scripts in the tests directory is a good way of learning more
+about its usage. Also, read the documentation the the GiNaC homepages
+(http://www.ginac.de/tutorial/ and http://www.ginac.de/reference/).
