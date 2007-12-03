@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Released 1.0.0 [2007-12-03]
  - swiginac: Updated interface files to ginac 1.4.1.
  - swiginac: Updated tests to ginac 1.4.1
  - swiginac: Released 0.9.7 [2007-11-29]
