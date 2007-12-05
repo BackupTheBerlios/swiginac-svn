@@ -27,9 +27,10 @@ Introduction
 ============
 
 This tutorial is intended for the novice user who is new to GiNaC_ but
-already has some background in Python programming. It is an adaption of
-the `GiNaC tutorial`_ for doing Computer algebra with GiNaC_ and the
-Python_ programming language using the swiginac_ wrapper package. 
+already has some background in Python programming. It is an adaption of the
+`GiNaC tutorial`_ (for symbolic computation within the C++ programming
+language) for computer algebra with GiNaC_ and the Python_ programming
+language using the swiginac_ wrapper package. 
 
 This tutorial only covers the basics, the original `GiNaC tutorial`_
 says
@@ -54,26 +55,6 @@ there).
 .. _Python: http://www.python.org
 .. _swiginac: http://swiginac.berlios.de
 
-Source
-------
-
-The `source of this tutorial`_ is written in `reStructured Text`_. To
-translate it, you need the Python docutils_. With docutils installed,
-the command ``rst2html ginac-tutorial.py.txt`` will produce the html
-file, while ``rst2pdf.py ginac-tutorial.py.txt`` will produce a PDF
-version.
-
-The bidirectional text <-> code converter PyLit_ can be used to
-transform the tutorial source to a Python module providing the example
-functions and to run the examples in a doctest. (This is why it has the
-``.py.txt`` double extension.)
-
-.. _source of this tutorial:
-  http://svn.berlios.de/svnroot/repos/swiginac/trunk/doc/ginac-tutorial.py.txt
-.. _docutils: http://docutils.sourceforge.net/rst.html
-.. _reStructured Text: http://docutils.sourceforge.net/rst.html
-.. _pylit: http://pylit.berlios.de
-
 A Tour of GiNaC
 ===============
 
@@ -85,15 +66,15 @@ Please excuse us if it leaves many open questions.
 How to use it from within Python
 --------------------------------
 
-Neither GiNaC nor swiGiNaC define a language of their own as conventional
-CAS do. Instead, swiGiNaC converts GiNaC into an open framework for symbolic
-computation within the Python programming language
+Neither GiNaC_ nor swiGiNaC_ define a language of their own as conventional
+computer algebra systems do. Instead, swiGiNaC converts GiNaC into an open
+framework for symbolic computation within the Python programming language
 
 Here is how to generate and print a simple (and rather pointless) bivariate
 polynomial with some large coefficients::
 
   from swiginac import *
-
+  
   def bipol():
       x = symbol('x')
       y = symbol('y')
@@ -103,10 +84,10 @@ polynomial with some large coefficients::
            poly += factorial(i+16) * x**i * y**(2-i)
       
       return poly
+  
+Now we can import the function and try it out:
 
-Now we can evaluate the definition and try it:
-
-  >>> execfile("ginac-tutorial.py")
+  >>> from ginac-tutorial import bipol
   >>> print bipol()
   355687428096000*y*x+20922789888000*y**2+6402373705728000*x**2
 
@@ -120,6 +101,7 @@ in a specified free variable::
    
 When run, this will type out the Hermite polynomials as symbolic terms:
 
+  >>> from ginac-tutorial import HermitePoly
   >>> z = symbol("z");
   >>> for i in xrange(6):
   ...     print "H_%d(z) == %s"%(i, HermitePoly(z,i))
@@ -134,28 +116,25 @@ This method of generating the coefficients is of course far from optimal for
 production purposes.
 
 
-In order to show some more examples of what GiNaC can do, the original
-tutorial uses the ``ginsh``, a simple GiNaC interactive shell. We will show
-that the swiginac_ Python interface provides a similar convenient window
-into GiNaC's capabilities with all of the power of Python_ added.
-
-
 What it can do for you
 ----------------------
 
+In order to show some more examples of GiNaC at work, the original tutorial
+uses the `GiNaC interactive shell` ``ginsh``. The simple ``ginsh`` shell
+does not provide programming constructs like loops or conditionals, whereas
+`swiginac` combines the symbolic capacities of GiNaC_ with the ease of use
+and the power of the full grown and established programming language
+Python_.
 
-After starting a python interpreter, import swiginac with:
+After starting a python interpreter, import the `swiginac` module with:
 
   >>> from swiginac import *
 
 Now you can test and experiment with GiNaC's features much like in other
 Computer Algebra Systems. 
 
-While the simple ``ginsh`` shell does not provide programming constructs
-like loops or conditionals, ``swiginac`` combines the symbolic capacities of
-GiNaC with the power of the full grown and established Python programming
-language.
-
+Symbols
+~~~~~~~
 One main difference between "normal" CAS systems (or ginsh) and computer
 algebra with Python is the need to define any symbols before use. Otherwise
 Python will complain about unidentified variables:
@@ -169,25 +148,34 @@ Python will complain about unidentified variables:
   >>> sin(x)
   sin(x)
 
-OTOH, it is easy to use the power of Python to define a set of
-symbols, e.g. in a script::
+OTOH, it is easy to use define a set of symbols in a function::
 
-  # define all lowercase letters (a-z) as Symbols
-  import sys, string
-
-  def new_symbol(*names):
-      """Create new symbolic variables for all names in the argument list"""
+  import sys
+  def new_symbol(*names, **kwargs):
+      """Create symbolic variables for all names in the argument list
+      
+      and bind them in the namespace of the `__main__` module
+      
+      A keyword argument `obj` is interpreted as an object where the new
+      symbols should be bound, e.g. 
+      ``new_symbol('name1', 'name2', ..., obj=sys.modules[__name__])``
+      binds in the calling modules namespace even if this is not `__main__`.
+      """
+      obj=kwargs.get('obj', sys.modules['__main__'])
       for name in names:
-          setattr(sys.modules[__name__], name, symbol(name))
+          setattr(obj, name, symbol(name))
+  
+and use this, e.g. to make all single lowercase letters symbols:
 
-and use this later as e.g.:
-
-  >>> for name in string.lowercase:
-  ...    new_symbol(name)
+  >>> import string
+  >>> new_symbol(*[name for name in string.lowercase])
 
   >>> type(u)
   <class 'swiginac.symbol'>
 
+
+Numbers
+~~~~~~~
 The ``numeric`` class can manipulate arbitrary precision integers in a very
 fast way. Rational numbers are automatically converted to fractions of
 coprime integers. As by default Python will convert a number to one of its
@@ -230,6 +218,7 @@ be input as string value or as (numerator, denominator) tuple:
 
   >>> print numeric(3, 9)
   1/3
+
 
 Exact numbers are always retained as exact numbers and only evaluated as
 floating point numbers if requested. For instance, products of sums of
@@ -457,13 +446,13 @@ exposed, virtually all of the GiNaC tests pass.
 For more information, documentation and software downloads, visit the
 `swiginac group pages on BerliOS`__.
 
-The `source tarball`__ contains installation instructions in a
+The `source tarballs`_ contains installation instructions in a
 INSTALL.txt file.
 
 .. _SWIG: http://www.swig.org/
 __ http://developer.berlios.de/projects/swiginac/
-__ http://prdownload.berlios.de/swiginac/swiginac-0.9.4.tgz
-
+.. _source tarballs: 
+   http://developer.berlios.de/project/filelist.php?group_id=4761
 
 PyGiNaC
 -------
@@ -483,3 +472,29 @@ this is supposed to change in the future.
 At the moment there are no released tarballs of PyGiNaC. Instead, it can be
 downloaded directly from the CVS repository at SourceForge. (See the
 PyGiNaC_ page for instructions.)
+
+
+
+
+
+
+Source
+------
+
+The `source of this tutorial`_ is written in `reStructured Text`_. To
+translate it, you need the Python docutils_. With docutils installed,
+the command ``rst2html ginac-tutorial.py.txt`` will produce the html
+file, while ``rst2pdf.py ginac-tutorial.py.txt`` will produce a PDF
+version.
+
+The bidirectional text <-> code converter PyLit_ can be used to
+transform the tutorial source to a Python module providing the example
+functions and to run the examples in a doctest. (This is why it has the
+``.py.txt`` double extension.)
+
+.. _source of this tutorial:
+  http://svn.berlios.de/svnroot/repos/swiginac/trunk/doc/ginac-tutorial.py.txt
+.. _docutils: http://docutils.sourceforge.net/rst.html
+.. _reStructured Text: http://docutils.sourceforge.net/rst.html
+.. _pylit: http://pylit.berlios.de
+
