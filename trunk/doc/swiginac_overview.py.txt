@@ -34,7 +34,7 @@ __ http://www.python.org
 Swiginac
 --------
 
-Swiginac__ is a Python interface for GiNaC in form of a Python module:
+Swiginac__ is a Python interface for GiNaC and can be imported as module:
 
 >>> from swiginac import *
   
@@ -51,6 +51,7 @@ __ http://www.swig.org/
 
 Symbols
 -------
+
 Symbols are basic units in Swiginac:
 
 >>> a = symbol('a', r'\alpha')
@@ -68,8 +69,10 @@ beta+a
 All expressions in GiNaC are built with symbols. The drawback of
 this approach is that the level of abstraction is limited
 
+
 Numbers
 -------
+
 The ``numeric`` class can manipulate arbitrary precision integers in a very
 fast way. Rational numbers are automatically converted to fractions of
 coprime integers. 
@@ -78,34 +81,33 @@ When specifying rational numbers, the expression that is the argument
 to `numeric` is evaluated using Pythons "standard" arithmetic, which is
 probabely not what we want:
 
->>> print numeric(1/3)
+>>> numeric(1/3)
 0
->>> print numeric(1./3)
+>>> numeric(1./3)
 0.33333333333333331483
 
 To prevent evaluation by the "normal" Python operators, rational numbers can
-be input as string value or as (numerator, denominator) tuple:
+be input as string value or as (numerator, denominator):
 
->>> print numeric("1/3")
+>>> numeric("1/3")
 1/3
->>> print numeric(1, 3)
+>>> numeric(1, 3)
 1/3
->>> print numeric(3, 9)
+>>> numeric(3, 9)
 1/3
 
 Often, it is sufficient to specify one number in an expression as `numeric`:
 
->>> print numeric(1)/3
+>>> numeric(1)/3
 1/3
-
 
 
 Functions
 ---------
+
 Lots of functions are available
 
->>> u = sin(exp(b))
->>> print u
+>>> sin(exp(b))
 sin(exp(beta))
 
 >>> v = tgamma(a+sqrt(b))
@@ -117,56 +119,66 @@ GiNaC, most of them interfaced in swiginac
 
 Symbolic differentiation
 ------------------------
-Objects have the method diff for differentiation
+
+Objects have the method `diff` for differentiation
 
 >>> x = symbol('x'); y = symbol('y')
-
 >>> P = x**5 + x**2 + y
+
 >>> P.diff(x, 1)
-5*x**4+2*x
+2*x+5*x**4
 >>> P.diff(x, 2)
 2+20*x**3
+
+`diff` exists as a function call too
+
 >>> u = sin(exp(x))
->>> u.diff(x,2)
--exp(x)**2*sin(exp(x))+cos(exp(x))*exp(x)
+>>> diff(u, x)
+exp(x)*cos(exp(x))
+>>> diff(u, x, 2)
+exp(x)*cos(exp(x))-sin(exp(x))*exp(x)**2
+
   
 Matrices
 --------
 
 >>> mat1 = matrix(2,2)   # Two by two matrix
->>> mat1[0,0] = v
->>> mat1[1,1] = u
->>> print mat1 
-[[tgamma(a+beta**(1/2)),0],[0,sin(exp(x))]]
+>>> mat1[0,0] = x
+>>> mat1[1,1] = y
+>>> mat1 
+[[x,0],[0,y]]
 
->>> mat1a = diag_matrix([u,v]) # Alternative definition
+>>> mat1a = diag_matrix([x,y]) # Alternative definition
 >>> print mat1.printlatex()
-\left(\begin{array}{cc}\Gamma(\alpha+\sqrt{\beta})&0\\0&\sin(\exp(x))\end{array}\right)
+\left(\begin{array}{cc}x&0\\0&y\end{array}\right)
 
 >>> mat2 = matrix([[sqrt(a),0],[1.0, cosh(b)]])
 >>> print mat2.printc()
-[[pow(a,(1.0/2.0)),0.0],[1.0000000000000000e+00,cosh(b)]]
+[[pow(a,(1.0/2.0)),0.0],[1.0000000000000000e+00,cosh(beta)]]
+
 
 Simple integral support
 -----------------------
+
 We can construct integral objects and integrate either symbolically
 or numerically:
 
->>> x = symbol('x')
 >>> integ = integral(x, 0, 1, x*x)
 
->>> print integ                
+>>> integ                
 [integral object]
 >>> print integ.printlatex()   
 \int_{0}^{1} dx\,x^{2}
->>> print integ.eval_integ()   
+
+>>> integ.eval_integ()   
 1/3
->>> print integ.evalf()        
+>>> integ.evalf()        
 0.33333333333333333332
 
   
 Substitution
 ------------
+
 Algebraic objects in expressions can be substituted:
 
 >>> u = sin(exp(b))
@@ -186,7 +198,7 @@ sin(z+y+x)
 >>> u.subs([x==1, y==3])
 sin(4+z)
 >>> u.subs([x==1, y==2, z==3]) # Same as u.subs(x+y+z==6)
-sin(6)  
+sin(6)
 
   
 Solving linear systems
@@ -195,7 +207,7 @@ Solving linear systems
 
 >>> x = symbol('x'); y = symbol('y')
 >>> solution = lsolve([3*x + 5*y == 2, 5*x+y == -3], [x,y])
->>> print solution
+>>> solution
 [x==-17/22, y==19/22]
 
 
@@ -203,9 +215,6 @@ Taylor series expansion
 -----------------------
 Expressions can expand themselves as a Taylor series:
 
-  x =symbol("x")
-  taylor = sin(x).series(x==0, 8)
-  
->>> print taylor  
+>>> sin(x).series(x==0, 8)
 1*x+(-1/6)*x**3+1/120*x**5+(-1/5040)*x**7+Order(x**8)
 

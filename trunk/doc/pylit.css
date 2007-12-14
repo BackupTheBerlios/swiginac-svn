@@ -1,0 +1,54 @@
+/* Stylesheet for the swiginac doc pages
+
+:Author:    Guenter Milde
+:Copyright: 2007 G. Milde
+            This stylesheet is released under the GPL v. 2 or later
+
+*/
+
+@import url("html4css1.css");         /* docutils default style sheet */
+/* @import url("pygments-default.css"); */  /* code syntax highlight */
+
+/* customizations */
+/* -------------------- */
+
+div#Inhalt {
+  margin-left: 0em;
+  /* padding-left: 0.5em; */
+  /* border: 1px dashed silver; */
+  /* border-left-width: 1px */
+  /* border-color: silver */
+  min-width: 16em; /* Mindestbreite verhindert Anzeigefehler in modernen Browsern */
+}
+
+h1.title { 
+  text-align: left;
+  background-color: silver;
+  padding: 5px;
+}
+h1 {
+  font-size: 1.5em;
+  /* padding-left: 0.5em; */
+}
+h2 {
+  font-size: 1.2em;
+}
+/* bold definition terms */
+dt { 
+  font-weight: bold; 
+}
+
+/* background colour for literal blocks*/
+pre.literal-block, pre.doctest-block {
+  background-color: #FEFDD8; }
+/* ... and inline literal */
+tt.docutils {
+  background-color: #FEFDD8; }
+
+/* last line with Berlios logo and other buttons*/
+p.thanks { 
+  text-align: right; 
+  background-color: silver;
+  }    
+
+img { border:none }
