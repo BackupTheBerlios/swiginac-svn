@@ -26,11 +26,11 @@ Symbolic Computation with GiNaC and Python
 Introduction
 ============
 
-This tutorial is intended for the novice user who is new to GiNaC_ but
-already has some background in Python programming. It is an adaption of the
-`GiNaC tutorial`_ (for symbolic computation within the C++ programming
-language) for computer algebra with GiNaC_ and the Python_ programming
-language using the swiginac_ wrapper package. 
+This tutorial is intended for the user who is new to GiNaC_ but already has
+some background in Python programming. It is an adaption of the `GiNaC
+tutorial`_ (for symbolic computation within the C++ programming language)
+for computer algebra with GiNaC_ and the Python_ programming language using
+the swiginac_ wrapper package. 
 
 This tutorial only covers the basics, the original `GiNaC tutorial`_
 says
@@ -153,32 +153,6 @@ NameError: name 'x' is not defined
 >>> x = symbol('x')
 >>> sin(x)
 sin(x)
-
-OTOH, it is easy to define a set of symbols in a function::
-
-  import sys
-  def new_symbol(*names, **kwargs):
-      """Create symbolic variables for all names in the argument list
-      
-      and bind them in the namespace of the `__main__` module
-      
-      A keyword argument `obj` is interpreted as an object where the new
-      symbols should be bound, e.g. 
-      ``new_symbol('name1', 'name2', ..., obj=sys.modules[__name__])``
-      binds in the calling modules namespace even if this is not `__main__`.
-      """
-      obj=kwargs.get('obj', sys.modules['__main__'])
-      for name in names:
-          setattr(obj, name, symbol(name))
-  
-and use this, e.g. to make all single lowercase letters symbols:
-
->>> import string
->>> from swiginac_tutorial import new_symbol
->>> new_symbol(*[name for name in string.lowercase])
-
->>> type(u)
-<class 'swiginac.symbol'>
 
 
 Numbers
@@ -320,7 +294,7 @@ class for this purpose:
   >>> b = symbol('b')
 
   >>> lsolve(a+x*y==z,x)
-  y**(-1)*(z-a)
+  (z-a)*y**(-1)
 
   >>> lsolve([3*x+5*y == 7, -2*x+10*y == -5], [x, y])
   [x==19/8, y==-1/40]
@@ -331,12 +305,10 @@ class for this purpose:
 
   >>> l = symbol('lambda', '\lambda')  # lambda is a Python keyword
   >>> charpoly(M,l)
-  11-3*lambda+lambda**2
+  11+lambda**2-3*lambda
   
   >>> A = matrix([[1, 1], [2, -1]])
   >>> A + 2*M
-  [[1,1],[2,-1]]+2*[[1,3],[-3,2]]
-  >>> evalm(A + 2*M)
   [[3,7],[-4,3]]
 
   >>> B = matrix([[0, 0, a], [b, 1, -b], [-1/a, 0, 0]])
@@ -350,11 +322,11 @@ and normalized (i.e. converted to a ratio of two coprime polynomials):
   >>> b = x**2 + 4*x*y - y**2
 
   >>> expand(a*b)
-  3*y**6+8*y*x**5+16*y**3*x**3+x**6+43*y**4*x**2-24*y**5*x+17*y**2*x**4
+  43*y**4*x**2+3*y**6-24*y**5*x+17*y**2*x**4+8*y*x**5+x**6+16*y**3*x**3
   >>> collect(a+b,x)
-  (1+2*y**2)*x**2-3*y**4+x**4+x*(4*y+12*y**3)+4*y*x**3-y**2
+  -3*y**4+x*(4*y+12*y**3)+(1+2*y**2)*x**2+4*y*x**3+x**4-y**2
   >>> collect(a+b,y)
-  12*y**3*x-3*y**4+x**4+(-1+2*x**2)*y**2+x**2+y*(4*x+4*x**3)
+  -3*y**4+x**2+(4*x**3+4*x)*y+12*y**3*x+x**4+y**2*(-1+2*x**2)
 
   >>> normal(a/b)
   x**2+3*y**2
@@ -379,26 +351,47 @@ defining the evaluation point, the third specifies the order):
   1.0*x**(-1)+(-0.5772156649015328606)+0.9890559953279725555*x+Order(x**2)
 
   >>> series(tgamma(2*sin(x)-2),x==Pi/2,3)
-  (-1)*(-1/2*Pi+x)**(-2)+(-1/12-Euler)+(-1/240-1/12*Pi**2-1/2*Euler**2)*(-1/2*Pi+x)**2+Order((-1/2*Pi+x)**3)
+  (-1)*(x-1/2*Pi)**(-2)+(-1/12-Euler)+(-1/240-1/12*Pi**2-1/2*Euler**2)*(x-1/2*Pi)**2+Order((x-1/2*Pi)**3)
 
-Often, functions don't have roots in closed form. Nevertheless, GiNaC can
-compute a solution numerically:
 
-   TODO: is there an equivalent to fsolve in swiginac?
+Often, functions don't have roots in closed form. Nevertheless, it's quite
+easy to compute a solution numerically:
+
+  >>> fsolve(cos(x)==x,x,0,2)
+  0.73908513321516064166
+  >>> f=exp(sin(x))-x
+  >>> X=fsolve(f,x,-10,10)
+  >>> X
+  2.2191071489137460327
+  >>> subs(f,x==X)
+  -2.168404344971008868E-19
+
+Notice how the final result above differs slightly from zero by about
+2*10^(-19). This is because with 20 decimal digits precision the root cannot
+be represented more accurately than X. Such inaccuracies are to be expected
+when computing with finite floating point values. 
 
 
 Symbolic types can always be used as tags for different types of objects.
 Converting from "wrong" units to the metric system is an example:
 
-  >>> new_symbol('m', 'kg', 'lb', 'inch')
+  >>> m = symbol('m'); kg = symbol('kg')
   >>> inch = .0254*m
   >>> lb = .45359237*kg
   >>> 200*lb/inch**2
-  (140613.91592783187407)*kg*m**(-2)
+  (140613.91592783187407)*m**(-2)*kg
 
-BTW, the *Scientific.Physics.PhysicalQuantities* module from the Scientific_
+However, as generic symbols do not know about special properties of physical
+units, it can not simplify all expressions with unit symbols:
+
+  >>> print abs(-3), abs(-3*m)
+  3 abs(-3*m)
+  
+(We know, that m is positiv definit, but GiNaC does not.)
+
+The *Scientific.Physics.PhysicalQuantities* module from the Scientific_
 package provides an elaborated environment specifically designed for working
-with units.
+with units. Unfortunately, it does not collaborate well with swiginac.
 
 .. _Scientific: http://dirac.cnrs-orleans.fr/ScientificPython/
 
@@ -407,7 +400,7 @@ Installation
 ============
 
 Installation is covered in the original documentation of the relevant
-packages. Instead of repeating it, just pointers will be given.
+packages. Instead of repeating it, pointers will be given.
 
 GiNaC
 -----

@@ -8,7 +8,8 @@ Ola Skavhaug [1]_\ [2]_   Ondrej Certic  [3]_\ [4]_
 .. [3] Faculty of Mathematics and Physics
 .. [4] Charles University in Prague
 
-October 19-20 2005, TTI, Chicago
+Excerpt from the slides of a presentation in
+October 19-20 2005, TTI, Chicago 
 
 GiNaC
 -----

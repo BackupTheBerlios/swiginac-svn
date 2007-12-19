@@ -161,13 +161,13 @@ img { border:none }
 <li><a class="reference internal" href="#symbol-factory" id="id3">Symbol Factory</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#expressions" id="id4">Expressions</a><ul>
-<li><a class="reference internal" href="#output-styles" id="id5">Output styles</a></li>
+<li><a class="reference internal" href="#numbers" id="id4">Numbers</a><ul>
+<li><a class="reference internal" href="#converting-numbers" id="id5">Converting numbers</a></li>
+<li><a class="reference internal" href="#complex-numbers" id="id6">Complex Numbers</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#numbers" id="id6">Numbers</a><ul>
-<li><a class="reference internal" href="#converting-numbers" id="id7">Converting numbers</a></li>
-<li><a class="reference internal" href="#complex-numbers" id="id8">Complex Numbers</a></li>
+<li><a class="reference internal" href="#expressions" id="id7">Expressions</a><ul>
+<li><a class="reference internal" href="#output-styles" id="id8">Output styles</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#functions" id="id9">Functions</a></li>
@@ -202,8 +202,11 @@ from swiginac import *
 <p>introspection is possible with e.g.</p>
 <pre class="literal-block">
 # pprint(dir(swiginac))
-# pprint(vars(swiginac))
 </pre>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">/home/milde/Code/Python/Sympy/swiginac-svn/trunk/doc/examples/swiginac_basics.py.txt</tt>, line 27)</p>
+Inconsistent literal block quoting.</div>
+<p>pprint(vars(swiginac))</p>
 </div>
 <div class="section" id="symbols">
 <h1><a class="toc-backref" href="#id2">Symbols</a></h1>
@@ -288,7 +291,7 @@ def new_symbol(*names, **kwargs):
 import string
 new_symbol(*[name for name in string.lowercase])
 </pre>
-<p>Define a-z as Symbols in the main module in the current module:</p>
+<p>Define a-z as Symbols in the current module:</p>
 <pre class="literal-block">
 new_symbol(obj=sys.modules[__name__], *[name for name in string.lowercase])
 </pre>
@@ -299,66 +302,8 @@ new_symbol(obj=sys.modules[__name__], *[name for name in string.lowercase])
 </pre>
 </div>
 </div>
-<div class="section" id="expressions">
-<h1><a class="toc-backref" href="#id4">Expressions</a></h1>
-<p>All expressions in GiNaC are built with symbols.</p>
-<p>They are converted to a &quot;canonical&quot; representation and have a class that
-depends on the expression:</p>
-<pre class="literal-block">
-ab1 = a/2 + b
-ab2 = (a+b)/2
-ab3 = (a+b)/c
-</pre>
-<pre class="doctest-block">
-&gt;&gt;&gt; ab1, type(ab1)
-(b+1/2*a, &lt;class 'swiginac.add'&gt;)
-&gt;&gt;&gt; ab2, type(ab2)
-(1/2*b+1/2*a, &lt;class 'swiginac.add'&gt;)
-&gt;&gt;&gt; ab3, type(ab3)
-(c**(-1)*(b+a), &lt;class 'swiginac.mul'&gt;)
-</pre>
-<p>In the <cite>Symbolic</cite> package, there is the common class <cite>Symbolic.Expr</cite>.</p>
-<div class="section" id="output-styles">
-<h2><a class="toc-backref" href="#id5">Output styles</a></h2>
-<p>Symbols can be defined with additional TeX string representation
-Greek letter names will be converted to commands in Tex output:</p>
-<pre class="literal-block">
-a_pix = symbol('a_pix', 'a_\mathrm{pix}')
-beta = symbol('beta')
-ab = a_pix + beta/2
-</pre>
-<p>Expressions have methods returning string representations in several styles:</p>
-<pre class="doctest-block">
-&gt;&gt;&gt; [method for method in dir(ab) if method.find('print') == 0]
-['print_dispatch', 'printc', 'printlatex', 'printpython']
-</pre>
-<pre class="doctest-block">
-&gt;&gt;&gt; ab.printpython()
-'1/2*beta+a_pix'
-&gt;&gt;&gt; ab.printc()
-'beta/2.0+a_pix'
-&gt;&gt;&gt; ab.printlatex()
-'\\frac{1}{2} \\beta+a_\\mathrm{pix}'
-</pre>
-<p>More print related methods</p>
-<pre class="doctest-block">
-&gt;&gt;&gt; [method for method in dir(u) if method.find('print') &gt; 0]
-['dbgprint', 'dbgprinttree', 'set_print_context']
-</pre>
-<p>A default output style (print context) can be set for an object</p>
-<pre class="doctest-block">
-&gt;&gt;&gt; print ab
-1/2*beta+a_pix
-&gt;&gt;&gt; ab.set_print_context('tex')
-&gt;&gt;&gt; print ab
-\frac{1}{2} \beta+a_\mathrm{pix}
-</pre>
-<p>Unfortunately, this cannot be done on a per-module or per-application scale
-currently.</p>
-</div>
-</div>
 <div class="section" id="numbers">
-<h1><a class="toc-backref" href="#id6">Numbers</a></h1>
+<h1><a class="toc-backref" href="#id4">Numbers</a></h1>
 <p>The <tt class="docutils literal"><span class="pre">numeric</span></tt> class can manipulate arbitrary precision integers in a very
 fast way.</p>
 <p>Rational numbers are automatically converted to fractions of coprime
@@ -390,7 +335,7 @@ be input as string value or as (numerator, denominator) tuple:</p>
 1/3
 </pre>
 <div class="section" id="converting-numbers">
-<h2><a class="toc-backref" href="#id7">Converting numbers</a></h2>
+<h2><a class="toc-backref" href="#id5">Converting numbers</a></h2>
 <p>The <cite>evalf</cite> method converts any number in GiNaC's expressions
 into floating point numbers:</p>
 <pre class="doctest-block">
@@ -412,18 +357,19 @@ into floating point numbers:</p>
 but what do they do?</p>
 </div>
 <div class="section" id="complex-numbers">
-<h2><a class="toc-backref" href="#id8">Complex Numbers</a></h2>
-<p>Complex numbers are represented as expressions with the imaginary unit <cite>I</cite></p>
+<h2><a class="toc-backref" href="#id6">Complex Numbers</a></h2>
+<p>Complex numbers are expressad with the imaginary unit <cite>I</cite></p>
 <pre class="doctest-block">
-&gt;&gt;&gt; I, I**2
-(I, -1)
+&gt;&gt;&gt; I, I**2, 2+3*I
+(I, -1, 2+3*I)
 </pre>
-<p>But their type is <cite>numeric</cite>:</p>
+<p>However, they are numbers (even if they look like a symbol, sum, or product):</p>
 <pre class="doctest-block">
 &gt;&gt;&gt; type(I), type(2 + 3*I)
 (&lt;class 'swiginac.numeric'&gt;, &lt;class 'swiginac.numeric'&gt;)
 </pre>
-<p>Python's <cite>complex</cite> numbers can currently not be converted to <cite>numeric</cite> objects:</p>
+<p>Python's <cite>complex</cite> numbers can currently not be converted to <cite>numeric</cite>
+objects:</p>
 <pre class="literal-block">
 z_p = 2+3j
 </pre>
@@ -462,6 +408,64 @@ z_g = z_p.real + z_p.imag*I
 &gt;&gt;&gt; z_g.real(), z_g.imag()
 (2.0, 3.0)
 </pre>
+</div>
+</div>
+<div class="section" id="expressions">
+<h1><a class="toc-backref" href="#id7">Expressions</a></h1>
+<p>Expressions in GiNaC are built with symbols and numbers.</p>
+<p>They are converted to a &quot;canonical&quot; representation and have a class that
+depends on the expression:</p>
+<pre class="literal-block">
+ex1 = a/2 + b
+ex2 = (a+b)/2
+ex3 = (a+b)/c
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; ex1, type(ex1)
+(b+1/2*a, &lt;class 'swiginac.add'&gt;)
+&gt;&gt;&gt; ex2, type(ex2)
+(1/2*b+1/2*a, &lt;class 'swiginac.add'&gt;)
+&gt;&gt;&gt; ex3, type(ex3)
+(c**(-1)*(b+a), &lt;class 'swiginac.mul'&gt;)
+</pre>
+<p>In the <cite>Symbolic</cite> package, there is the common class <cite>Symbolic.Expr</cite>.</p>
+<div class="section" id="output-styles">
+<h2><a class="toc-backref" href="#id8">Output styles</a></h2>
+<p>Symbols can be defined with additional TeX string representation
+Greek letter names will be converted to commands in Tex output:</p>
+<pre class="literal-block">
+a_pix = symbol('a_pix', 'a_\mathrm{pix}')
+beta = symbol('beta')
+ex4 = a_pix + beta/2
+</pre>
+<p>Expressions have methods returning string representations in several styles:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; [method for method in dir(ex4) if method.find('print') == 0]
+['print_dispatch', 'printc', 'printlatex', 'printpython']
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; ex4.printpython()
+'1/2*beta+a_pix'
+&gt;&gt;&gt; ex4.printc()
+'beta/2.0+a_pix'
+&gt;&gt;&gt; ex4.printlatex()
+'\\frac{1}{2} \\beta+a_\\mathrm{pix}'
+</pre>
+<p>More print related methods</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; [method for method in dir(u) if method.find('print') &gt; 0]
+['dbgprint', 'dbgprinttree', 'set_print_context']
+</pre>
+<p>A default output style (print context) can be set for an object</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; print ex4
+1/2*beta+a_pix
+&gt;&gt;&gt; ex4.set_print_context('tex')
+&gt;&gt;&gt; print ex4
+\frac{1}{2} \beta+a_\mathrm{pix}
+</pre>
+<p>Unfortunately, this cannot be done on a per-module or per-application scale
+currently.</p>
 </div>
 </div>
 <div class="section" id="functions">
@@ -606,21 +610,70 @@ sin(y**(1/2))
 &gt;&gt;&gt; float(s2.evalf())
 0.98776594599273548
 </pre>
-<p>Sub-expressions do not match:</p>
+<p>It is possible to replace individual symbols or terms.
+Several substitutions can be given in a sequence (list or tuple):</p>
 <pre class="literal-block">
 s3 = sin(x+y+z)
+
+s4 = s3.subs([x==1, y==2])
+s5 = s3.subs(x+y+z==6)
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; print s4
+sin(3+z)
+&gt;&gt;&gt; print s5
+sin(6)
+</pre>
+<p>But sub-expressions do not match:</p>
+<pre class="literal-block">
+s6 = s3.subs(x+y==4)
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; s6
+sin(x+z+y)
 </pre>
 <pre class="doctest-block">
 &gt;&gt;&gt; s3.subs(x+y==4)
 sin(x+z+y)
 </pre>
-<p>However, these should match and substitute but currently fail the doctest:</p>
+<p>Strange: Some substitutions work in the module but fail the doctest:</p>
 <pre class="doctest-block">
-&gt;&gt;&gt; s3.subs([x==1, y==2, z==3])
-sin(6)
-&gt;&gt;&gt; s3.subs(x+y+z==6)
+&gt;&gt;&gt; print s3.subs([x==1, y==2])
+sin(3+z)
+</pre>
+<dl class="docutils">
+<dt>Failed example:</dt>
+<dd>print s3.subs([x==1, y==2])</dd>
+<dt>Expected:</dt>
+<dd>sin(3+z)</dd>
+<dt>Got:</dt>
+<dd>sin(x+z+y)</dd>
+</dl>
+<pre class="doctest-block">
+&gt;&gt;&gt; print s3.subs([x==1, y==2, z==3])
 sin(6)
 </pre>
+<dl class="docutils">
+<dt>Failed example:</dt>
+<dd>print s3.subs([x==1, y==2, z==3])</dd>
+<dt>Expected:</dt>
+<dd>sin(6)</dd>
+<dt>Got:</dt>
+<dd>sin(3+x+y)</dd>
+</dl>
+<pre class="doctest-block">
+&gt;&gt;&gt; s7 = s3.subs([x==1, y==2, z==3])
+&gt;&gt;&gt; s7
+sin(6)
+</pre>
+<dl class="docutils">
+<dt>Failed example:</dt>
+<dd>s7</dd>
+<dt>Expected:</dt>
+<dd>sin(6)</dd>
+<dt>Got:</dt>
+<dd>sin(3+x+y)</dd>
+</dl>
 </div>
 <div class="section" id="solving-linear-systems">
 <h1><a class="toc-backref" href="#id14">Solving linear systems</a></h1>
@@ -688,7 +741,7 @@ y+z+x
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2007-12-14.
+Generated on: 2007-12-19.
 
 </div>
 </body>

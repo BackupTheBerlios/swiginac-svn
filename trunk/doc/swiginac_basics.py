@@ -23,6 +23,7 @@ from swiginac import *
 # 
 # introspection is possible with e.g. ::
 
+# # from pprint import pprint
 # # pprint(dir(swiginac))
 # # pprint(vars(swiginac))
 # 
@@ -112,7 +113,7 @@ def new_symbol(*names, **kwargs):
 import string
 new_symbol(*[name for name in string.lowercase])
 
-# Define a-z as Symbols in the main module in the current module::
+# Define a-z as Symbols in the current module::
 
 new_symbol(obj=sys.modules[__name__], *[name for name in string.lowercase])
 
@@ -120,68 +121,6 @@ new_symbol(obj=sys.modules[__name__], *[name for name in string.lowercase])
 # 
 # >>> [sym for sym in [a,b,c,d,e,f,g,h,i,j,k,l,m,n] if type(sym) != swiginac.symbol]
 # []
-# 
-# Expressions
-# -----------
-# All expressions in GiNaC are built with symbols. 
-# 
-# 
-# They are converted to a "canonical" representation and have a class that
-# depends on the expression::
-
-ab1 = a/2 + b
-ab2 = (a+b)/2
-ab3 = (a+b)/c 
-
-
-# >>> ab1, type(ab1)
-# (b+1/2*a, <class 'swiginac.add'>)
-# >>> ab2, type(ab2)
-# (1/2*b+1/2*a, <class 'swiginac.add'>)
-# >>> ab3, type(ab3)
-# (c**(-1)*(b+a), <class 'swiginac.mul'>)
-#   
-# In the `Symbolic` package, there is the common class `Symbolic.Expr`.
-# 
-# 
-# Output styles
-# ~~~~~~~~~~~~~
-# 
-# Symbols can be defined with additional TeX string representation
-# Greek letter names will be converted to commands in Tex output::
-
-a_pix = symbol('a_pix', 'a_\mathrm{pix}')
-beta = symbol('beta')
-ab = a_pix + beta/2
-
-# Expressions have methods returning string representations in several styles:
-# 
-# >>> [method for method in dir(ab) if method.find('print') == 0]
-# ['print_dispatch', 'printc', 'printlatex', 'printpython']
-#  
-# >>> ab.printpython()
-# '1/2*beta+a_pix'
-# >>> ab.printc()
-# 'beta/2.0+a_pix'
-# >>> ab.printlatex()
-# '\\frac{1}{2} \\beta+a_\\mathrm{pix}'
-# 
-# More print related methods 
-# 
-# >>> [method for method in dir(u) if method.find('print') > 0]
-# ['dbgprint', 'dbgprinttree', 'set_print_context']
-# 
-# A default output style (print context) can be set for an object
-# 
-# >>> print ab
-# 1/2*beta+a_pix
-# >>> ab.set_print_context('tex')
-# >>> print ab
-# \frac{1}{2} \beta+a_\mathrm{pix}
-#   
-# Unfortunately, this cannot be done on a per-module or per-application scale
-# currently.
-# 
 # 
 # Numbers
 # -------
@@ -244,17 +183,18 @@ ab = a_pix + beta/2
 # Complex Numbers
 # ~~~~~~~~~~~~~~~
 # 
-# Complex numbers are represented as expressions with the imaginary unit `I`
+# Complex numbers are expressad with the imaginary unit `I`
 # 
-# >>> I, I**2
-# (I, -1)
+# >>> I, I**2, 2+3*I
+# (I, -1, 2+3*I)
 # 
-# But their type is `numeric`:
+# However, they are numbers (even if they look like a symbol, sum, or product):
 # 
 # >>> type(I), type(2 + 3*I)
 # (<class 'swiginac.numeric'>, <class 'swiginac.numeric'>)
 # 
-# Python's `complex` numbers can currently not be converted to `numeric` objects::
+# Python's `complex` numbers can currently not be converted to `numeric`
+# objects::
 
 z_p = 2+3j
 
@@ -292,6 +232,67 @@ z_g = z_p.real + z_p.imag*I
 # 
 # >>> z_g.real(), z_g.imag()
 # (2.0, 3.0)
+# 
+# Expressions
+# -----------
+# 
+# Expressions in GiNaC are built with symbols and numbers. 
+# 
+# They are converted to a "canonical" representation and have a class that
+# depends on the expression::
+
+ex1 = a/2 + b
+ex2 = (a+b)/2
+ex3 = (a+b)/c 
+
+
+# >>> ex1, type(ex1)
+# (b+1/2*a, <class 'swiginac.add'>)
+# >>> ex2, type(ex2)
+# (1/2*b+1/2*a, <class 'swiginac.add'>)
+# >>> ex3, type(ex3)
+# (c**(-1)*(b+a), <class 'swiginac.mul'>)
+#   
+# In the `Symbolic` package, there is the common class `Symbolic.Expr`.
+# 
+# 
+# Output styles
+# ~~~~~~~~~~~~~
+# 
+# Symbols can be defined with additional TeX string representation
+# Greek letter names will be converted to commands in Tex output::
+
+a_pix = symbol('a_pix', 'a_\mathrm{pix}')
+beta = symbol('beta')
+ex4 = a_pix + beta/2
+
+# Expressions have methods returning string representations in several styles:
+# 
+# >>> [method for method in dir(ex4) if method.find('print') == 0]
+# ['print_dispatch', 'printc', 'printlatex', 'printpython']
+#  
+# >>> ex4.printpython()
+# '1/2*beta+a_pix'
+# >>> ex4.printc()
+# 'beta/2.0+a_pix'
+# >>> ex4.printlatex()
+# '\\frac{1}{2} \\beta+a_\\mathrm{pix}'
+# 
+# More print related methods 
+# 
+# >>> [method for method in dir(u) if method.find('print') > 0]
+# ['dbgprint', 'dbgprinttree', 'set_print_context']
+# 
+# A default output style (print context) can be set for an object
+# 
+# >>> print ex4
+# 1/2*beta+a_pix
+# >>> ex4.set_print_context('tex')
+# >>> print ex4
+# \frac{1}{2} \beta+a_\mathrm{pix}
+#   
+# Unfortunately, this cannot be done on a per-module or per-application scale
+# currently.
 # 
 #   
 # Functions
@@ -437,20 +438,61 @@ s2 = s1.subs(y==2)
 # >>> float(s2.evalf())
 # 0.98776594599273548
 # 
-#   
-# Sub-expressions do not match::
+# It is possible to replace individual symbols or terms. 
+# Several substitutions can be given in a sequence (list or tuple)::
 
 s3 = sin(x+y+z)
 
+s4 = s3.subs([x==1, y==2])
+s5 = s3.subs(x+y+z==6)
+
+# >>> print s4
+# sin(3+z)
+# >>> print s5
+# sin(6)
+# 
+# But sub-expressions do not match::
+
+s6 = s3.subs(x+y==4)
+
+# >>> s6
+# sin(x+z+y)
+# 
 # >>> s3.subs(x+y==4)
 # sin(x+z+y)
 # 
-# However, these should match and substitute but currently fail the doctest:
+# Strange: Some substitutions work in the module but fail the doctest:
 # 
-# >>> s3.subs([x==1, y==2, z==3]) 
+# >>> print s3.subs([x==1, y==2])
+# sin(3+z)
+# 
+# Failed example:
+#     print s3.subs([x==1, y==2])
+# Expected:
+#     sin(3+z)
+# Got:
+#     sin(x+z+y)
+# 
+# >>> print s3.subs([x==1, y==2, z==3])
 # sin(6)
-# >>> s3.subs(x+y+z==6)
+# 
+# Failed example:
+#     print s3.subs([x==1, y==2, z==3])
+# Expected:
+#     sin(6)
+# Got:
+#     sin(3+x+y)
+# 
+# >>> s7 = s3.subs([x==1, y==2, z==3])
+# >>> s7
 # sin(6)
+# 
+# Failed example:
+#     s7
+# Expected:
+#     sin(6)
+# Got:
+#     sin(3+x+y)
 # 
 # 
 # Solving linear systems
@@ -468,6 +510,8 @@ ev = lsolve(lgs, [x,y])
 # 2==2
 # >>> lgs[1].subs(ev)
 # -3==-3
+# 
+# 
 # 
 # Taylor series expansion
 # -----------------------
