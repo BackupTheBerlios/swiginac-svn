@@ -23,7 +23,6 @@ from swiginac import *
 # 
 # introspection is possible with e.g. ::
 
-# # from pprint import pprint
 # # pprint(dir(swiginac))
 # # pprint(vars(swiginac))
 # 
