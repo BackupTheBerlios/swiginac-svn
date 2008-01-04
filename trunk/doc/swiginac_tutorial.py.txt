@@ -72,7 +72,7 @@ in need of symbolic manipulation.
 
 Python_ is such an application.
 
-Swiginac_ is a Python interface for GiNaC addign symbolic mathematics to the
+Swiginac_ is a Python interface for GiNaC adding symbolic mathematics to the
 many features of Python.
 After starting a python interpreter, import the `swiginac` module with:
 
@@ -154,6 +154,12 @@ NameError: name 'x' is not defined
 >>> sin(x)
 sin(x)
 
+You can also define a set of symbols in a loop:
+
+>>> import sys
+>>> for sym in ['x', 'y', 'z']:
+...    setattr(sys.modules[__name__], sym, symbol(sym))
+
 
 Numbers
 ~~~~~~~
@@ -201,66 +207,65 @@ Exact numbers are always retained as exact numbers and only evaluated as
 floating point numbers if requested. For instance, products of sums of
 radicals can be expanded:
 
-  >>> a = symbol('a')
-  >>> expand((1+a**numeric('1/5')-a**numeric('2/5'))**3)
-  1-a**(6/5)+3*a**(1/5)-5*a**(3/5)+3*a
+>>> a = symbol('a')
+>>> expand((1+a**numeric('1/5')-a**numeric('2/5'))**3)
+1-a**(6/5)+3*a+3*a**(1/5)-5*a**(3/5)
 
 Numeric radicals are dealt pretty much as symbols:
 
-  >>> expand((1+3**numeric('1/5')-3**numeric('2/5'))**3)
-  10-5*3**(3/5)
-
-  >>> ((1+3**numeric('1/5')-3**numeric('2/5'))**3).evalf()
-  0.33408977534118624228
+>>> expand((1+3**numeric('1/5')-3**numeric('2/5'))**3)
+10-5*3**(3/5)
+>>> ((1+3**numeric('1/5')-3**numeric('2/5'))**3).evalf()
+0.33408977534118624228
 
 
 The ``evalf()`` method used above converts any number in GiNaC's expressions
 into floating point numbers:
 
-  >>> numeric('1/7').evalf()
-  0.14285714285714285714
+>>> numeric('1/7').evalf()
+0.14285714285714285714
 
-.. note:: In GiNaC or ginsh, this can be done to arbitrary predefined
-    accuracy:
+.. note:: 
+   In GiNaC or ginsh, this can be done to arbitrary predefined
+   accuracy::
 
-   > Digits=150;
-   150
-   > evalf(1/7);
-   0.1428571428571428571428571428571428571428571428571428571428571428571428
+     > Digits=150;
+     150
+     > evalf(1/7);
+     0.1428571428571428571428571428571428571428571428571428571428571428571428
 
- I did not find an equivalent setting in swiginac, though. Either this is
- not available (yet) or I just did not find it.
+   There is no equivalent setting in swiginac (yet).
 
 The return value of ``evalf()`` is still a ``numeric`` value:
 
-  >>> type(numeric('1/7').evalf())
-  <class 'swiginac.numeric'>
+>>> type(numeric('1/7').evalf())
+<class 'swiginac.numeric'>
 
 You can convert it to a Python datatype by the usual Python means or 
 using the ``to_double()``, ``to_int()``, or ``to_long()`` methods:
 
-  >>> type(numeric('1/7').to_double())
-  <type 'float'>
+>>> type(numeric('1/7').to_double())
+<type 'float'>
 
 
 Exact numbers that can be manipulated in GiNaC include predefined constants
 like Archimedes' Pi. They can both be used in symbolic manipulations (as an
-exact number) as well as in numeric expressions (as an inexact number):
+exact number) as well as in numeric expressions  (as an inexact number):
 
-  >>> x = symbol('x')
-  >>> a = Pi**2 + x
-  >>> print a
-  Pi**2+x
+>>> x = symbol('x')
+>>> a = Pi**2 + x
 
-  >>> a.evalf()
-  9.869604401089358619+x
+>>> a
+x+Pi**2
+>>> a.evalf()
+9.869604401089358619+x
+>>> a.subs(x == 2).evalf()
+11.869604401089358619
 
-  >>> a.subs(x == 2).evalf()
-  11.869604401089358619
-
-
-.. note:: The ``subs()`` method is used, as changing the value of ``x`` will
-          not propagate to the already defined expression ``a``:
+.. note:: 
+  In the last example, the ``subs()`` method is used, as changing the
+  value of ``x`` will not propagate to the already defined expression
+  ``a``:
 
                >>> x = 2
                >>> a.evalf()
@@ -270,101 +275,97 @@ Built-in functions evaluate immediately to exact numbers if this is
 possible. Conversions that can be safely performed are done immediately;
 conversions that are not generally valid are not done:
 
-  >>> x = symbol('x')
-  >>> cos(42*Pi)
-  1
-  >>> cos(acos(x))
-  x
-  >>> acos(cos(x));
-  acos(cos(x))
+>>> x = symbol('x')
+>>> cos(42*Pi)
+1
+>>> cos(acos(x))
+x
+>>> acos(cos(x));
+acos(cos(x))
 
 (Note that converting the last input to x would allow one to conclude that
 42*Pi is equal to 0.)
 
-
+Linear Algebra
+~~~~~~~~~~~~~~
 Linear equation systems can be solved along with basic linear algebra
 manipulations over symbolic expressions. swiginac offers a matrix
 class for this purpose:
 
-  
-  >>> x = symbol('x')
-  >>> y = symbol('y')
-  >>> z = symbol('z')
-  >>> a = symbol('a')
-  >>> b = symbol('b')
+>>> x = symbol('x'); y = symbol('y'); z = symbol('z') 
+>>> a = symbol('a'); b = symbol('b'); l = symbol('l') 
 
-  >>> lsolve(a+x*y==z,x)
-  (z-a)*y**(-1)
+>>> lsolve(a+x*y==z,x)
+(z-a)*y**(-1)
+>>> lsolve([3*x+5*y == 7, -2*x+10*y == -5], [x, y])
+[x==19/8, y==-1/40]
 
-  >>> lsolve([3*x+5*y == 7, -2*x+10*y == -5], [x, y])
-  [x==19/8, y==-1/40]
+>>> M = matrix([[1, 3], [-3, 2]])
+>>> determinant(M);
+11
+>>> charpoly(M,l)
+11+l**2-3*l
 
-  >>> M = matrix([[1, 3], [-3, 2]])
-  >>> determinant(M);
-  11
+>>> A = matrix([[1, 1], [2, -1]])
+>>> A + 2*M
+[[3,7],[-4,3]]
 
-  >>> l = symbol('lambda', '\lambda')  # lambda is a Python keyword
-  >>> charpoly(M,l)
-  11+lambda**2-3*lambda
-  
-  >>> A = matrix([[1, 1], [2, -1]])
-  >>> A + 2*M
-  [[3,7],[-4,3]]
-
-  >>> B = matrix([[0, 0, a], [b, 1, -b], [-1/a, 0, 0]])
-  >>> evalm(B**(2**12))
-  [[1,0,0],[0,1,0],[0,0,1]]
+>>> B = matrix([[0, 0, a], [b, 1, -b], [-1/a, 0, 0]])
+>>> evalm(B**(2**12))
+[[1,0,0],[0,1,0],[0,0,1]]
 
 Multivariate polynomials and rational functions may be expanded, collected
 and normalized (i.e. converted to a ratio of two coprime polynomials):
 
-  >>> a = x**4 + 2*x**2*y**2 + 4*x**3*y + 12*x*y**3 - 3*y**4
-  >>> b = x**2 + 4*x*y - y**2
+>>> a = x**4 + 2*x**2*y**2 + 4*x**3*y + 12*x*y**3 - 3*y**4
+>>> b = x**2 + 4*x*y - y**2
 
-  >>> expand(a*b)
-  43*y**4*x**2+3*y**6-24*y**5*x+17*y**2*x**4+8*y*x**5+x**6+16*y**3*x**3
-  >>> collect(a+b,x)
-  -3*y**4+x*(4*y+12*y**3)+(1+2*y**2)*x**2+4*y*x**3+x**4-y**2
-  >>> collect(a+b,y)
-  -3*y**4+x**2+(4*x**3+4*x)*y+12*y**3*x+x**4+y**2*(-1+2*x**2)
+>>> expand(a*b)
+43*y**4*x**2+3*y**6-24*y**5*x+17*y**2*x**4+8*y*x**5+x**6+16*y**3*x**3
+>>> collect(a+b,x)
+-3*y**4+x*(4*y+12*y**3)+(1+2*y**2)*x**2+4*y*x**3+x**4-y**2
+>>> collect(a+b,y)
+-3*y**4+x**2+(4*x**3+4*x)*y+12*y**3*x+x**4+y**2*(-1+2*x**2)
 
-  >>> normal(a/b)
-  x**2+3*y**2
+>>> normal(a/b)
+x**2+3*y**2
 
+Calculus
+~~~~~~~~
 You can differentiate functions and expand them as Taylor or Laurent series
 in a very natural syntax (the second argument of series is a relation
 defining the evaluation point, the third specifies the order):
 
-  >>> diff(tan(x),x)
-  1+tan(x)**2
+>>> diff(tan(x),x)
+1+tan(x)**2
 
-  >>> series(sin(x),x==0,4)
-  1*x+(-1/6)*x**3+Order(x**4)
+>>> series(sin(x),x==0,4)
+1*x+(-1/6)*x**3+Order(x**4)
 
-  >>> series(1/tan(x),x==0,2)
-  1*x**(-1)+(-1/3)*x+Order(x**2)
+>>> series(1/tan(x),x==0,2)
+1*x**(-1)+(-1/3)*x+Order(x**2)
 
-  series(tgamma(x),x==0,2)
-  1*x**(-1)+(-Euler)+(1/12*Pi**2+1/2*Euler**2)*x+Order(x**2)
+>>> series(tgamma(x),x==0,2)
+1*x**(-1)+(-Euler)+(1/12*Pi**2+1/2*Euler**2)*x+Order(x**2)
 
-  series(tgamma(x),x==0,2).evalf()
-  1.0*x**(-1)+(-0.5772156649015328606)+0.9890559953279725555*x+Order(x**2)
+>>> series(tgamma(x),x==0,2).evalf()
+1.0*x**(-1)+(-0.5772156649015328606)+0.9890559953279725555*x+Order(x**2)
 
-  >>> series(tgamma(2*sin(x)-2),x==Pi/2,3)
-  (-1)*(x-1/2*Pi)**(-2)+(-1/12-Euler)+(-1/240-1/12*Pi**2-1/2*Euler**2)*(x-1/2*Pi)**2+Order((x-1/2*Pi)**3)
+>>> series(tgamma(2*sin(x)-2),x==Pi/2,3)
+(-1)*(x-1/2*Pi)**(-2)+(-1/12-Euler)+(-1/240-1/12*Pi**2-1/2*Euler**2)*(x-1/2*Pi)**2+Order((x-1/2*Pi)**3)
 
 
 Often, functions don't have roots in closed form. Nevertheless, it's quite
 easy to compute a solution numerically:
 
-  >>> fsolve(cos(x)==x,x,0,2)
-  0.73908513321516064166
-  >>> f=exp(sin(x))-x
-  >>> X=fsolve(f,x,-10,10)
-  >>> X
-  2.2191071489137460327
-  >>> subs(f,x==X)
-  -2.168404344971008868E-19
+>>> fsolve(cos(x)==x,x,0,2)
+0.73908513321516064166
+>>> f=exp(sin(x))-x
+>>> X=fsolve(f,x,-10,10)
+>>> X
+2.2191071489137460327
+>>> subs(f,x==X)
+-2.168404344971008868E-19
 
 Notice how the final result above differs slightly from zero by about
 2*10^(-19). This is because with 20 decimal digits precision the root cannot
@@ -375,19 +376,20 @@ when computing with finite floating point values.
 Symbolic types can always be used as tags for different types of objects.
 Converting from "wrong" units to the metric system is an example:
 
-  >>> m = symbol('m'); kg = symbol('kg')
-  >>> inch = .0254*m
-  >>> lb = .45359237*kg
-  >>> 200*lb/inch**2
-  (140613.91592783187407)*m**(-2)*kg
+>>> m = symbol('m'); kg = symbol('kg')
+>>> inch = .0254*m
+>>> lb = .45359237*kg
+>>> 200*lb/inch**2
+(140613.91592783187407)*m**(-2)*kg
 
 However, as generic symbols do not know about special properties of physical
 units, it can not simplify all expressions with unit symbols:
 
-  >>> print abs(-3), abs(-3*m)
-  3 abs(-3*m)
+>>> print abs(-3), abs(-3*m)
+3 abs(-3*m)
   
 (We know, that m is positiv definit, but GiNaC does not.)
+
 
 The *Scientific.Physics.PhysicalQuantities* module from the Scientific_
 package provides an elaborated environment specifically designed for working
@@ -399,18 +401,8 @@ with units. Unfortunately, it does not collaborate well with swiginac.
 Installation
 ============
 
-Installation is covered in the original documentation of the relevant
-packages. Instead of repeating it, pointers will be given.
-
 GiNaC
 -----
-
-The GiNaC framework for symbolic computation within the C++ programming
-language (and its tutorial) is Copyright 1999-2006 Johannes Gutenberg
-University Mainz, Germany. It is released under the 
-`GNU General Public License`__ (GPL).
-
-__ http://www.gnu.org/copyleft/gpl.html
 
 GiNaC_ sources can be fetched from its home site under the section
 `Download GiNaC now`_ which also says:
@@ -442,7 +434,7 @@ exposed, virtually all of the GiNaC tests pass.
 For more information, documentation and software downloads, visit the
 `swiginac group pages on BerliOS`__.
 
-The `source tarballs`_ contains installation instructions in a
+The `source tarballs`_ contain installation instructions in an
 INSTALL.txt file.
 
 .. _SWIG: http://www.swig.org/
@@ -450,32 +442,9 @@ __ http://developer.berlios.de/projects/swiginac/
 .. _source tarballs: 
    http://developer.berlios.de/project/filelist.php?group_id=4761
 
-PyGiNaC
--------
 
-PyGiNaC_ is another Python package that provides an interface to the C++
-library GiNaC. PyGiNaC is implemented with the help of the `Boost.Python`_
-library. At the moment, the package is more or less in an "alpha" state,
-i.e. the GiNaC classes are only partially exposed, parts of regression test
-suite are unconverted and no actual documentation exists. However, all of
-this is supposed to change in the future. 
-
-
-.. _PyGiNaC: http://pyginac.sourceforge.net/
-
-.. _`Boost.Python`: http://www.boost.org/libs/python/doc/index.html
-
-At the moment there are no released tarballs of PyGiNaC. Instead, it can be
-downloaded directly from the CVS repository at SourceForge. (See the
-PyGiNaC_ page for instructions.)
-
-
-
-
-
-
-Source
-------
+About this Document
+===================
 
 The `source of this tutorial`_ is written in `reStructured Text`_. To
 translate it, you need the Python docutils_. With docutils installed,
