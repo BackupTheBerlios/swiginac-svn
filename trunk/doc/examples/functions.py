@@ -1,4 +1,20 @@
-# functions.py: examples of swiginac functions
+#!/usr/bin/env python
+# -*- coding: iso-8859-1 -*-
+
+# ===============================================================
+# functions.py: mathematical functions in swiGiNaC
+# ===============================================================
+# 
+# :Date:      $Date$
+# :Version:   SVN-Revision $Revision$
+# :URL:       $URL: svn+ssh://svn.berlios.de/svnroot/repos/pylit/trunk/src/pylit.py $
+# :Copyright: 2005, 2007 Guenter Milde.
+#             Released under the terms of the GNU General Public License 
+#             (v. 2 or later)
+
+
+
+
 
 from swiginac import *
 
@@ -22,8 +38,7 @@ csgn(x)                       # complex sign
 conjugate(x)                  # complex conjugation
 # real_part(x)                  # real part
 # imag_part(x)                  # imaginary part
-sqrt(x)                       # square root (not a GiNaC function, rather an alias for pow(x,
-                              # numeric(1, 2)))
+sqrt(x)                       # square root (alias for pow(x, numeric(1, 2)))
 sin(x)                        # sine
 cos(x)                        # cosine
 tan(x)                        # tangent
