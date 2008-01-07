@@ -13,9 +13,6 @@
 #             (v. 2 or later)
 
 
-
-
-
 from swiginac import *
 
 a = symbol("a")
