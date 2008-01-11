@@ -23,20 +23,25 @@ from swiginac import *
 # 
 # introspection is possible with e.g. ::
 
+# # from pprint import pprint
 # # pprint(dir(swiginac))
 # # pprint(vars(swiginac))
 # 
 # 
+# Objects
+# =======
+# 
 # Symbols
 # -------
+# 
+# A symbolic indeterminante or symbolic variable is a placeholder for a value
+# in an expression. 
+# 
 # Symbols are basic units in Swiginac::
 
-a = symbol('a')
-
+# >>> a = symbol('a')
 # >>> a
 # a
-# 
-# What's a symbol? 
 # 
 # The datatype is:
 # 
@@ -54,10 +59,11 @@ a = symbol('a')
 # a symbol. In Python, you must define a variable as symbol before you can use
 # it in expressions.  
 # 
-# >>> y = 3*x_1
+# >>> del(x)
+# >>> y = 3*x
 # Traceback (most recent call last):
 #   File "<stdin>", line 1, in ?
-# NameError: name 'x_1' is not defined
+# NameError: name 'x' is not defined
 # 
 # >>> x = symbol('x')
 # >>> y = 3*x
@@ -67,60 +73,39 @@ a = symbol('a')
 # >>> y
 # 3*x
 # 
-# In order to use `y` as a symbol again, an ordinary CAS would require you
-# to *delete* it. In Python, you overwrite its current binding with a new assignment:
+# In order to re-use `y` as a symbol, an ordinary CAS would require you
+# to *delete* it. In Python, you overwrite its current binding with a new
+# assignment to a `symbol` instance:
 # 
 # >>> y = symbol('y')
 # >>> y
 # y
 # 
-# Symbol Factory
-# ~~~~~~~~~~~~~~
+# Defining a set of symbols
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
-# If you want to define a set of symbols, having to give the name twice (as
-# identifier and as name argument) is boring, hence, a function to facilitate
-# symbol generaton is nice. ::
-    
-import sys
-def new_symbol(*names, **kwargs):
-    """Create symbolic variables for all names in the argument list
-    
-    and bind them in the namespace of the `__main__` module.
-    
-    kwargs['obj'] -- an object where the new symbols should be bound, 
-                     All other `kwarg`s are ignored.
-
-    Example: create symbols in the calling modules namespace even if it is 
-    not `__main__`.
-
-        >>> new_symbol('x', 'y', obj=sys.modules[__name__])
-        >>> x, type(x)
-        (x, <class 'swiginac.symbol'>)
-
-    """
-    obj=kwargs.get('obj', sys.modules['__main__'])
-    for name in names:
-        setattr(obj, name, symbol(name))
-
-
-# Define some greek symbols:
+# If we initialize a set of symbols, we might want to use a loop rather than a
+# lot of lines with individual assignments.
 # 
-# >>> new_symbol("alpha", "beta", "gamma")
+# We can use the feature that the dictionary returned by the built-in function
+# `globals` can be manipulated::
+
+# >>> for name in ['gamma', 'delta', 'epsilon']:
+# ...     globals()[name] = swiginac.symbol(name)
 # 
-# Define a-z as Symbols in the main module::
+# to define the small latin letters a-z as symbols in this module. ::
 
-import string
-new_symbol(*[name for name in string.lowercase])
+import string as _string
 
-# Define a-z as Symbols in the current module::
+for name in _string.lowercase:
+  globals()[name] = swiginac.symbol(name)
 
-new_symbol(obj=sys.modules[__name__], *[name for name in string.lowercase])
-
-# Test
+# Which results in
 # 
-# >>> [sym for sym in [a,b,c,d,e,f,g,h,i,j,k,l,m,n] if type(sym) != swiginac.symbol]
-# []
+# >>> print type(delta), type(x)
+# <class 'swiginac.symbol'> <class 'swiginac.symbol'>
 # 
+#   
 # Numbers
 # -------
 # 
@@ -232,6 +217,21 @@ z_g = z_p.real + z_p.imag*I
 # >>> z_g.real(), z_g.imag()
 # (2.0, 3.0)
 # 
+# Constants
+# ---------
+# 
+# Some mathematical constants are available as well
+# 
+# >>> print Pi, type(Pi), Pi.evalf()
+# Pi <class 'swiginac.constant'> 3.1415926535897932385
+# >>> print Euler, type(Euler), Euler.evalf()
+# Euler <class 'swiginac.constant'> 0.5772156649015328606
+# 
+# Swiginac functions_ know some simplifications for special values
+# 
+# >>> print sin(Pi), cos(Pi)
+# 0 -1
+# 
 # Expressions
 # -----------
 # 
@@ -252,48 +252,10 @@ ex3 = (a+b)/c
 # >>> ex3, type(ex3)
 # (c**(-1)*(b+a), <class 'swiginac.mul'>)
 #   
-# In the `Symbolic` package, there is the common class `Symbolic.Expr`.
+# In the `Symbolic` package, there is the common class `Symbolic.Expr` with
+# some additional methods.
 # 
 # 
-# Output styles
-# ~~~~~~~~~~~~~
-# 
-# Symbols can be defined with additional TeX string representation
-# Greek letter names will be converted to commands in Tex output::
-
-a_pix = symbol('a_pix', 'a_\mathrm{pix}')
-beta = symbol('beta')
-ex4 = a_pix + beta/2
-
-# Expressions have methods returning string representations in several styles:
-# 
-# >>> [method for method in dir(ex4) if method.find('print') == 0]
-# ['print_dispatch', 'printc', 'printlatex', 'printpython']
-#  
-# >>> ex4.printpython()
-# '1/2*beta+a_pix'
-# >>> ex4.printc()
-# 'beta/2.0+a_pix'
-# >>> ex4.printlatex()
-# '\\frac{1}{2} \\beta+a_\\mathrm{pix}'
-# 
-# More print related methods 
-# 
-# >>> [method for method in dir(u) if method.find('print') > 0]
-# ['dbgprint', 'dbgprinttree', 'set_print_context']
-# 
-# A default output style (print context) can be set for an object
-# 
-# >>> print ex4
-# 1/2*beta+a_pix
-# >>> ex4.set_print_context('tex')
-# >>> print ex4
-# \frac{1}{2} \beta+a_\mathrm{pix}
-#   
-# Unfortunately, this cannot be done on a per-module or per-application scale
-# currently.
-# 
-#   
 # Functions
 # ---------
 # 
@@ -301,7 +263,8 @@ ex4 = a_pix + beta/2
 # trigonometric and hyperbolic functions are implemented. For a full list of
 # available functions see the file `doc/examples/functions.py`.
 # 
-# Some functions are simplified if this is mathemetically sound and non-ambiguous.
+# Some functions are simplified if this is mathemetically sound and
+# non-ambiguous.
 # 
 # >>> sin(x), sin(0), sin(Pi/2)
 # (sin(x), 0, 1)
@@ -326,25 +289,6 @@ z_e = exp(I*x)
 # exp(I*x)**(-1)*(I*sin(x)+cos(x))
 # 
 # Is there a way get more simplifications?
-# 
-# 
-# Symbolic differentiation
-# ------------------------
-# 
-# Objects have the method `diff` for differentiation which is also called by
-# the `diff` function:
-# 
-# >>> P = x**5 + x**2 + x
-# 
-# 
-# >>> P.diff(x) == diff(P, x)
-# 1+5*x**4+2*x==1+5*x**4+2*x
-# 
-# >>> P.diff(x, 2) == diff(P, x, 2)
-# 2+20*x**3==2+20*x**3
-# 
-# >>> diff(sin(exp(x)), x) == sin(exp(x)).diff(x)
-# cos(exp(x))*exp(x)==cos(exp(x))*exp(x)
 # 
 # 
 # Matrices
@@ -400,6 +344,27 @@ C = matrix([[0], [1], [2]])
 # 
 # >>> sin(x).subs(x == A)
 # sin([[0,1,2,3]])
+# 
+# Symbolic calculations
+# =====================
+# 
+# Differentiation
+# ---------------
+# 
+# Objects have the method `diff` for differentiation which is also called by
+# the `diff` function:
+# 
+# >>> P = x**5 + x**2 + x
+# 
+# 
+# >>> P.diff(x) == diff(P, x)
+# 1+5*x**4+2*x==1+5*x**4+2*x
+# 
+# >>> P.diff(x, 2) == diff(P, x, 2)
+# 2+20*x**3==2+20*x**3
+# 
+# >>> diff(sin(exp(x)), x) == sin(exp(x)).diff(x)
+# cos(exp(x))*exp(x)==cos(exp(x))*exp(x)
 # 
 # 
 # Simple integral support
@@ -524,6 +489,130 @@ taylor = sin(x).series(x==0, 8)
 # 1*x+(-1/6)*x**3+1/120*x**5+(-1/5040)*x**7+Order(x**8)
 # 
 # 
+# 
+# 
+# Output Formatting
+# =================
+# 
+# Print styles
+# ------------
+# 
+# Expressions have methods returning string representations in several styles:
+# 
+# >>> [method for method in dir(ex4) if method.find('print') == 0]
+# ['print_dispatch', 'printc', 'printlatex', 'printpython']
+#  
+# Symbols can be defined with additional TeX string representation
+# Greek letter names will be converted to commands in Tex output::
+
+a_pix = symbol('a_pix', 'a_\mathrm{pix}')
+beta = symbol('beta')
+ex4 = a_pix + beta/2
+
+# >>> ex4.printpython()
+# '1/2*beta+a_pix'
+# >>> ex4.printc()
+# 'beta/2.0+a_pix'
+# >>> ex4.printlatex()
+# '\\frac{1}{2} \\beta+a_\\mathrm{pix}'
+# 
+# A default output style (print context) can be set for an object
+# 
+# >>> print ex4
+# 1/2*beta+a_pix
+# >>> ex4.set_print_context('tex')
+# >>> print ex4
+# \frac{1}{2} \beta+a_\mathrm{pix}
+#   
+# Especially for interactive use, it would be nice if this could also be done
+# on a per-module or per-application scale (as in GiNaC itself).
+# 
+# 
+# Format the output of numbers
+# ----------------------------
+#    
+# The output format for numbers is sometimes too verbose for practical use,
+# especially with floats as precision is govened by DIGITS (20):
+# 
+# 
+# >>> from swiginac import *
+# >>> x = Pi.evalf()
+# >>> print x
+# 3.1415926535897932385
+# 
+# Python's built in function `round()` can be used to round any object that
+# can be converted to a float to a given accuracy. The result is, however, not
+# always as expected:
+# 
+# >>> round(x, 4)
+# 3.1415999999999999
+# 
+# This is caused by the internal use of a number base different from 10.
+# 
+# String formatting
+# -----------------
+# 
+# In Python, you can use string formatting to get a specific notation or
+# accuracy:
+# 
+# The '%f' specifier can be used for `swiginac.numeric` instances that are
+# convertible to floats:
+# 
+# >>> print "%f, %f, %f" % (x, sin(x), exp(x))
+# 3.141593, -0.000000, 23.140693
+# 
+# It fails on objects that cannot be converted to floats:
+# 
+# >>> print "%f" % Pi
+# Traceback (most recent call last):
+#   ...
+# TypeError: float argument required
+# 
+# Save programming would require to either test the float with e.g.
+# 
+# >>> x.is_real()
+# True
+# 
+# 
+# The formatting options are described in the Python documentation on 
+# `string formatting operations`_. 
+# 
+# Here some examples:
+# 
+# Precision:
+# 
+# >>> print "%.10f" % x
+# 3.1415926536
+# 
+# ... is limited to DIGITS internally
+# 
+# >>> print "%.60f" % x
+# 3.141592653589793115997963468544185161590576171875000000000000
+# 
+# Leading sign and zeros:
+# 
+# >>> print "%+.1f" % x
+# +3.1
+# >>> print "%05.1f" % x
+# 003.1
+# 
+# Scientific notation
+# 
+# >>> print "%.3E  %.2e" % (x, x)
+# 3.142E+00  3.14e+00
+# 
+# >>> print "%g  %g" % (x, x**40)
+# 3.14159  7.69121e+19
+# 
+# 
+# .. _string formatting operations: 
+#     http://www.python.org/doc/lib/typesseq-strings.html
+# 
+# 
+# 
+# 
+#   
+# 
 # Interaction with Python
 # -----------------------
 # 
@@ -543,6 +632,8 @@ taylor = sin(x).series(x==0, 8)
 # >>> n, phi
 # (9, 4)
 # 
+# so it might be an idea to use separate conventions for naming symbols and
+# indices
 # 
 # As the standard function sum is overloaded for swiginac classes, it can be
 # used on sequences of symbols or expressions:
