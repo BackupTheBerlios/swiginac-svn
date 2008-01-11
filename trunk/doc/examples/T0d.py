@@ -12,14 +12,18 @@
 # Imports
 # =======
 # 
-# We use some Python standard modules and established extensions::
+# Import this module with
+# 
+# >>> from T0d import *
+# 
+# Python standard modules and established extensions::
 
 import sys, os
 from pprint import pprint
 
 import Gnuplot
 
-# as well as the swiginac module for symbolic algebra with GiNaC:: 
+# The swiginac module for symbolic algebra with GiNaC:: 
 
 from swiginac import *   # symbolic algebra (CAS)
 # from Symbolic import *     # 
@@ -30,21 +34,19 @@ from swiginac import *   # symbolic algebra (CAS)
 # from Sensor_analytisch import *
 import LyX
 
-# for doctests in the comments with pylit, import this module
-
-# >>> from thermisch0d_symbolic import *
-# 
 # Ausgabe
 # =======
+# ::
+# 
 # 
 # ::
-
-output_format = ""     # keine Ausgabe
 
 if __name__ == '__main__':
     output_format = "text"
     # output_format = "lyx"
     # output_format = "tex"
+else:
+    output_format = ""     # keine Ausgabe
 
 # Load the LyX client and open a new LyX buffer for the output::
 
@@ -89,21 +91,34 @@ def printout(*args):
 # Real und Imaginärteil sind (noch) nicht von Python aus zugänglich
 def real(z):
     """z = real(z) + I * imag(z)"""
-    return (z + conjugate(z))/numeric(2)
+    try:
+        return z.real()
+    except AttributeError:
+        return (z + conjugate(z))/2
 
 def imag(z):
     """z = real(z) + I * imag(z)"""
-    return (z - conjugate(z))/(2*I)
+    try:
+        return z.imag()
+    except AttributeError:
+        return (z - conjugate(z))/(2*I)
 
 
 # >>> conjugate(3+ 2*I)                  # complex conjugation
+# 3-2*I
 # >>> real(3 + 2*I)
-# >>> imag(3 + 2*I), imag(3), imag(2*I)
+# 3
+# >>> print imag(3 + 2*I), imag(3), imag(2*I)
+# 2 0 2
 # >>> abs(3 + 2*I)
+# 3.6055512754639892931
+# 
+# Noch nicht implementiert ist arg() für das Argument in Euler-Notation
 # 
 # #>>> arg(3 + 2*I)
 # #>>> arg(3), arg(3 + 3*I), arg(3*I), arg(-3 + 3*I), arg(-3), arg(-3 + -3*I), arg(-3*I), arg(3 + -3*I)
-#  
+# 
+# 
 # Einheiten
 # =========
 # 
@@ -317,6 +332,8 @@ printout("T^~(\omega_{ch}) =", T_sin.ch)
 printout("|T^~(\omega_{ch})| =", abs(T_sin.ch))
 
 # printout("T^~ =", real(T_sin))
+# 
+# ::
 
 printout("T_0 =")
 printout(T_0.expand())
