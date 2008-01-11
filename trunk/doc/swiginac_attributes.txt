@@ -1,637 +1,1153 @@
 .. -*- rst-mode -*-
 
-Objects defined in the swiginac module
-======================================
+Objects and attributes defined in the swiginac module
+=====================================================
 
-Alphabetical list
------------------
+.. contents:: 
 
-====================================== ============================================
-Object                                 Value
-====================================== ============================================
-Catalan                                Catalan
-CatalanEvalf                           <function>
-EXPAIRSEQ_USE_HASHTAB                  0
-Euler                                  Euler
-EulerEvalf                             <function>
-G                                      <function>
-G2                                     <function>
-G2_SERIAL                              <class>
-G2_SERIAL_swigregister                 <built-in function>
-G3                                     <function>
-G3_SERIAL                              <class>
-G3_SERIAL_swigregister                 <built-in function>
-G_basic_basic                          <function>
-G_basic_basic_basic                    <function>
-G_basic_basic_double                   <function>
-G_basic_basic_int                      <function>
-G_basic_double                         <function>
-G_basic_double_basic                   <function>
-G_basic_double_double                  <function>
-G_basic_double_int                     <function>
-G_basic_int                            <function>
-G_basic_int_basic                      <function>
-G_basic_int_double                     <function>
-G_basic_int_int                        <function>
-G_double_basic                         <function>
-G_double_basic_basic                   <function>
-G_double_basic_double                  <function>
-G_double_basic_int                     <function>
-G_double_double                        <function>
-G_double_double_basic                  <function>
-G_double_double_double                 <function>
-G_double_double_int                    <function>
-G_double_int                           <function>
-G_double_int_basic                     <function>
-G_double_int_double                    <function>
-G_double_int_int                       <function>
-G_int_basic                            <function>
-G_int_basic_basic                      <function>
-G_int_basic_double                     <function>
-G_int_basic_int                        <function>
-G_int_double                           <function>
-G_int_double_basic                     <function>
-G_int_double_double                    <function>
-G_int_double_int                       <function>
-G_int_int                              <function>
-G_int_int_basic                        <function>
-G_int_int_double                       <function>
-G_int_int_int                          <function>
-H                                      <function>
-H_NPARAMS                              2
-H_SERIAL                               <class>
-H_SERIAL_swigregister                  <built-in function>
-H_basic_basic                          <function>
-H_basic_double                         <function>
-H_basic_int                            <function>
-H_double_basic                         <function>
-H_double_double                        <function>
-H_double_int                           <function>
-H_int_basic                            <function>
-H_int_double                           <function>
-H_int_int                              <function>
-I                                      I
-Li                                     <function>
-Li2                                    <function>
-Li2_NPARAMS                            1
-Li2_SERIAL                             <class>
-Li2_SERIAL_swigregister                <built-in function>
-Li2_basic                              <function>
-Li2_double                             <function>
-Li2_int                                <function>
-Li3                                    <function>
-Li3_NPARAMS                            1
-Li3_SERIAL                             <class>
-Li3_SERIAL_swigregister                <built-in function>
-Li3_basic                              <function>
-Li3_double                             <function>
-Li3_int                                <function>
-Li_NPARAMS                             2
-Li_SERIAL                              <class>
-Li_SERIAL_swigregister                 <built-in function>
-Li_basic_basic                         <function>
-Li_basic_double                        <function>
-Li_basic_int                           <function>
-Li_double_basic                        <function>
-Li_double_double                       <function>
-Li_double_int                          <function>
-Li_int_basic                           <function>
-Li_int_double                          <function>
-Li_int_int                             <function>
-Order                                  <function>
-Order_NPARAMS                          1
-Order_SERIAL                           <class>
-Order_SERIAL_swigregister              <built-in function>
-Order_basic                            <function>
-Order_double                           <function>
-Order_int                              <function>
-Pi                                     Pi
-PiEvalf                                <function>
-PySwigIterator                         <class>
-PySwigIterator_swigregister            <built-in function>
-S                                      <function>
-S_NPARAMS                              3
-S_SERIAL                               <class>
-S_SERIAL_swigregister                  <built-in function>
-S_basic_basic_basic                    <function>
-S_basic_basic_double                   <function>
-S_basic_basic_int                      <function>
-S_basic_double_basic                   <function>
-S_basic_double_double                  <function>
-S_basic_double_int                     <function>
-S_basic_int_basic                      <function>
-S_basic_int_double                     <function>
-S_basic_int_int                        <function>
-S_double_basic_basic                   <function>
-S_double_basic_double                  <function>
-S_double_basic_int                     <function>
-S_double_double_basic                  <function>
-S_double_double_double                 <function>
-S_double_double_int                    <function>
-S_double_int_basic                     <function>
-S_double_int_double                    <function>
-S_double_int_int                       <function>
-S_int_basic_basic                      <function>
-S_int_basic_double                     <function>
-S_int_basic_int                        <function>
-S_int_double_basic                     <function>
-S_int_double_double                    <function>
-S_int_double_int                       <function>
-S_int_int_basic                        <function>
-S_int_int_double                       <function>
-S_int_int_int                          <function>
-__doc__                                None
-__file__                               '.../swiginac.pyc'
-__name__                               'swiginac'
-_dict                                  {}
-_newclass                              1
-_object                                <type 'object'>
-_swig_getattr                          <function>
-_swig_property                         <type 'property'>
-_swig_repr                             <function>
-_swig_setattr                          <function>
-_swig_setattr_nondynamic               <function>
-_swiginac                              <module '_swiginac' from '_swiginac.so'>
-abs                                    <function>
-abs_NPARAMS                            1
-abs_SERIAL                             <class>
-abs_SERIAL_swigregister                <built-in function>
-abs_basic                              <function>
-abs_double                             <function>
-abs_int                                <function>
-acos                                   <function>
-acos_NPARAMS                           1
-acos_SERIAL                            <class>
-acos_SERIAL_swigregister               <built-in function>
-acos_basic                             <function>
-acos_double                            <function>
-acos_int                               <function>
-acosh                                  <function>
-acosh_NPARAMS                          1
-acosh_SERIAL                           <class>
-acosh_SERIAL_swigregister              <built-in function>
-acosh_basic                            <function>
-acosh_double                           <function>
-acosh_int                              <function>
-adaptivesimpson                        <function>
-add                                    <class>
-add_swigregister                       <built-in function>
-antisymmetric2                         <function>
-antisymmetric3                         <function>
-antisymmetric4                         <function>
-antisymmetrize                         <function>
-asin                                   <function>
-asin_NPARAMS                           1
-asin_SERIAL                            <class>
-asin_SERIAL_swigregister               <built-in function>
-asin_basic                             <function>
-asin_double                            <function>
-asin_int                               <function>
-asinh                                  <function>
-asinh_NPARAMS                          1
-asinh_SERIAL                           <class>
-asinh_SERIAL_swigregister              <built-in function>
-asinh_basic                            <function>
-asinh_double                           <function>
-asinh_int                              <function>
-atan                                   <function>
-atan2                                  <function>
-atan2_NPARAMS                          2
-atan2_SERIAL                           <class>
-atan2_SERIAL_swigregister              <built-in function>
-atan2_basic_basic                      <function>
-atan2_basic_double                     <function>
-atan2_basic_int                        <function>
-atan2_double_basic                     <function>
-atan2_double_double                    <function>
-atan2_double_int                       <function>
-atan2_int_basic                        <function>
-atan2_int_double                       <function>
-atan2_int_int                          <function>
-atan_NPARAMS                           1
-atan_SERIAL                            <class>
-atan_SERIAL_swigregister               <built-in function>
-atan_basic                             <function>
-atan_double                            <function>
-atan_int                               <function>
-atanh                                  <function>
-atanh_NPARAMS                          1
-atanh_SERIAL                           <class>
-atanh_SERIAL_swigregister              <built-in function>
-atanh_basic                            <function>
-atanh_double                           <function>
-atanh_int                              <function>
-basic                                  <class>
-basic_swigregister                     <built-in function>
-beta                                   <function>
-beta_NPARAMS                           2
-beta_SERIAL                            <class>
-beta_SERIAL_swigregister               <built-in function>
-beta_basic_basic                       <function>
-beta_basic_double                      <function>
-beta_basic_int                         <function>
-beta_double_basic                      <function>
-beta_double_double                     <function>
-beta_double_int                        <function>
-beta_int_basic                         <function>
-beta_int_double                        <function>
-beta_int_int                           <function>
-binomial                               <function>
-binomial_NPARAMS                       2
-binomial_SERIAL                        <class>
-binomial_SERIAL_swigregister           <built-in function>
-binomial_basic_basic                   <function>
-binomial_basic_double                  <function>
-binomial_basic_int                     <function>
-binomial_double_basic                  <function>
-binomial_double_double                 <function>
-binomial_double_int                    <function>
-binomial_int_basic                     <function>
-binomial_int_double                    <function>
-binomial_int_int                       <function>
-canonicalize                           <function>
-canonicalize_clifford                  <function>
-charpoly                               <function>
-clifford                               <class>
-clifford_bar                           <function>
-clifford_inverse                       <function>
-clifford_moebius_map                   <function>
-clifford_norm                          <function>
-clifford_prime                         <function>
-clifford_star                          <function>
-clifford_swigregister                  <built-in function>
-clifford_to_lst                        <function>
-clifford_unit                          <function>
-cliffordunit                           <class>
-cliffordunit_swigregister              <built-in function>
-coeff                                  <function>
-collect                                <function>
-collect_common_factors                 <function>
-color                                  <class>
-color_ONE                              <function>
-color_T                                <function>
-color_d                                <function>
-color_f                                <function>
-color_h                                <function>
-color_swigregister                     <built-in function>
-color_trace                            <function>
-cols                                   <function>
-conjugate                              <function>
-conjugate_function                     <function>
-conjugate_function_NPARAMS             1
-conjugate_function_SERIAL              <class>
-conjugate_function_SERIAL_swigregister <built-in function>
-conjugate_function_basic               <function>
-conjugate_function_double              <function>
-conjugate_function_int                 <function>
-conjugateepvector                      <function>
-constant                               <class>
-constant_swigregister                  <built-in function>
-cos                                    <function>
-cos_NPARAMS                            1
-cos_SERIAL                             <class>
-cos_SERIAL_swigregister                <built-in function>
-cos_basic                              <function>
-cos_double                             <function>
-cos_int                                <function>
-cosh                                   <function>
-cosh_NPARAMS                           1
-cosh_SERIAL                            <class>
-cosh_SERIAL_swigregister               <built-in function>
-cosh_basic                             <function>
-cosh_double                            <function>
-cosh_int                               <function>
-count_dummy_indices                    <function>
-count_free_indices                     <function>
-csgn                                   <function>
-csgn_NPARAMS                           1
-csgn_SERIAL                            <class>
-csgn_SERIAL_swigregister               <built-in function>
-csgn_basic                             <function>
-csgn_double                            <function>
-csgn_int                               <function>
-cvar                                   <Swig global variables>
-decomp_rational                        <function>
-degree                                 <function>
-delta_tensor                           <function>
-denom                                  <function>
-determinant                            <function>
-determinant_algo                       <class>
-determinant_algo_swigregister          <built-in function>
-diag_matrix                            <function>
-diff                                   <function>
-dirac_ONE                              <function>
-dirac_gamma                            <function>
-dirac_gamma5                           <function>
-dirac_gammaL                           <function>
-dirac_gammaR                           <function>
-dirac_slash                            <function>
-dirac_trace                            <function>
-diracgamma                             <class>
-diracgamma5                            <class>
-diracgamma5_swigregister               <built-in function>
-diracgammaL                            <class>
-diracgammaL_swigregister               <built-in function>
-diracgammaR                            <class>
-diracgammaR_swigregister               <built-in function>
-diracgamma_swigregister                <built-in function>
-diracone                               <class>
-diracone_swigregister                  <built-in function>
-divide                                 <function>
-do_taylor                              <class>
-do_taylor_swigregister                 <built-in function>
-epsilon_tensor                         <function>
-eta                                    <function>
-eta_NPARAMS                            2
-eta_SERIAL                             <class>
-eta_SERIAL_swigregister                <built-in function>
-eta_basic_basic                        <function>
-eta_basic_double                       <function>
-eta_basic_int                          <function>
-eta_double_basic                       <function>
-eta_double_double                      <function>
-eta_double_int                         <function>
-eta_int_basic                          <function>
-eta_int_double                         <function>
-eta_int_int                            <function>
-eval                                   <function>
-eval_integ                             <function>
-evalf                                  <function>
-evalm                                  <function>
-ex                                     <class>
-ex_swigregister                        <built-in function>
-exmap                                  <class>
-exmap_swigregister                     <built-in function>
-exp                                    <function>
-exp_NPARAMS                            1
-exp_SERIAL                             <class>
-exp_SERIAL_swigregister                <built-in function>
-exp_basic                              <function>
-exp_double                             <function>
-exp_int                                <function>
-expairseq                              <class>
-expairseq_swigregister                 <built-in function>
-expand                                 <function>
-expand_dummy_sum                       <function>
-expand_options                         <class>
-expand_options_swigregister            <built-in function>
-exvector                               <class>
-exvector_swigregister                  <built-in function>
-factorial                              <function>
-factorial_NPARAMS                      1
-factorial_SERIAL                       <class>
-factorial_SERIAL_swigregister          <built-in function>
-factorial_basic                        <function>
-factorial_double                       <function>
-factorial_int                          <function>
-find                                   <function>
-find_dummy_indices                     <function>
-find_free_and_dummy                    <function>
-find_tinfo_key                         <function>
-find_unarch_func                       <function>
-fsolve                                 <function>
-function                               <class>
-function_find_function                 <function>
-function_options                       <class>
-function_options_swigregister          <built-in function>
-function_register_new                  <function>
-function_swigregister                  <built-in function>
-gcd                                    <function>
-get_all_dummy_indices                  <function>
-get_symbols                            <function>
-has                                    <function>
-haswild                                <function>
-idx                                    <class>
-idx_swigregister                       <built-in function>
-indexed                                <class>
-indexed_swigregister                   <built-in function>
-info_flags                             <class>
-info_flags_swigregister                <built-in function>
-integral                               <class>
-integral_swigregister                  <built-in function>
-inverse                                <function>
-is_dummy_pair                          <function>
-is_terminating                         <function>
-lcm                                    <function>
-ldegree                                <function>
-lgamma                                 <function>
-lgamma_NPARAMS                         1
-lgamma_SERIAL                          <class>
-lgamma_SERIAL_swigregister             <built-in function>
-lgamma_basic                           <function>
-lgamma_double                          <function>
-lgamma_int                             <function>
-lhs                                    <function>
-log                                    <function>
-log_NPARAMS                            1
-log_SERIAL                             <class>
-log_SERIAL_swigregister                <built-in function>
-log_basic                              <function>
-log_double                             <function>
-log_int                                <function>
-lorentz_eps                            <function>
-lorentz_g                              <function>
-lsolve                                 <function>
-lst                                    <class>
-lst_swigregister                       <built-in function>
-lst_to_clifford                        <function>
-lst_to_matrix                          <function>
-match                                  <function>
-matrix                                 <class>
-matrix2                                <function>
-matrix_swigregister                    <built-in function>
-metric_tensor                          <function>
-minimal_dim                            <function>
-minkmetric                             <class>
-minkmetric_swigregister                <built-in function>
-mul                                    <class>
-mul_swigregister                       <built-in function>
-ncmul                                  <class>
-ncmul_swigregister                     <built-in function>
-new                                    <module 'new' from '.../new.pyc'>
-new_instancemethod                     <type 'instancemethod'>
-nops                                   <function>
-normal                                 <function>
-not_symmetric                          <function>
-numer                                  <function>
-numer_denom                            <function>
-numeric                                <class>
-numeric_swigregister                   <built-in function>
-op                                     <function>
-parse_string                           <function>
-power                                  <class>
-power_swigregister                     <built-in function>
-prem                                   <function>
-pseries                                <class>
-pseries_swigregister                   <built-in function>
-psi                                    <function>
-psi1                                   <function>
-psi1_SERIAL                            <class>
-psi1_SERIAL_swigregister               <built-in function>
-psi2                                   <function>
-psi2_SERIAL                            <class>
-psi2_SERIAL_swigregister               <built-in function>
-psi_basic                              <function>
-psi_basic_basic                        <function>
-psi_basic_double                       <function>
-psi_basic_int                          <function>
-psi_double                             <function>
-psi_double_basic                       <function>
-psi_double_double                      <function>
-psi_double_int                         <function>
-psi_int                                <function>
-psi_int_basic                          <function>
-psi_int_double                         <function>
-psi_int_int                            <function>
-quo                                    <function>
-rank                                   <function>
-refcounted                             <class>
-refcounted_swigregister                <built-in function>
-registered_class_options               <class>
-registered_class_options_swigregister  <built-in function>
-relational                             <class>
-relational_swigregister                <built-in function>
-rem                                    <function>
-remove_dirac_ONE                       <function>
-rename_dummy_indices_uniquely          <function>
-resultant                              <function>
-rhs                                    <function>
-rows                                   <function>
-scalar_products                        <class>
-scalar_products_swigregister           <built-in function>
-series                                 <function>
-series_to_poly                         <function>
-simplify_indexed                       <function>
-sin                                    <function>
-sin_NPARAMS                            1
-sin_SERIAL                             <class>
-sin_SERIAL_swigregister                <built-in function>
-sin_basic                              <function>
-sin_double                             <function>
-sin_int                                <function>
-sinh                                   <function>
-sinh_NPARAMS                           1
-sinh_SERIAL                            <class>
-sinh_SERIAL_swigregister               <built-in function>
-sinh_basic                             <function>
-sinh_double                            <function>
-sinh_int                               <function>
-spinidx                                <class>
-spinidx_swigregister                   <built-in function>
-spinmetric                             <class>
-spinmetric_swigregister                <built-in function>
-spinor_metric                          <function>
-spmapkey                               <class>
-spmapkey_swigregister                  <built-in function>
-sprem                                  <function>
-sqrfree                                <function>
-sqrfree_parfrac                        <function>
-sqrt                                   <function>
-su3d                                   <class>
-su3d_swigregister                      <built-in function>
-su3f                                   <class>
-su3f_swigregister                      <built-in function>
-su3one                                 <class>
-su3one_swigregister                    <built-in function>
-su3t                                   <class>
-su3t_swigregister                      <built-in function>
-subs                                   <function>
-subs_options                           <class>
-subs_options_swigregister              <built-in function>
-swap                                   <function>
-sy_anti                                <function>
-sy_cycl                                <function>
-sy_none                                <function>
-sy_symm                                <function>
-symbol                                 <class>
-symbol_swigregister                    <built-in function>
-symbolic_matrix                        <function>
-symmetric2                             <function>
-symmetric3                             <function>
-symmetric4                             <function>
-symmetrize                             <function>
-symmetrize_cyclic                      <function>
-symmetry                               <class>
-symmetry_swigregister                  <built-in function>
-tan                                    <function>
-tan_NPARAMS                            1
-tan_SERIAL                             <class>
-tan_SERIAL_swigregister                <built-in function>
-tan_basic                              <function>
-tan_double                             <function>
-tan_int                                <function>
-tanh                                   <function>
-tanh_NPARAMS                           1
-tanh_SERIAL                            <class>
-tanh_SERIAL_swigregister               <built-in function>
-tanh_basic                             <function>
-tanh_double                            <function>
-tanh_int                               <function>
-tensdelta                              <class>
-tensdelta_swigregister                 <built-in function>
-tensepsilon                            <class>
-tensepsilon_swigregister               <built-in function>
-tensmetric                             <class>
-tensmetric_swigregister                <built-in function>
-tensor                                 <class>
-tensor_swigregister                    <built-in function>
-tgamma                                 <function>
-tgamma_NPARAMS                         1
-tgamma_SERIAL                          <class>
-tgamma_SERIAL_swigregister             <built-in function>
-tgamma_basic                           <function>
-tgamma_double                          <function>
-tgamma_int                             <function>
-to_polynomial                          <function>
-to_rational                            <function>
-toex                                   <function>
-trace                                  <function>
-transpose                              <function>
-unit_matrix                            <function>
-varidx                                 <class>
-varidx_swigregister                    <built-in function>
-wild                                   <function>
-wildcard                               <class>
-wildcard_swigregister                  <built-in function>
-zeta                                   <function>
-zeta1                                  <function>
-zeta1_SERIAL                           <class>
-zeta1_SERIAL_swigregister              <built-in function>
-zeta2                                  <function>
-zeta2_SERIAL                           <class>
-zeta2_SERIAL_swigregister              <built-in function>
-zeta_basic                             <function>
-zeta_basic_basic                       <function>
-zeta_basic_double                      <function>
-zeta_basic_int                         <function>
-zeta_double                            <function>
-zeta_double_basic                      <function>
-zeta_double_double                     <function>
-zeta_double_int                        <function>
-zeta_int                               <function>
-zeta_int_basic                         <function>
-zeta_int_double                        <function>
-zeta_int_int                           <function>
-zetaderiv                              <function>
-zetaderiv_NPARAMS                      2
-zetaderiv_SERIAL                       <class>
-zetaderiv_SERIAL_swigregister          <built-in function>
-zetaderiv_basic_basic                  <function>
-zetaderiv_basic_double                 <function>
-zetaderiv_basic_int                    <function>
-zetaderiv_double_basic                 <function>
-zetaderiv_double_double                <function>
-zetaderiv_double_int                   <function>
-zetaderiv_int_basic                    <function>
-zetaderiv_int_double                   <function>
-zetaderiv_int_int                      <function>
-====================================== ============================================
+Module objects
+--------------
 
-Created with::
+:Object:                                   Value
 
-  import swiginac
-  from pprint import pprint
-  pprint(vars(swiginac))
+::
+
+  Catalan                                Catalan
+  CatalanEvalf                           <function>
+  EXPAIRSEQ_USE_HASHTAB                  0
+  Euler                                  Euler
+  EulerEvalf                             <function>
+  G                                      <function>
+  G2                                     <function>
+  G2_SERIAL                              <class>
+  G2_SERIAL_swigregister                 <built-in function>
+  G3                                     <function>
+  G3_SERIAL                              <class>
+  G3_SERIAL_swigregister                 <built-in function>
+  G_basic_basic                          <function>
+  G_basic_basic_basic                    <function>
+  G_basic_basic_double                   <function>
+  G_basic_basic_int                      <function>
+  G_basic_double                         <function>
+  G_basic_double_basic                   <function>
+  G_basic_double_double                  <function>
+  G_basic_double_int                     <function>
+  G_basic_int                            <function>
+  G_basic_int_basic                      <function>
+  G_basic_int_double                     <function>
+  G_basic_int_int                        <function>
+  G_double_basic                         <function>
+  G_double_basic_basic                   <function>
+  G_double_basic_double                  <function>
+  G_double_basic_int                     <function>
+  G_double_double                        <function>
+  G_double_double_basic                  <function>
+  G_double_double_double                 <function>
+  G_double_double_int                    <function>
+  G_double_int                           <function>
+  G_double_int_basic                     <function>
+  G_double_int_double                    <function>
+  G_double_int_int                       <function>
+  G_int_basic                            <function>
+  G_int_basic_basic                      <function>
+  G_int_basic_double                     <function>
+  G_int_basic_int                        <function>
+  G_int_double                           <function>
+  G_int_double_basic                     <function>
+  G_int_double_double                    <function>
+  G_int_double_int                       <function>
+  G_int_int                              <function>
+  G_int_int_basic                        <function>
+  G_int_int_double                       <function>
+  G_int_int_int                          <function>
+  H                                      <function>
+  H_NPARAMS                              2
+  H_SERIAL                               <class>
+  H_SERIAL_swigregister                  <built-in function>
+  H_basic_basic                          <function>
+  H_basic_double                         <function>
+  H_basic_int                            <function>
+  H_double_basic                         <function>
+  H_double_double                        <function>
+  H_double_int                           <function>
+  H_int_basic                            <function>
+  H_int_double                           <function>
+  H_int_int                              <function>
+  I                                      I
+  Li                                     <function>
+  Li2                                    <function>
+  Li2_NPARAMS                            1
+  Li2_SERIAL                             <class>
+  Li2_SERIAL_swigregister                <built-in function>
+  Li2_basic                              <function>
+  Li2_double                             <function>
+  Li2_int                                <function>
+  Li3                                    <function>
+  Li3_NPARAMS                            1
+  Li3_SERIAL                             <class>
+  Li3_SERIAL_swigregister                <built-in function>
+  Li3_basic                              <function>
+  Li3_double                             <function>
+  Li3_int                                <function>
+  Li_NPARAMS                             2
+  Li_SERIAL                              <class>
+  Li_SERIAL_swigregister                 <built-in function>
+  Li_basic_basic                         <function>
+  Li_basic_double                        <function>
+  Li_basic_int                           <function>
+  Li_double_basic                        <function>
+  Li_double_double                       <function>
+  Li_double_int                          <function>
+  Li_int_basic                           <function>
+  Li_int_double                          <function>
+  Li_int_int                             <function>
+  Order                                  <function>
+  Order_NPARAMS                          1
+  Order_SERIAL                           <class>
+  Order_SERIAL_swigregister              <built-in function>
+  Order_basic                            <function>
+  Order_double                           <function>
+  Order_int                              <function>
+  Pi                                     Pi
+  PiEvalf                                <function>
+  PySwigIterator                         <class>
+  PySwigIterator_swigregister            <built-in function>
+  S                                      <function>
+  S_NPARAMS                              3
+  S_SERIAL                               <class>
+  S_SERIAL_swigregister                  <built-in function>
+  S_basic_basic_basic                    <function>
+  S_basic_basic_double                   <function>
+  S_basic_basic_int                      <function>
+  S_basic_double_basic                   <function>
+  S_basic_double_double                  <function>
+  S_basic_double_int                     <function>
+  S_basic_int_basic                      <function>
+  S_basic_int_double                     <function>
+  S_basic_int_int                        <function>
+  S_double_basic_basic                   <function>
+  S_double_basic_double                  <function>
+  S_double_basic_int                     <function>
+  S_double_double_basic                  <function>
+  S_double_double_double                 <function>
+  S_double_double_int                    <function>
+  S_double_int_basic                     <function>
+  S_double_int_double                    <function>
+  S_double_int_int                       <function>
+  S_int_basic_basic                      <function>
+  S_int_basic_double                     <function>
+  S_int_basic_int                        <function>
+  S_int_double_basic                     <function>
+  S_int_double_double                    <function>
+  S_int_double_int                       <function>
+  S_int_int_basic                        <function>
+  S_int_int_double                       <function>
+  S_int_int_int                          <function>
+  __doc__                                None
+  __file__                               '.../swiginac.pyc'
+  __name__                               'swiginac'
+  _dict                                  {}
+  _newclass                              1
+  _object                                <type 'object'>
+  _swig_getattr                          <function>
+  _swig_property                         <type 'property'>
+  _swig_repr                             <function>
+  _swig_setattr                          <function>
+  _swig_setattr_nondynamic               <function>
+  _swiginac                              <module '_swiginac' from '_swiginac.so'>
+  abs                                    <function>
+  abs_NPARAMS                            1
+  abs_SERIAL                             <class>
+  abs_SERIAL_swigregister                <built-in function>
+  abs_basic                              <function>
+  abs_double                             <function>
+  abs_int                                <function>
+  acos                                   <function>
+  acos_NPARAMS                           1
+  acos_SERIAL                            <class>
+  acos_SERIAL_swigregister               <built-in function>
+  acos_basic                             <function>
+  acos_double                            <function>
+  acos_int                               <function>
+  acosh                                  <function>
+  acosh_NPARAMS                          1
+  acosh_SERIAL                           <class>
+  acosh_SERIAL_swigregister              <built-in function>
+  acosh_basic                            <function>
+  acosh_double                           <function>
+  acosh_int                              <function>
+  adaptivesimpson                        <function>
+  add                                    <class>
+  add_swigregister                       <built-in function>
+  antisymmetric2                         <function>
+  antisymmetric3                         <function>
+  antisymmetric4                         <function>
+  antisymmetrize                         <function>
+  asin                                   <function>
+  asin_NPARAMS                           1
+  asin_SERIAL                            <class>
+  asin_SERIAL_swigregister               <built-in function>
+  asin_basic                             <function>
+  asin_double                            <function>
+  asin_int                               <function>
+  asinh                                  <function>
+  asinh_NPARAMS                          1
+  asinh_SERIAL                           <class>
+  asinh_SERIAL_swigregister              <built-in function>
+  asinh_basic                            <function>
+  asinh_double                           <function>
+  asinh_int                              <function>
+  atan                                   <function>
+  atan2                                  <function>
+  atan2_NPARAMS                          2
+  atan2_SERIAL                           <class>
+  atan2_SERIAL_swigregister              <built-in function>
+  atan2_basic_basic                      <function>
+  atan2_basic_double                     <function>
+  atan2_basic_int                        <function>
+  atan2_double_basic                     <function>
+  atan2_double_double                    <function>
+  atan2_double_int                       <function>
+  atan2_int_basic                        <function>
+  atan2_int_double                       <function>
+  atan2_int_int                          <function>
+  atan_NPARAMS                           1
+  atan_SERIAL                            <class>
+  atan_SERIAL_swigregister               <built-in function>
+  atan_basic                             <function>
+  atan_double                            <function>
+  atan_int                               <function>
+  atanh                                  <function>
+  atanh_NPARAMS                          1
+  atanh_SERIAL                           <class>
+  atanh_SERIAL_swigregister              <built-in function>
+  atanh_basic                            <function>
+  atanh_double                           <function>
+  atanh_int                              <function>
+  basic                                  <class>
+  basic_swigregister                     <built-in function>
+  beta                                   <function>
+  beta_NPARAMS                           2
+  beta_SERIAL                            <class>
+  beta_SERIAL_swigregister               <built-in function>
+  beta_basic_basic                       <function>
+  beta_basic_double                      <function>
+  beta_basic_int                         <function>
+  beta_double_basic                      <function>
+  beta_double_double                     <function>
+  beta_double_int                        <function>
+  beta_int_basic                         <function>
+  beta_int_double                        <function>
+  beta_int_int                           <function>
+  binomial                               <function>
+  binomial_NPARAMS                       2
+  binomial_SERIAL                        <class>
+  binomial_SERIAL_swigregister           <built-in function>
+  binomial_basic_basic                   <function>
+  binomial_basic_double                  <function>
+  binomial_basic_int                     <function>
+  binomial_double_basic                  <function>
+  binomial_double_double                 <function>
+  binomial_double_int                    <function>
+  binomial_int_basic                     <function>
+  binomial_int_double                    <function>
+  binomial_int_int                       <function>
+  canonicalize                           <function>
+  canonicalize_clifford                  <function>
+  charpoly                               <function>
+  clifford                               <class>
+  clifford_bar                           <function>
+  clifford_inverse                       <function>
+  clifford_moebius_map                   <function>
+  clifford_norm                          <function>
+  clifford_prime                         <function>
+  clifford_star                          <function>
+  clifford_swigregister                  <built-in function>
+  clifford_to_lst                        <function>
+  clifford_unit                          <function>
+  cliffordunit                           <class>
+  cliffordunit_swigregister              <built-in function>
+  coeff                                  <function>
+  collect                                <function>
+  collect_common_factors                 <function>
+  color                                  <class>
+  color_ONE                              <function>
+  color_T                                <function>
+  color_d                                <function>
+  color_f                                <function>
+  color_h                                <function>
+  color_swigregister                     <built-in function>
+  color_trace                            <function>
+  cols                                   <function>
+  conjugate                              <function>
+  conjugate_function                     <function>
+  conjugate_function_NPARAMS             1
+  conjugate_function_SERIAL              <class>
+  conjugate_function_SERIAL_swigregister <built-in function>
+  conjugate_function_basic               <function>
+  conjugate_function_double              <function>
+  conjugate_function_int                 <function>
+  conjugateepvector                      <function>
+  constant                               <class>
+  constant_swigregister                  <built-in function>
+  cos                                    <function>
+  cos_NPARAMS                            1
+  cos_SERIAL                             <class>
+  cos_SERIAL_swigregister                <built-in function>
+  cos_basic                              <function>
+  cos_double                             <function>
+  cos_int                                <function>
+  cosh                                   <function>
+  cosh_NPARAMS                           1
+  cosh_SERIAL                            <class>
+  cosh_SERIAL_swigregister               <built-in function>
+  cosh_basic                             <function>
+  cosh_double                            <function>
+  cosh_int                               <function>
+  count_dummy_indices                    <function>
+  count_free_indices                     <function>
+  csgn                                   <function>
+  csgn_NPARAMS                           1
+  csgn_SERIAL                            <class>
+  csgn_SERIAL_swigregister               <built-in function>
+  csgn_basic                             <function>
+  csgn_double                            <function>
+  csgn_int                               <function>
+  cvar                                   <Swig global variables>
+  decomp_rational                        <function>
+  degree                                 <function>
+  delta_tensor                           <function>
+  denom                                  <function>
+  determinant                            <function>
+  determinant_algo                       <class>
+  determinant_algo_swigregister          <built-in function>
+  diag_matrix                            <function>
+  diff                                   <function>
+  dirac_ONE                              <function>
+  dirac_gamma                            <function>
+  dirac_gamma5                           <function>
+  dirac_gammaL                           <function>
+  dirac_gammaR                           <function>
+  dirac_slash                            <function>
+  dirac_trace                            <function>
+  diracgamma                             <class>
+  diracgamma5                            <class>
+  diracgamma5_swigregister               <built-in function>
+  diracgammaL                            <class>
+  diracgammaL_swigregister               <built-in function>
+  diracgammaR                            <class>
+  diracgammaR_swigregister               <built-in function>
+  diracgamma_swigregister                <built-in function>
+  diracone                               <class>
+  diracone_swigregister                  <built-in function>
+  divide                                 <function>
+  do_taylor                              <class>
+  do_taylor_swigregister                 <built-in function>
+  epsilon_tensor                         <function>
+  eta                                    <function>
+  eta_NPARAMS                            2
+  eta_SERIAL                             <class>
+  eta_SERIAL_swigregister                <built-in function>
+  eta_basic_basic                        <function>
+  eta_basic_double                       <function>
+  eta_basic_int                          <function>
+  eta_double_basic                       <function>
+  eta_double_double                      <function>
+  eta_double_int                         <function>
+  eta_int_basic                          <function>
+  eta_int_double                         <function>
+  eta_int_int                            <function>
+  eval                                   <function>
+  eval_integ                             <function>
+  evalf                                  <function>
+  evalm                                  <function>
+  ex                                     <class>
+  ex_swigregister                        <built-in function>
+  exmap                                  <class>
+  exmap_swigregister                     <built-in function>
+  exp                                    <function>
+  exp_NPARAMS                            1
+  exp_SERIAL                             <class>
+  exp_SERIAL_swigregister                <built-in function>
+  exp_basic                              <function>
+  exp_double                             <function>
+  exp_int                                <function>
+  expairseq                              <class>
+  expairseq_swigregister                 <built-in function>
+  expand                                 <function>
+  expand_dummy_sum                       <function>
+  expand_options                         <class>
+  expand_options_swigregister            <built-in function>
+  exvector                               <class>
+  exvector_swigregister                  <built-in function>
+  factorial                              <function>
+  factorial_NPARAMS                      1
+  factorial_SERIAL                       <class>
+  factorial_SERIAL_swigregister          <built-in function>
+  factorial_basic                        <function>
+  factorial_double                       <function>
+  factorial_int                          <function>
+  find                                   <function>
+  find_dummy_indices                     <function>
+  find_free_and_dummy                    <function>
+  find_tinfo_key                         <function>
+  find_unarch_func                       <function>
+  fsolve                                 <function>
+  function                               <class>
+  function_find_function                 <function>
+  function_options                       <class>
+  function_options_swigregister          <built-in function>
+  function_register_new                  <function>
+  function_swigregister                  <built-in function>
+  gcd                                    <function>
+  get_all_dummy_indices                  <function>
+  get_symbols                            <function>
+  has                                    <function>
+  haswild                                <function>
+  idx                                    <class>
+  idx_swigregister                       <built-in function>
+  indexed                                <class>
+  indexed_swigregister                   <built-in function>
+  info_flags                             <class>
+  info_flags_swigregister                <built-in function>
+  integral                               <class>
+  integral_swigregister                  <built-in function>
+  inverse                                <function>
+  is_dummy_pair                          <function>
+  is_terminating                         <function>
+  lcm                                    <function>
+  ldegree                                <function>
+  lgamma                                 <function>
+  lgamma_NPARAMS                         1
+  lgamma_SERIAL                          <class>
+  lgamma_SERIAL_swigregister             <built-in function>
+  lgamma_basic                           <function>
+  lgamma_double                          <function>
+  lgamma_int                             <function>
+  lhs                                    <function>
+  log                                    <function>
+  log_NPARAMS                            1
+  log_SERIAL                             <class>
+  log_SERIAL_swigregister                <built-in function>
+  log_basic                              <function>
+  log_double                             <function>
+  log_int                                <function>
+  lorentz_eps                            <function>
+  lorentz_g                              <function>
+  lsolve                                 <function>
+  lst                                    <class>
+  lst_swigregister                       <built-in function>
+  lst_to_clifford                        <function>
+  lst_to_matrix                          <function>
+  match                                  <function>
+  matrix                                 <class>
+  matrix2                                <function>
+  matrix_swigregister                    <built-in function>
+  metric_tensor                          <function>
+  minimal_dim                            <function>
+  minkmetric                             <class>
+  minkmetric_swigregister                <built-in function>
+  mul                                    <class>
+  mul_swigregister                       <built-in function>
+  ncmul                                  <class>
+  ncmul_swigregister                     <built-in function>
+  new                                    <module 'new' from '.../new.pyc'>
+  new_instancemethod                     <type 'instancemethod'>
+  nops                                   <function>
+  normal                                 <function>
+  not_symmetric                          <function>
+  numer                                  <function>
+  numer_denom                            <function>
+  numeric                                <class>, see `numeric attributes`_
+  numeric_swigregister                   <built-in function>
+  op                                     <function>
+  parse_string                           <function>
+  power                                  <class>
+  power_swigregister                     <built-in function>
+  prem                                   <function>
+  pseries                                <class>
+  pseries_swigregister                   <built-in function>
+  psi                                    <function>
+  psi1                                   <function>
+  psi1_SERIAL                            <class>
+  psi1_SERIAL_swigregister               <built-in function>
+  psi2                                   <function>
+  psi2_SERIAL                            <class>
+  psi2_SERIAL_swigregister               <built-in function>
+  psi_basic                              <function>
+  psi_basic_basic                        <function>
+  psi_basic_double                       <function>
+  psi_basic_int                          <function>
+  psi_double                             <function>
+  psi_double_basic                       <function>
+  psi_double_double                      <function>
+  psi_double_int                         <function>
+  psi_int                                <function>
+  psi_int_basic                          <function>
+  psi_int_double                         <function>
+  psi_int_int                            <function>
+  quo                                    <function>
+  rank                                   <function>
+  refcounted                             <class>
+  refcounted_swigregister                <built-in function>
+  registered_class_options               <class>
+  registered_class_options_swigregister  <built-in function>
+  relational                             <class>
+  relational_swigregister                <built-in function>
+  rem                                    <function>
+  remove_dirac_ONE                       <function>
+  rename_dummy_indices_uniquely          <function>
+  resultant                              <function>
+  rhs                                    <function>
+  rows                                   <function>
+  scalar_products                        <class>
+  scalar_products_swigregister           <built-in function>
+  series                                 <function>
+  series_to_poly                         <function>
+  simplify_indexed                       <function>
+  sin                                    <function>
+  sin_NPARAMS                            1
+  sin_SERIAL                             <class>
+  sin_SERIAL_swigregister                <built-in function>
+  sin_basic                              <function>
+  sin_double                             <function>
+  sin_int                                <function>
+  sinh                                   <function>
+  sinh_NPARAMS                           1
+  sinh_SERIAL                            <class>
+  sinh_SERIAL_swigregister               <built-in function>
+  sinh_basic                             <function>
+  sinh_double                            <function>
+  sinh_int                               <function>
+  spinidx                                <class>
+  spinidx_swigregister                   <built-in function>
+  spinmetric                             <class>
+  spinmetric_swigregister                <built-in function>
+  spinor_metric                          <function>
+  spmapkey                               <class>
+  spmapkey_swigregister                  <built-in function>
+  sprem                                  <function>
+  sqrfree                                <function>
+  sqrfree_parfrac                        <function>
+  sqrt                                   <function>
+  su3d                                   <class>
+  su3d_swigregister                      <built-in function>
+  su3f                                   <class>
+  su3f_swigregister                      <built-in function>
+  su3one                                 <class>
+  su3one_swigregister                    <built-in function>
+  su3t                                   <class>
+  su3t_swigregister                      <built-in function>
+  subs                                   <function>
+  subs_options                           <class>
+  subs_options_swigregister              <built-in function>
+  swap                                   <function>
+  sy_anti                                <function>
+  sy_cycl                                <function>
+  sy_none                                <function>
+  sy_symm                                <function>
+  symbol                                 <class>
+  symbol_swigregister                    <built-in function>
+  symbolic_matrix                        <function>
+  symmetric2                             <function>
+  symmetric3                             <function>
+  symmetric4                             <function>
+  symmetrize                             <function>
+  symmetrize_cyclic                      <function>
+  symmetry                               <class>
+  symmetry_swigregister                  <built-in function>
+  tan                                    <function>
+  tan_NPARAMS                            1
+  tan_SERIAL                             <class>
+  tan_SERIAL_swigregister                <built-in function>
+  tan_basic                              <function>
+  tan_double                             <function>
+  tan_int                                <function>
+  tanh                                   <function>
+  tanh_NPARAMS                           1
+  tanh_SERIAL                            <class>
+  tanh_SERIAL_swigregister               <built-in function>
+  tanh_basic                             <function>
+  tanh_double                            <function>
+  tanh_int                               <function>
+  tensdelta                              <class>
+  tensdelta_swigregister                 <built-in function>
+  tensepsilon                            <class>
+  tensepsilon_swigregister               <built-in function>
+  tensmetric                             <class>
+  tensmetric_swigregister                <built-in function>
+  tensor                                 <class>
+  tensor_swigregister                    <built-in function>
+  tgamma                                 <function>
+  tgamma_NPARAMS                         1
+  tgamma_SERIAL                          <class>
+  tgamma_SERIAL_swigregister             <built-in function>
+  tgamma_basic                           <function>
+  tgamma_double                          <function>
+  tgamma_int                             <function>
+  to_polynomial                          <function>
+  to_rational                            <function>
+  toex                                   <function>
+  trace                                  <function>
+  transpose                              <function>
+  unit_matrix                            <function>
+  varidx                                 <class>
+  varidx_swigregister                    <built-in function>
+  wild                                   <function>
+  wildcard                               <class>
+  wildcard_swigregister                  <built-in function>
+  zeta                                   <function>
+  zeta1                                  <function>
+  zeta1_SERIAL                           <class>
+  zeta1_SERIAL_swigregister              <built-in function>
+  zeta2                                  <function>
+  zeta2_SERIAL                           <class>
+  zeta2_SERIAL_swigregister              <built-in function>
+  zeta_basic                             <function>
+  zeta_basic_basic                       <function>
+  zeta_basic_double                      <function>
+  zeta_basic_int                         <function>
+  zeta_double                            <function>
+  zeta_double_basic                      <function>
+  zeta_double_double                     <function>
+  zeta_double_int                        <function>
+  zeta_int                               <function>
+  zeta_int_basic                         <function>
+  zeta_int_double                        <function>
+  zeta_int_int                           <function>
+  zetaderiv                              <function>
+  zetaderiv_NPARAMS                      2
+  zetaderiv_SERIAL                       <class>
+  zetaderiv_SERIAL_swigregister          <built-in function>
+  zetaderiv_basic_basic                  <function>
+  zetaderiv_basic_double                 <function>
+  zetaderiv_basic_int                    <function>
+  zetaderiv_double_basic                 <function>
+  zetaderiv_double_double                <function>
+  zetaderiv_double_int                   <function>
+  zetaderiv_int_basic                    <function>
+  zetaderiv_int_double                   <function>
+  zetaderiv_int_int                      <function>
+  
+  
+Class attributes
+----------------
+
+numeric
+~~~~~~~
+::
+  
+  __add__
+  __class__
+  __copy__
+  __del__
+  __delattr__
+  __dict__
+  __div__
+  __doc__
+  __eq__
+  __float__
+  __ge__
+  __getattr__
+  __getattribute__
+  __gt__
+  __hash__
+  __init__
+  __int__
+  __le__
+  __lt__
+  __module__
+  __mul__
+  __ne__
+  __neg__
+  __new__
+  __nonzero__
+  __pos__
+  __pow__
+  __radd__
+  __rdiv__
+  __reduce__
+  __reduce_ex__
+  __repr__
+  __rmul__
+  __rpow__
+  __rsub__
+  __setattr__
+  __str__
+  __sub__
+  __swig_destroy__
+  __swig_getmethods__
+  __swig_setmethods__
+  __weakref__
+  _s
+  accept
+  add
+  add_dyn
+  add_indexed
+  add_reference
+  clearflag
+  coeff
+  collect
+  compare
+  conjugate
+  content
+  contract_with
+  copy
+  csgn
+  dbgprint
+  dbgprinttree
+  degree
+  denom
+  diff
+  div
+  div_dyn
+  duplicate
+  eval
+  eval_indexed
+  evalf
+  evalm
+  expand
+  get_free_indices
+  get_refcount
+  gethash
+  has
+  hold
+  imag
+  info
+  int_length
+  integer_content
+  inverse
+  is_cinteger
+  is_crational
+  is_equal
+  is_even
+  is_integer
+  is_negative
+  is_nonneg_integer
+  is_odd
+  is_pos_integer
+  is_positive
+  is_prime
+  is_rational
+  is_real
+  is_zero
+  ldegree
+  let_op
+  map
+  match
+  max_coefficient
+  mul
+  mul_dyn
+  nops
+  normal
+  numer
+  op
+  power
+  power_dyn
+  precedence
+  primpart
+  print_dispatch
+  printc
+  printlatex
+  printpython
+  real
+  remove_reference
+  return_type
+  return_type_tinfo
+  scalar_mul_indexed
+  series
+  set_print_context
+  set_refcount
+  setflag
+  simplify_indexed
+  smod
+  sub
+  sub_dyn
+  subs
+  subs_one_level
+  this
+  tinfo
+  to_cl_N
+  to_double
+  to_int
+  to_long
+  to_polynomial
+  to_rational
+  toex
+  unit
+ 
+symbol
+~~~~~~
+::
+
+  __add__
+  __class__
+  __copy__
+  __del__
+  __delattr__
+  __dict__
+  __div__
+  __doc__
+  __eq__
+  __ge__
+  __getattr__
+  __getattribute__
+  __gt__
+  __hash__
+  __init__
+  __le__
+  __lt__
+  __module__
+  __mul__
+  __ne__
+  __neg__
+  __new__
+  __nonzero__
+  __pos__
+  __pow__
+  __radd__
+  __rdiv__
+  __reduce__
+  __reduce_ex__
+  __repr__
+  __rmul__
+  __rpow__
+  __rsub__
+  __setattr__
+  __str__
+  __sub__
+  __swig_destroy__
+  __swig_getmethods__
+  __swig_setmethods__
+  __weakref__
+  _s
+  accept
+  add_indexed
+  add_reference
+  clearflag
+  coeff
+  collect
+  compare
+  conjugate
+  content
+  contract_with
+  copy
+  dbgprint
+  dbgprinttree
+  degree
+  denom
+  diff
+  duplicate
+  eval
+  eval_indexed
+  evalf
+  evalm
+  expand
+  get_free_indices
+  get_refcount
+  gethash
+  has
+  hold
+  info
+  integer_content
+  is_equal
+  is_zero
+  ldegree
+  let_op
+  map
+  match
+  max_coefficient
+  nops
+  normal
+  op
+  precedence
+  primpart
+  print_dispatch
+  printc
+  printlatex
+  printpython
+  remove_reference
+  return_type
+  return_type_tinfo
+  scalar_mul_indexed
+  series
+  set_print_context
+  set_refcount
+  setflag
+  simplify_indexed
+  smod
+  subs
+  subs_one_level
+  this
+  tinfo
+  to_polynomial
+  to_rational
+  toex
+  unit
+
+ex
+~~~~~~~~~~~~~
+::
+
+  __class__
+  __del__
+  __delattr__
+  __dict__
+  __doc__
+  __getattr__
+  __getattribute__
+  __hash__
+  __init__
+  __module__
+  __new__
+  __reduce__
+  __reduce_ex__
+  __repr__
+  __setattr__
+  __str__
+  __swig_destroy__
+  __swig_getmethods__
+  __swig_setmethods__
+  __weakref__
+  eval
+  this'
+
+add 
+~~~~~~~~~~~~~~
+::
+
+  __add__
+  __class__
+  __copy__
+  __del__
+  __delattr__
+  __dict__
+  __div__
+  __doc__
+  __eq__
+  __ge__
+  __getattr__
+  __getattribute__
+  __gt__
+  __hash__
+  __init__
+  __le__
+  __lt__
+  __module__
+  __mul__
+  __ne__
+  __neg__
+  __new__
+  __nonzero__
+  __pos__
+  __pow__
+  __radd__
+  __rdiv__
+  __reduce__
+  __reduce_ex__
+  __repr__
+  __rmul__
+  __rpow__
+  __rsub__
+  __setattr__
+  __str__
+  __sub__
+  __swig_destroy__
+  __swig_getmethods__
+  __swig_setmethods__
+  __weakref__
+  _s
+  accept
+  add_indexed
+  add_reference
+  clearflag
+  coeff
+  collect
+  compare
+  conjugate
+  content
+  contract_with
+  copy
+  dbgprint
+  dbgprinttree
+  degree
+  denom
+  diff
+  duplicate
+  eval
+  eval_indexed
+  evalf
+  evalm
+  expand
+  get_free_indices
+  get_refcount
+  gethash
+  has
+  hold
+  info
+  integer_content
+  is_equal
+  is_zero
+  ldegree
+  let_op
+  map
+  match
+  max_coefficient
+  nops
+  normal
+  op
+  precedence
+  primpart
+  print_dispatch
+  printc
+  printlatex
+  printpython
+  remove_reference
+  return_type
+  return_type_tinfo
+  scalar_mul_indexed
+  series
+  set_print_context
+  set_refcount
+  setflag
+  simplify_indexed
+  smod
+  subs
+  subs_one_level
+  this
+  tinfo
+  to_polynomial
+  to_rational
+  toex
+  unit
+
+mul 
+~~~
+::
+
+  __add__
+  __class__
+  __copy__
+  __del__
+  __delattr__
+  __dict__
+  __div__
+  __doc__
+  __eq__
+  __ge__
+  __getattr__
+  __getattribute__
+  __gt__
+  __hash__
+  __init__
+  __le__
+  __lt__
+  __module__
+  __mul__
+  __ne__
+  __neg__
+  __new__
+  __nonzero__
+  __pos__
+  __pow__
+  __radd__
+  __rdiv__
+  __reduce__
+  __reduce_ex__
+  __repr__
+  __rmul__
+  __rpow__
+  __rsub__
+  __setattr__
+  __str__
+  __sub__
+  __swig_destroy__
+  __swig_getmethods__
+  __swig_setmethods__
+  __weakref__
+  _s
+  accept
+  add_indexed
+  add_reference
+  algebraic_subs_mul
+  clearflag
+  coeff
+  collect
+  compare
+  conjugate
+  content
+  contract_with
+  copy
+  dbgprint
+  dbgprinttree
+  degree
+  denom
+  diff
+  duplicate
+  eval
+  eval_indexed
+  evalf
+  evalm
+  expand
+  get_free_indices
+  get_refcount
+  gethash
+  has
+  hold
+  info
+  integer_content
+  is_equal
+  is_zero
+  ldegree
+  let_op
+  map
+  match
+  max_coefficient
+  nops
+  normal
+  op
+  precedence
+  primpart
+  print_dispatch
+  printc
+  printlatex
+  printpython
+  remove_reference
+  return_type
+  return_type_tinfo
+  scalar_mul_indexed
+  series
+  set_print_context
+  set_refcount
+  setflag
+  simplify_indexed
+  smod
+  subs
+  subs_one_level
+  this
+  tinfo
+  to_polynomial
+  to_rational
+  toex
+  unit
+
+
+About this document
+-------------------
+
+Created with:
+
+>>> import swiginac
+>>> from pprint import pprint
+
+>>> pprint(vars(swiginac))
+
+>>> pprint(dir(swiginac.numeric(1)))
+
+>>> pprint(dir(swiginac.symbol('x')))
+
+>>> pprint(dir(swiginac.ex()))
+
+>>> pprint(dir(swiginac.symbol('x')*2))
 
 and some post processing.
-
