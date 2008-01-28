@@ -1,4 +1,4 @@
-/* Stylesheet for the PyLit site (for use with rest2web)
+/* Stylesheet swiginac doc pages (for use with docutils)
 
 :Author:    Guenter Milde
 :Copyright: 2007 G. Milde
@@ -41,10 +41,10 @@ dt {
 pre.literal-block, pre.doctest-block {
   margin-left: 2em ;
   margin-right: 2em ;
-  background-color: #FEFDD8; }
+  background-color: #EAEAEA; }
 /* ... and inline literal */
 tt.docutils {
-  background-color: white; }
+  background-color: #EAEAEA; }
 
 /* last line with Berlios logo */
 p.thanks { 
