@@ -29,10 +29,11 @@ using namespace GiNaC;
 
 %include "pyexceptions.i"
 
-%include stl.i
+%include std_sstream.i
 %include std_string.i
 %include std_map.i
 %include std_vector.i
+%include stl.i
 
 
 %feature("autodoc", "1");
@@ -72,6 +73,7 @@ namespace GiNaC {
 %include "flags.i"
 %include "pseries.i"
 %include "inifcns.i"
+%include "archive.i"
 
 
 

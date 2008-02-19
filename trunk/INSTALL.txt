@@ -10,9 +10,9 @@ GiNaC (ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/),
 SWIG (http://sourceforge.net/project/showfiles.php?group_id=1645), and
 pkg-config (http://pkg-config.freedesktop.org/wiki/). 
 
-Versions known to work are GiNaC version >= 1.3.2 and < 1.4.0,
+Versions known to work are GiNaC version >= 1.4.0,
 SWIG version >= 1.3.24, and pkg-config version 0.22-1. 
-(Remark: GiNaC version 1.3.0, 1.3.1 are known to _not_ work!)
+(Remark: GiNaC versions < 1.4.0 dos not work!)
 
 Most recent Linux distributions have packages for the above software. E.g., in
 Debian 4.0 (etch), the packages are:
