@@ -1,0 +1,1462 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Objects and attributes defined in the swiginac module</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id$
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="objects-and-attributes-defined-in-the-swiginac-module">
+<h1 class="title">Objects and attributes defined in the swiginac module</h1>
+
+<!-- -*- rst-mode -*- -->
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#module-objects" id="id1">Module objects</a></li>
+<li><a class="reference internal" href="#class-attributes" id="id2">Class attributes</a><ul>
+<li><a class="reference internal" href="#numeric" id="id3">numeric</a></li>
+<li><a class="reference internal" href="#symbol" id="id4">symbol</a></li>
+<li><a class="reference internal" href="#ex" id="id5">ex</a></li>
+<li><a class="reference internal" href="#add" id="id6">add</a></li>
+<li><a class="reference internal" href="#mul" id="id7">mul</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#about-this-document" id="id8">About this document</a></li>
+</ul>
+</div>
+<div class="section" id="module-objects">
+<h1><a class="toc-backref" href="#id1">Module objects</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Object:</th><td class="field-body">Value</td>
+</tr>
+</tbody>
+</table>
+<pre class="literal-block">
+Catalan                                Catalan
+CatalanEvalf                           &lt;function&gt;
+EXPAIRSEQ_USE_HASHTAB                  0
+Euler                                  Euler
+EulerEvalf                             &lt;function&gt;
+G                                      &lt;function&gt;
+G2                                     &lt;function&gt;
+G2_SERIAL                              &lt;class&gt;
+G2_SERIAL_swigregister                 &lt;built-in function&gt;
+G3                                     &lt;function&gt;
+G3_SERIAL                              &lt;class&gt;
+G3_SERIAL_swigregister                 &lt;built-in function&gt;
+G_basic_basic                          &lt;function&gt;
+G_basic_basic_basic                    &lt;function&gt;
+G_basic_basic_double                   &lt;function&gt;
+G_basic_basic_int                      &lt;function&gt;
+G_basic_double                         &lt;function&gt;
+G_basic_double_basic                   &lt;function&gt;
+G_basic_double_double                  &lt;function&gt;
+G_basic_double_int                     &lt;function&gt;
+G_basic_int                            &lt;function&gt;
+G_basic_int_basic                      &lt;function&gt;
+G_basic_int_double                     &lt;function&gt;
+G_basic_int_int                        &lt;function&gt;
+G_double_basic                         &lt;function&gt;
+G_double_basic_basic                   &lt;function&gt;
+G_double_basic_double                  &lt;function&gt;
+G_double_basic_int                     &lt;function&gt;
+G_double_double                        &lt;function&gt;
+G_double_double_basic                  &lt;function&gt;
+G_double_double_double                 &lt;function&gt;
+G_double_double_int                    &lt;function&gt;
+G_double_int                           &lt;function&gt;
+G_double_int_basic                     &lt;function&gt;
+G_double_int_double                    &lt;function&gt;
+G_double_int_int                       &lt;function&gt;
+G_int_basic                            &lt;function&gt;
+G_int_basic_basic                      &lt;function&gt;
+G_int_basic_double                     &lt;function&gt;
+G_int_basic_int                        &lt;function&gt;
+G_int_double                           &lt;function&gt;
+G_int_double_basic                     &lt;function&gt;
+G_int_double_double                    &lt;function&gt;
+G_int_double_int                       &lt;function&gt;
+G_int_int                              &lt;function&gt;
+G_int_int_basic                        &lt;function&gt;
+G_int_int_double                       &lt;function&gt;
+G_int_int_int                          &lt;function&gt;
+H                                      &lt;function&gt;
+H_NPARAMS                              2
+H_SERIAL                               &lt;class&gt;
+H_SERIAL_swigregister                  &lt;built-in function&gt;
+H_basic_basic                          &lt;function&gt;
+H_basic_double                         &lt;function&gt;
+H_basic_int                            &lt;function&gt;
+H_double_basic                         &lt;function&gt;
+H_double_double                        &lt;function&gt;
+H_double_int                           &lt;function&gt;
+H_int_basic                            &lt;function&gt;
+H_int_double                           &lt;function&gt;
+H_int_int                              &lt;function&gt;
+I                                      I
+Li                                     &lt;function&gt;
+Li2                                    &lt;function&gt;
+Li2_NPARAMS                            1
+Li2_SERIAL                             &lt;class&gt;
+Li2_SERIAL_swigregister                &lt;built-in function&gt;
+Li2_basic                              &lt;function&gt;
+Li2_double                             &lt;function&gt;
+Li2_int                                &lt;function&gt;
+Li3                                    &lt;function&gt;
+Li3_NPARAMS                            1
+Li3_SERIAL                             &lt;class&gt;
+Li3_SERIAL_swigregister                &lt;built-in function&gt;
+Li3_basic                              &lt;function&gt;
+Li3_double                             &lt;function&gt;
+Li3_int                                &lt;function&gt;
+Li_NPARAMS                             2
+Li_SERIAL                              &lt;class&gt;
+Li_SERIAL_swigregister                 &lt;built-in function&gt;
+Li_basic_basic                         &lt;function&gt;
+Li_basic_double                        &lt;function&gt;
+Li_basic_int                           &lt;function&gt;
+Li_double_basic                        &lt;function&gt;
+Li_double_double                       &lt;function&gt;
+Li_double_int                          &lt;function&gt;
+Li_int_basic                           &lt;function&gt;
+Li_int_double                          &lt;function&gt;
+Li_int_int                             &lt;function&gt;
+Order                                  &lt;function&gt;
+Order_NPARAMS                          1
+Order_SERIAL                           &lt;class&gt;
+Order_SERIAL_swigregister              &lt;built-in function&gt;
+Order_basic                            &lt;function&gt;
+Order_double                           &lt;function&gt;
+Order_int                              &lt;function&gt;
+Pi                                     Pi
+PiEvalf                                &lt;function&gt;
+PySwigIterator                         &lt;class&gt;
+PySwigIterator_swigregister            &lt;built-in function&gt;
+S                                      &lt;function&gt;
+S_NPARAMS                              3
+S_SERIAL                               &lt;class&gt;
+S_SERIAL_swigregister                  &lt;built-in function&gt;
+S_basic_basic_basic                    &lt;function&gt;
+S_basic_basic_double                   &lt;function&gt;
+S_basic_basic_int                      &lt;function&gt;
+S_basic_double_basic                   &lt;function&gt;
+S_basic_double_double                  &lt;function&gt;
+S_basic_double_int                     &lt;function&gt;
+S_basic_int_basic                      &lt;function&gt;
+S_basic_int_double                     &lt;function&gt;
+S_basic_int_int                        &lt;function&gt;
+S_double_basic_basic                   &lt;function&gt;
+S_double_basic_double                  &lt;function&gt;
+S_double_basic_int                     &lt;function&gt;
+S_double_double_basic                  &lt;function&gt;
+S_double_double_double                 &lt;function&gt;
+S_double_double_int                    &lt;function&gt;
+S_double_int_basic                     &lt;function&gt;
+S_double_int_double                    &lt;function&gt;
+S_double_int_int                       &lt;function&gt;
+S_int_basic_basic                      &lt;function&gt;
+S_int_basic_double                     &lt;function&gt;
+S_int_basic_int                        &lt;function&gt;
+S_int_double_basic                     &lt;function&gt;
+S_int_double_double                    &lt;function&gt;
+S_int_double_int                       &lt;function&gt;
+S_int_int_basic                        &lt;function&gt;
+S_int_int_double                       &lt;function&gt;
+S_int_int_int                          &lt;function&gt;
+__doc__                                None
+__file__                               '.../swiginac.pyc'
+__name__                               'swiginac'
+_dict                                  {}
+_newclass                              1
+_object                                &lt;type 'object'&gt;
+_swig_getattr                          &lt;function&gt;
+_swig_property                         &lt;type 'property'&gt;
+_swig_repr                             &lt;function&gt;
+_swig_setattr                          &lt;function&gt;
+_swig_setattr_nondynamic               &lt;function&gt;
+_swiginac                              &lt;module '_swiginac' from '_swiginac.so'&gt;
+abs                                    &lt;function&gt;
+abs_NPARAMS                            1
+abs_SERIAL                             &lt;class&gt;
+abs_SERIAL_swigregister                &lt;built-in function&gt;
+abs_basic                              &lt;function&gt;
+abs_double                             &lt;function&gt;
+abs_int                                &lt;function&gt;
+acos                                   &lt;function&gt;
+acos_NPARAMS                           1
+acos_SERIAL                            &lt;class&gt;
+acos_SERIAL_swigregister               &lt;built-in function&gt;
+acos_basic                             &lt;function&gt;
+acos_double                            &lt;function&gt;
+acos_int                               &lt;function&gt;
+acosh                                  &lt;function&gt;
+acosh_NPARAMS                          1
+acosh_SERIAL                           &lt;class&gt;
+acosh_SERIAL_swigregister              &lt;built-in function&gt;
+acosh_basic                            &lt;function&gt;
+acosh_double                           &lt;function&gt;
+acosh_int                              &lt;function&gt;
+adaptivesimpson                        &lt;function&gt;
+add                                    &lt;class&gt;
+add_swigregister                       &lt;built-in function&gt;
+antisymmetric2                         &lt;function&gt;
+antisymmetric3                         &lt;function&gt;
+antisymmetric4                         &lt;function&gt;
+antisymmetrize                         &lt;function&gt;
+asin                                   &lt;function&gt;
+asin_NPARAMS                           1
+asin_SERIAL                            &lt;class&gt;
+asin_SERIAL_swigregister               &lt;built-in function&gt;
+asin_basic                             &lt;function&gt;
+asin_double                            &lt;function&gt;
+asin_int                               &lt;function&gt;
+asinh                                  &lt;function&gt;
+asinh_NPARAMS                          1
+asinh_SERIAL                           &lt;class&gt;
+asinh_SERIAL_swigregister              &lt;built-in function&gt;
+asinh_basic                            &lt;function&gt;
+asinh_double                           &lt;function&gt;
+asinh_int                              &lt;function&gt;
+atan                                   &lt;function&gt;
+atan2                                  &lt;function&gt;
+atan2_NPARAMS                          2
+atan2_SERIAL                           &lt;class&gt;
+atan2_SERIAL_swigregister              &lt;built-in function&gt;
+atan2_basic_basic                      &lt;function&gt;
+atan2_basic_double                     &lt;function&gt;
+atan2_basic_int                        &lt;function&gt;
+atan2_double_basic                     &lt;function&gt;
+atan2_double_double                    &lt;function&gt;
+atan2_double_int                       &lt;function&gt;
+atan2_int_basic                        &lt;function&gt;
+atan2_int_double                       &lt;function&gt;
+atan2_int_int                          &lt;function&gt;
+atan_NPARAMS                           1
+atan_SERIAL                            &lt;class&gt;
+atan_SERIAL_swigregister               &lt;built-in function&gt;
+atan_basic                             &lt;function&gt;
+atan_double                            &lt;function&gt;
+atan_int                               &lt;function&gt;
+atanh                                  &lt;function&gt;
+atanh_NPARAMS                          1
+atanh_SERIAL                           &lt;class&gt;
+atanh_SERIAL_swigregister              &lt;built-in function&gt;
+atanh_basic                            &lt;function&gt;
+atanh_double                           &lt;function&gt;
+atanh_int                              &lt;function&gt;
+basic                                  &lt;class&gt;
+basic_swigregister                     &lt;built-in function&gt;
+beta                                   &lt;function&gt;
+beta_NPARAMS                           2
+beta_SERIAL                            &lt;class&gt;
+beta_SERIAL_swigregister               &lt;built-in function&gt;
+beta_basic_basic                       &lt;function&gt;
+beta_basic_double                      &lt;function&gt;
+beta_basic_int                         &lt;function&gt;
+beta_double_basic                      &lt;function&gt;
+beta_double_double                     &lt;function&gt;
+beta_double_int                        &lt;function&gt;
+beta_int_basic                         &lt;function&gt;
+beta_int_double                        &lt;function&gt;
+beta_int_int                           &lt;function&gt;
+binomial                               &lt;function&gt;
+binomial_NPARAMS                       2
+binomial_SERIAL                        &lt;class&gt;
+binomial_SERIAL_swigregister           &lt;built-in function&gt;
+binomial_basic_basic                   &lt;function&gt;
+binomial_basic_double                  &lt;function&gt;
+binomial_basic_int                     &lt;function&gt;
+binomial_double_basic                  &lt;function&gt;
+binomial_double_double                 &lt;function&gt;
+binomial_double_int                    &lt;function&gt;
+binomial_int_basic                     &lt;function&gt;
+binomial_int_double                    &lt;function&gt;
+binomial_int_int                       &lt;function&gt;
+canonicalize                           &lt;function&gt;
+canonicalize_clifford                  &lt;function&gt;
+charpoly                               &lt;function&gt;
+clifford                               &lt;class&gt;
+clifford_bar                           &lt;function&gt;
+clifford_inverse                       &lt;function&gt;
+clifford_moebius_map                   &lt;function&gt;
+clifford_norm                          &lt;function&gt;
+clifford_prime                         &lt;function&gt;
+clifford_star                          &lt;function&gt;
+clifford_swigregister                  &lt;built-in function&gt;
+clifford_to_lst                        &lt;function&gt;
+clifford_unit                          &lt;function&gt;
+cliffordunit                           &lt;class&gt;
+cliffordunit_swigregister              &lt;built-in function&gt;
+coeff                                  &lt;function&gt;
+collect                                &lt;function&gt;
+collect_common_factors                 &lt;function&gt;
+color                                  &lt;class&gt;
+color_ONE                              &lt;function&gt;
+color_T                                &lt;function&gt;
+color_d                                &lt;function&gt;
+color_f                                &lt;function&gt;
+color_h                                &lt;function&gt;
+color_swigregister                     &lt;built-in function&gt;
+color_trace                            &lt;function&gt;
+cols                                   &lt;function&gt;
+conjugate                              &lt;function&gt;
+conjugate_function                     &lt;function&gt;
+conjugate_function_NPARAMS             1
+conjugate_function_SERIAL              &lt;class&gt;
+conjugate_function_SERIAL_swigregister &lt;built-in function&gt;
+conjugate_function_basic               &lt;function&gt;
+conjugate_function_double              &lt;function&gt;
+conjugate_function_int                 &lt;function&gt;
+conjugateepvector                      &lt;function&gt;
+constant                               &lt;class&gt;
+constant_swigregister                  &lt;built-in function&gt;
+cos                                    &lt;function&gt;
+cos_NPARAMS                            1
+cos_SERIAL                             &lt;class&gt;
+cos_SERIAL_swigregister                &lt;built-in function&gt;
+cos_basic                              &lt;function&gt;
+cos_double                             &lt;function&gt;
+cos_int                                &lt;function&gt;
+cosh                                   &lt;function&gt;
+cosh_NPARAMS                           1
+cosh_SERIAL                            &lt;class&gt;
+cosh_SERIAL_swigregister               &lt;built-in function&gt;
+cosh_basic                             &lt;function&gt;
+cosh_double                            &lt;function&gt;
+cosh_int                               &lt;function&gt;
+count_dummy_indices                    &lt;function&gt;
+count_free_indices                     &lt;function&gt;
+csgn                                   &lt;function&gt;
+csgn_NPARAMS                           1
+csgn_SERIAL                            &lt;class&gt;
+csgn_SERIAL_swigregister               &lt;built-in function&gt;
+csgn_basic                             &lt;function&gt;
+csgn_double                            &lt;function&gt;
+csgn_int                               &lt;function&gt;
+cvar                                   &lt;Swig global variables&gt;
+decomp_rational                        &lt;function&gt;
+degree                                 &lt;function&gt;
+delta_tensor                           &lt;function&gt;
+denom                                  &lt;function&gt;
+determinant                            &lt;function&gt;
+determinant_algo                       &lt;class&gt;
+determinant_algo_swigregister          &lt;built-in function&gt;
+diag_matrix                            &lt;function&gt;
+diff                                   &lt;function&gt;
+dirac_ONE                              &lt;function&gt;
+dirac_gamma                            &lt;function&gt;
+dirac_gamma5                           &lt;function&gt;
+dirac_gammaL                           &lt;function&gt;
+dirac_gammaR                           &lt;function&gt;
+dirac_slash                            &lt;function&gt;
+dirac_trace                            &lt;function&gt;
+diracgamma                             &lt;class&gt;
+diracgamma5                            &lt;class&gt;
+diracgamma5_swigregister               &lt;built-in function&gt;
+diracgammaL                            &lt;class&gt;
+diracgammaL_swigregister               &lt;built-in function&gt;
+diracgammaR                            &lt;class&gt;
+diracgammaR_swigregister               &lt;built-in function&gt;
+diracgamma_swigregister                &lt;built-in function&gt;
+diracone                               &lt;class&gt;
+diracone_swigregister                  &lt;built-in function&gt;
+divide                                 &lt;function&gt;
+do_taylor                              &lt;class&gt;
+do_taylor_swigregister                 &lt;built-in function&gt;
+epsilon_tensor                         &lt;function&gt;
+eta                                    &lt;function&gt;
+eta_NPARAMS                            2
+eta_SERIAL                             &lt;class&gt;
+eta_SERIAL_swigregister                &lt;built-in function&gt;
+eta_basic_basic                        &lt;function&gt;
+eta_basic_double                       &lt;function&gt;
+eta_basic_int                          &lt;function&gt;
+eta_double_basic                       &lt;function&gt;
+eta_double_double                      &lt;function&gt;
+eta_double_int                         &lt;function&gt;
+eta_int_basic                          &lt;function&gt;
+eta_int_double                         &lt;function&gt;
+eta_int_int                            &lt;function&gt;
+eval                                   &lt;function&gt;
+eval_integ                             &lt;function&gt;
+evalf                                  &lt;function&gt;
+evalm                                  &lt;function&gt;
+ex                                     &lt;class&gt;
+ex_swigregister                        &lt;built-in function&gt;
+exmap                                  &lt;class&gt;
+exmap_swigregister                     &lt;built-in function&gt;
+exp                                    &lt;function&gt;
+exp_NPARAMS                            1
+exp_SERIAL                             &lt;class&gt;
+exp_SERIAL_swigregister                &lt;built-in function&gt;
+exp_basic                              &lt;function&gt;
+exp_double                             &lt;function&gt;
+exp_int                                &lt;function&gt;
+expairseq                              &lt;class&gt;
+expairseq_swigregister                 &lt;built-in function&gt;
+expand                                 &lt;function&gt;
+expand_dummy_sum                       &lt;function&gt;
+expand_options                         &lt;class&gt;
+expand_options_swigregister            &lt;built-in function&gt;
+exvector                               &lt;class&gt;
+exvector_swigregister                  &lt;built-in function&gt;
+factorial                              &lt;function&gt;
+factorial_NPARAMS                      1
+factorial_SERIAL                       &lt;class&gt;
+factorial_SERIAL_swigregister          &lt;built-in function&gt;
+factorial_basic                        &lt;function&gt;
+factorial_double                       &lt;function&gt;
+factorial_int                          &lt;function&gt;
+find                                   &lt;function&gt;
+find_dummy_indices                     &lt;function&gt;
+find_free_and_dummy                    &lt;function&gt;
+find_tinfo_key                         &lt;function&gt;
+find_unarch_func                       &lt;function&gt;
+fsolve                                 &lt;function&gt;
+function                               &lt;class&gt;
+function_find_function                 &lt;function&gt;
+function_options                       &lt;class&gt;
+function_options_swigregister          &lt;built-in function&gt;
+function_register_new                  &lt;function&gt;
+function_swigregister                  &lt;built-in function&gt;
+gcd                                    &lt;function&gt;
+get_all_dummy_indices                  &lt;function&gt;
+get_symbols                            &lt;function&gt;
+has                                    &lt;function&gt;
+haswild                                &lt;function&gt;
+idx                                    &lt;class&gt;
+idx_swigregister                       &lt;built-in function&gt;
+indexed                                &lt;class&gt;
+indexed_swigregister                   &lt;built-in function&gt;
+info_flags                             &lt;class&gt;
+info_flags_swigregister                &lt;built-in function&gt;
+integral                               &lt;class&gt;
+integral_swigregister                  &lt;built-in function&gt;
+inverse                                &lt;function&gt;
+is_dummy_pair                          &lt;function&gt;
+is_terminating                         &lt;function&gt;
+lcm                                    &lt;function&gt;
+ldegree                                &lt;function&gt;
+lgamma                                 &lt;function&gt;
+lgamma_NPARAMS                         1
+lgamma_SERIAL                          &lt;class&gt;
+lgamma_SERIAL_swigregister             &lt;built-in function&gt;
+lgamma_basic                           &lt;function&gt;
+lgamma_double                          &lt;function&gt;
+lgamma_int                             &lt;function&gt;
+lhs                                    &lt;function&gt;
+log                                    &lt;function&gt;
+log_NPARAMS                            1
+log_SERIAL                             &lt;class&gt;
+log_SERIAL_swigregister                &lt;built-in function&gt;
+log_basic                              &lt;function&gt;
+log_double                             &lt;function&gt;
+log_int                                &lt;function&gt;
+lorentz_eps                            &lt;function&gt;
+lorentz_g                              &lt;function&gt;
+lsolve                                 &lt;function&gt;
+lst                                    &lt;class&gt;
+lst_swigregister                       &lt;built-in function&gt;
+lst_to_clifford                        &lt;function&gt;
+lst_to_matrix                          &lt;function&gt;
+match                                  &lt;function&gt;
+matrix                                 &lt;class&gt;
+matrix2                                &lt;function&gt;
+matrix_swigregister                    &lt;built-in function&gt;
+metric_tensor                          &lt;function&gt;
+minimal_dim                            &lt;function&gt;
+minkmetric                             &lt;class&gt;
+minkmetric_swigregister                &lt;built-in function&gt;
+mul                                    &lt;class&gt;
+mul_swigregister                       &lt;built-in function&gt;
+ncmul                                  &lt;class&gt;
+ncmul_swigregister                     &lt;built-in function&gt;
+new                                    &lt;module 'new' from '.../new.pyc'&gt;
+new_instancemethod                     &lt;type 'instancemethod'&gt;
+nops                                   &lt;function&gt;
+normal                                 &lt;function&gt;
+not_symmetric                          &lt;function&gt;
+numer                                  &lt;function&gt;
+numer_denom                            &lt;function&gt;
+numeric                                &lt;class&gt;, see `numeric attributes`_
+numeric_swigregister                   &lt;built-in function&gt;
+op                                     &lt;function&gt;
+parse_string                           &lt;function&gt;
+power                                  &lt;class&gt;
+power_swigregister                     &lt;built-in function&gt;
+prem                                   &lt;function&gt;
+pseries                                &lt;class&gt;
+pseries_swigregister                   &lt;built-in function&gt;
+psi                                    &lt;function&gt;
+psi1                                   &lt;function&gt;
+psi1_SERIAL                            &lt;class&gt;
+psi1_SERIAL_swigregister               &lt;built-in function&gt;
+psi2                                   &lt;function&gt;
+psi2_SERIAL                            &lt;class&gt;
+psi2_SERIAL_swigregister               &lt;built-in function&gt;
+psi_basic                              &lt;function&gt;
+psi_basic_basic                        &lt;function&gt;
+psi_basic_double                       &lt;function&gt;
+psi_basic_int                          &lt;function&gt;
+psi_double                             &lt;function&gt;
+psi_double_basic                       &lt;function&gt;
+psi_double_double                      &lt;function&gt;
+psi_double_int                         &lt;function&gt;
+psi_int                                &lt;function&gt;
+psi_int_basic                          &lt;function&gt;
+psi_int_double                         &lt;function&gt;
+psi_int_int                            &lt;function&gt;
+quo                                    &lt;function&gt;
+rank                                   &lt;function&gt;
+refcounted                             &lt;class&gt;
+refcounted_swigregister                &lt;built-in function&gt;
+registered_class_options               &lt;class&gt;
+registered_class_options_swigregister  &lt;built-in function&gt;
+relational                             &lt;class&gt;
+relational_swigregister                &lt;built-in function&gt;
+rem                                    &lt;function&gt;
+remove_dirac_ONE                       &lt;function&gt;
+rename_dummy_indices_uniquely          &lt;function&gt;
+resultant                              &lt;function&gt;
+rhs                                    &lt;function&gt;
+rows                                   &lt;function&gt;
+scalar_products                        &lt;class&gt;
+scalar_products_swigregister           &lt;built-in function&gt;
+series                                 &lt;function&gt;
+series_to_poly                         &lt;function&gt;
+simplify_indexed                       &lt;function&gt;
+sin                                    &lt;function&gt;
+sin_NPARAMS                            1
+sin_SERIAL                             &lt;class&gt;
+sin_SERIAL_swigregister                &lt;built-in function&gt;
+sin_basic                              &lt;function&gt;
+sin_double                             &lt;function&gt;
+sin_int                                &lt;function&gt;
+sinh                                   &lt;function&gt;
+sinh_NPARAMS                           1
+sinh_SERIAL                            &lt;class&gt;
+sinh_SERIAL_swigregister               &lt;built-in function&gt;
+sinh_basic                             &lt;function&gt;
+sinh_double                            &lt;function&gt;
+sinh_int                               &lt;function&gt;
+spinidx                                &lt;class&gt;
+spinidx_swigregister                   &lt;built-in function&gt;
+spinmetric                             &lt;class&gt;
+spinmetric_swigregister                &lt;built-in function&gt;
+spinor_metric                          &lt;function&gt;
+spmapkey                               &lt;class&gt;
+spmapkey_swigregister                  &lt;built-in function&gt;
+sprem                                  &lt;function&gt;
+sqrfree                                &lt;function&gt;
+sqrfree_parfrac                        &lt;function&gt;
+sqrt                                   &lt;function&gt;
+su3d                                   &lt;class&gt;
+su3d_swigregister                      &lt;built-in function&gt;
+su3f                                   &lt;class&gt;
+su3f_swigregister                      &lt;built-in function&gt;
+su3one                                 &lt;class&gt;
+su3one_swigregister                    &lt;built-in function&gt;
+su3t                                   &lt;class&gt;
+su3t_swigregister                      &lt;built-in function&gt;
+subs                                   &lt;function&gt;
+subs_options                           &lt;class&gt;
+subs_options_swigregister              &lt;built-in function&gt;
+swap                                   &lt;function&gt;
+sy_anti                                &lt;function&gt;
+sy_cycl                                &lt;function&gt;
+sy_none                                &lt;function&gt;
+sy_symm                                &lt;function&gt;
+symbol                                 &lt;class&gt;
+symbol_swigregister                    &lt;built-in function&gt;
+symbolic_matrix                        &lt;function&gt;
+symmetric2                             &lt;function&gt;
+symmetric3                             &lt;function&gt;
+symmetric4                             &lt;function&gt;
+symmetrize                             &lt;function&gt;
+symmetrize_cyclic                      &lt;function&gt;
+symmetry                               &lt;class&gt;
+symmetry_swigregister                  &lt;built-in function&gt;
+tan                                    &lt;function&gt;
+tan_NPARAMS                            1
+tan_SERIAL                             &lt;class&gt;
+tan_SERIAL_swigregister                &lt;built-in function&gt;
+tan_basic                              &lt;function&gt;
+tan_double                             &lt;function&gt;
+tan_int                                &lt;function&gt;
+tanh                                   &lt;function&gt;
+tanh_NPARAMS                           1
+tanh_SERIAL                            &lt;class&gt;
+tanh_SERIAL_swigregister               &lt;built-in function&gt;
+tanh_basic                             &lt;function&gt;
+tanh_double                            &lt;function&gt;
+tanh_int                               &lt;function&gt;
+tensdelta                              &lt;class&gt;
+tensdelta_swigregister                 &lt;built-in function&gt;
+tensepsilon                            &lt;class&gt;
+tensepsilon_swigregister               &lt;built-in function&gt;
+tensmetric                             &lt;class&gt;
+tensmetric_swigregister                &lt;built-in function&gt;
+tensor                                 &lt;class&gt;
+tensor_swigregister                    &lt;built-in function&gt;
+tgamma                                 &lt;function&gt;
+tgamma_NPARAMS                         1
+tgamma_SERIAL                          &lt;class&gt;
+tgamma_SERIAL_swigregister             &lt;built-in function&gt;
+tgamma_basic                           &lt;function&gt;
+tgamma_double                          &lt;function&gt;
+tgamma_int                             &lt;function&gt;
+to_polynomial                          &lt;function&gt;
+to_rational                            &lt;function&gt;
+toex                                   &lt;function&gt;
+trace                                  &lt;function&gt;
+transpose                              &lt;function&gt;
+unit_matrix                            &lt;function&gt;
+varidx                                 &lt;class&gt;
+varidx_swigregister                    &lt;built-in function&gt;
+wild                                   &lt;function&gt;
+wildcard                               &lt;class&gt;
+wildcard_swigregister                  &lt;built-in function&gt;
+zeta                                   &lt;function&gt;
+zeta1                                  &lt;function&gt;
+zeta1_SERIAL                           &lt;class&gt;
+zeta1_SERIAL_swigregister              &lt;built-in function&gt;
+zeta2                                  &lt;function&gt;
+zeta2_SERIAL                           &lt;class&gt;
+zeta2_SERIAL_swigregister              &lt;built-in function&gt;
+zeta_basic                             &lt;function&gt;
+zeta_basic_basic                       &lt;function&gt;
+zeta_basic_double                      &lt;function&gt;
+zeta_basic_int                         &lt;function&gt;
+zeta_double                            &lt;function&gt;
+zeta_double_basic                      &lt;function&gt;
+zeta_double_double                     &lt;function&gt;
+zeta_double_int                        &lt;function&gt;
+zeta_int                               &lt;function&gt;
+zeta_int_basic                         &lt;function&gt;
+zeta_int_double                        &lt;function&gt;
+zeta_int_int                           &lt;function&gt;
+zetaderiv                              &lt;function&gt;
+zetaderiv_NPARAMS                      2
+zetaderiv_SERIAL                       &lt;class&gt;
+zetaderiv_SERIAL_swigregister          &lt;built-in function&gt;
+zetaderiv_basic_basic                  &lt;function&gt;
+zetaderiv_basic_double                 &lt;function&gt;
+zetaderiv_basic_int                    &lt;function&gt;
+zetaderiv_double_basic                 &lt;function&gt;
+zetaderiv_double_double                &lt;function&gt;
+zetaderiv_double_int                   &lt;function&gt;
+zetaderiv_int_basic                    &lt;function&gt;
+zetaderiv_int_double                   &lt;function&gt;
+zetaderiv_int_int                      &lt;function&gt;
+</pre>
+</div>
+<div class="section" id="class-attributes">
+<h1><a class="toc-backref" href="#id2">Class attributes</a></h1>
+<div class="section" id="numeric">
+<h2><a class="toc-backref" href="#id3">numeric</a></h2>
+<pre class="literal-block">
+__add__
+__class__
+__copy__
+__del__
+__delattr__
+__dict__
+__div__
+__doc__
+__eq__
+__float__
+__ge__
+__getattr__
+__getattribute__
+__gt__
+__hash__
+__init__
+__int__
+__le__
+__lt__
+__module__
+__mul__
+__ne__
+__neg__
+__new__
+__nonzero__
+__pos__
+__pow__
+__radd__
+__rdiv__
+__reduce__
+__reduce_ex__
+__repr__
+__rmul__
+__rpow__
+__rsub__
+__setattr__
+__str__
+__sub__
+__swig_destroy__
+__swig_getmethods__
+__swig_setmethods__
+__weakref__
+_s
+accept
+add
+add_dyn
+add_indexed
+add_reference
+clearflag
+coeff
+collect
+compare
+conjugate
+content
+contract_with
+copy
+csgn
+dbgprint
+dbgprinttree
+degree
+denom
+diff
+div
+div_dyn
+duplicate
+eval
+eval_indexed
+evalf
+evalm
+expand
+get_free_indices
+get_refcount
+gethash
+has
+hold
+imag
+info
+int_length
+integer_content
+inverse
+is_cinteger
+is_crational
+is_equal
+is_even
+is_integer
+is_negative
+is_nonneg_integer
+is_odd
+is_pos_integer
+is_positive
+is_prime
+is_rational
+is_real
+is_zero
+ldegree
+let_op
+map
+match
+max_coefficient
+mul
+mul_dyn
+nops
+normal
+numer
+op
+power
+power_dyn
+precedence
+primpart
+print_dispatch
+printc
+printlatex
+printpython
+real
+remove_reference
+return_type
+return_type_tinfo
+scalar_mul_indexed
+series
+set_print_context
+set_refcount
+setflag
+simplify_indexed
+smod
+sub
+sub_dyn
+subs
+subs_one_level
+this
+tinfo
+to_cl_N
+to_double
+to_int
+to_long
+to_polynomial
+to_rational
+toex
+unit
+</pre>
+</div>
+<div class="section" id="symbol">
+<h2><a class="toc-backref" href="#id4">symbol</a></h2>
+<pre class="literal-block">
+__add__
+__class__
+__copy__
+__del__
+__delattr__
+__dict__
+__div__
+__doc__
+__eq__
+__ge__
+__getattr__
+__getattribute__
+__gt__
+__hash__
+__init__
+__le__
+__lt__
+__module__
+__mul__
+__ne__
+__neg__
+__new__
+__nonzero__
+__pos__
+__pow__
+__radd__
+__rdiv__
+__reduce__
+__reduce_ex__
+__repr__
+__rmul__
+__rpow__
+__rsub__
+__setattr__
+__str__
+__sub__
+__swig_destroy__
+__swig_getmethods__
+__swig_setmethods__
+__weakref__
+_s
+accept
+add_indexed
+add_reference
+clearflag
+coeff
+collect
+compare
+conjugate
+content
+contract_with
+copy
+dbgprint
+dbgprinttree
+degree
+denom
+diff
+duplicate
+eval
+eval_indexed
+evalf
+evalm
+expand
+get_free_indices
+get_refcount
+gethash
+has
+hold
+info
+integer_content
+is_equal
+is_zero
+ldegree
+let_op
+map
+match
+max_coefficient
+nops
+normal
+op
+precedence
+primpart
+print_dispatch
+printc
+printlatex
+printpython
+remove_reference
+return_type
+return_type_tinfo
+scalar_mul_indexed
+series
+set_print_context
+set_refcount
+setflag
+simplify_indexed
+smod
+subs
+subs_one_level
+this
+tinfo
+to_polynomial
+to_rational
+toex
+unit
+</pre>
+</div>
+<div class="section" id="ex">
+<h2><a class="toc-backref" href="#id5">ex</a></h2>
+<pre class="literal-block">
+__class__
+__del__
+__delattr__
+__dict__
+__doc__
+__getattr__
+__getattribute__
+__hash__
+__init__
+__module__
+__new__
+__reduce__
+__reduce_ex__
+__repr__
+__setattr__
+__str__
+__swig_destroy__
+__swig_getmethods__
+__swig_setmethods__
+__weakref__
+eval
+this'
+</pre>
+</div>
+<div class="section" id="add">
+<h2><a class="toc-backref" href="#id6">add</a></h2>
+<pre class="literal-block">
+__add__
+__class__
+__copy__
+__del__
+__delattr__
+__dict__
+__div__
+__doc__
+__eq__
+__ge__
+__getattr__
+__getattribute__
+__gt__
+__hash__
+__init__
+__le__
+__lt__
+__module__
+__mul__
+__ne__
+__neg__
+__new__
+__nonzero__
+__pos__
+__pow__
+__radd__
+__rdiv__
+__reduce__
+__reduce_ex__
+__repr__
+__rmul__
+__rpow__
+__rsub__
+__setattr__
+__str__
+__sub__
+__swig_destroy__
+__swig_getmethods__
+__swig_setmethods__
+__weakref__
+_s
+accept
+add_indexed
+add_reference
+clearflag
+coeff
+collect
+compare
+conjugate
+content
+contract_with
+copy
+dbgprint
+dbgprinttree
+degree
+denom
+diff
+duplicate
+eval
+eval_indexed
+evalf
+evalm
+expand
+get_free_indices
+get_refcount
+gethash
+has
+hold
+info
+integer_content
+is_equal
+is_zero
+ldegree
+let_op
+map
+match
+max_coefficient
+nops
+normal
+op
+precedence
+primpart
+print_dispatch
+printc
+printlatex
+printpython
+remove_reference
+return_type
+return_type_tinfo
+scalar_mul_indexed
+series
+set_print_context
+set_refcount
+setflag
+simplify_indexed
+smod
+subs
+subs_one_level
+this
+tinfo
+to_polynomial
+to_rational
+toex
+unit
+</pre>
+</div>
+<div class="section" id="mul">
+<h2><a class="toc-backref" href="#id7">mul</a></h2>
+<pre class="literal-block">
+__add__
+__class__
+__copy__
+__del__
+__delattr__
+__dict__
+__div__
+__doc__
+__eq__
+__ge__
+__getattr__
+__getattribute__
+__gt__
+__hash__
+__init__
+__le__
+__lt__
+__module__
+__mul__
+__ne__
+__neg__
+__new__
+__nonzero__
+__pos__
+__pow__
+__radd__
+__rdiv__
+__reduce__
+__reduce_ex__
+__repr__
+__rmul__
+__rpow__
+__rsub__
+__setattr__
+__str__
+__sub__
+__swig_destroy__
+__swig_getmethods__
+__swig_setmethods__
+__weakref__
+_s
+accept
+add_indexed
+add_reference
+algebraic_subs_mul
+clearflag
+coeff
+collect
+compare
+conjugate
+content
+contract_with
+copy
+dbgprint
+dbgprinttree
+degree
+denom
+diff
+duplicate
+eval
+eval_indexed
+evalf
+evalm
+expand
+get_free_indices
+get_refcount
+gethash
+has
+hold
+info
+integer_content
+is_equal
+is_zero
+ldegree
+let_op
+map
+match
+max_coefficient
+nops
+normal
+op
+precedence
+primpart
+print_dispatch
+printc
+printlatex
+printpython
+remove_reference
+return_type
+return_type_tinfo
+scalar_mul_indexed
+series
+set_print_context
+set_refcount
+setflag
+simplify_indexed
+smod
+subs
+subs_one_level
+this
+tinfo
+to_polynomial
+to_rational
+toex
+unit
+</pre>
+</div>
+</div>
+<div class="section" id="about-this-document">
+<h1><a class="toc-backref" href="#id8">About this document</a></h1>
+<p>Created with:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; import swiginac
+&gt;&gt;&gt; from pprint import pprint
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; pprint(vars(swiginac))
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; pprint(dir(swiginac.numeric(1)))
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; pprint(dir(swiginac.symbol('x')))
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; pprint(dir(swiginac.ex()))
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; pprint(dir(swiginac.symbol('x')*2))
+</pre>
+<p>and some post processing.</p>
+</div>
+</div>
+</body>
+</html>
