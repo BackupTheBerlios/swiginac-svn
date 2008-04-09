@@ -16,7 +16,7 @@ SWIG version >= 1.3.24, and pkg-config version 0.22-1.
 
 Most recent Linux distributions have packages for the above software. E.g., in
 Debian 4.0 (etch), the packages are:
-libginac1.3c2a
+libginac1.4
 libginac-dev
 swig1.3
 pkg-config
