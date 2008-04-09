@@ -38,8 +38,12 @@ dt {
 }
 
 /* background colour for literal blocks*/
-pre.literal-block, pre.doctest-block, tt.docutils {
+pre.literal-block, tt.docutils {
   background-color: #faf0e6;  /* linen */
+}
+/* and doctest blocks (interactive python session) */
+pre.doctest-block {
+  background-color: #eee9e9;
 }
 
 /* last line with Berlios logo */
