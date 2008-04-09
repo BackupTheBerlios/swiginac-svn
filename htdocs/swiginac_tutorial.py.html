@@ -7,283 +7,7 @@
 <title>Symbolic Computation with GiNaC and Python</title>
 <meta name="date" content="2007-02-01" />
 <meta name="copyright" content="2006 Guenter Milde. Released under the terms of the GNU General Public License (v. 2 or later)" />
-<style type="text/css">
-
-/*
-:Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
-:Copyright: This stylesheet has been placed in the public domain.
-
-Default cascading style sheet for the HTML output of Docutils.
-
-See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
-customize this style sheet.
-*/
-
-/* used to remove borders from tables and images */
-.borderless, table.borderless td, table.borderless th {
-  border: 0 }
-
-table.borderless td, table.borderless th {
-  /* Override padding for "table.docutils td" with "! important".
-     The right padding separates the table cells. */
-  padding: 0 0.5em 0 0 ! important }
-
-.first {
-  /* Override more specific margin styles with "! important". */
-  margin-top: 0 ! important }
-
-.last, .with-subtitle {
-  margin-bottom: 0 ! important }
-
-.hidden {
-  display: none }
-
-a.toc-backref {
-  text-decoration: none ;
-  color: black }
-
-blockquote.epigraph {
-  margin: 2em 5em ; }
-
-dl.docutils dd {
-  margin-bottom: 0.5em }
-
-/* Uncomment (and remove this text!) to get bold-faced definition list terms
-dl.docutils dt {
-  font-weight: bold }
-*/
-
-div.abstract {
-  margin: 2em 5em }
-
-div.abstract p.topic-title {
-  font-weight: bold ;
-  text-align: center }
-
-div.admonition, div.attention, div.caution, div.danger, div.error,
-div.hint, div.important, div.note, div.tip, div.warning {
-  margin: 2em ;
-  border: medium outset ;
-  padding: 1em }
-
-div.admonition p.admonition-title, div.hint p.admonition-title,
-div.important p.admonition-title, div.note p.admonition-title,
-div.tip p.admonition-title {
-  font-weight: bold ;
-  font-family: sans-serif }
-
-div.attention p.admonition-title, div.caution p.admonition-title,
-div.danger p.admonition-title, div.error p.admonition-title,
-div.warning p.admonition-title {
-  color: red ;
-  font-weight: bold ;
-  font-family: sans-serif }
-
-/* Uncomment (and remove this text!) to get reduced vertical space in
-   compound paragraphs.
-div.compound .compound-first, div.compound .compound-middle {
-  margin-bottom: 0.5em }
-
-div.compound .compound-last, div.compound .compound-middle {
-  margin-top: 0.5em }
-*/
-
-div.dedication {
-  margin: 2em 5em ;
-  text-align: center ;
-  font-style: italic }
-
-div.dedication p.topic-title {
-  font-weight: bold ;
-  font-style: normal }
-
-div.figure {
-  margin-left: 2em ;
-  margin-right: 2em }
-
-div.footer, div.header {
-  clear: both;
-  font-size: smaller }
-
-div.line-block {
-  display: block ;
-  margin-top: 1em ;
-  margin-bottom: 1em }
-
-div.line-block div.line-block {
-  margin-top: 0 ;
-  margin-bottom: 0 ;
-  margin-left: 1.5em }
-
-div.sidebar {
-  margin: 0 0 0.5em 1em ;
-  border: medium outset ;
-  padding: 1em ;
-  background-color: #ffffee ;
-  width: 40% ;
-  float: right ;
-  clear: right }
-
-div.sidebar p.rubric {
-  font-family: sans-serif ;
-  font-size: medium }
-
-div.system-messages {
-  margin: 5em }
-
-div.system-messages h1 {
-  color: red }
-
-div.system-message {
-  border: medium outset ;
-  padding: 1em }
-
-div.system-message p.system-message-title {
-  color: red ;
-  font-weight: bold }
-
-div.topic {
-  margin: 2em }
-
-h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
-h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
-  margin-top: 0.4em }
-
-h1.title {
-  text-align: center }
-
-h2.subtitle {
-  text-align: center }
-
-hr.docutils {
-  width: 75% }
-
-img.align-left {
-  clear: left }
-
-img.align-right {
-  clear: right }
-
-ol.simple, ul.simple {
-  margin-bottom: 1em }
-
-ol.arabic {
-  list-style: decimal }
-
-ol.loweralpha {
-  list-style: lower-alpha }
-
-ol.upperalpha {
-  list-style: upper-alpha }
-
-ol.lowerroman {
-  list-style: lower-roman }
-
-ol.upperroman {
-  list-style: upper-roman }
-
-p.attribution {
-  text-align: right ;
-  margin-left: 50% }
-
-p.caption {
-  font-style: italic }
-
-p.credits {
-  font-style: italic ;
-  font-size: smaller }
-
-p.label {
-  white-space: nowrap }
-
-p.rubric {
-  font-weight: bold ;
-  font-size: larger ;
-  color: maroon ;
-  text-align: center }
-
-p.sidebar-title {
-  font-family: sans-serif ;
-  font-weight: bold ;
-  font-size: larger }
-
-p.sidebar-subtitle {
-  font-family: sans-serif ;
-  font-weight: bold }
-
-p.topic-title {
-  font-weight: bold }
-
-pre.address {
-  margin-bottom: 0 ;
-  margin-top: 0 ;
-  font-family: serif ;
-  font-size: 100% }
-
-pre.literal-block, pre.doctest-block {
-  margin-left: 2em ;
-  margin-right: 2em }
-
-span.classifier {
-  font-family: sans-serif ;
-  font-style: oblique }
-
-span.classifier-delimiter {
-  font-family: sans-serif ;
-  font-weight: bold }
-
-span.interpreted {
-  font-family: sans-serif }
-
-span.option {
-  white-space: nowrap }
-
-span.pre {
-  white-space: pre }
-
-span.problematic {
-  color: red }
-
-span.section-subtitle {
-  /* font-size relative to parent (h1..h6 element) */
-  font-size: 80% }
-
-table.citation {
-  border-left: solid 1px gray;
-  margin-left: 1px }
-
-table.docinfo {
-  margin: 2em 4em }
-
-table.docutils {
-  margin-top: 0.5em ;
-  margin-bottom: 0.5em }
-
-table.footnote {
-  border-left: solid 1px black;
-  margin-left: 1px }
-
-table.docutils td, table.docutils th,
-table.docinfo td, table.docinfo th {
-  padding-left: 0.5em ;
-  padding-right: 0.5em ;
-  vertical-align: top }
-
-table.docutils th.field-name, table.docinfo th.docinfo-name {
-  font-weight: bold ;
-  text-align: left ;
-  white-space: nowrap ;
-  padding-left: 0 }
-
-h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
-h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
-  font-size: 100% }
-
-ul.auto-toc {
-  list-style-type: none }
-
-</style>
+<link rel="stylesheet" href="swiginac-doc.css" type="text/css" />
 </head>
 <body>
 <div class="document" id="symbolic-computation-with-ginac-and-python">
@@ -318,27 +42,28 @@ the Python programming language</p>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="auto-toc simple">
-<li><a class="reference internal" href="#introduction" id="id8">1&nbsp;&nbsp;&nbsp;Introduction</a></li>
-<li><a class="reference internal" href="#a-tour-of-ginac" id="id9">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a><ul class="auto-toc">
-<li><a class="reference internal" href="#how-to-use-it-from-within-python" id="id10">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></li>
-<li><a class="reference internal" href="#what-it-can-do-for-you" id="id11">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a><ul class="auto-toc">
-<li><a class="reference internal" href="#symbols" id="id12">2.2.1&nbsp;&nbsp;&nbsp;Symbols</a></li>
-<li><a class="reference internal" href="#numbers" id="id13">2.2.2&nbsp;&nbsp;&nbsp;Numbers</a></li>
+<li><a class="reference internal" href="#introduction" id="id6">1&nbsp;&nbsp;&nbsp;Introduction</a></li>
+<li><a class="reference internal" href="#a-tour-of-ginac" id="id7">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a><ul class="auto-toc">
+<li><a class="reference internal" href="#how-to-use-it-from-within-python" id="id8">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></li>
+<li><a class="reference internal" href="#what-it-can-do-for-you" id="id9">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a><ul class="auto-toc">
+<li><a class="reference internal" href="#symbols" id="id10">2.2.1&nbsp;&nbsp;&nbsp;Symbols</a></li>
+<li><a class="reference internal" href="#numbers" id="id11">2.2.2&nbsp;&nbsp;&nbsp;Numbers</a></li>
+<li><a class="reference internal" href="#linear-algebra" id="id12">2.2.3&nbsp;&nbsp;&nbsp;Linear Algebra</a></li>
+<li><a class="reference internal" href="#calculus" id="id13">2.2.4&nbsp;&nbsp;&nbsp;Calculus</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#installation" id="id14">3&nbsp;&nbsp;&nbsp;Installation</a><ul class="auto-toc">
 <li><a class="reference internal" href="#id1" id="id15">3.1&nbsp;&nbsp;&nbsp;GiNaC</a></li>
-<li><a class="reference internal" href="#id5" id="id16">3.2&nbsp;&nbsp;&nbsp;swiginac</a></li>
-<li><a class="reference internal" href="#pyginac" id="id17">3.3&nbsp;&nbsp;&nbsp;PyGiNaC</a></li>
-<li><a class="reference internal" href="#source" id="id18">3.4&nbsp;&nbsp;&nbsp;Source</a></li>
+<li><a class="reference internal" href="#id4" id="id16">3.2&nbsp;&nbsp;&nbsp;swiginac</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#about-this-document" id="id17">4&nbsp;&nbsp;&nbsp;About this Document</a></li>
 </ul>
 </div>
 <div class="section" id="introduction">
-<h1><a class="toc-backref" href="#id8">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
+<h1><a class="toc-backref" href="#id6">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
 <p>This tutorial is intended for the user who is new to <a class="reference external" href="http://www.ginac.de">GiNaC</a> but already has
 some background in Python programming. It is an adaption of the <a class="reference external" href="http://www.ginac.de/tutorial/">GiNaC
 tutorial</a> (for symbolic computation within the C++ programming language)
@@ -362,17 +87,17 @@ and the swiginac package (see the <a class="reference internal" href="#installat
 there).</p>
 </div>
 <div class="section" id="a-tour-of-ginac">
-<h1><a class="toc-backref" href="#id9">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a></h1>
+<h1><a class="toc-backref" href="#id7">2&nbsp;&nbsp;&nbsp;A Tour of GiNaC</a></h1>
 <p>This quick tour of GiNaC wants to arise your interest in the subsequent
 chapters by showing off a bit.</p>
 <p>Please excuse us if it leaves many open questions.</p>
 <div class="section" id="how-to-use-it-from-within-python">
-<h2><a class="toc-backref" href="#id10">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></h2>
+<h2><a class="toc-backref" href="#id8">2.1&nbsp;&nbsp;&nbsp;How to use it from within Python</a></h2>
 <p><a class="reference external" href="http://www.ginac.de">GiNaC</a> does not define a programming language of is own as conventional
 computer algebra systems (CAS) do.  <a class="reference external" href="http://www.ginac.de">GiNaC</a> is a C++ library for applications
 in need of symbolic manipulation.</p>
 <p><a class="reference external" href="http://www.python.org">Python</a> is such an application.</p>
-<p><a class="reference external" href="http://swiginac.berlios.de">Swiginac</a> is a Python interface for GiNaC addign symbolic mathematics to the
+<p><a class="reference external" href="http://swiginac.berlios.de">Swiginac</a> is a Python interface for GiNaC adding symbolic mathematics to the
 many features of Python.
 After starting a python interpreter, import the <cite>swiginac</cite> module with:</p>
 <pre class="doctest-block">
@@ -427,7 +152,7 @@ H_5(z) == 120*z+32*z**5-160*z**3
 production purposes.</p>
 </div>
 <div class="section" id="what-it-can-do-for-you">
-<h2><a class="toc-backref" href="#id11">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a></h2>
+<h2><a class="toc-backref" href="#id9">2.2&nbsp;&nbsp;&nbsp;What it can do for you</a></h2>
 <p>In order to show some more examples of GiNaC at work, the original tutorial
 uses the <cite>GiNaC interactive shell</cite> <tt class="docutils literal"><span class="pre">ginsh</span></tt>. The simple <tt class="docutils literal"><span class="pre">ginsh</span></tt> shell
 does not provide programming constructs like loops or conditionals, whereas
@@ -435,7 +160,7 @@ does not provide programming constructs like loops or conditionals, whereas
 and the power of the full grown and established programming language
 <a class="reference external" href="http://www.python.org">Python</a>.</p>
 <div class="section" id="symbols">
-<h3><a class="toc-backref" href="#id12">2.2.1&nbsp;&nbsp;&nbsp;Symbols</a></h3>
+<h3><a class="toc-backref" href="#id10">2.2.1&nbsp;&nbsp;&nbsp;Symbols</a></h3>
 <p>One main difference between &quot;normal&quot; CAS systems (or ginsh) and computer
 algebra with Python is the need to define any symbols before use. Otherwise
 Python will complain about unidentified variables:</p>
@@ -450,9 +175,15 @@ NameError: name 'x' is not defined
 &gt;&gt;&gt; sin(x)
 sin(x)
 </pre>
+<p>You can also define a set of symbols in a loop:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; for sym in ['x', 'y', 'z']:
+...    setattr(sys.modules[__name__], sym, symbol(sym))
+</pre>
 </div>
 <div class="section" id="numbers">
-<h3><a class="toc-backref" href="#id13">2.2.2&nbsp;&nbsp;&nbsp;Numbers</a></h3>
+<h3><a class="toc-backref" href="#id11">2.2.2&nbsp;&nbsp;&nbsp;Numbers</a></h3>
 <p>The <tt class="docutils literal"><span class="pre">numeric</span></tt> class can manipulate arbitrary precision integers in a very
 fast way. Rational numbers are automatically converted to fractions of
 coprime integers. As by default Python will convert a number to one of its
@@ -497,85 +228,67 @@ be input as string value or as (numerator, denominator) tuple:</p>
 <p>Exact numbers are always retained as exact numbers and only evaluated as
 floating point numbers if requested. For instance, products of sums of
 radicals can be expanded:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; a = symbol('a')
 &gt;&gt;&gt; expand((1+a**numeric('1/5')-a**numeric('2/5'))**3)
-1-a**(6/5)+3*a**(1/5)-5*a**(3/5)+3*a
+1-a**(6/5)+3*a+3*a**(1/5)-5*a**(3/5)
 </pre>
-</blockquote>
 <p>Numeric radicals are dealt pretty much as symbols:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; expand((1+3**numeric('1/5')-3**numeric('2/5'))**3)
 10-5*3**(3/5)
-</pre>
-<pre class="doctest-block">
 &gt;&gt;&gt; ((1+3**numeric('1/5')-3**numeric('2/5'))**3).evalf()
 0.33408977534118624228
 </pre>
-</blockquote>
 <p>The <tt class="docutils literal"><span class="pre">evalf()</span></tt> method used above converts any number in GiNaC's expressions
 into floating point numbers:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; numeric('1/7').evalf()
 0.14285714285714285714
 </pre>
-</blockquote>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<dl class="docutils">
-<dt>In GiNaC or ginsh, this can be done to arbitrary predefined</dt>
-<dd><blockquote class="first">
-accuracy:</blockquote>
-<p class="last">&gt; Digits=150;
+<p>In GiNaC or ginsh, this can be done to arbitrary predefined
+accuracy:</p>
+<pre class="literal-block">
+&gt; Digits=150;
 150
 &gt; evalf(1/7);
-0.1428571428571428571428571428571428571428571428571428571428571428571428</p>
-</dd>
-</dl>
-<p class="last">I did not find an equivalent setting in swiginac, though. Either this is
-not available (yet) or I just did not find it.</p>
+0.1428571428571428571428571428571428571428571428571428571428571428571428
+</pre>
+<p class="last">There is no equivalent setting in swiginac (yet).</p>
 </div>
 <p>The return value of <tt class="docutils literal"><span class="pre">evalf()</span></tt> is still a <tt class="docutils literal"><span class="pre">numeric</span></tt> value:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; type(numeric('1/7').evalf())
 &lt;class 'swiginac.numeric'&gt;
 </pre>
-</blockquote>
 <p>You can convert it to a Python datatype by the usual Python means or
 using the <tt class="docutils literal"><span class="pre">to_double()</span></tt>, <tt class="docutils literal"><span class="pre">to_int()</span></tt>, or <tt class="docutils literal"><span class="pre">to_long()</span></tt> methods:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; type(numeric('1/7').to_double())
 &lt;type 'float'&gt;
 </pre>
-</blockquote>
 <p>Exact numbers that can be manipulated in GiNaC include predefined constants
 like Archimedes' Pi. They can both be used in symbolic manipulations (as an
-exact number) as well as in numeric expressions (as an inexact number):</p>
-<blockquote>
+exact number) as well as in numeric expressions  (as an inexact number):</p>
 <pre class="doctest-block">
 &gt;&gt;&gt; x = symbol('x')
 &gt;&gt;&gt; a = Pi**2 + x
-&gt;&gt;&gt; print a
-Pi**2+x
 </pre>
 <pre class="doctest-block">
+&gt;&gt;&gt; a
+x+Pi**2
 &gt;&gt;&gt; a.evalf()
 9.869604401089358619+x
-</pre>
-<pre class="doctest-block">
 &gt;&gt;&gt; a.subs(x == 2).evalf()
 11.869604401089358619
 </pre>
-</blockquote>
 <div class="note">
 <p class="first admonition-title">Note</p>
-<p>The <tt class="docutils literal"><span class="pre">subs()</span></tt> method is used, as changing the value of <tt class="docutils literal"><span class="pre">x</span></tt> will
-not propagate to the already defined expression <tt class="docutils literal"><span class="pre">a</span></tt>:</p>
+<p>In the last example, the <tt class="docutils literal"><span class="pre">subs()</span></tt> method is used, as changing the
+value of <tt class="docutils literal"><span class="pre">x</span></tt> will not propagate to the already defined expression
+<tt class="docutils literal"><span class="pre">a</span></tt>:</p>
 <blockquote class="last">
 <pre class="doctest-block">
 &gt;&gt;&gt; x = 2
@@ -587,7 +300,6 @@ not propagate to the already defined expression <tt class="docutils literal"><sp
 <p>Built-in functions evaluate immediately to exact numbers if this is
 possible. Conversions that can be safely performed are done immediately;
 conversions that are not generally valid are not done:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; x = symbol('x')
 &gt;&gt;&gt; cos(42*Pi)
@@ -597,25 +309,21 @@ x
 &gt;&gt;&gt; acos(cos(x));
 acos(cos(x))
 </pre>
-</blockquote>
 <p>(Note that converting the last input to x would allow one to conclude that
 42*Pi is equal to 0.)</p>
+</div>
+<div class="section" id="linear-algebra">
+<h3><a class="toc-backref" href="#id12">2.2.3&nbsp;&nbsp;&nbsp;Linear Algebra</a></h3>
 <p>Linear equation systems can be solved along with basic linear algebra
 manipulations over symbolic expressions. swiginac offers a matrix
 class for this purpose:</p>
-<blockquote>
 <pre class="doctest-block">
-&gt;&gt;&gt; x = symbol('x')
-&gt;&gt;&gt; y = symbol('y')
-&gt;&gt;&gt; z = symbol('z')
-&gt;&gt;&gt; a = symbol('a')
-&gt;&gt;&gt; b = symbol('b')
+&gt;&gt;&gt; x = symbol('x'); y = symbol('y'); z = symbol('z')
+&gt;&gt;&gt; a = symbol('a'); b = symbol('b'); l = symbol('l')
 </pre>
 <pre class="doctest-block">
 &gt;&gt;&gt; lsolve(a+x*y==z,x)
 (z-a)*y**(-1)
-</pre>
-<pre class="doctest-block">
 &gt;&gt;&gt; lsolve([3*x+5*y == 7, -2*x+10*y == -5], [x, y])
 [x==19/8, y==-1/40]
 </pre>
@@ -623,11 +331,8 @@ class for this purpose:</p>
 &gt;&gt;&gt; M = matrix([[1, 3], [-3, 2]])
 &gt;&gt;&gt; determinant(M);
 11
-</pre>
-<pre class="doctest-block">
-&gt;&gt;&gt; l = symbol('lambda', '\lambda')  # lambda is a Python keyword
 &gt;&gt;&gt; charpoly(M,l)
-11+lambda**2-3*lambda
+11+l**2-3*l
 </pre>
 <pre class="doctest-block">
 &gt;&gt;&gt; A = matrix([[1, 1], [2, -1]])
@@ -639,10 +344,8 @@ class for this purpose:</p>
 &gt;&gt;&gt; evalm(B**(2**12))
 [[1,0,0],[0,1,0],[0,0,1]]
 </pre>
-</blockquote>
 <p>Multivariate polynomials and rational functions may be expanded, collected
 and normalized (i.e. converted to a ratio of two coprime polynomials):</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; a = x**4 + 2*x**2*y**2 + 4*x**3*y + 12*x*y**3 - 3*y**4
 &gt;&gt;&gt; b = x**2 + 4*x*y - y**2
@@ -659,11 +362,12 @@ and normalized (i.e. converted to a ratio of two coprime polynomials):</p>
 &gt;&gt;&gt; normal(a/b)
 x**2+3*y**2
 </pre>
-</blockquote>
+</div>
+<div class="section" id="calculus">
+<h3><a class="toc-backref" href="#id13">2.2.4&nbsp;&nbsp;&nbsp;Calculus</a></h3>
 <p>You can differentiate functions and expand them as Taylor or Laurent series
 in a very natural syntax (the second argument of series is a relation
 defining the evaluation point, the third specifies the order):</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; diff(tan(x),x)
 1+tan(x)**2
@@ -676,18 +380,20 @@ defining the evaluation point, the third specifies the order):</p>
 &gt;&gt;&gt; series(1/tan(x),x==0,2)
 1*x**(-1)+(-1/3)*x+Order(x**2)
 </pre>
-<p>series(tgamma(x),x==0,2)
-1*x**(-1)+(-Euler)+(1/12*Pi**2+1/2*Euler**2)*x+Order(x**2)</p>
-<p>series(tgamma(x),x==0,2).evalf()
-1.0*x**(-1)+(-0.5772156649015328606)+0.9890559953279725555*x+Order(x**2)</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; series(tgamma(x),x==0,2)
+1*x**(-1)+(-Euler)+(1/12*Pi**2+1/2*Euler**2)*x+Order(x**2)
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; series(tgamma(x),x==0,2).evalf()
+1.0*x**(-1)+(-0.5772156649015328606)+0.9890559953279725555*x+Order(x**2)
+</pre>
 <pre class="doctest-block">
 &gt;&gt;&gt; series(tgamma(2*sin(x)-2),x==Pi/2,3)
 (-1)*(x-1/2*Pi)**(-2)+(-1/12-Euler)+(-1/240-1/12*Pi**2-1/2*Euler**2)*(x-1/2*Pi)**2+Order((x-1/2*Pi)**3)
 </pre>
-</blockquote>
 <p>Often, functions don't have roots in closed form. Nevertheless, it's quite
 easy to compute a solution numerically:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; fsolve(cos(x)==x,x,0,2)
 0.73908513321516064166
@@ -698,14 +404,12 @@ easy to compute a solution numerically:</p>
 &gt;&gt;&gt; subs(f,x==X)
 -2.168404344971008868E-19
 </pre>
-</blockquote>
 <p>Notice how the final result above differs slightly from zero by about
 2*10^(-19). This is because with 20 decimal digits precision the root cannot
 be represented more accurately than X. Such inaccuracies are to be expected
 when computing with finite floating point values.</p>
 <p>Symbolic types can always be used as tags for different types of objects.
 Converting from &quot;wrong&quot; units to the metric system is an example:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; m = symbol('m'); kg = symbol('kg')
 &gt;&gt;&gt; inch = .0254*m
@@ -713,15 +417,12 @@ Converting from &quot;wrong&quot; units to the metric system is an example:</p>
 &gt;&gt;&gt; 200*lb/inch**2
 (140613.91592783187407)*m**(-2)*kg
 </pre>
-</blockquote>
 <p>However, as generic symbols do not know about special properties of physical
 units, it can not simplify all expressions with unit symbols:</p>
-<blockquote>
 <pre class="doctest-block">
 &gt;&gt;&gt; print abs(-3), abs(-3*m)
 3 abs(-3*m)
 </pre>
-</blockquote>
 <p>(We know, that m is positiv definit, but GiNaC does not.)</p>
 <p>The <em>Scientific.Physics.PhysicalQuantities</em> module from the <a class="reference external" href="http://dirac.cnrs-orleans.fr/ScientificPython/">Scientific</a>
 package provides an elaborated environment specifically designed for working
@@ -731,14 +432,8 @@ with units. Unfortunately, it does not collaborate well with swiginac.</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#id14">3&nbsp;&nbsp;&nbsp;Installation</a></h1>
-<p>Installation is covered in the original documentation of the relevant
-packages. Instead of repeating it, pointers will be given.</p>
 <div class="section" id="id1">
 <h2><a class="toc-backref" href="#id15">3.1&nbsp;&nbsp;&nbsp;GiNaC</a></h2>
-<p>The GiNaC framework for symbolic computation within the C++ programming
-language (and its tutorial) is Copyright 1999-2006 Johannes Gutenberg
-University Mainz, Germany. It is released under the
-<a class="reference external" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> (GPL).</p>
 <p><a class="reference external" href="http://www.ginac.de">GiNaC</a> sources can be fetched from its home site under the section
 <a class="reference external" href="http://www.ginac.de/Download.html">Download GiNaC now</a> which also says:</p>
 <blockquote>
@@ -750,7 +445,7 @@ FreeBSD.</blockquote>
 <p>The <a class="reference external" href="http://packages.qa.debian.org/g/ginac.html">installation</a> is covered in the <a class="reference external" href="http://www.ginac.de/tutorial/">GiNaC tutorial</a> (and in the INSTALL
 file of the tarball).</p>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id4">
 <h2><a class="toc-backref" href="#id16">3.2&nbsp;&nbsp;&nbsp;swiginac</a></h2>
 <p><a class="reference external" href="http://swiginac.berlios.de">swiginac</a> is a Python interface to GiNaC, built with <a class="reference external" href="http://www.swig.org/">SWIG</a>. The aim of
 swiginac is to make the functionality of GiNaC accessible from Python as
@@ -759,23 +454,12 @@ an extension module.</p>
 exposed, virtually all of the GiNaC tests pass.</p>
 <p>For more information, documentation and software downloads, visit the
 <a class="reference external" href="http://developer.berlios.de/projects/swiginac/">swiginac group pages on BerliOS</a>.</p>
-<p>The <a class="reference external" href="http://developer.berlios.de/project/filelist.php?group_id=4761">source tarballs</a> contains installation instructions in a
+<p>The <a class="reference external" href="http://developer.berlios.de/project/filelist.php?group_id=4761">source tarballs</a> contain installation instructions in an
 INSTALL.txt file.</p>
 </div>
-<div class="section" id="pyginac">
-<h2><a class="toc-backref" href="#id17">3.3&nbsp;&nbsp;&nbsp;PyGiNaC</a></h2>
-<p><a class="reference external" href="http://pyginac.sourceforge.net/">PyGiNaC</a> is another Python package that provides an interface to the C++
-library GiNaC. PyGiNaC is implemented with the help of the <a class="reference external" href="http://www.boost.org/libs/python/doc/index.html">Boost.Python</a>
-library. At the moment, the package is more or less in an &quot;alpha&quot; state,
-i.e. the GiNaC classes are only partially exposed, parts of regression test
-suite are unconverted and no actual documentation exists. However, all of
-this is supposed to change in the future.</p>
-<p>At the moment there are no released tarballs of PyGiNaC. Instead, it can be
-downloaded directly from the CVS repository at SourceForge. (See the
-<a class="reference external" href="http://pyginac.sourceforge.net/">PyGiNaC</a> page for instructions.)</p>
 </div>
-<div class="section" id="source">
-<h2><a class="toc-backref" href="#id18">3.4&nbsp;&nbsp;&nbsp;Source</a></h2>
+<div class="section" id="about-this-document">
+<h1><a class="toc-backref" href="#id17">4&nbsp;&nbsp;&nbsp;About this Document</a></h1>
 <p>The <a class="reference external" href="http://svn.berlios.de/svnroot/repos/swiginac/trunk/doc/swiginac_tutorial.py.txt">source of this tutorial</a> is written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructured Text</a>. To
 translate it, you need the Python <a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a>. With docutils installed,
 the command <tt class="docutils literal"><span class="pre">rst2html</span> <span class="pre">swiginac_tutorial.py.txt</span></tt> will produce the html
@@ -787,6 +471,10 @@ functions and to run the examples in a doctest. (This is why it has the
 <tt class="docutils literal"><span class="pre">.py.txt</span></tt> double extension.)</p>
 </div>
 </div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2008-04-09.
+
 </div>
 </body>
 </html>
