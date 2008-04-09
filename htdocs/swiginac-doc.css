@@ -38,13 +38,9 @@ dt {
 }
 
 /* background colour for literal blocks*/
-pre.literal-block, pre.doctest-block {
-  margin-left: 2em ;
-  margin-right: 2em ;
-  background-color: #EAEAEA; }
-/* ... and inline literal */
-tt.docutils {
-  background-color: #EAEAEA; }
+pre.literal-block, pre.doctest-block, tt.docutils {
+  background-color: #faf0e6;  /* linen */
+}
 
 /* last line with Berlios logo */
 p.thanks { 
