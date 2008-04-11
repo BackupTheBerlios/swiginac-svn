@@ -21,22 +21,12 @@ Debian the packages are:
  swig1.3
  pkg-config
    
-with the dependencies
-
- libginac1.4   
- libcns-dev    
- libcln5       >= 1.2.2-1 (see bug #473494)
-
-Make sure that library package versions match the development packages and
-remove an eventually existing libcln4 package.
-
 Supported platforms
 -------------------
 We have successfully installed swiginac using the distutils file on the
 following platforms:
 
- - Debian Linux i386  version 1.0.0 requires packages not in Debian(etch):
-      currently (2008-04-10) libginac1.4/testing and libcln5/unstable  
+ - Debian Linux i386 (see also `Debian Hints`_)
  - Ubuntu edgy amd64 (needs GiNaC version >=1.4)
  - MacOSX "Tiger" 10.4
 
@@ -59,7 +49,7 @@ Troubleshooting
 
 The setup.py file in swiginac depends on pkg-config
 (http://pkg-config.freedesktop.org/wiki/). The package is usually present in in
-most Linux distros. Pkg-config uses .pc files to resolve dependecy build and
+most Linux distros. Pkg-config uses .pc files to resolve dependency build and
 link flags, and these files are usually put in /usr/local/lib/pkgconfig or
 /usr/lib/pkgconfig. If you have installed (a recent) GiNaC previously,
 choosing /usr/local as install prefix, a pkgconfig file named ginac.pc will be
@@ -74,6 +64,28 @@ reports an unexpected prefix (e.g. /usr/local instead of /usr), delete the
 ginac.pc file:
 rm `pkg-config --variable=prefix ginac`/lib/pkgconfig/ginac.pc
 
+Debian Hints
+~~~~~~~~~~~~
+Since version 1.0.0 swiginac requires GiNaC version >= 1.4.0 which is
+not in Debian(etch). 
+
+Tested packages are currently (2008-04-10) 
+
+ libginac-dev    1.4.3-1 (testing)
+
+with the dependencies
+
+  libginac1.4    1.4.3-1 (testing)
+  libcln5-dev    1.2.2-1 (untable)
+  libcln5        1.2.2-1 (unstable) 
+  
+* Version 1.2.0-1 of libcln5, currently in testing does *not* work,  
+  see bug #473494.
+
+* Make sure that library package versions match the development packages.
+
+* Remove an eventually existing libcln4 package.
+
 Be aware that Debian gcc 4.0.2-2 and 4.0.2-4 are not able to compile the
 wrapper code correctly in optimized mode. Therefore, expect that Python 
 distutils will not work with gcc-4.0.x compilers with aggressive optimization
@@ -81,7 +93,10 @@ distutils will not work with gcc-4.0.x compilers with aggressive optimization
 optimization:
 CFLAGS=-O0 python setup.py build
 
-(Thanks to Matti Peltom?ki for pointing this out)
+(Thanks to Matti Peltomäki for pointing this out)
+
+TODO: is this fixed in recent versions of gcc-4.x ?
+
 
 Installing using make
 ---------------------
@@ -120,6 +135,7 @@ If you do not have root privileges, edit the PREFIX variable in Makefile to a
 path where you have permissions to install files, and edit PYTHONPATH
 accordingly.
 
+
 Verify the installation
 -----------------------
 Go to your home directory and start Python. Then issue the commands:
@@ -128,7 +144,6 @@ Go to your home directory and start Python. Then issue the commands:
 >>> y = symbol('y')
 >>> print sin(x*y).diff(x,1)
 cos(y*x)*y
->>> 
 
 Then, re-visit the directory containing this file, and run the unit tests:
 cd tests/swiginac
@@ -139,9 +154,14 @@ python SymbolicTests.py
 Hopefully, you will get a message telling you that more than 130 tests have been
 run, and that all but one went well.
 
+
 Final note
 ----------
 swiginac only has a tutorial and a talk as written documentation. Therefore,
 browsing the scripts in the tests directory is a good way of learning more
-about its usage. Also, read the documentation the the GiNaC homepages
+about its usage. 
+
+The SVN repository has some more documentation in its doc/ subdirectory.
+
+Also, read the documentation that comes with  GiNaC
 (http://www.ginac.de/tutorial/ and http://www.ginac.de/reference/).
