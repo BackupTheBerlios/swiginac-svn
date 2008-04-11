@@ -19,7 +19,7 @@ import swiginac
 from swiginac import *
 
 # >>> len(dir(swiginac))
-# 617
+# 661
 # 
 # introspection is possible with e.g. ::
 
@@ -37,8 +37,8 @@ from swiginac import *
 # A symbolic indeterminante or symbolic variable is a placeholder for a value
 # in an expression. 
 # 
-# Symbols are basic units in Swiginac::
-
+# Symbols are basic units in Swiginac:
+# 
 # >>> a = symbol('a')
 # >>> a
 # a
@@ -51,7 +51,7 @@ from swiginac import *
 # It defines two methods but inherits more than 100 others:
 # 
 # >>> len(dir(a))
-# 105
+# 108
 # 
 # If you want to list them all, try  ``pprint(dir(a))``
 # 
@@ -71,7 +71,7 @@ from swiginac import *
 # `y` is now an expression:
 # 
 # >>> y
-# 3*x
+# 3.*x
 # 
 # In order to re-use `y` as a symbol, an ordinary CAS would require you
 # to *delete* it. In Python, you overwrite its current binding with a new
@@ -88,8 +88,8 @@ from swiginac import *
 # lot of lines with individual assignments.
 # 
 # We can use the feature that the dictionary returned by the built-in function
-# `globals` can be manipulated::
-
+# `globals` can be manipulated:
+# 
 # >>> for name in ['gamma', 'delta', 'epsilon']:
 # ...     globals()[name] = swiginac.symbol(name)
 # 
