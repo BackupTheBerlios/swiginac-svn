@@ -1,42 +1,19 @@
-<?xml version="1.0" encoding="iso-8859-1" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
 <title>Swiginac - Extending Python with Symbolic Mathematics</title>
-<link rel="stylesheet" href="../../../../../../.python/docutils-svn/docutils/docutils/writers/html4css1/html4css1.css" type="text/css" />
+<link rel="stylesheet" href="swiginac-doc.css" type="text/css" />
 </head>
 <body>
 <div class="document" id="swiginac-extending-python-with-symbolic-mathematics">
 <h1 class="title">Swiginac - Extending Python with Symbolic Mathematics</h1>
 
-<p>Ola Skavhaug <a class="footnote-reference" href="#id5" id="id1">[1]</a><a class="footnote-reference" href="#id6" id="id2">[2]</a>   Ondrej Certic  <a class="footnote-reference" href="#id7" id="id3">[3]</a><a class="footnote-reference" href="#id8" id="id4">[4]</a></p>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Simula Research Laboratory</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Dept. of Informatics, University of Oslo</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Faculty of Mathematics and Physics</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Charles University in Prague</td></tr>
-</tbody>
-</table>
-<p>October 19-20 2005, TTI, Chicago</p>
+<p>Ola Skavhaug <a class="footnote-reference" href="#id9" id="id1">[1]</a><a class="footnote-reference" href="#id10" id="id2">[2]</a>   Ondrej Certic  <a class="footnote-reference" href="#id11" id="id3">[3]</a><a class="footnote-reference" href="#id12" id="id4">[4]</a></p>
+<p>Excerpt from the <a class="reference external" href="http://swiginac.berlios.de/chicago05.pdf">slides</a> of a presentation of swiginac given at the
+Fenics'05 meeting in Chicago</p>
 <div class="section" id="ginac">
 <h1>GiNaC</h1>
 <p><a class="reference external" href="http://www.ginac.de">GiNaC</a> is not a CAS.
@@ -56,7 +33,7 @@ GiNaC is a C++ library for applications in need of symbolic manipulation.
 </div>
 <div class="section" id="swiginac">
 <h1>Swiginac</h1>
-<p><a class="reference external" href="http://swiginac.berlios.de/">Swiginac</a> is a Python interface for GiNaC in form of a Python module:</p>
+<p><a class="reference external" href="http://swiginac.berlios.de/">Swiginac</a> is a Python interface for GiNaC and can be imported as module:</p>
 <pre class="doctest-block">
 &gt;&gt;&gt; from swiginac import *
 </pre>
@@ -99,19 +76,24 @@ coprime integers.</p>
 to <cite>numeric</cite> is evaluated using Pythons &quot;standard&quot; arithmetic, which is
 probabely not what we want:</p>
 <pre class="doctest-block">
-&gt;&gt;&gt; print numeric(1/3)
+&gt;&gt;&gt; numeric(1/3)
 0
-&gt;&gt;&gt; print numeric(1./3)
+&gt;&gt;&gt; numeric(1./3)
 0.33333333333333331483
 </pre>
 <p>To prevent evaluation by the &quot;normal&quot; Python operators, rational numbers can
-be input as string value or as (numerator, denominator) tuple:</p>
+be input as string value or as (numerator, denominator):</p>
 <pre class="doctest-block">
-&gt;&gt;&gt; print numeric(&quot;1/3&quot;)
+&gt;&gt;&gt; numeric(&quot;1/3&quot;)
 1/3
-&gt;&gt;&gt; print numeric(1, 3)
+&gt;&gt;&gt; numeric(1, 3)
 1/3
-&gt;&gt;&gt; print numeric(3, 9)
+&gt;&gt;&gt; numeric(3, 9)
+1/3
+</pre>
+<p>Often, it is sufficient to specify one number in an expression as <cite>numeric</cite>:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; numeric(1)/3
 1/3
 </pre>
 </div>
@@ -119,8 +101,7 @@ be input as string value or as (numerator, denominator) tuple:</p>
 <h1>Functions</h1>
 <p>Lots of functions are available</p>
 <pre class="doctest-block">
-&gt;&gt;&gt; u = sin(exp(b))
-&gt;&gt;&gt; print u
+&gt;&gt;&gt; sin(exp(b))
 sin(exp(beta))
 </pre>
 <pre class="doctest-block">
@@ -133,39 +114,44 @@ GiNaC, most of them interfaced in swiginac</p>
 </div>
 <div class="section" id="symbolic-differentiation">
 <h1>Symbolic differentiation</h1>
-<p>Objects have the method diff for differentiation</p>
+<p>Objects have the method <cite>diff</cite> for differentiation</p>
 <pre class="doctest-block">
 &gt;&gt;&gt; x = symbol('x'); y = symbol('y')
+&gt;&gt;&gt; P = x**5 + x**2 + y
 </pre>
 <pre class="doctest-block">
-&gt;&gt;&gt; P = x**5 + x**2 + y
 &gt;&gt;&gt; P.diff(x, 1)
-5*x**4+2*x
+2*x+5*x**4
 &gt;&gt;&gt; P.diff(x, 2)
 2+20*x**3
+</pre>
+<p><cite>diff</cite> exists as a function call too</p>
+<pre class="doctest-block">
 &gt;&gt;&gt; u = sin(exp(x))
-&gt;&gt;&gt; u.diff(x,2)
--exp(x)**2*sin(exp(x))+cos(exp(x))*exp(x)
+&gt;&gt;&gt; diff(u, x)
+exp(x)*cos(exp(x))
+&gt;&gt;&gt; diff(u, x, 2)
+exp(x)*cos(exp(x))-sin(exp(x))*exp(x)**2
 </pre>
 </div>
 <div class="section" id="matrices">
 <h1>Matrices</h1>
 <pre class="doctest-block">
 &gt;&gt;&gt; mat1 = matrix(2,2)   # Two by two matrix
-&gt;&gt;&gt; mat1[0,0] = v
-&gt;&gt;&gt; mat1[1,1] = u
-&gt;&gt;&gt; print mat1
-[[tgamma(a+beta**(1/2)),0],[0,sin(exp(x))]]
+&gt;&gt;&gt; mat1[0,0] = x
+&gt;&gt;&gt; mat1[1,1] = y
+&gt;&gt;&gt; mat1
+[[x,0],[0,y]]
 </pre>
 <pre class="doctest-block">
-&gt;&gt;&gt; mat1a = diag_matrix([u,v]) # Alternative definition
+&gt;&gt;&gt; mat1a = diag_matrix([x,y]) # Alternative definition
 &gt;&gt;&gt; print mat1.printlatex()
-\left(\begin{array}{cc}\Gamma(\alpha+\sqrt{\beta})&amp;0\\0&amp;\sin(\exp(x))\end{array}\right)
+\left(\begin{array}{cc}x&amp;0\\0&amp;y\end{array}\right)
 </pre>
 <pre class="doctest-block">
 &gt;&gt;&gt; mat2 = matrix([[sqrt(a),0],[1.0, cosh(b)]])
 &gt;&gt;&gt; print mat2.printc()
-[[pow(a,(1.0/2.0)),0.0],[1.0000000000000000e+00,cosh(b)]]
+[[pow(a,(1.0/2.0)),0.0],[1.0000000000000000e+00,cosh(beta)]]
 </pre>
 </div>
 <div class="section" id="simple-integral-support">
@@ -173,17 +159,18 @@ GiNaC, most of them interfaced in swiginac</p>
 <p>We can construct integral objects and integrate either symbolically
 or numerically:</p>
 <pre class="doctest-block">
-&gt;&gt;&gt; x = symbol('x')
 &gt;&gt;&gt; integ = integral(x, 0, 1, x*x)
 </pre>
 <pre class="doctest-block">
-&gt;&gt;&gt; print integ
+&gt;&gt;&gt; integ
 [integral object]
 &gt;&gt;&gt; print integ.printlatex()
 \int_{0}^{1} dx\,x^{2}
-&gt;&gt;&gt; print integ.eval_integ()
+</pre>
+<pre class="doctest-block">
+&gt;&gt;&gt; integ.eval_integ()
 1/3
-&gt;&gt;&gt; print integ.evalf()
+&gt;&gt;&gt; integ.evalf()
 0.33333333333333333332
 </pre>
 </div>
@@ -217,25 +204,46 @@ sin(6)
 <pre class="doctest-block">
 &gt;&gt;&gt; x = symbol('x'); y = symbol('y')
 &gt;&gt;&gt; solution = lsolve([3*x + 5*y == 2, 5*x+y == -3], [x,y])
-&gt;&gt;&gt; print solution
+&gt;&gt;&gt; solution
 [x==-17/22, y==19/22]
 </pre>
 </div>
 <div class="section" id="taylor-series-expansion">
 <h1>Taylor series expansion</h1>
 <p>Expressions can expand themselves as a Taylor series:</p>
-<blockquote>
-x =symbol(&quot;x&quot;)
-taylor = sin(x).series(x==0, 8)</blockquote>
 <pre class="doctest-block">
-&gt;&gt;&gt; print taylor
+&gt;&gt;&gt; sin(x).series(x==0, 8)
 1*x+(-1/6)*x**3+1/120*x**5+(-1/5040)*x**7+Order(x**8)
 </pre>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Simula Research Laboratory</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Dept. of Informatics, University of Oslo</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Faculty of Mathematics and Physics</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Charles University in Prague</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="footer">
 <hr class="footer" />
-<a class="reference external" href="swiginac_overview.py.txt">View document source</a>.
+Generated on: 2008-04-15.
 
 </div>
 </body>
