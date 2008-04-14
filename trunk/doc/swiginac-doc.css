@@ -39,21 +39,25 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid #aaa;
 }
 
-h1 { font-size: 188%; 
+h1.title { font-size: 188%; }
+h1 { font-size: 132%; 
      border-bottom-width: 3px;
 }
-h2 { font-size: 150%; 
+
+h2.subtitle { font-size: 150%; }
+h2 { font-size: 116%; 
      border-bottom-width: 2px;
 }
+
 /* h3, h4, h5, h6 { */
 /*     border-bottom: none; */
 /*     font-weight: bold; */
 /* } */
-h3 { font-size: 132%; }
-h4 { font-size: 116%; }
-h5 { font-size: 100%; }
-h6 { font-size: 80%;  }
+h3, h4, h5, h6 { font-size: 100%; }
 
+/* Table of Contents */
+p.topic-title {
+  font-weight: bold }
 
 
 /* bold definition terms */
@@ -62,12 +66,18 @@ dt {
 }
 
 /* background colour for literal blocks*/
-pre.literal-block, tt.docutils {
-  background-color: #faf0e6;  /* linen */
+pre.literal-block {
+    padding: 1em;
+    border: 1px dashed #2f6fab;
+    color: black;
+    background-color: #f9f9f9;
+    line-height: 1.1em;
+  /* background-color: #faf0e6; */  /* linen */
 }
 /* and doctest blocks (interactive python session) */
-pre.doctest-block {
-  background-color: #eee9e9;
+pre.doctest-block, tt.docutils {
+    background-color: #f9f9f9;
+/*   background-color: #eee9e9; */
 }
 
 /* Underline links if the mouse is over them */
@@ -82,4 +92,24 @@ p.thanks {
   }    
 
 /* div.contents { margin: 5px } */
+
+div.contents {
+  margin: 0em }
+
+div.contents p.topic-title {
+    font-weight: normal;
+    margin: 0;
+    padding-top: .5em;
+    padding-bottom: .17em;
+    font-size: 132%; 
+    border-bottom: 2px solid #aaa;
+}
+    
+div.contents a {
+/*   text-decoration: none ; */
+  color: black }
+
+
+    
+
 
