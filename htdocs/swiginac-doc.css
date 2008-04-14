@@ -20,18 +20,42 @@ div#Inhalt {
   /* border-color: silver */
   min-width: 16em; /* Mindestbreite verhindert Anzeigefehler in modernen Browsern */
 }
-h1.title { 
-  text-align: left;
-  background-color: silver;
-  padding: 5px;
+
+hr {
+    height: 1px;
+    color: #aaa;
+    background-color: #aaa;
+    border: 0;
+    margin: .2em 0 .2em 0;
 }
-h1 {
-  font-size: 1.5em;
-  /* padding-left: 0.5em; */
+
+h1, h2, h3, h4, h5, h6 {
+    color: black;    
+    font-weight: normal;
+    background: none;
+    margin: 0;
+    padding-top: .5em;
+    padding-bottom: .17em;
+    border-bottom: 1px solid #aaa;
 }
-h2 {
-  font-size: 1.2em;
+
+h1 { font-size: 188%; 
+     border-bottom-width: 3px;
 }
+h2 { font-size: 150%; 
+     border-bottom-width: 2px;
+}
+/* h3, h4, h5, h6 { */
+/*     border-bottom: none; */
+/*     font-weight: bold; */
+/* } */
+h3 { font-size: 132%; }
+h4 { font-size: 116%; }
+h5 { font-size: 100%; }
+h6 { font-size: 80%;  }
+
+
+
 /* bold definition terms */
 dt { 
   font-weight: bold; 
@@ -44,6 +68,11 @@ pre.literal-block, tt.docutils {
 /* and doctest blocks (interactive python session) */
 pre.doctest-block {
   background-color: #eee9e9;
+}
+
+/* Underline links if the mouse is over them */
+a:hover {
+    text-decoration: underline;
 }
 
 /* last line with Berlios logo */
