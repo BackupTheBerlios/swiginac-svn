@@ -37,9 +37,6 @@ import LyX
 # Ausgabe
 # =======
 # ::
-# 
-# 
-# ::
 
 if __name__ == '__main__':
     output_format = "text"
@@ -88,7 +85,13 @@ def printout(*args):
         print " ".join([str(arg) for arg in args])
         
 
-# Real und Imaginärteil sind (noch) nicht von Python aus zugänglich
+# Real- und Imaginärteil
+# ======================
+# 
+# Die Funktionen zur Bestimmung von Real- und Imaginärteil sind (noch) nicht
+# von Python aus zugänglich. Für viele Objecte existieren entsprechende
+# Methoden. ::
+
 def real(z):
     """z = real(z) + I * imag(z)"""
     try:
@@ -121,7 +124,6 @@ def imag(z):
 # 
 # Einheiten
 # =========
-# 
 # ::
 
 W = symbol("W", "\\textrm{W}")
@@ -137,20 +139,22 @@ C = symbol("C", "\\textrm{C}")
 
 # Größensymbole
 # =============
-# ::
+# 
+# Geometrie::
 
-# Geometrie
 t = symbol('t'); t.unit = s                 # Zeit
 l = symbol("l"); l.unit = m                 # Länge
 A = symbol("A"); A.unit = m**2              # Fläche, Querschnitt
 V = symbol("V"); V.unit = m**3              # Volumen
 
-# Eingangsstrahlung
+# Eingangsstrahlung::
+
 E = symbol("E"); E.unit = W/m**2            # IR-Strahlungsdichte
 Phi = E*A; Phi.unit = W                     # Wärmestrom, Strahlungsleistung
 omega = symbol("omega"); omega.unit = 1/s   # Kreisfrequenz
 
-# Materialgrößen
+# Materialgrößen::
+
 lambda_T = symbol("lambda_T", r"\lambda_T")  # Wärmeleitfähighkeit
 lambda_T.unit = W/(m*K)
 c_T = symbol("c_T"); c_T.unit = J/(kg*K)    # spezifische Wärmekapazität
@@ -162,19 +166,20 @@ a_T.unit = lambda_T.unit/cv_T.unit          # m²/s
 p   = symbol("p"); p.unit = C/(m**2*K)      # pyroelektrischer Koeffizient
 
 
+# >>> print a_T
+# c_T**(-1)*lambda_T*rho**(-1)
 
 # Modell: Chip mit umgebender Luftschicht
 # =======================================
-# 
 # ::
 
 heading("Modellwerte")
 
 # Geometrie
 # ---------
-# ::
+# 
+# Pixel (Sensorelemente)::
 
-# Pixel (Sensorelemente)
 a_pix     = 90 * mum            # Pixelbreite [µm])
 b_pix     = 100 * mum           # Pixelhöhe (x-Richtung) [µm]
 c_pix     = 100 * mum           # Pitch (y-Richtung) [µm]
@@ -184,7 +189,8 @@ d_pix     = 20 * mum            # Dicke (z-Richtung) [µm]
 A_pix     = a_pix * b_pix       # Pixelfläche
 V_pix     = A_pix * d_pix       # Pixelvolumen
 
-# Luftschicht
+# Luftschicht::
+
 d_Luft = symbol("d_Luft")
 d_Luft.oben  = 350 * mum        # Luftschicht oben
 d_Luft.unten = 250 * mum        # Luftschicht unten
@@ -233,9 +239,6 @@ printout("a_T(\LiTa) =", a_T, "=", a_T.Lita)
 # ==============
 # Wärmeleitwert
 # -------------
-# ::
-# 
-# 
 # ::
 
 G_T = lambda_T * A / l
@@ -293,7 +296,6 @@ printout("<T>(pix)=", T_quer.pix)
 
 # Temperaturdifferenz bei sinusförmiger Zeitabhängigkeit
 # ------------------------------------------------------
-# 
 # ::
 
 heading("sinusförmige Zeitabhängigkeit mit omega_ch")
@@ -331,9 +333,7 @@ heading("Zeitverlauf Sinus")
 printout("T^~(\omega_{ch}) =", T_sin.ch)
 printout("|T^~(\omega_{ch})| =", abs(T_sin.ch))
 
-# printout("T^~ =", real(T_sin))
-# 
-# ::
+printout("T^~ =", real(T_sin))
 
 printout("T_0 =")
 printout(T_0.expand())
@@ -345,7 +345,6 @@ printout(T_0.simplify_indexed())
 
 # Plotting
 # --------
-# 
 # ::
 
 # open a gnuplot session
