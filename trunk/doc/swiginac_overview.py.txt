@@ -3,13 +3,9 @@ Swiginac - Extending Python with Symbolic Mathematics
 
 Ola Skavhaug [1]_\ [2]_   Ondrej Certic  [3]_\ [4]_
 
-.. [1] Simula Research Laboratory
-.. [2] Dept. of Informatics, University of Oslo
-.. [3] Faculty of Mathematics and Physics
-.. [4] Charles University in Prague
+Excerpt from the slides_ of a presentation of swiginac given at the
+Fenics'05 meeting in Chicago 
 
-Excerpt from the slides of a presentation in
-October 19-20 2005, TTI, Chicago 
 
 GiNaC
 -----
@@ -219,3 +215,10 @@ Expressions can expand themselves as a Taylor series:
 >>> sin(x).series(x==0, 8)
 1*x+(-1/6)*x**3+1/120*x**5+(-1/5040)*x**7+Order(x**8)
 
+
+.. [1] Simula Research Laboratory
+.. [2] Dept. of Informatics, University of Oslo
+.. [3] Faculty of Mathematics and Physics
+.. [4] Charles University in Prague
+
+.. _slides: http://swiginac.berlios.de/chicago05.pdf

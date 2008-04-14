@@ -1,27 +1,39 @@
-# Symbolic Computation with Python
-# ================================
-# Basic examples for the use of swiginac
-# --------------------------------------
+# ******************************************
+# SwiGiNaC: Symbolic Computation with Python 
+# ******************************************
 # 
-# .. contents:: 
+# Basic Examples
+# **************
+# 
+# .. sectnum:: 
+# 
+# Contents_
+# 
+# Import
+# ======
 # 
 # This script will give a basic overview of what is possible combining
 # symbolic computation by `GiNac` with the flexibility and richness of Python
 # 
-# Objects defined in this script can be imported with
-# 
-# >>> from swiginac_basics import *
-# 
-# The swiginac module wraps functions, data and classes defined in the ginac
-# C++ library in a python module::
+# To load swiginac, use one of the ``import`` variants::
 
 import swiginac
 from swiginac import *
 
+# Objects defined in this tutorial can be imported with
+# 
+# >>> from swiginac_basics import *
+# 
+# The swiginac module wraps functions, data and classes defined in the ginac
+# C++ library in a python module. There are more than 600 objects
+# 
 # >>> len(dir(swiginac))
 # 661
 # 
-# introspection is possible with e.g. ::
+# but only the most basic will be described in this tutorial.
+# 
+# Completing the swiginac functions and classes with docstrings is an
+# open task. Some introspection is possible with e.g. ::
 
 # # from pprint import pprint
 # # pprint(dir(swiginac))
@@ -34,7 +46,7 @@ from swiginac import *
 # Symbols
 # -------
 # 
-# A symbolic indeterminante or symbolic variable is a placeholder for a value
+# A symbolic indeterminante or symbolic *variable* is a placeholder for a value
 # in an expression. 
 # 
 # Symbols are basic units in Swiginac:
@@ -71,7 +83,7 @@ from swiginac import *
 # `y` is now an expression:
 # 
 # >>> y
-# 3.*x
+# 3*x
 # 
 # In order to re-use `y` as a symbol, an ordinary CAS would require you
 # to *delete* it. In Python, you overwrite its current binding with a new
@@ -88,12 +100,12 @@ from swiginac import *
 # lot of lines with individual assignments.
 # 
 # We can use the feature that the dictionary returned by the built-in function
-# `globals` can be manipulated:
+# `globals` can be manipulated
 # 
 # >>> for name in ['gamma', 'delta', 'epsilon']:
 # ...     globals()[name] = swiginac.symbol(name)
 # 
-# to define the small latin letters a-z as symbols in this module. ::
+# To define the small latin letters a-z as symbols in this module, ::
 
 import string as _string
 
@@ -178,43 +190,53 @@ for name in _string.lowercase:
 # (<class 'swiginac.numeric'>, <class 'swiginac.numeric'>)
 # 
 # Python's `complex` numbers can currently not be converted to `numeric`
-# objects::
-
-z_p = 2+3j
-
-# ``z_g = numeric(z_p)`` raises the exception
+# objects:
 # 
+# >>> z_gi = numeric(2+3j)
+# Traceback (most recent call last):
+#     ...
 # NotImplementedError: Wrong number of arguments for overloaded function 'new_numeric'.
-#   ...
+#   Possible C/C++ prototypes are:
+#     GiNaC::numeric(int)
+#     GiNaC::numeric(unsigned int)
+#     GiNaC::numeric(long)
+#     GiNaC::numeric(unsigned long)
+#     GiNaC::numeric(long,long)
+#     GiNaC::numeric(double)
+#     GiNaC::numeric(char const *)
+#     GiNaC::numeric(cln::cl_N const &)
+# <BLANKLINE>    
+# 
 # 
 # A workaround is to use an expression::
- 
-z_g = z_p.real + z_p.imag*I
+
+z_py = 2+3j
+z_gi = z_py.real + z_py.imag*I
 
 # which will be simplified to a number:
 # 
-# >>> type(z_g)
-# <class 'swiginac.numeric'>
+# >>> print z_gi, type(z_gi)
+# 2.0+3.0*I <class 'swiginac.numeric'>
 # 
 # How do complex expression evaluate? 
 # 
 # `evalf` converts real and imaginary part to floating point numbers
 # 
-# >>> z_g.evalf()
+# >>> z_gi.evalf()
 # 2.0+3.0*I
 # 
 # `to_double()` returns the real part as `double` instance
 # 
-# >>> z_g.to_double()
+# >>> z_gi.to_double()
 # 2.0
 # 
 # While Phyton's `complex` class stores real and imaginary part as attributes,
 # `numeric` provides methods to retrieve them (as `numeric` instances):
 # 
-# >>> z_p.real, z_g.real
+# >>> z_py.real, z_gi.real
 # (2.0, <bound method numeric.real of 2.0+3.0*I>)
 # 
-# >>> z_g.real(), z_g.imag()
+# >>> z_gi.real(), z_gi.imag()
 # (2.0, 3.0)
 # 
 # Constants
@@ -244,13 +266,12 @@ ex1 = a/2 + b
 ex2 = (a+b)/2
 ex3 = (a+b)/c 
 
-
-# >>> ex1, type(ex1)
-# (b+1/2*a, <class 'swiginac.add'>)
-# >>> ex2, type(ex2)
-# (1/2*b+1/2*a, <class 'swiginac.add'>)
-# >>> ex3, type(ex3)
-# (c**(-1)*(b+a), <class 'swiginac.mul'>)
+# >>> print ex1, type(ex1)
+# 1/2*a+b <class 'swiginac.add'>
+# >>> print ex2, type(ex2)
+# 1/2*a+1/2*b <class 'swiginac.add'>
+# >>> print ex3, type(ex3)
+# (a+b)*c**(-1) <class 'swiginac.mul'>
 #   
 # In the `Symbolic` package, there is the common class `Symbolic.Expr` with
 # some additional methods.
@@ -286,7 +307,7 @@ z_s = cos(x) + I*sin(x)
 z_e = exp(I*x)
 
 # >>> z_s/z_e
-# exp(I*x)**(-1)*(I*sin(x)+cos(x))
+# (cos(x)+I*sin(x))*exp(I*x)**(-1)
 # 
 # Is there a way get more simplifications?
 # 
@@ -420,10 +441,10 @@ s5 = s3.subs(x+y+z==6)
 s6 = s3.subs(x+y==4)
 
 # >>> s6
-# sin(x+z+y)
+# sin(x+y+z)
 # 
 # >>> s3.subs(x+y==4)
-# sin(x+z+y)
+# sin(x+y+z)
 # 
 # Strange: Some substitutions work in the module but fail the doctest:
 # 
@@ -435,7 +456,7 @@ s6 = s3.subs(x+y==4)
 # Expected:
 #     sin(3+z)
 # Got:
-#     sin(x+z+y)
+#     sin(x+y+z)
 # 
 # >>> print s3.subs([x==1, y==2, z==3])
 # sin(6)
@@ -512,7 +533,7 @@ ex4 = a_pix + beta/2
 # >>> ex4.printpython()
 # '1/2*beta+a_pix'
 # >>> ex4.printc()
-# 'beta/2.0+a_pix'
+# ' beta/2.0+a_pix'
 # >>> ex4.printlatex()
 # '\\frac{1}{2} \\beta+a_\\mathrm{pix}'
 # 
@@ -568,11 +589,12 @@ ex4 = a_pix + beta/2
 #   ...
 # TypeError: float argument required
 # 
-# Save programming would require to either test the float with e.g.
+# Save programming would require to e.g. test the datatype with
 # 
 # >>> x.is_real()
 # True
 # 
+# or use a try/catch clause.
 # 
 # The formatting options are described in the Python documentation on 
 # `string formatting operations`_. 
@@ -609,10 +631,6 @@ ex4 = a_pix + beta/2
 #     http://www.python.org/doc/lib/typesseq-strings.html
 # 
 # 
-# 
-# 
-#   
-# 
 # Interaction with Python
 # -----------------------
 # 
@@ -621,30 +639,35 @@ ex4 = a_pix + beta/2
 # 
 # A series could be defined as a Python sequence, e.g.
 # 
+# >>> x = symbol('x')
 # >>> [x/n for n in range(1, 10)]
 # [x, 1/2*x, 1/3*x, 1/4*x, 1/5*x, 1/6*x, 1/7*x, 1/8*x, 1/9*x]
 # 
 # >>> sinc5 = [sin(phi)/phi for phi in range(1,5)]; sinc5
 # [sin(1), 1/2*sin(2), 1/3*sin(3), 1/4*sin(4)]
 # 
-# Attention, the loop index is no longer a symbol but an integer now
+# Attention, the loop indices are now integers
 # 
 # >>> n, phi
 # (9, 4)
 # 
-# so it might be an idea to use separate conventions for naming symbols and
-# indices
+# so it might be a good idea to use separate conventions for naming symbols and
+# indices.
 # 
 # As the standard function sum is overloaded for swiginac classes, it can be
 # used on sequences of symbols or expressions:
 # 
 # >>> sum((x, y, z))
-# y+z+x
+# y+x+z
 # 
 # >>> sum([x/n for n in range(1, 10)])
 # 7129/2520*x
 # 
-# >>> sum(sinc5)
-# 1/4*sin(4)+1/3*sin(3)+1/2*sin(2)+sin(1)
+# Compute the sum over the list defined earlier in this section:
 # 
+# >>> sum(sinc5)
+# 1/2*sin(2)+1/3*sin(3)+sin(1)+1/4*sin(4)
+# 
+# 
+# .. contents:: 
 # 
