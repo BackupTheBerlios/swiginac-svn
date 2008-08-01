@@ -40,6 +40,11 @@
     if (!$1) return NULL;
 }
 
+%typemap(in) const lst & {
+    $1=list2lst($input);
+    if (!$1) return NULL;
+}
+
 %typemap(typecheck, precedence=1200) lst & {
     $1 = (PyList_Check($input)) ? 1 : 0;
 }

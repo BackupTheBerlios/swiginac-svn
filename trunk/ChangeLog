@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Added typemap for const lst (patch from Martin Sandve Alnæs)
  - swiginac: Added archiving through load and dump methods in archive class
  - swiginac: Released 1.0.0 [2007-12-03]
  - swiginac: Updated interface files to ginac 1.4.1.

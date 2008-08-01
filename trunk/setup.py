@@ -19,7 +19,7 @@ Ondrej Certik
 
 from distutils.core import setup, Extension
 import distutils
-from  sys import argv
+from  sys import argv, exit
 import os
 from os.path import join as pjoin, sep as psep
 import commands
@@ -28,9 +28,15 @@ def pkgconfig(*packages, **kw):
     """
     Use pkgconfig to find out where ginac is installed. Function found here:
     http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/502261.
+    Modified by Skavhaug 2008 to better catch errors.
     """
     flag_map = {'-I': 'include_dirs', '-L': 'library_dirs', '-l': 'libraries'}
-    for token in commands.getoutput("pkg-config --libs --cflags %s" % ' '.join(packages)).split():
+    output = commands.getoutput("pkg-config --libs --cflags %s" % ' '.join(packages))
+    if "not found" in output:
+        print output
+        exit(1)
+
+    for token in output.split():
         kw.setdefault(flag_map.get(token[:2]), []).append(token[2:])
     return kw
 
