@@ -69,17 +69,17 @@ Debian Hints
 Since version 1.0.0 swiginac requires GiNaC version >= 1.4.0 which is
 not in Debian(etch). 
 
-Tested packages are currently (2008-04-10) 
+Tested packages are currently (2008-08-28) 
 
  libginac-dev    1.4.3-1 (testing)
 
 with the dependencies
 
   libginac1.4    1.4.3-1 (testing)
-  libcln5-dev    1.2.2-1 (untable)
-  libcln5        1.2.2-1 (unstable) 
+  libcln5-dev    1.2.2-2 (testing)
+  libcln5        1.2.2-2 (testing) 
   
-* Version 1.2.0-1 of libcln5, currently in testing does *not* work,  
+* Version 1.2.0-1 of libcln5 does *not* work,  
   see bug #473494.
 
 * Make sure that library package versions match the development packages.
@@ -88,14 +88,15 @@ with the dependencies
 
 Be aware that Debian gcc 4.0.2-2 and 4.0.2-4 are not able to compile the
 wrapper code correctly in optimized mode. Therefore, expect that Python 
-distutils will not work with gcc-4.0.x compilers with aggressive optimization
-(-O3). To be safe, either use a 3.x gcc compiler or build the module with less
-optimization:
-CFLAGS=-O0 python setup.py build
+distutils will not work with gcc-4.0.x compilers with aggressive
+optimization (-O3). To be safe, either use a 3.x [or 4.n (n > 0)] gcc
+compiler or build the module with less optimization::
+
+  CFLAGS=-O0 python setup.py build
 
 (Thanks to Matti Peltomäki for pointing this out)
 
-TODO: is this fixed in recent versions of gcc-4.x ?
+Building with gcc-4.3 and the default settings works well.
 
 
 Installing using make
