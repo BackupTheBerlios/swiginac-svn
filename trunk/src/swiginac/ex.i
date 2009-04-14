@@ -21,10 +21,10 @@
 
 %{ 
 lst* list2lst(PyObject *input);
-PyObject* lst2list(lst *input); 
+PyObject* lst2list(const lst *input); 
 
 //GETDESC1 and GETDESC2 are equivalent - GETDESC1 is the official way how to do
-//it, but it's slower than the undocumented way GETDESC2.
+//it, but it is slower than the undocumented way GETDESC2.
 
 #define GETDESC1(NAME) \
 static swig_type_info *NAME##descr=0;\
@@ -80,11 +80,11 @@ bool checktype2ex(PyObject * input) {
 }
 
 #define EX2(NAME) \
-if (tinfo_key == &NAME::tinfo_static) {\
+if (is_a<NAME>(*convert)) {\
     NAME *p = new NAME(ex_to<NAME>(*convert));\
     GETDESC(NAME);\
     return SWIG_NewPointerObj((void *)p, NAME##descr, 1);\
-} else
+}
 
 //unwraps ex and return python object
 PyObject * ex2type(const ex* input) {
@@ -99,56 +99,55 @@ PyObject * ex2type(const ex* input) {
 
     const ex* convert = &tmp;
 
-    //switch (ex_to<basic>(*convert).tinfo()) {
-    tinfo_t tinfo_key = ex_to<basic>(*convert).tinfo();
 
-        EX2(symbol)
-        EX2(constant)
-        EX2(numeric)
-    if (tinfo_key == &lst::tinfo_static) {
-        lst *l = new lst(ex_to<lst>(*convert));
+    EX2(symbol)
+    EX2(constant)
+    EX2(numeric)
+
+    if (is_a<lst>(*convert)) {
+        const lst *l = &ex_to<lst>(*convert);
         return lst2list(l);
-    } else
-        EX2(pseries)
-        EX2(su3one)
-        EX2(su3t)
-        EX2(su3f)
-        EX2(su3d)
-        EX2(diracone)
-        EX2(diracgamma)
-        EX2(diracgamma5)
-        EX2(diracgammaL)
-        EX2(diracgammaR)
-        EX2(tensor)
-        EX2(tensdelta)
-        EX2(tensmetric)
-        EX2(minkmetric)
-        EX2(spinmetric)
-        EX2(tensepsilon)
-        EX2(wildcard)
-        EX2(indexed)
-        EX2(color)
-        EX2(clifford)
-        EX2(idx)
-        EX2(varidx)
-        EX2(spinidx)
-        EX2(symmetry)
-        EX2(integral)
-        EX2(cliffordunit)
-        EX2(relational)
-        EX2(function)
-        EX2(add)
-        EX2(mul)
-        EX2(ncmul)
-        EX2(matrix)
-        EX2(power)
-    {
-            throw (std::logic_error("Cannot unwrap ex. Fix in ex.i"));
     }
+
+    EX2(pseries)
+    EX2(su3one)
+    EX2(su3t)
+    EX2(su3f)
+    EX2(su3d)
+    EX2(diracone)
+    EX2(diracgamma)
+    EX2(diracgamma5)
+    EX2(diracgammaL)
+    EX2(diracgammaR)
+    EX2(cliffordunit)
+    EX2(tensor)
+    EX2(tensdelta)
+    EX2(tensmetric)
+    EX2(minkmetric)
+    EX2(spinmetric)
+    EX2(tensepsilon)
+    EX2(wildcard)
+    EX2(color)
+    EX2(clifford)
+    EX2(indexed)
+    EX2(varidx)
+    EX2(spinidx)
+    EX2(idx)
+    EX2(symmetry)
+    EX2(integral)
+    EX2(relational)
+    EX2(function)
+    EX2(add)
+    EX2(mul)
+    EX2(ncmul)
+    EX2(matrix)
+    EX2(power)
+    // Nothing converted, throw exception
+    throw (std::logic_error("Cannot unwrap ex. Fix in ex.i"));
 }
 
 //converts ginac lst to python list (unwrapping all exs)
-PyObject *lst2list(lst *input) {
+PyObject *lst2list(const lst *input) {
     lst::const_iterator i = input->begin();
     lst::const_iterator i_end = input->end();
     PyObject *pylist = PyList_New(0);

@@ -25,15 +25,15 @@ class symmetry;
 class function_options
 {
 public:
-	function_options();
-	function_options(std::string const & n, std::string const & tn=std::string());
-	function_options(std::string const & n, unsigned np);
-	~function_options();
-	void initialize();
+    function_options();
+    function_options(std::string const & n, std::string const & tn=std::string());
+    function_options(std::string const & n, unsigned np);
+    ~function_options();
+    void initialize();
 
-	function_options & dummy() { return *this; }
-	function_options & set_name(std::string const & n, std::string const & tn=std::string());
-	function_options & latex_name(std::string const & tn);
+    function_options & dummy() { return *this; }
+    function_options & set_name(std::string const & n, std::string const & tn=std::string());
+    function_options & latex_name(std::string const & tn);
 // the following lines have been generated for max. 14 parameters
     function_options & eval_func(eval_funcp_1 e);
     function_options & eval_func(eval_funcp_2 e);
@@ -109,7 +109,7 @@ public:
 		return *this;
 	}
 
-	function_options & set_return_type(unsigned rt, tinfo_t rtt=NULL);
+	function_options & set_return_type(unsigned rt, const return_type_t* rtt = 0);
 	function_options & do_not_evalf_params();
 	function_options & remember(unsigned size, unsigned assoc_size=0,
 	                            unsigned strategy=remember_strategies::delete_never);
@@ -164,7 +164,7 @@ public:
 //ex expand(const ex & thisex, unsigned options = 0);
 ex conjugate(const ex & thisex);
 bool has(const ex & thisex, const ex & pattern);
-bool find(const ex & thisex, const ex & pattern, lst & found);
+bool find(const ex & thisex, const ex & pattern, exset & found);
 int degree(const ex & thisex, const ex & s);
 int ldegree(const ex & thisex, const ex & s);
 ex coeff(const ex & thisex, const ex & s, int n=1);
@@ -183,7 +183,7 @@ ex evalm(const ex & thisex);
 ex eval_integ(const ex & thisex);
 ex diff(const ex & thisex, const symbol & s, unsigned nth = 1);
 ex series(const ex & thisex, const ex & r, int order, unsigned options = 0);
-bool match(const ex & thisex, const ex & pattern, lst & repl_lst);
+bool match(const ex & thisex, const ex & pattern, exmap & repl_lst);
 ex simplify_indexed(const ex & thisex, unsigned options = 0);
 ex simplify_indexed(const ex & thisex, const scalar_products & sp, unsigned options = 0);
 ex symmetrize(const ex & thisex);

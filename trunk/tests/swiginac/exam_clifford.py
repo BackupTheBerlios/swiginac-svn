@@ -25,14 +25,14 @@ from swiginac import *
 half = numeric(1,2)
 
 def check_equal(e1, e2):
-    e = e1 - e2
+    e = normal(e1 - e2)
     if not e.is_zero():
-        print e1, "-", e2, " erroneously returned ", e
+        print "(",e1, ") - (", e2, ") erroneously returned (", e, ") instead of 0)"
         return 1
     return 0
 
 def check_equal_simplify(e1, e2):
-    e = simplify_indexed(e1) - e2
+    e = normal(simplify_indexed(e1) - e2)
     if not e.is_zero():
         print e1, "-", e2, " erroneously returned ", e
         return 1

@@ -27,7 +27,7 @@ public:
     integral(const ex & x_, const ex & a_, const ex & b_, const ex & f_);
     exvector get_free_indices() const;
     unsigned return_type() const;
-    tinfo_t return_type_tinfo() const;
+    return_type_t return_type_tinfo() const;
     ex eval_integ() const;
     static int max_integration_level;
     static ex relative_integration_error;

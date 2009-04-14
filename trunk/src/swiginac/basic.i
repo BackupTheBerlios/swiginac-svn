@@ -62,7 +62,7 @@ public:
 //    virtual ex & operator[](const ex & index);
 //    virtual ex & operator[](size_t i);
     virtual bool has(const ex & other, unsigned options=0) const;
-    virtual bool match(const ex & pattern, lst & repl_lst) const;
+    virtual bool match(const ex & pattern, exmap & repls) const;
     virtual ex subs(const exmap & m, unsigned options = 0) const;
     virtual ex map(map_function & f) const;
     virtual void accept(GiNaC::visitor & v) const;
@@ -84,7 +84,7 @@ public:
     virtual ex scalar_mul_indexed(const ex & self, const numeric & other) const;
     virtual bool contract_with(exvector::iterator self, exvector::iterator other, exvector & v) const;
     virtual unsigned return_type() const;
-    virtual tinfo_t return_type_tinfo() const;
+    virtual return_type_t return_type_tinfo() const;
     virtual ex conjugate() const;
     virtual ex real_part() const;
     virtual ex imag_part() const;
@@ -94,10 +94,9 @@ public:
     int compare(const basic & other) const;
     bool is_equal(const basic & other) const;
     const basic & hold() const;
-    unsigned gethash() const { if (flags & status_flags::hash_calculated) return hashvalue; else return calchash(); }
-    tinfo_t tinfo() const {return tinfo_key;}
-    const basic & setflag(unsigned f) const {flags |= f; return *this;}
-    const basic & clearflag(unsigned f) const {flags &= ~f; return *this;}
+    unsigned gethash() const;
+    const basic & setflag(unsigned f) const;
+    const basic & clearflag(unsigned f) const;
 
 };
 

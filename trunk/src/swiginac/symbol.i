@@ -22,9 +22,12 @@
 class symbol : public basic
 {
 public:
-   symbol();
-   explicit symbol(const std::string & initname);
-   explicit symbol(const std::string & initname, const std::string & texname);
+    symbol();
+    explicit symbol(const std::string & initname);
+    explicit symbol(const std::string & initname, const std::string & texname);
+    ex conjugate() const;
+    ex real_part() const;
+    ex imag_part() const;
 };
 
 
@@ -32,11 +35,13 @@ class realsymbol : public symbol
 {
   // constructors
 public:
-  realsymbol();
-  explicit realsymbol(const std::string & initname, unsigned domain = domain::real);
-  realsymbol(const std::string & initname, const std::string & texname, unsigned domain = domain::real);
-  realsymbol(const std::string & initname, unsigned rt, tinfo_t rtt, unsigned domain = domain::real);
-  realsymbol(const std::string & initname, const std::string & texname, unsigned rt, tinfo_t rtt, unsigned domain = domain::real);
+    realsymbol();
+    explicit realsymbol(const std::string & initname);
+    realsymbol(const std::string & initname, const std::string & texname);
+    ex conjugate() const;
+    ex real_part() const;
+    ex imag_part() const;
+
 };
 
 

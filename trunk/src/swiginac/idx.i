@@ -22,38 +22,38 @@
 class idx : public basic
 {
 public:
-	explicit idx(const ex & v, const ex & dim);
-	virtual bool is_dummy_pair_same_type(const basic & other) const;
-	ex get_value() const {return value;}
-	bool is_numeric() const {return is_exactly_a<numeric>(value);}
-	bool is_symbolic() const {return !is_exactly_a<numeric>(value);}
-	ex get_dim() const {return dim;}
-	bool is_dim_numeric() const {return is_exactly_a<numeric>(dim);}
-	bool is_dim_symbolic() const {return !is_exactly_a<numeric>(dim);}
-	ex replace_dim(const ex & new_dim) const;
-	ex minimal_dim(const idx & other) const;
+    explicit idx(const ex & v, const ex & dim);
+    virtual bool is_dummy_pair_same_type(const basic & other) const;
+    ex get_value() const {return value;}
+    bool is_numeric() const {return is_exactly_a<numeric>(value);}
+    bool is_symbolic() const {return !is_exactly_a<numeric>(value);}
+    ex get_dim() const {return dim;}
+    bool is_dim_numeric() const {return is_exactly_a<numeric>(dim);}
+    bool is_dim_symbolic() const {return !is_exactly_a<numeric>(dim);}
+    ex replace_dim(const ex & new_dim) const;
+    ex minimal_dim(const idx & other) const;
 };
 
 
 class varidx : public idx
 {
 public:
-	varidx(const ex & v, const ex & dim, bool covariant = false);
-	bool is_dummy_pair_same_type(const basic & other) const;
-	bool is_covariant() const {return covariant;}
-	bool is_contravariant() const {return !covariant;}
-	ex toggle_variance() const;
+    varidx(const ex & v, const ex & dim, bool covariant = false);
+    bool is_dummy_pair_same_type(const basic & other) const;
+    bool is_covariant() const {return covariant;}
+    bool is_contravariant() const {return !covariant;}
+    ex toggle_variance() const;
 };
 
 class spinidx : public varidx
 {
 public:
-	spinidx(const ex & v, const ex & dim = 2, bool covariant = false, bool dotted = false);
-	bool is_dummy_pair_same_type(const basic & other) const;
-	bool is_dotted() const {return dotted;}
-	bool is_undotted() const {return !dotted;}
-	ex toggle_dot() const;
-	ex toggle_variance_dot() const;
+    spinidx(const ex & v, const ex & dim = 2, bool covariant = false, bool dotted = false);
+    bool is_dummy_pair_same_type(const basic & other) const;
+    bool is_dotted() const {return dotted;}
+    bool is_undotted() const {return !dotted;}
+    ex toggle_dot() const;
+    ex toggle_variance_dot() const;
 };
 
 bool is_dummy_pair(const idx & i1, const idx & i2);

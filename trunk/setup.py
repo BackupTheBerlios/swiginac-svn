@@ -37,7 +37,8 @@ def pkgconfig(*packages, **kw):
         exit(1)
 
     for token in output.split():
-        kw.setdefault(flag_map.get(token[:2]), []).append(token[2:])
+        if token[:2] != "-W":
+            kw.setdefault(flag_map.get(token[:2]), []).append(token[2:])
     return kw
 
 os.chdir(pjoin("src", "swiginac"))
@@ -52,13 +53,14 @@ if argv[1] == 'build':
 if argv[1] == 'build_ext':
     argv.insert(2, swig_opt)
     
+print pkgconfig("ginac")
 e = Extension(name='_swiginac',
               sources=['swiginac.i'],
               **pkgconfig("ginac")
              )
 
 setup(name='swiginac',
-    version='1.0.0',
+    version='1.5.1',
     description='interface to GiNaC, providing Python with symbolic mathematics',
     author='Ola Skavhaug',
     author_email='skavhaug@simula.no',

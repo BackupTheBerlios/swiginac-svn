@@ -1,5 +1,8 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Update interface files to GiNaC 1.5.1
+ - swiginac: Use same versioning number as GiNaC
+ - swiginac: Change the type conversion using the new style system
  - swiginac: Added typemap for const lst (patch from Martin Sandve Alnæs)
  - swiginac: Added archiving through load and dump methods in archive class
  - swiginac: Released 1.0.0 [2007-12-03]

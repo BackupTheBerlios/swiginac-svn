@@ -38,7 +38,7 @@ class test_print(unittest.TestCase):
     def test_autodoc(self):
         res = 0
         x = g.symbol('x')
-        if not (x.__doc__ == 'Proxy of C++ symbol class'): res += 1
+        if not (x.__doc__ == 'Proxy of C++ GiNaC::symbol class'): res += 1
         self.assertEqual(res, 0)
         
 
