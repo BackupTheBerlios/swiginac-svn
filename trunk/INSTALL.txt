@@ -10,23 +10,28 @@ GiNaC (ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/),
 SWIG (http://sourceforge.net/project/showfiles.php?group_id=1645), and
 pkg-config (http://pkg-config.freedesktop.org/wiki/). 
 
-Versions known to work are GiNaC version >= 1.4.0,
-SWIG version >= 1.3.24, and pkg-config version 0.22-1. 
-(Remark: GiNaC versions < 1.4.0 dos not work!)
+The version of Swiginac follows the version of GiNaC, and the current interface
+is built for GiNaC version 1.5.1. Some quite substantial changes in the type
+information system was made in GiNaC 1.5, so version 1.4.x and earlier will not
+work. With recent SWIG and pkg-config versions you should be ready to go.
 
 Most recent Linux distributions have packages for the above software. E.g., in
-Debian the packages are:
+Debian Unstable (sid), the packages are:
+libginac1.5
+libginac-dev
+swig1.3
+pkg-config
 
- libginac-dev      
- swig1.3
- pkg-config
-   
 Supported platforms
 -------------------
 We have successfully installed swiginac using the distutils file on the
 following platforms:
 
- - Debian Linux i386 (see also `Debian Hints`_)
+swiginac 1.5.1:
+ - Ubuntu intrepid amd64 
+
+swiginac 1.0.0:
+ - Debian Linux i386 (see also `Debian Hints`)
  - Ubuntu edgy amd64 (needs GiNaC version >=1.4)
  - MacOSX "Tiger" 10.4
 
@@ -41,15 +46,15 @@ python setup.py build
 python setup.py install
 
 At this point, swiginac and Symbolic should be installed in the site-packages
-directory of your default Python interpreter (on Debian with Python2.3:
-/usr/lib/python2.3/site-packages).
+directory of your default Python interpreter (on Debian with Python2.5:
+/usr/lib/python2.5/site-packages).
 
 Troubleshooting
 ---------------
 
 The setup.py file in swiginac depends on pkg-config
 (http://pkg-config.freedesktop.org/wiki/). The package is usually present in in
-most Linux distros. Pkg-config uses .pc files to resolve dependency build and
+most Linux distros. Pkg-config uses .pc files to resolve dependecy build and
 link flags, and these files are usually put in /usr/local/lib/pkgconfig or
 /usr/lib/pkgconfig. If you have installed (a recent) GiNaC previously,
 choosing /usr/local as install prefix, a pkgconfig file named ginac.pc will be
@@ -58,10 +63,13 @@ current version of GiNaC. Using the wrong ginac.pc may cause the setup.py
 installation to fail, since pkg-config will report wrong compilation options.
 If you experience lots of compiler errors, despite the fact that you have
 installed a ginac version compliant with the requirements in swiginac, type:
+
 pkg-config --variable=prefix ginac
+
 to see the prefix of the ginac installation used in setup.py. If the script
 reports an unexpected prefix (e.g. /usr/local instead of /usr), delete the
 ginac.pc file:
+
 rm `pkg-config --variable=prefix ginac`/lib/pkgconfig/ginac.pc
 
 Debian Hints
@@ -90,7 +98,7 @@ Be aware that Debian gcc 4.0.2-2 and 4.0.2-4 are not able to compile the
 wrapper code correctly in optimized mode. Therefore, expect that Python 
 distutils will not work with gcc-4.0.x compilers with aggressive
 optimization (-O3). To be safe, either use a 3.x [or 4.n (n > 0)] gcc
-compiler or build the module with less optimization::
+compiler or build the module with less optimization:
 
   CFLAGS=-O0 python setup.py build
 
@@ -136,7 +144,6 @@ If you do not have root privileges, edit the PREFIX variable in Makefile to a
 path where you have permissions to install files, and edit PYTHONPATH
 accordingly.
 
-
 Verify the installation
 -----------------------
 Go to your home directory and start Python. Then issue the commands:
@@ -154,7 +161,6 @@ python SymbolicTests.py
 
 Hopefully, you will get a message telling you that more than 130 tests have been
 run, and that all but one went well.
-
 
 Final note
 ----------
