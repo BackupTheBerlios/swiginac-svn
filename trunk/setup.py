@@ -33,7 +33,6 @@ def pkgconfig(*packages, **kw):
     flag_map = {'-I': 'include_dirs', '-L': 'library_dirs', '-l': 'libraries'}
     output = commands.getoutput("pkg-config --libs --cflags %s" % ' '.join(packages))
     if "not found" in output:
-        print output
         exit(1)
 
     for token in output.split():
@@ -53,7 +52,6 @@ if argv[1] == 'build':
 if argv[1] == 'build_ext':
     argv.insert(2, swig_opt)
     
-print pkgconfig("ginac")
 e = Extension(name='_swiginac',
               sources=['swiginac.i'],
               **pkgconfig("ginac")
