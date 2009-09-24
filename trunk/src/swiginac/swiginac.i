@@ -27,6 +27,23 @@ using namespace GiNaC;
 #include <sstream>
 %}
 
+%{
+#include <map>
+#include<string>
+std::map<std::string, symbol> symbol_collection;
+
+const symbol & get_symbol(const std::string & name)
+{       
+    std::map<std::string, symbol>::iterator i = symbol_collection.find(name);
+    if( i != symbol_collection.end() )
+    {       
+        return i->second;
+    } 
+    return symbol_collection.insert(make_pair(name, symbol(name))).first->second;
+}           
+
+%}
+
 %include "pyexceptions.i"
 
 %include std_sstream.i
@@ -128,6 +145,8 @@ def get_symbols(name, number):
 
     return _dict[name][:]
 %}
+
+const GiNaC::symbol & get_symbol(const std::string & name);
 
 %inline %{
 namespace GiNaC {
