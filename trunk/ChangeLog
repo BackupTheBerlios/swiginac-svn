@@ -1,5 +1,9 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Added swiginac.h to ease building new extensions based on swiginac
+ - swiginac: Added two more subs methods to the clifford class
+ - swiginac: Added symbol factory get_symbol
+ - swiginac: Remove debug print in setup.py
  - swiginac: Released 1.5.1 [2009-04-15]
  - swiginac: Update INSTALL.TXT to reflect recent changes
  - swiginac: Update interface files to GiNaC 1.5.1
