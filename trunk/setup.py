@@ -3,7 +3,7 @@
 
 """
 Standard setup.py file using Python's native distutils module for installation.
-Make sure that you have at least SWIG version 1.3.24 and GiNaC version 1.3.2.
+Make sure that you have at least SWIG version 1.3.24 and GiNaC version 1.5.1.
 
 To build and install swiginac, type:
 python setup.py build

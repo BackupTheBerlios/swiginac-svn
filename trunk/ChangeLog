@@ -1,5 +1,7 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Released 1.5.1-1 [2010-05-19]
+ - swiginac: Update setup.py and changelog
  - swiginac: Added swiginac.h to ease building new extensions based on swiginac
  - swiginac: Added two more subs methods to the clifford class
  - swiginac: Added symbol factory get_symbol
