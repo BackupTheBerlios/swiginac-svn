@@ -110,4 +110,14 @@ ex clifford_moebius_map(const ex & a, const ex & b, const ex & c, const ex & d, 
 
 ex clifford_moebius_map(const ex & M, const ex & v, const ex & G, unsigned char rl = 0);
 
+%extend clifford {
+    ex subs(const lst & ls, const lst & lr) {
+        return self->eval().subs(ls,lr);
+    }
+    ex subs(const ex & e, unsigned options = 0) const {
+        return self->eval().subs(e,options);
+    }
+
+};
+
 // vim:ft=cpp:
