@@ -58,7 +58,7 @@ e = Extension(name='_swiginac',
              )
 
 setup(name='swiginac',
-    version='1.5.1',
+    version='1.5.1.1',
     description='interface to GiNaC, providing Python with symbolic mathematics',
     author='Ola Skavhaug',
     author_email='skavhaug@simula.no',

@@ -99,7 +99,8 @@ PyObject * ex2type(const ex* input) {
 
     const ex* convert = &tmp;
 
-
+    EX2(possymbol)
+    EX2(realsymbol)
     EX2(symbol)
     EX2(constant)
     EX2(numeric)

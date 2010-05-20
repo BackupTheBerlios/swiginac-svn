@@ -41,9 +41,19 @@ public:
     ex conjugate() const;
     ex real_part() const;
     ex imag_part() const;
-
 };
 
+class possymbol : public realsymbol
+{
+  // constructors
+public:
+    possymbol();
+    explicit possymbol(const std::string & initname);
+    possymbol(const std::string & initname, const std::string & texname);
+    ex conjugate() const;
+    ex real_part() const;
+    ex imag_part() const;
+};
 
 
 // vim:ft=cpp:

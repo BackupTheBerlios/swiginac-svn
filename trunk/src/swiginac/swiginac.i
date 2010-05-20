@@ -113,6 +113,8 @@ ADD_REPR(numeric);
 ADD_REPR(function);
 ADD_REPR(constant);
 ADD_REPR(symbol);
+ADD_REPR(realsymbol);
+ADD_REPR(possymbol);
 ADD_REPR(integral);
 ADD_REPR(idx);
 ADD_REPR(varidx);
