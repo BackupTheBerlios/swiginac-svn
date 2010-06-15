@@ -1,5 +1,6 @@
  ------ swiginac/trunk ChangeLog  ------ 
 
+ - swiginac: Replace string exceptions with real oned (patch from Johannes Ring)
  - swiginac: Added realsymbol and possymbol (patch from Vladimir V. Kisil)
  - swiginac: Released 1.5.1-1 [2010-05-19]
  - swiginac: Update setup.py and changelog

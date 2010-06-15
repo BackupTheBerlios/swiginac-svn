@@ -224,7 +224,7 @@ ex expand(const ex & thisex);
         elif isinstance(x,float):
             return TEMPLATENAME##_double(x).eval()
         else:
-            raise "Unimplented type. Fix in function.i."
+            raise TypeError("Unimplented type. Fix in function.i.")
 %}
 %enddef
 
@@ -248,7 +248,7 @@ def FUNCNAME(x,y):
         for t in types:
             if isinstance(p,t): 
                 return t
-        raise "Unimplemented type. Fix in function.i."
+        raise TypeError("Unimplemented type. Fix in function.i.")
 
     xt = which(x)
     yt = which(y)
@@ -305,7 +305,7 @@ def FUNCNAME(x,y,z):
         for t in types:
             if isinstance(p,t): 
                 return t
-        raise "Unimplemented type. Fix in function.i."
+        raise TypeError("Unimplemented type. Fix in function.i.")
 
     xt = which(x)
     yt = which(y)
@@ -434,7 +434,7 @@ def zeta(*args):
   elif len(args)==2:
     return zeta2(*args)
   else:
-    raise "zeta() takes 1 or 2 arguments"
+    raise TypeError("zeta() takes 1 or 2 arguments")
 %}
 
 /** Generalized multiple polylogarithm. */
@@ -461,7 +461,7 @@ def G(*args):
   elif len(args)==3:
     return G3(*args)
   else:
-    raise "G() takes 2 or 3 arguments"
+    raise TypeError("G() takes 2 or 3 arguments")
 %}
 
 /** Psi-function (aka digamma-function). */
@@ -488,7 +488,7 @@ def psi(*args):
   elif len(args)==2:
     return psi2(*args)
   else:
-    raise "psi() takes 1 or 2 arguments"
+    raise TypeError("psi() takes 1 or 2 arguments")
 %}
 
 ex lsolve(const ex &eqns, const ex &symbols, unsigned options = solve_algo::automatic);
